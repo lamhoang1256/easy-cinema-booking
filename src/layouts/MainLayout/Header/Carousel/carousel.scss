@@ -1,0 +1,79 @@
+@import "../../../../sass/variables";
+.header {
+  .carousel {
+    &__item {
+      position: relative;
+      img {
+        height: 100vh;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    &__main {
+      background-color: rgba(0, 0, 0, 0.3);
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0%;
+      padding-top: 25vh;
+      left: 0;
+      color: #fff;
+      user-select: text;
+    }
+    &__heading {
+      font-size: 4rem;
+      letter-spacing: 1.5px;
+    }
+    &__features {
+      display: flex;
+      gap: 0 20px;
+      margin: 20px 0;
+      span {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+    }
+    &__btn {
+      padding: 10px 20px;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 0 10px;
+      border-radius: 40px;
+      ion-icon {
+        font-size: 2.2rem;
+      }
+    }
+  }
+  // custom react slick
+  .slick-slider {
+    height: 100vh;
+  }
+  .slick-dots {
+    bottom: 50px;
+    .slick-active {
+      button:before {
+        color: $redff0;
+      }
+    }
+  }
+  .slick-dots li button:before {
+    font-size: 18px;
+    color: $grayea;
+  }
+  .carousel__prev,
+  .carousel__next {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    color: #fff;
+    font-size: 5rem;
+    cursor: pointer;
+  }
+  .carousel__prev {
+    left: 40px;
+  }
+  .carousel__next {
+    right: 40px;
+  }
+}

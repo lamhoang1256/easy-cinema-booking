@@ -1,0 +1,17 @@
+@import "../variables";
+.btn {
+  padding: 8px 20px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.25s linear;
+  &__primary {
+    background-color: $redff0;
+    color: #fff;
+  }
+  &:hover {
+    opacity: 0.9;
+  }
+}
