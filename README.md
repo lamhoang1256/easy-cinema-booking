@@ -5,3 +5,4 @@ Quá trình làm đồ án ReactJS
 
 - Khởi tạo dự án
 - Setup layout (Main, Admin , Auth)
+- Xây dựng Header + Carousel cho Homepage

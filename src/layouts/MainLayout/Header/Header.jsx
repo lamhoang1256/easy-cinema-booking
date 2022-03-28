@@ -4,6 +4,13 @@ import { Carousel } from "./Carousel/Carousel";
 import "./header.scss";
 
 export const Header = () => {
+  const headerNav = [
+    { display: "Lịch chiếu", path: "/" },
+    { display: "Cụm rạp", path: "/" },
+    { display: "Tin tức", path: "/" },
+    { display: "Ứng dụng", path: "/" },
+  ];
+
   return (
     <header className='header'>
       {/* Hero Slider */}
@@ -16,30 +23,17 @@ export const Header = () => {
             </div>
             <div className='header__action'>
               <ul className='navbar'>
-                <li className='navbar__item'>
-                  <NavLink to='/' className='navbar__link'>
-                    Lịch chiếu
-                  </NavLink>
-                </li>
-                <li className='navbar__item'>
-                  <NavLink to='/' className='navbar__link'>
-                    Cụm rạp
-                  </NavLink>
-                </li>
-                <li className='navbar__item'>
-                  <NavLink to='/' className='navbar__link'>
-                    Tin tức
-                  </NavLink>
-                </li>
-                <li className='navbar__item'>
-                  <NavLink to='/' className='navbar__link'>
-                    Ứng dụng
-                  </NavLink>
-                </li>
+                {headerNav.map((item, index) => (
+                  <li className='navbar__item' key={index}>
+                    <NavLink to={item.path} className='navbar__link'>
+                      {item.display}
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
               <div className='header__auth'>
-                <button className='header__register btn btn__secondary'>Register</button>
-                <button className='header__login btn btn__primary'>Login</button>
+                <button className='header__register btn btn__secondary'>Đăng ký</button>
+                <button className='header__login btn btn__primary'>Đăng nhập</button>
               </div>
             </div>
           </div>

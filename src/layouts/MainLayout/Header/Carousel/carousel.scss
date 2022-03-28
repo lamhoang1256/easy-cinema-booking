@@ -1,28 +1,43 @@
 @import "../../../../sass/variables";
 .header {
   .carousel {
+    background-color: #000;
     &__item {
       position: relative;
       img {
-        height: 100vh;
         width: 100%;
         object-fit: cover;
       }
     }
     &__main {
-      background-color: rgba(0, 0, 0, 0.3);
-      width: 100%;
-      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.2);
+      inset: 0;
       position: absolute;
-      top: 0%;
       padding-top: 25vh;
-      left: 0;
       color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0);
       user-select: text;
+      @media screen and (max-width: 1023.98px) {
+        position: unset;
+        padding: 40px 20px 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      @media screen and (max-width: 767.98px) {
+        padding: 40px 20px 100px;
+      }
     }
     &__heading {
-      font-size: 4rem;
+      font-size: 5rem;
       letter-spacing: 1.5px;
+      @media screen and (max-width: 767.98px) {
+        font-size: 3rem;
+      }
+    }
+    &__desc {
+      max-width: 580px;
     }
     &__features {
       display: flex;
@@ -31,6 +46,22 @@
       span {
         font-size: 2rem;
         font-weight: 500;
+      }
+    }
+    &__info {
+      display: flex;
+      gap: 0 20px;
+      ion-icon {
+        font-size: 1.8rem;
+        color: #ffff00;
+      }
+      &-label {
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+        ion-icon {
+          color: $redff0;
+        }
       }
     }
     &__btn {
@@ -45,9 +76,14 @@
       }
     }
   }
-  // custom react slick
+
+  // CUSTOM STYLE SLICK-REACT
   .slick-slider {
     height: 100vh;
+    @media screen and (max-width: 1023.98px) {
+      height: unset;
+      min-height: 80vh;
+    }
   }
   .slick-dots {
     bottom: 50px;
@@ -64,16 +100,23 @@
   .carousel__prev,
   .carousel__next {
     position: absolute;
-    top: 50%;
+    bottom: 50%;
     z-index: 10;
     color: #fff;
     font-size: 5rem;
     cursor: pointer;
+    @media screen and (max-width: 1023.98px) {
+      bottom: 40%;
+    }
+    @media screen and (max-width: 767.98px) {
+      bottom: 20px;
+      font-size: 4rem;
+    }
   }
   .carousel__prev {
-    left: 40px;
+    left: 30px;
   }
   .carousel__next {
-    right: 40px;
+    right: 30px;
   }
 }

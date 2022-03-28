@@ -1,0 +1,32 @@
+export const dataCarouselHome = [
+  {
+    id: 1,
+    img: "assets/background-lady.jpg",
+    name: "Suicide Squad",
+    desc: "Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.",
+    features: ["Adventure", "Thriller", "Comedy"],
+    year: 2021,
+    min: 120,
+    trailer: "https://www.youtube.com/watch?v=JuDLepNa7hw&t=30s",
+  },
+  {
+    id: 2,
+    img: "assets/background-joker.jpg",
+    name: "Joker",
+    desc: "“Joker” is an original, standalone story. Arthur Fleck (Joaquin Phoenix), a man disregarded by society, is not only a gritty character study, but also a broader cautionary tale.",
+    features: ["Crime", "Thriller", "Drama"],
+    year: 2019,
+    min: 141,
+    trailer: "https://www.youtube.com/watch?v=zAGVQLHvwOY",
+  },
+  {
+    id: 3,
+    img: "assets/background-aladin.jpg",
+    name: "Aladin",
+    desc: "A kind-hearted street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make their deepest wishes come true.",
+    features: ["Adventure", "Comedy", "Family"],
+    year: 2022,
+    min: 188,
+    trailer: "https://www.youtube.com/watch?v=foyufD52aog",
+  },
+];
