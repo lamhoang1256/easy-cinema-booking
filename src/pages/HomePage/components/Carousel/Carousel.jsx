@@ -4,8 +4,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carousel.scss";
 import { dataCarouselHome } from "../../../../constants/dataCarouselHome";
+import { useDispatch } from "react-redux";
+import { openModalTrailerAction } from "../../../../redux/actions/modalTrailer.action";
 
 export const Carousel = () => {
+  const dispatch = useDispatch();
+
   // custom button next, prev carousel
   function PrevArrow(props) {
     const { onClick } = props;
@@ -23,7 +27,6 @@ export const Carousel = () => {
       </div>
     );
   }
-
   const settings = {
     dots: true,
     infinite: true,
@@ -32,6 +35,10 @@ export const Carousel = () => {
     slidesToScroll: 1,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+  };
+  // handle when click Watch me
+  const handleShowTrailer = (urlTrailer) => {
+    dispatch(openModalTrailerAction(urlTrailer));
   };
 
   return (
@@ -64,82 +71,16 @@ export const Carousel = () => {
                     <ion-icon name='alarm-outline'></ion-icon> {item.min} min
                   </div>
                 </div>
-                <button className='carousel__btn btn btn__primary'>
+                <button
+                  className='carousel__btn btn btn__primary'
+                  onClick={() => handleShowTrailer(item.trailer)}
+                >
                   Watch me <ion-icon name='play-circle-outline'></ion-icon>
                 </button>
               </div>
             </div>
           </div>
         ))}
-
-        {/* <div className='carousel__item'>
-          <img src='./assets/background-lady.jpg' alt='' />
-          <div className='carousel__main'>
-            <div className='container'>
-              <h2 className='carousel__heading'>Suicide Squad</h2>
-              <div className='carousel__desc'>
-                Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at
-                Belle Reve prison join the super-secret, super-shady Task Force X as they are
-                dropped off at the remote, enemy-infused island of Corto Maltese.
-              </div>
-              <div className='carousel__features'>
-                <span>Adventure</span>
-                <span>Thriller</span>
-                <span>Comedy</span>
-              </div>
-              <div className='carousel__info'>
-                <div className='carousel__info-rate'>
-                  <ion-icon name='star'></ion-icon>
-                  <ion-icon name='star'></ion-icon>
-                  <ion-icon name='star'></ion-icon>
-                  <ion-icon name='star'></ion-icon>
-                  <ion-icon name='star-half'></ion-icon>
-                </div>
-                <div className='carousel__info-label'>
-                  <ion-icon name='calendar-outline'></ion-icon> 2020
-                </div>
-                <div className='carousel__info-label'>
-                  <ion-icon name='alarm-outline'></ion-icon> 118 min
-                </div>
-              </div>
-              <button className='carousel__btn btn btn__primary'>
-                Watch me <ion-icon name='play-circle-outline'></ion-icon>
-              </button>
-            </div>
-          </div>
-        </div> */}
-        {/* <div className='carousel__item'>
-          <img src='./assets/background-joker.jpg' alt='' />
-          <div className='carousel__main'>
-            <div className='container'>
-              <h2 className='carousel__heading'>Batman</h2>
-              <div className='carousel__features'>
-                <span>Adventure</span>
-                <span>Thriller</span>
-                <span>Comedy</span>
-              </div>
-              <button className='carousel__btn btn btn__primary'>
-                Watch me <ion-icon name='play-circle-outline'></ion-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className='carousel__item'>
-          <img src='./assets/background-aladin.jpg' alt='' />
-          <div className='carousel__main'>
-            <div className='container'>
-              <h2 className='carousel__heading'>Harry Poster</h2>
-              <div className='carousel__features'>
-                <span>Adventure</span>
-                <span>Thriller</span>
-                <span>Comedy</span>
-              </div>
-              <button className='carousel__btn btn btn__primary'>
-                Watch me <ion-icon name='play-circle-outline'></ion-icon>
-              </button>
-            </div>
-          </div>
-        </div> */}
       </Slider>
     </div>
   );
