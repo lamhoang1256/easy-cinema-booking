@@ -1,7 +1,8 @@
 @import "../../../../sass/variables";
-.header {
+.homePage {
   .carousel {
     background-color: #000;
+    overflow: hidden;
     &__item {
       position: relative;
       img {
@@ -9,6 +10,7 @@
         object-fit: cover;
       }
     }
+    // custom css for content in carousel banner
     &__main {
       background-color: rgba(0, 0, 0, 0.2);
       inset: 0;
@@ -101,6 +103,7 @@
   .carousel__next {
     position: absolute;
     bottom: 50%;
+    transform: translateY(50%);
     z-index: 10;
     color: #fff;
     font-size: 5rem;
