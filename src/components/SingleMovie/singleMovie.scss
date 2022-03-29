@@ -4,6 +4,7 @@
     border-radius: 12px;
     position: relative;
     overflow: hidden;
+    max-height: 328px;
     &:hover {
       .singleMovie__image {
         transform: scale(1.06);
@@ -41,6 +42,7 @@
     margin-top: 10px;
     font-size: 1.8rem;
     cursor: pointer;
+    height: 5.7rem;
     // check nếu title phim dài quá 2 dòng sẽ xuất hiện ...
     text-overflow: ellipsis;
     overflow: hidden;
