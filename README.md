@@ -12,3 +12,7 @@ Quá trình làm đồ án ReactJS
 - Hoàn thành Responsive Header + Carousel homepage
 - Setup Redux cơ bản
 - Xử lí nhấn nút Watch me ở Carousel sẽ mở ra modal trailer phim và nhấn overplay để đóng modal
+
+29/03/2022
+
+- Hoàn thành UI Filter Booking homepage

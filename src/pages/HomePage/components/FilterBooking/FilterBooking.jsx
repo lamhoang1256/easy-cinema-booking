@@ -11,11 +11,11 @@ export const FilterBooking = () => {
   return (
     <div className='filter__booking'>
       <div className='container'>
+        <h2 className='filter__heading'>HỆ THỐNG ĐẶT VÉ ONLINE</h2>
+        <p className='filter__desc'>
+          Chọn được chỗ ngồi yêu thích, tận hưởng bộ phim tại vị trí thoải mái nhất.
+        </p>
         <div className='filter'>
-          <h2 className='filter__heading'>HỆ THỐNG ĐẶT VÉ ONLINE</h2>
-          <p className='filter__desc'>
-            Chọn được chỗ ngồi yêu thích, tận hưởng bộ phim tại vị trí thoải mái nhất.
-          </p>
           <div className='filter__container'>
             <Select
               showSearch
