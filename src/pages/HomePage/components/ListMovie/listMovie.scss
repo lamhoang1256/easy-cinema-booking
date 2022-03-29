@@ -1,0 +1,9 @@
+.listMovie {
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  @media screen and (max-width: 1023.98px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
