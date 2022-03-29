@@ -5,6 +5,7 @@ import { MainLayout } from "./layouts/MainLayout/MainLayout";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { MovieDetail } from "./pages/MovieDetail/MovieDetail";
 import { UserInfo } from "./pages/UserInfo/UserInfo";
+import "antd/dist/antd.css";
 import "./sass/app.scss";
 
 function App() {

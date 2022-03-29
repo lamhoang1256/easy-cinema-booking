@@ -1,0 +1,56 @@
+@import "../../../../sass/variables";
+.filter__booking {
+  background-color: $redffe;
+  @media screen and (max-width: 1023.98px) {
+    display: none;
+  }
+
+  .filter {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    width: 80%;
+    padding: 20px;
+    margin: 0 auto;
+    transform: translateY(50%);
+    position: relative;
+
+    &__container {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
+      grid-gap: 10px;
+    }
+    &__heading {
+      font-size: 2.4rem;
+      font-weight: 600;
+    }
+    &__desc {
+      color: $gray61;
+    }
+    &__cinema,
+    &__time,
+    &__showtime {
+      overflow: hidden;
+      border-left: 1px solid $gray80;
+    }
+    &__btn {
+      font-weight: 600;
+      border-radius: 30px;
+      &.is-finish {
+        background-color: $gray80;
+      }
+    }
+  }
+
+  // custom for select antd form get booking homepage
+  .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: unset;
+    padding: 10px 11px;
+  }
+  .ant-select-single:not(.ant-select-customize-input)
+    .ant-select-selector
+    .ant-select-selection-search-input {
+    height: 50px;
+  }
+}

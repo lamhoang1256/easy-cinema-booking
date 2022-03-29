@@ -5,4 +5,10 @@ Quá trình làm đồ án ReactJS
 
 - Khởi tạo dự án
 - Setup layout (Main, Admin , Auth)
-- Xây dựng Header + Carousel cho Homepage
+- Xây dựng giao diện Header + Carousel cho Homepage
+
+28/03/2022
+
+- Hoàn thành Responsive Header + Carousel homepage
+- Setup Redux cơ bản
+- Xử lí nhấn nút Watch me ở Carousel sẽ mở ra modal trailer phim và nhấn overplay để đóng modal

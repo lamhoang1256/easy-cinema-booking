@@ -1,6 +1,7 @@
 import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModalTrailerAction } from "../../../../redux/actions/modalTrailer.action";
+import "./modalTrailer.scss";
 
 export const ModalTrailer = () => {
   const dispatch = useDispatch();
@@ -13,10 +14,10 @@ export const ModalTrailer = () => {
   return (
     <>
       {isShowTrailer && (
-        <div className='movieTrailer' onClick={handleHiddenTrailer}>
+        <div className='modalTrailer' onClick={handleHiddenTrailer}>
           <ReactPlayer
             url={urlTrailer}
-            width='898px'
+            width='900px'
             height='505px'
             playing={true}
             controls={true}
