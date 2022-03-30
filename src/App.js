@@ -5,6 +5,8 @@ import { MainLayout } from "./layouts/MainLayout/MainLayout";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { MovieDetail } from "./pages/MovieDetail/MovieDetail";
 import { UserInfo } from "./pages/UserInfo/UserInfo";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "antd/dist/antd.css";
 import "./sass/app.scss";
 

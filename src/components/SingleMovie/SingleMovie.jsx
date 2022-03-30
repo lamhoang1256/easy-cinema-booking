@@ -3,8 +3,8 @@ import "./singleMovie.scss";
 
 export const SingleMovie = (props) => {
   const { movie } = props;
+  // check điểm đánh giá từ API và tạo các ngôi sao rating
   const score = movie.danhGia;
-  // check điểm đánh giá và tạo các ngôi sao rating
   const createStarRating = () => {
     let rating = "";
     if (score % 2 === 0) {
@@ -19,6 +19,8 @@ export const SingleMovie = (props) => {
     }
     return rating;
   };
+  // tạo thời lượng phim cho đẹp
+  const timeMovie = ((movie.maPhim * movie.danhGia) / 500).toFixed(0);
 
   return (
     <>
@@ -26,7 +28,7 @@ export const SingleMovie = (props) => {
         <div className='singleMovie'>
           <div className='singleMovie__thumb'>
             <img src={movie.hinhAnh} className='singleMovie__image' alt='singleMovie-thumb' />
-            <div className='singleMovie__score'>{movie.danhGia}</div>
+            <div className='singleMovie__score'>{movie.danhGia / 2}</div>
             <div className='singleMovie__overplay'>
               <ion-icon name='play-circle-outline'></ion-icon>
             </div>
@@ -34,11 +36,16 @@ export const SingleMovie = (props) => {
           <div className='singleMovie__info'>
             <h3 className='singleMovie__title'>{movie.tenPhim}</h3>
             <div>
-              <div
-                className='singleMovie__rate'
-                dangerouslySetInnerHTML={{ __html: createStarRating() }}
-              ></div>
-              <div className='singleMovie__time'>120 phút</div>
+              <div className='singleMovie__rate'>
+                <div
+                  className='singleMovie__stars'
+                  dangerouslySetInnerHTML={{ __html: createStarRating() }}
+                ></div>
+                <div>{movie.danhGia / 2}</div>
+              </div>
+              <div className='singleMovie__time'>
+                {timeMovie < 100 ? +timeMovie + 100 : timeMovie} phút
+              </div>
             </div>
           </div>
         </div>

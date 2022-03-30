@@ -68,8 +68,13 @@
     }
   }
   &__rate {
-    font-size: 1.6rem;
-    color: #ffd93d;
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+    ion-icon {
+      font-size: 1.8rem;
+      color: #ffd93d;
+    }
   }
   &__overplay {
     display: none;

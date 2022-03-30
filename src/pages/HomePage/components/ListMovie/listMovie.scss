@@ -1,12 +1,19 @@
 .listMovie {
-  margin: 30px auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px 25px;
-  @media screen and (max-width: 1023.98px) {
-    grid-template-columns: repeat(2, 1fr);
+  .list {
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 30px 25px;
+    @media screen and (max-width: 1023.98px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (max-width: 767.98px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
-  @media screen and (max-width: 767.98px) {
-    grid-template-columns: repeat(1, 1fr);
+
+  .btn.btn__primary {
+    margin: 20px auto;
+    padding: 10px 40px;
   }
 }

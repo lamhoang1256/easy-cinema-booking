@@ -7,6 +7,7 @@ import { getMovieListAction } from "../../redux/actions/movieList.action";
 import { Tabs } from "antd";
 import "./homePage.scss";
 import { ListMovie } from "./components/ListMovie/ListMovie";
+import { News } from "./components/News/News";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
@@ -32,8 +33,8 @@ export const HomePage = () => {
       </div>
       <div className='homePage__main'>
         <FilterBooking />
-
         <div className='container'>
+          {/* Tab danh sách phim */}
           {!loading ? (
             <div className='homePage__tab'>
               <Tabs defaultActiveKey='1'>
@@ -51,6 +52,9 @@ export const HomePage = () => {
           ) : (
             "Loading"
           )}
+
+          {/* Tin tức */}
+          <News />
         </div>
       </div>
     </div>

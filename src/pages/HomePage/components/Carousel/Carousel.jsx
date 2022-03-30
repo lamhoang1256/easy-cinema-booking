@@ -1,11 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./carousel.scss";
 import { dataCarouselHome } from "../../../../constants/dataCarouselHome";
 import { useDispatch } from "react-redux";
 import { openModalTrailerAction } from "../../../../redux/actions/modalTrailer.action";
+import "./carousel.scss";
 
 export const Carousel = () => {
   const dispatch = useDispatch();
