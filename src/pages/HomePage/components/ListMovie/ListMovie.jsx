@@ -4,7 +4,7 @@ import "./listMovie.scss";
 
 export const ListMovie = (props) => {
   const { listMovie } = props;
-  console.log(listMovie);
+  // console.log(listMovie);
   return (
     <div className='listMovie'>
       {listMovie.map((item, index) => (

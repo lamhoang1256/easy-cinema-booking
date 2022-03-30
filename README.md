@@ -16,3 +16,4 @@ Quá trình làm đồ án ReactJS
 29/03/2022
 
 - Hoàn thành UI Filter Booking homepage
+- Xây dựng Movie List + Đổ dữ liệu từ API ra giao diện

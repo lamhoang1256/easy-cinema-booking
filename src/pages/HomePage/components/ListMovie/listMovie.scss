@@ -2,8 +2,11 @@
   margin: 30px auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 25px;
+  grid-gap: 30px 25px;
   @media screen and (max-width: 1023.98px) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 767.98px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
