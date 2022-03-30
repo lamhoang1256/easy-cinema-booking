@@ -6,12 +6,12 @@
   left: 0;
   z-index: 20;
   transition: all 0.3s linear;
-  &__top {
+  .header__top {
     display: flex;
     justify-content: space-between;
     gap: 0 50px;
   }
-  &__action {
+  .header__action {
     flex: 1;
     display: flex;
     justify-content: space-between;
@@ -36,17 +36,18 @@
       transform: translateX(0);
     }
   }
-  &__auth {
+  .header__auth {
     display: flex;
     gap: 20px;
     @media screen and (max-width: 1023.98px) {
       flex-direction: column;
     }
   }
+  // css for navbar
   .navbar {
     display: flex;
     gap: 10px 30px;
-    &__link {
+    .navbar__link {
       color: #fff;
       font-size: 1.8rem;
       font-weight: 600;
@@ -81,7 +82,7 @@
     }
   }
   // overplay xuất hiện khi nhấn icon open menu -> click vào sẽ đóng menu lại
-  &__overplay {
+  .header__overplay {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
@@ -95,11 +96,11 @@
       align-items: center;
     }
     .navbar {
-      &__link {
+      .navbar__link {
         color: #000;
         text-shadow: unset;
       }
-      &__open {
+      .navbar__open {
         color: #000;
       }
     }

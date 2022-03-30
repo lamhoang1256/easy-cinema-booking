@@ -9,7 +9,6 @@
   @media screen and (max-width: 1023.98px) {
     display: none;
   }
-
   .filter {
     background-color: #fff;
     border-radius: 20px;
@@ -21,28 +20,28 @@
     position: absolute;
     bottom: 0;
     left: 15%;
-    &__container {
+    .filter__container {
       display: grid;
       grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
       grid-gap: 10px;
     }
-    &__heading {
+    .filter__heading {
       font-size: 2.4rem;
       font-weight: 600;
     }
-    &__desc {
+    .filter__desc {
       color: $gray61;
     }
-    &__cinema,
-    &__time,
-    &__showtime {
+    .filter__cinema,
+    .filter__time,
+    .filter__showtime {
       overflow: hidden;
       border-left: 1px solid $gray80;
     }
-    &__btn {
+    .filter__btn {
       font-weight: 600;
       border-radius: 30px;
-      &.is-finish {
+      .filter__btn.is-finish {
         background-color: $grayf9;
       }
     }
