@@ -31,6 +31,7 @@
       position: absolute;
       inset: 0;
       transition: all 0.25s linear;
+      z-index: 10;
       ion-icon {
         color: #fff;
         font-size: 6rem;

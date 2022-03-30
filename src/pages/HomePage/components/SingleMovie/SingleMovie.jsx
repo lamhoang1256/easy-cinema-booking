@@ -1,8 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { openModalTrailerAction } from "../../../../redux/actions/modalTrailer.action";
 import "./singleMovie.scss";
 
 export const SingleMovie = (props) => {
   const { movie } = props;
+  const dispatch = useDispatch();
   // check điểm đánh giá từ API và tạo các ngôi sao rating
   const score = movie.danhGia;
   const createStarRating = () => {
@@ -30,7 +33,14 @@ export const SingleMovie = (props) => {
             <img src={movie.hinhAnh} className='singleMovie__image' alt='singleMovie-thumb' />
             <div className='singleMovie__score'>{movie.danhGia / 2}</div>
             <div className='singleMovie__overplay'>
-              <ion-icon name='play-circle-outline'></ion-icon>
+              <div className='singleMovie__play'>
+                <ion-icon
+                  onClick={() => {
+                    dispatch(openModalTrailerAction(movie.trailer));
+                  }}
+                  name='play-circle-outline'
+                ></ion-icon>
+              </div>
             </div>
           </div>
           <div className='singleMovie__info'>

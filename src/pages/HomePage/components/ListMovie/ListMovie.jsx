@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SingleMovie } from "../../../../components/SingleMovie/SingleMovie";
+import { SingleMovie } from "../SingleMovie/SingleMovie";
 import "./listMovie.scss";
 
 export const ListMovie = (props) => {
