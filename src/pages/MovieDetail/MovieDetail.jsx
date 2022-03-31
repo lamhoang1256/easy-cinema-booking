@@ -1,4 +1,5 @@
 import React from "react";
+import { SideNew } from "../../components/SubNew/SideNew";
 import { Comment } from "./components/Comment";
 import "./movieDetail.scss";
 
@@ -17,6 +18,7 @@ import "./movieDetail.scss";
 
 export const MovieDetail = () => {
   const backgroundURL = "https://movie0706.cybersoft.edu.vn/hinhanh/vi-anh-van-tin_gp09.jpg";
+
   return (
     <div className='movieDetail'>
       <div
@@ -28,7 +30,7 @@ export const MovieDetail = () => {
         }}
       ></div>
       <div className='container'>
-        <div className='movieDetail__container'>
+        <div className='movieDetail__main'>
           <div className='movieDetail__left'>
             <div className='movieDetail__info'>
               {/* Thumbnail phim */}
@@ -91,6 +93,10 @@ export const MovieDetail = () => {
                 <Comment />
               </div>
             </div>
+          </div>
+          {/* Phần tin tức bên phải */}
+          <div className='movieDetail__right'>
+            <SideNew />
           </div>
         </div>
       </div>

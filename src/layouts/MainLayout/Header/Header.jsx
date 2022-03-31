@@ -62,10 +62,10 @@ export const Header = () => {
             <div className='navbar__open' onClick={handleToggleMenu}>
               <ion-icon name='list-outline'></ion-icon>
             </div>
-            {/* overplay */}
           </div>
         </div>
       </div>
+      {/* overplay */}
       {isShowMenu && <div className='header__overplay' onClick={handleToggleMenu}></div>}
     </header>
   );

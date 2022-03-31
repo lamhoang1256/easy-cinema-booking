@@ -23,3 +23,8 @@ Quá trình làm đồ án ReactJS
 - Xử lí responsive Movie List + load more
 - Xây dựng UI component News
 - Xử lí nút click vào xem trailer của SingleMovie
+
+31/03/2022
+
+- Thêm Footer cơ bản
+- Xây dựng trang chi tiết phim

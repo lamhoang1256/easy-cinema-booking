@@ -27,24 +27,8 @@
       border-radius: 15px;
     }
   }
-  // tin tức phụ
-  .news__sub {
-    flex-basis: 50%;
-    &-item {
-      margin-bottom: 20px;
-      display: flex;
-      gap: 30px;
-      img {
-        width: 30%;
-        border-radius: 10px;
-        object-fit: cover;
-        @media screen and (max-width: 1023.98px) {
-          width: 40%;
-        }
-      }
-    }
-  }
-  // css chung cho news main và news sub
+
+  // css chung cho main news và side news
   .news__time {
     color: $gray80;
     font-weight: 600;

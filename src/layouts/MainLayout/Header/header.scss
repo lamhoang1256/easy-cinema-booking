@@ -10,6 +10,24 @@
     display: flex;
     justify-content: space-between;
     gap: 0 50px;
+    .navbar__close {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      font-size: 4rem;
+      display: none;
+    }
+    .navbar__open {
+      color: #fff;
+      font-size: 4rem;
+      display: none;
+    }
+    @media screen and (max-width: 1023.98px) {
+      .navbar__close,
+      .navbar__open {
+        display: block;
+      }
+    }
   }
   .header__action {
     flex: 1;
@@ -57,27 +75,11 @@
         font-size: 2.2rem;
       }
     }
-    &__close {
-      position: fixed;
-      top: 30px;
-      right: 30px;
-      font-size: 4rem;
-      display: none;
-    }
-    &__open {
-      color: #fff;
-      font-size: 4rem;
-      display: none;
-    }
     @media screen and (max-width: 1023.98px) {
       flex-direction: column;
-      &__link {
+      .navbar__link {
         color: #000;
         text-shadow: unset;
-      }
-      &__close,
-      &__open {
-        display: block;
       }
     }
   }
@@ -88,21 +90,21 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
   }
-  // custom css for header fixed white (when scroll down)
-  &--white {
-    background-color: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+// custom css for header fixed white (when scroll down)
+.header--white {
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  .header__top {
     .header__action {
       align-items: center;
     }
-    .navbar {
-      .navbar__link {
-        color: #000;
-        text-shadow: unset;
-      }
-      .navbar__open {
-        color: #000;
-      }
+    .navbar__link {
+      color: #000;
+      text-shadow: unset;
+    }
+    .navbar__open {
+      color: #000;
     }
   }
 }
