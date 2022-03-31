@@ -22,3 +22,4 @@ Quá trình làm đồ án ReactJS
 
 - Xử lí responsive Movie List + load more
 - Xây dựng UI component News
+- Xử lí nút click vào xem trailer của SingleMovie

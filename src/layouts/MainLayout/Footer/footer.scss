@@ -1,5 +1,21 @@
 .footer {
   margin-top: 50px;
-  padding: 50px 0;
+  padding: 50px 0 30px;
   background-color: #eaeaea;
+  .footer__top {
+    display: flex;
+    justify-content: space-between;
+    color: #ff0000;
+    .footer__list {
+      display: flex;
+      gap: 0 40px;
+      .footer__link {
+        color: #000;
+      }
+    }
+  }
+  .footer__bottom {
+    margin-top: 50px;
+    text-align: center;
+  }
 }
