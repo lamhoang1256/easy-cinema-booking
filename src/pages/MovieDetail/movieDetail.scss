@@ -6,6 +6,9 @@
     background-repeat: no-repeat;
     background-position: center;
     filter: blur(10px);
+    @media screen and (max-width: 1023.98px) {
+      height: 30vh;
+    }
   }
   //phần thông tin phim
   .movieDetail__main {
@@ -13,14 +16,23 @@
     gap: 30px;
     .movieDetail__left {
       flex-basis: 65%;
+      @media screen and (max-width: 1023.98px) {
+        flex: 1;
+      }
       .movieDetail__info {
-        padding-top: 60px;
+        padding: 60px 0 20px;
         display: flex;
-        gap: 60px;
+        gap: 0 60px;
+        @media screen and (max-width: 767.98px) {
+          flex-direction: column;
+        }
         .singleMovie__thumb {
           width: 215px;
           transform: translateY(-130px);
           box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+          @media screen and (max-width: 767.98px) {
+            margin-bottom: -90px;
+          }
         }
         .movieDetail__detail {
           font-size: 1.8rem;
@@ -30,12 +42,20 @@
             font-weight: 600;
             margin-right: 10px;
           }
+          .movieDetail__title {
+            color: #ff0000;
+            font-weight: 500;
+            font-size: 2rem;
+          }
         }
       }
     }
     .movieDetail__right {
       flex-basis: 35%;
       padding-top: 60px;
+      @media screen and (max-width: 1023.98px) {
+        display: none;
+      }
     }
   }
 }

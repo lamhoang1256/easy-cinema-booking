@@ -28,3 +28,4 @@ Quá trình làm đồ án ReactJS
 
 - Thêm Footer cơ bản
 - Xây dựng trang chi tiết phim
+- Đổ dữ liệu từ API ra trang chi tiết phim

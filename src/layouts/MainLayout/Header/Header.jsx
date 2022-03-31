@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./header.scss";
 
 export const Header = () => {
@@ -34,9 +34,9 @@ export const Header = () => {
       <div className='header__container'>
         <div className='container'>
           <div className='header__top'>
-            <div className='header__logo'>
-              <img src='./assets/logo-star-cineplex.png' alt='' />
-            </div>
+            <Link to='/' className='header__logo'>
+              <img src={`${process.env.REACT_APP_PUBLIC}/assets/logo-star-cineplex.png`} alt='' />
+            </Link>
             <div className={`header__action ${isShowMenu ? "is-show" : ""}`}>
               {/* navbar link */}
               <ul className='navbar'>

@@ -1,105 +1,132 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { SideNew } from "../../components/SubNew/SideNew";
 import { Comment } from "./components/Comment";
+import { ModalTrailer } from "../../components/ModalTrailer/ModalTrailer";
+// action creator
+import { getDetailMovieAction } from "../../redux/actions/movieDetail.action";
+import { openModalTrailerAction } from "../../redux/actions/modalTrailer.action";
 import "./movieDetail.scss";
 
-// biDanh: "southpaww-696"
-// dangChieu: false
-// danhGia: 8
-// hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/southpaw.jpg"
-// hot: true
-// maNhom: "GP13"
-// maPhim: 1506
-// moTa: "Boxer Billy Hope turns to trainer Tick Willis to help him get his life back on track after losing his wife in a tragic accident and his daughter to child protection services."
-// ngayKhoiChieu: "2021-08-21T00:00:00"
-// sapChieu: true
-// tenPhim: "Southpaww 696"
-// trailer: "https://www.youtube.com/embed/Mh2ebPxhoLs"
-
 export const MovieDetail = () => {
-  const backgroundURL = "https://movie0706.cybersoft.edu.vn/hinhanh/vi-anh-van-tin_gp09.jpg";
+  window.scrollTo(0, 0);
+  const { id } = useParams(); // lấy id từ thanh url
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.movieDetail);
+
+  // get data detail movie from API thông qua id
+  useEffect(() => {
+    dispatch(getDetailMovieAction(id));
+  }, []);
 
   return (
-    <div className='movieDetail'>
-      <div
-        className='movieDetail__top'
-        style={{
-          backgroundImage: `url(
-            ${backgroundURL}
+    <>
+      {!loading ? (
+        <div className='movieDetail'>
+          <div
+            className='movieDetail__top'
+            style={{
+              backgroundImage: `url(
+            ${data.hinhAnh}
           )`,
-        }}
-      ></div>
-      <div className='container'>
-        <div className='movieDetail__main'>
-          <div className='movieDetail__left'>
-            <div className='movieDetail__info'>
-              {/* Thumbnail phim */}
-              <div className='singleMovie__thumb'>
-                <img src={backgroundURL} className='singleMovie__image' alt='singleMovie-thumb' />
-                <div className='singleMovie__score'>{4}</div>
-                <div className='singleMovie__overplay'>
-                  <div className='singleMovie__play'>
-                    <ion-icon
-                      // onClick={() => {
-                      //   dispatch(openModalTrailerAction(movie.trailer));
-                      // }}
-                      name='play-circle-outline'
-                    ></ion-icon>
+            }}
+          ></div>
+          <div className='container'>
+            <div className='movieDetail__main'>
+              <div className='movieDetail__left'>
+                <div className='movieDetail__info'>
+                  {/* Thumbnail phim */}
+                  <div className='singleMovie__thumb'>
+                    <img
+                      src={data.hinhAnh}
+                      className='singleMovie__image'
+                      alt='singleMovie-thumb'
+                    />
+                    <div className='singleMovie__score'>{data.danhGia / 2}</div>
+                    <div className='singleMovie__overplay'>
+                      <div className='singleMovie__play'>
+                        <ion-icon
+                          onClick={() => {
+                            dispatch(openModalTrailerAction(data.trailer));
+                          }}
+                          name='play-circle-outline'
+                        ></ion-icon>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Chi tiết phim */}
+                  <div className='movieDetail__detail'>
+                    <h3>Chi tiết phim</h3>
+                    <p>
+                      <span className='label'>Tên phim:</span>
+                      <span className='movieDetail__title'>{data.tenPhim}</span>
+                    </p>
+                    <p>
+                      <span className='label'>Ngày công chiếu:</span>
+                      <span>{new Date(data.ngayKhoiChieu).toLocaleDateString("vi-VI")}</span>
+                    </p>
+                    <p>
+                      <span className='label'>Điểm đánh giá:</span>
+                      <span>{data.danhGia / 2} / 5</span>
+                    </p>
+                    <p>
+                      <span className='label'>Đạo diễn:</span>
+                      <span>Adam Wingard</span>
+                    </p>
+                    <p>
+                      <span className='label'>Diễn viên:</span>
+                      <span>Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown</span>
+                    </p>
+                  </div>
+                </div>
+                {/* Tóm tắt phim */}
+                <div className='movieDetail__desc'>
+                  <h3>Tóm tắt phim</h3>
+                  <p>{data.moTa}</p>
+                </div>
+                {/* Đánh giá phim (comment) */}
+                <div className='comment'>
+                  <h3>Đánh giá</h3>
+                  <div className='comment__list'>
+                    <Comment />
+                    <Comment />
                   </div>
                 </div>
               </div>
-              {/* Chi tiết phim */}
-              <div className='movieDetail__detail'>
-                <h2>Chi tiết phim</h2>
-                <p>
-                  <span className='label'>Ngày công chiếu:</span>
-                  <span>13/09/2003</span>
-                </p>
-                <p>
-                  <span className='label'>Thể loại:</span>
-                  <span>Phiêu lưu, Hành động, Gia đình</span>
-                </p>
-                <p>
-                  <span className='label'>Đạo diễn:</span>
-                  <span>Adam Wingard</span>
-                </p>
-                <p>
-                  <span className='label'>Diễn viên:</span>
-                  <span>Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown</span>
-                </p>
-                <p>
-                  <span className='label'>Ngôn ngữ:</span>
-                  <span>Việt Nam</span>
-                </p>
-              </div>
-            </div>
-            {/* Tóm tắt phim */}
-            <div className='movieDetail__desc'>
-              <h3>Tóm tắt phim</h3>
-              <p>
-                Phim là bản tình ca ngọt ngào nhưng cũng thấm đượm nước mắt dựa trên cuốn hồi ký
-                cùng tên của ca sĩ, nhạc sĩ người Mỹ Jeremy Camp. Phim kể về chính anh và Melissa
-                Lynn Henning-Camp - người con gái mình yêu, người vợ và cũng là một trong những
-                người có ảnh hưởng lớn nhất tới âm nhạc và cuộc đời của Jeremy từ lúc hai người gặp
-                gỡ, kết hôn rồi đồng hành cùng nhau chiến đấu với căn bệnh ung thư đang dần cướp đi
-                sinh mạng của Melissa.
-              </p>
-            </div>
-            {/* Đánh giá phim (comment) */}
-            <div className='comment'>
-              <h3>Đánh giá</h3>
-              <div className='comment__list'>
-                <Comment />
-                <Comment />
+              {/* Phần tin tức bên phải */}
+              <div className='movieDetail__right'>
+                <SideNew />
               </div>
             </div>
           </div>
-          {/* Phần tin tức bên phải */}
-          <div className='movieDetail__right'>
-            <SideNew />
-          </div>
+          <ModalTrailer />
         </div>
-      </div>
-    </div>
+      ) : (
+        "Loading"
+      )}
+    </>
   );
 };
+
+// DỮ LIỆU MẪU TRẢ VỀ CỦA MOVIE DETAIL TỪ API
+// {
+//   "statusCode": 200,
+//   "message": "Xử lý thành công!",
+//   "content": {
+//     "maPhim": 8189,
+//     "tenPhim": "Lừa đểu gặp lừa đảo 3",
+//     "biDanh": "lua-deu-gap-lua-dao-3",
+//     "trailer": "https://www.youtube.com/embed/T36HGZagV5w",
+//     "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/lua-deu-gap-lua-dao-3_gp13.jpg",
+//     "moTa": "Lừa Đểu Gặp Lừa Đảo xoay quanh lần gặp gỡ oan gia giữa siêu lừa đảo Tower cùng cô nàng bị lừa tình Ina, cả 2 sẽ cùng hợp tác trong phi vụ lừa lại tên lừa đểu Petch - tên bạn trai bội bạc của Ina bằng những chiêu trò lừa đảo không hồi kết.",
+//     "maNhom": "GP13",
+//     "hot": false,
+//     "dangChieu": true,
+//     "sapChieu": false,
+//     "ngayKhoiChieu": "2021-09-10T00:00:00",
+//     "danhGia": 10
+//   },
+//   "dateTime": "2022-03-31T17:33:55.2292515+07:00",
+//   "messageConstants": null
+// }

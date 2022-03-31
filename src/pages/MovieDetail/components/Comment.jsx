@@ -5,7 +5,11 @@ export const Comment = () => {
   return (
     <div className='comment__item'>
       <div className='comment__info'>
-        <img className='comment__avatar' src='./assets/user-avatar-1.jpg' alt='' />
+        <img
+          className='comment__avatar'
+          src={`${process.env.REACT_APP_PUBLIC}/assets/user-avatar-1.jpg`}
+          alt=''
+        />
         <div className='comment__profile'>
           <h3>John Snow</h3>
           <span>13/09/2022</span>
