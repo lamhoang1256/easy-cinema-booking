@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "antd/dist/antd.css";
 import "./sass/app.scss";
+import { NewsDetail } from "./pages/NewsDetail/NewsDetail";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path='/detail/:id' element={<MovieDetail />} />
           <Route path='/user' element={<UserInfo />} />
+          <Route path='/news' element={<NewsDetail />} />
         </Route>
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}></Route>

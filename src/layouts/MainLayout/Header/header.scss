@@ -69,7 +69,6 @@
       color: #fff;
       font-size: 1.8rem;
       font-weight: 600;
-      text-shadow: 0 2px 4px rgba(0, 0, 0);
       transition: all 0.3s linear;
       @media screen and (max-width: 1023.98px) {
         font-size: 2.2rem;
@@ -101,7 +100,6 @@
     }
     .navbar__link {
       color: #000;
-      text-shadow: unset;
     }
     .navbar__open {
       color: #000;
