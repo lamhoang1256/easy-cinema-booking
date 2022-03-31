@@ -1,0 +1,18 @@
+.comment {
+  margin-top: 20px;
+  .comment__item {
+    margin-top: 20px;
+    .comment__info {
+      display: flex;
+      gap: 20px;
+      .comment__avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+      }
+    }
+    .comment__desc {
+      margin-top: 15px;
+    }
+  }
+}
