@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+// component
 import { SideNew } from "../../components/SubNew/SideNew";
 import { Comment } from "./components/Comment";
 import { ModalTrailer } from "../../components/ModalTrailer/ModalTrailer";
-// action creator
+// action
 import { getDetailMovieAction } from "../../redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "../../redux/actions/modalTrailer.action";
 import "./movieDetail.scss";
@@ -14,7 +15,6 @@ export const MovieDetail = () => {
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.movieDetail);
-
   // get data detail movie from API thông qua id
   useEffect(() => {
     dispatch(getDetailMovieAction(id));

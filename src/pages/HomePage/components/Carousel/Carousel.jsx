@@ -1,7 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Slider from "react-slick";
 import { dataCarouselHome } from "../../../../constants/dataCarouselHome";
-import { useDispatch } from "react-redux";
 import { openModalTrailerAction } from "../../../../redux/actions/modalTrailer.action";
 import "./carousel.scss";
 

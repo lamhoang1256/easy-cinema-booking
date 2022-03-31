@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { openModalTrailerAction } from "../../../../redux/actions/modalTrailer.action";
 import "./singleMovie.scss";
 
@@ -33,7 +33,7 @@ export const SingleMovie = (props) => {
           <div className='singleMovie__thumb'>
             <img src={movie.hinhAnh} className='singleMovie__image' alt='singleMovie-thumb' />
             <div className='singleMovie__score'>{movie.danhGia / 2}</div>
-            <div className='singleMovie__overplay'>
+            <Link to={`detail/${movie.maPhim}`} className='singleMovie__overplay'>
               <div className='singleMovie__play'>
                 <ion-icon
                   onClick={() => {
@@ -42,12 +42,12 @@ export const SingleMovie = (props) => {
                   name='play-circle-outline'
                 ></ion-icon>
               </div>
-            </div>
+            </Link>
           </div>
           <div className='singleMovie__info'>
-            <NavLink to={`detail/${movie.maPhim}`}>
+            <Link to={`detail/${movie.maPhim}`}>
               <h3 className='singleMovie__title'>{movie.tenPhim}</h3>
-            </NavLink>
+            </Link>
             <div>
               <div className='singleMovie__rate'>
                 <div
