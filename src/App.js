@@ -21,7 +21,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path='/detail/:id' element={<MovieDetail />} />
           <Route path='/user' element={<UserInfo />} />
-          <Route path='/news' element={<NewsDetail />} />
+          <Route path='/news/:id' element={<NewsDetail />} />
         </Route>
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}></Route>

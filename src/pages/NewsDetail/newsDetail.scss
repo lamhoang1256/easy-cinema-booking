@@ -32,45 +32,21 @@
   .newDetail__main {
     display: flex;
     gap: 30px;
+    padding: 60px 0 20px;
     .newDetail__left {
       flex-basis: 65%;
       @media screen and (max-width: 1023.98px) {
         flex: 1;
       }
-      .newDetail__info {
-        padding: 60px 0 20px;
-        display: flex;
-        gap: 0 60px;
-        @media screen and (max-width: 767.98px) {
-          flex-direction: column;
-        }
-        .singleMovie__thumb {
-          width: 215px;
-          transform: translateY(-130px);
-          box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
-          @media screen and (max-width: 767.98px) {
-            margin-bottom: -90px;
-          }
-        }
-        .newDetail__detail {
-          font-size: 1.8rem;
-          line-height: 2;
-          flex: 1;
-          .label {
-            font-weight: 600;
-            margin-right: 10px;
-          }
-          .newDetail__title {
-            color: #ff0000;
-            font-weight: 500;
-            font-size: 2rem;
-          }
+      .newDetail__post {
+        img {
+          margin: 20px auto;
+          border-radius: 10px;
         }
       }
     }
     .newDetail__right {
       flex-basis: 35%;
-      padding-top: 60px;
       @media screen and (max-width: 1023.98px) {
         display: none;
       }

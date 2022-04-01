@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
-import { SideNew } from "../../components/SubNew/SideNew";
+import { SideNew } from "../../components/SideNew/SideNew";
 import { Comment } from "./components/Comment";
 import { ModalTrailer } from "../../components/ModalTrailer/ModalTrailer";
 // action

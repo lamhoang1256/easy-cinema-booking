@@ -1,15 +1,21 @@
 import React from "react";
-import "./newDetail.scss";
 import { dataNews } from "../../constants/dataNews";
+import { SideNew } from "../../components/SideNew/SideNew";
+import { useParams } from "react-router-dom";
+import "./newsDetail.scss";
 
 export const NewsDetail = () => {
-  console.log(dataNews);
+  window.scrollTo(0, 0);
+  const { id } = useParams();
+  // lọc lấy tin cần đọc theo id trên url
+  const dataPost = dataNews.filter((news) => news.id == id)[0];
+
   return (
     <div className='newDetail'>
       <div
         className='newDetail__top'
         style={{
-          backgroundImage: `url("./assets/background-news.png"
+          backgroundImage: `url("${process.env.PUBLIC_URL}/assets/background-news.png"
           )`,
         }}
       >
@@ -20,15 +26,24 @@ export const NewsDetail = () => {
       <div className='container'>
         <div className='newDetail__main'>
           <div className='newDetail__left'>
-            <div
-              className='newDetail__content'
-              dangerouslySetInnerHTML={{ __html: dataNews.map((item) => item.content) }}
-            ></div>
+            {dataPost && (
+              <div className='newDetail__post'>
+                <p dangerouslySetInnerHTML={{ __html: dataPost.createdAt }}></p>
+                <h3
+                  className='newDetail__title'
+                  dangerouslySetInnerHTML={{ __html: dataPost.title }}
+                ></h3>
+                <div
+                  className='newDetail__content'
+                  dangerouslySetInnerHTML={{ __html: dataPost.content }}
+                ></div>
+              </div>
+            )}
           </div>
           {/* Phần tin tức bên phải */}
           <div className='newDetail__right'>
             {/* <SideNew /> */}
-            123
+            <SideNew />
           </div>
         </div>
       </div>
