@@ -5,13 +5,12 @@ import "./sideNew.scss";
 
 export const SideNew = () => {
   const dataSideNews = dataNews.filter((news) => news.id !== 1);
-  console.log(dataSideNews);
 
   return (
-    <div className='news__sub'>
+    <div className='news__side'>
       {dataSideNews &&
         dataSideNews.map((news, index) => (
-          <Link to={`news/${news.id}`} className='news__item' key={index}>
+          <Link to={`/news/${news.id}`} className='news__item' key={index}>
             <div className='news__image'>
               <img src={news.thumbnail} alt='' />
             </div>

@@ -29,10 +29,10 @@ export const NewsDetail = () => {
             {dataPost && (
               <div className='newDetail__post'>
                 <p dangerouslySetInnerHTML={{ __html: dataPost.createdAt }}></p>
-                <h3
+                <h2
                   className='newDetail__title'
                   dangerouslySetInnerHTML={{ __html: dataPost.title }}
-                ></h3>
+                ></h2>
                 <div
                   className='newDetail__content'
                   dangerouslySetInnerHTML={{ __html: dataPost.content }}

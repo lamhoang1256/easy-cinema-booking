@@ -33,7 +33,7 @@ export const SingleMovie = (props) => {
           <div className='singleMovie__thumb'>
             <img src={movie.hinhAnh} className='singleMovie__image' alt='singleMovie-thumb' />
             <div className='singleMovie__score'>{movie.danhGia / 2}</div>
-            <Link to={`detail/${movie.maPhim}`} className='singleMovie__overplay'>
+            <div className='singleMovie__overplay'>
               <div className='singleMovie__play'>
                 <ion-icon
                   onClick={() => {
@@ -42,7 +42,7 @@ export const SingleMovie = (props) => {
                   name='play-circle-outline'
                 ></ion-icon>
               </div>
-            </Link>
+            </div>
           </div>
           <div className='singleMovie__info'>
             <Link to={`detail/${movie.maPhim}`}>
