@@ -68,3 +68,19 @@ export const SingleMovie = (props) => {
     </>
   );
 };
+
+// DATA MẪU
+// {
+//  "maPhim": 1521,
+//  "tenPhim": "Specter 445",
+//  "biDanh": "specter-445",
+//  "trailer": "https://www.youtube.com/embed/LTDaET-JweU",
+//  "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/southpaw.jpg",
+//  "moTa": "A cryptic message from Bond's past sends him on a trail to ",
+//  "maNhom": "GP13",
+//  "ngayKhoiChieu": "2021-11-04T16:24:27.64",
+//  "danhGia": 8,
+//  "hot": true,
+//  "dangChieu": true,
+//  "sapChieu": false
+//},

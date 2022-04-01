@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 // component
 import { SideNew } from "../../components/SideNew/SideNew";
 import { Comment } from "./components/Comment";
+import { AddComment } from "../../components/AddComment/AddComment";
 import { ModalTrailer } from "../../components/ModalTrailer/ModalTrailer";
 // action
 import { getDetailMovieAction } from "../../redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "../../redux/actions/modalTrailer.action";
+import { getCommentMovieAction } from "../../redux/actions/movieComment.action";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {
@@ -15,9 +17,14 @@ export const MovieDetail = () => {
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.movieDetail);
+  const { dataComment, loadingComment } = useSelector((state) => state.movieComment);
+  if (!loadingComment) {
+    console.log(dataComment);
+  }
   // get data detail movie from API thông qua id
   useEffect(() => {
     dispatch(getDetailMovieAction(id));
+    dispatch(getCommentMovieAction(id));
   }, []);
 
   return (
@@ -89,10 +96,10 @@ export const MovieDetail = () => {
                 <div className='comment'>
                   <h3>Đánh giá</h3>
                   <div className='comment__list'>
-                    <Comment />
-                    <Comment />
+                    {!loadingComment && <Comment dataComment={dataComment} />}
                   </div>
                 </div>
+                <AddComment />
               </div>
               {/* Phần tin tức bên phải */}
               <div className='movieDetail__right'>

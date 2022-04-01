@@ -1,0 +1,15 @@
+.addComment {
+  padding-top: 30px;
+  .addComment__textarea {
+    width: 100%;
+    padding: 10px;
+    resize: none;
+    min-height: 100px;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  .addComment__btn {
+    margin-left: auto;
+    margin-top: 10px;
+  }
+}

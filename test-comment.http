@@ -1,0 +1,12 @@
+GET https://62459f866b7ecf057c216c44.mockapi.io/api/comments
+###
+POST https://62459f866b7ecf057c216c44.mockapi.io/api/comments
+Content-Type: application/json
+
+{
+ "username":"hoanglam1309a",
+ "content":"Tuyệt vời !!!",
+ "rating":5,
+ "like":1,
+ "idMovie":8188
+}
