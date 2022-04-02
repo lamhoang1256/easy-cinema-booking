@@ -1,0 +1,59 @@
+.blockChair {
+  .blockChair__container {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-gap: 10px;
+    padding: 30px 0;
+    .blockChair__chair {
+      background-color: #d1d1d1;
+      border-radius: 6px;
+      aspect-ratio: 1/1;
+      cursor: pointer;
+      &.selecting {
+        background-color: #2fdd92;
+      }
+      &.selected {
+        background-color: red;
+      }
+      &.vip {
+        background-color: #ffd124;
+      }
+    }
+
+    @media screen and (max-width: 767.98px) {
+      grid-template-columns: repeat(10, 1fr);
+      grid-gap: 4px;
+      .blockChair__chair {
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.movieBooking__info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  .info__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    .info__chair {
+      background-color: #d1d1d1;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+    }
+    .info__chair.selecting {
+      background-color: #2fdd92;
+    }
+    .info__chair.selected {
+      background-color: red;
+    }
+    .info__chair.vip {
+      background-color: #ffd124;
+    }
+  }
+}

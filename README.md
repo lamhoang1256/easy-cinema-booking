@@ -29,3 +29,12 @@ Quá trình làm đồ án ReactJS
 - Thêm Footer cơ bản
 - Xây dựng trang chi tiết phim
 - Đổ dữ liệu từ API ra trang chi tiết phim
+
+01/04/2022
+
+- Tối ưu lại CSS cho các trang đẹp hơn
+
+02/04/2022
+
+- Xây dựng trang đặt vé phim
+- Lấy dữ liệu từ API trả về cho trang đặt vé
