@@ -16,6 +16,7 @@ export const MovieDetail = () => {
   window.scrollTo(0, 0);
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
+
   const { data, loading } = useSelector((state) => state.movieDetail);
   const { dataComment, loadingComment } = useSelector((state) => state.movieComment);
   if (!loadingComment) {

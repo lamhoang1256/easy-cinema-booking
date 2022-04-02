@@ -1,8 +1,8 @@
 import React from "react";
+import moment from "moment";
 import "./comment.scss";
 
 export const Comment = ({ dataComment }) => {
-  console.log(dataComment);
   return (
     <>
       {dataComment.length !== 0
@@ -16,7 +16,8 @@ export const Comment = ({ dataComment }) => {
                 />
                 <div className='comment__profile'>
                   <h3>{comment.username}</h3>
-                  <span>{new Date(comment.createdAt).toLocaleString()}</span>
+                  {/* tạo timeago */}
+                  <span>{moment(moment.unix(1648816259).format()).fromNow()}</span>
                 </div>
               </div>
               <div className='comment__desc'>{comment.content}</div>
@@ -26,3 +27,25 @@ export const Comment = ({ dataComment }) => {
     </>
   );
 };
+
+// DATA MẪU
+// [
+//   {
+//     "createdAt": 1648816259,
+//     "username": "lamhoang1256",
+//     "content": "Phim hay !!!",
+//     "rating": 5,
+//     "like": 0,
+//     "idMovie": 8188,
+//     "id": "1"
+//   },
+//   {
+//     "createdAt": 1648816357,
+//     "username": "hoanglam1309a",
+//     "content": "Tuyệt vời !!!",
+//     "rating": 5,
+//     "like": 1,
+//     "idMovie": 8188,
+//     "id": "2"
+//   }
+// ]
