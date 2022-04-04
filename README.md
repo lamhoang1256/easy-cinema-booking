@@ -39,3 +39,9 @@ Quá trình làm đồ án ReactJS
 
 - Xây dựng trang đặt vé phim
 - Lấy dữ liệu từ API trả về cho trang đặt vé
+
+04/04/2022
+
+- Tối ưu lại code Scss với mixins, extend ...
+- Tối ưu một số className của một số thẻ tag
+- Thay một số @import file scss bằng @use

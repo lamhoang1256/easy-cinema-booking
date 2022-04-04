@@ -23,18 +23,20 @@
     @extend .block-chair-square;
     height: unset;
     width: unset;
+    border: none;
+    outline: none;
     aspect-ratio: 1/1;
     @include flexbox(center, center);
   }
-  &-chair--selecting {
-    background-color: #2fdd92;
+  &-chair--vip {
+    background-color: #ffd124;
   }
   &-chair--selected {
     background-color: red;
     cursor: not-allowed;
   }
-  &-chair--vip {
-    background-color: #ffd124;
+  &-chair--selecting {
+    background-color: #2fdd92;
   }
   // Phần thông tin ghế mẫu
   &-info {
@@ -45,13 +47,13 @@
     @include flexbox(center, center, column);
     text-align: center;
   }
-  &-square--selecting {
-    @extend .block-chair-chair--selecting;
+  &-square--vip {
+    @extend .block-chair-chair--vip;
   }
   &-square--selected {
     @extend .block-chair-chair--selected;
   }
-  &-square--vip {
-    @extend .block-chair-chair--vip;
+  &-square--selecting {
+    @extend .block-chair-chair--selecting;
   }
 }

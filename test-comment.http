@@ -10,3 +10,29 @@ Content-Type: application/json
  "like":1,
  "idMovie":8188
 }
+
+// access token Bearer +
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibmd1eWVubGFtIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoibmd1eWVubGFtMTNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIktoYWNoSGFuZyIsIm5ndXllbmxhbTEzQGdtYWlsLmNvbSIsIkdQMDAiXSwibmJmIjoxNjQ5MDc3ODE5LCJleHAiOjE2NDkwODE0MTl9.0iTIpLtxhBble1M2VAYVX37Q7IihX86PPhQQJi6fBU8
+
+// {
+//   "taiKhoan": "nguyenlam",
+//   "matKhau": "nguyenlam13",
+//   "email": "nguyenlam13@gmail.com",
+//   "soDt": "0789747345",
+//   "maNhom": "GP13",
+//   "hoTen": "Nguyen Hoang Lam"
+// }
+// {
+//   "statusCode": 200,
+//   "message": "Xử lý thành công!",
+//   "content": {
+//     "taiKhoan": "nguyenlam",
+//     "matKhau": "nguyenlam13",
+//     "email": "nguyenlam13@gmail.com",
+//     "soDt": "0789747345",
+//     "maNhom": "GP00",
+//     "hoTen": "Nguyen Hoang Lam"
+//   },
+//   "dateTime": "2022-04-04T20:09:40.6882168+07:00",
+//   "messageConstants": null
+// }

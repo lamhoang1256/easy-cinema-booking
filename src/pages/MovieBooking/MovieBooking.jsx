@@ -1,13 +1,27 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BlockChair } from "./components/BlockChair";
-import { getMovieBookingAction } from "../../redux/actions/movieBooking.action";
+import { buyTicketAction, getMovieBookingAction } from "../../redux/actions/movieBooking.action";
 import "./movieBooking.scss";
 
 export const MovieBooking = () => {
   const dispatch = useDispatch();
-  const { dataMovieBooking, loading } = useSelector((state) => state.movieBooking);
-  console.log(dataMovieBooking, loading);
+  const { dataMovieBooking, listGheDangChon, loading } = useSelector((state) => state.movieBooking);
+
+  //tính tổng tiền của các ghế
+  const totalMoney = listGheDangChon.reduce(function (previousValue, currentValue) {
+    return previousValue + currentValue.giaVe;
+  }, 0);
+
+  // console.log(dataMovieBooking, loading);
+  const handleBuyTicket = () => {
+    const dataToBuyTicket = {
+      maLichChieu: dataMovieBooking.thongTinPhim.maLichChieu.toString(),
+      danhSachVe: listGheDangChon,
+    };
+    dispatch(buyTicketAction(dataToBuyTicket));
+    dispatch(getMovieBookingAction());
+  };
 
   useEffect(() => {
     dispatch(getMovieBookingAction());
@@ -27,7 +41,10 @@ export const MovieBooking = () => {
                   <div className='movie-booking-choice'>
                     <h3 className='movie-booking-title'>Chọn ghế</h3>
                     <div className='movie-booking-screen'>Màn hình</div>
-                    <BlockChair danhSachGhe={dataMovieBooking.danhSachGhe} />
+                    <BlockChair
+                      listGheDangChon={listGheDangChon}
+                      danhSachGhe={dataMovieBooking.danhSachGhe}
+                    />
                   </div>
                 </div>
               </div>
@@ -52,7 +69,10 @@ export const MovieBooking = () => {
                   {dataMovieBooking.thongTinPhim.ngayChieu}
                 </div>
                 <div className='movie-booking-chairs'>Ghế chọn: E4, A3</div>
-                <div className='movie-booking-price'>Giá : 0 VNĐ</div>
+                <div className='movie-booking-price'>Giá : {totalMoney} VNĐ</div>
+                <button className='btn btn--primary' onClick={handleBuyTicket}>
+                  Đặt vé
+                </button>
               </div>
             </div>
           </div>

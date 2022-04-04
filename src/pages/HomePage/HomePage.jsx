@@ -28,7 +28,6 @@ export const HomePage = () => {
     <div className='homePage'>
       <div className='homePage-top'>
         <Carousel />
-        <ModalTrailer />
       </div>
       <div className='homePage-main'>
         <FilterBooking />
@@ -56,6 +55,7 @@ export const HomePage = () => {
           <News />
         </div>
       </div>
+      <ModalTrailer />
     </div>
   );
 };
