@@ -6,31 +6,12 @@
   left: 0;
   z-index: 20;
   transition: all 0.3s linear;
-  .header__top {
+  &-top {
     display: flex;
     justify-content: space-between;
     gap: 0 50px;
-    .navbar__close {
-      position: fixed;
-      top: 30px;
-      right: 30px;
-      font-size: 4rem;
-      display: none;
-    }
-    .navbar__open {
-      color: #fff;
-      font-size: 4rem;
-      display: none;
-    }
-    @media screen and (max-width: 1023.98px) {
-      .navbar__close,
-      .navbar__open {
-        display: block;
-        color: #000;
-      }
-    }
   }
-  .header__action {
+  &-action {
     flex: 1;
     display: flex;
     justify-content: space-between;
@@ -55,7 +36,7 @@
       transform: translateX(0);
     }
   }
-  .header__auth {
+  &-auth {
     display: flex;
     gap: 20px;
     @media screen and (max-width: 1023.98px) {
@@ -66,25 +47,43 @@
   .navbar {
     display: flex;
     gap: 10px 30px;
-    .navbar__link {
+    @media screen and (max-width: 1023.98px) {
+      flex-direction: column;
+    }
+    &-link {
       color: #fff;
       font-size: 1.8rem;
       font-weight: 600;
       transition: all 0.3s linear;
       @media screen and (max-width: 1023.98px) {
         font-size: 2.2rem;
-      }
-    }
-    @media screen and (max-width: 1023.98px) {
-      flex-direction: column;
-      .navbar__link {
         color: #000;
         text-shadow: unset;
       }
     }
+    &-open {
+      color: #fff;
+      font-size: 4rem;
+      display: none;
+      @media screen and (max-width: 1023.98px) {
+        display: block;
+        color: #000;
+      }
+    }
+    &-close {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      font-size: 4rem;
+      display: none;
+      @media screen and (max-width: 1023.98px) {
+        display: block;
+        color: #000;
+      }
+    }
   }
   // overplay xuất hiện khi nhấn icon open menu -> click vào sẽ đóng menu lại
-  .header__overplay {
+  &-overplay {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);

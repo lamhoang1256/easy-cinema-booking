@@ -1,4 +1,4 @@
-@import "../../sass/variables";
+@use "../../assets/scss/variables" as *;
 .homePage {
   &__tab {
     padding: 50px 0;
@@ -17,10 +17,10 @@
   }
   .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn,
   .ant-tabs-tab:hover {
-    color: $redff0;
+    color: $primary-color;
   }
   .ant-tabs-ink-bar {
-    background-color: $redff0;
+    background-color: $primary-color;
   }
   @media screen and (max-width: 767.98px) {
     .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {

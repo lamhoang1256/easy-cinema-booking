@@ -1,4 +1,4 @@
-@import "../../../../sass/variables";
+@use "../../../../assets/scss/variables" as *;
 .filter__booking {
   background-color: $grayf9;
   height: 200px;

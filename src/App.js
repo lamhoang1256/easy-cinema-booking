@@ -12,7 +12,7 @@ import { NotFound } from "./pages/NotFound/NotFound";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "antd/dist/antd.css";
-import "./sass/app.scss";
+import "./assets/scss/app.scss";
 
 function App() {
   return (
