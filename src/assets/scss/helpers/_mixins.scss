@@ -1,0 +1,50 @@
+// RESPONSIVE
+$mobile-width: 767.98px;
+$tablet-width: 1023.98px;
+@mixin mobile {
+  @media only screen and (max-width: $mobile-width) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media only screen and (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin absoluteCenter($direction: "left", $position: absolute) {
+  position: $position;
+  @if $direction == "left" {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $direction == "top" {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $direction == "both" {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin size($width: 100px, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin position($position, $top: 0, $right: 0, $bottom: null, $left: null, $z-index: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  z-index: $z-index;
+}
+
+@mixin flexbox($align-items: stretch, $justify-content: flex-start) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}

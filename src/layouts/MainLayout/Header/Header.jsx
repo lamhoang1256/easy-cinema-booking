@@ -56,12 +56,12 @@ export const Header = () => {
                 <button className='header-login btn btn--primary'>Đăng nhập</button>
               </div>
               {/* navbar mobile close menu */}
-              <div className='navbar-close' onClick={handleToggleMenu}>
+              <div className='header-close' onClick={handleToggleMenu}>
                 <ion-icon name='close-outline'></ion-icon>
               </div>
             </div>
             {/* navbar mobile open menu */}
-            <div className='navbar-open' onClick={handleToggleMenu}>
+            <div className='header-open' onClick={handleToggleMenu}>
               <ion-icon name='list-outline'></ion-icon>
             </div>
           </div>

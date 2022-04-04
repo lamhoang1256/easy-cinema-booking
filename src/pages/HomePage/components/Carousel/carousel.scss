@@ -1,10 +1,10 @@
-@use "../../../../assets/scss/variables" as *;
+@use "../../../../assets/scss/helpers/index.scss" as *;
 .homePage {
   .carousel {
     background-color: #000;
     overflow: hidden;
-    // mỗi carousel item là 1 banner
-    .carousel__item {
+    // mỗi carousel boxed là 1 banner phim
+    &-boxed {
       position: relative;
       img {
         width: 100%;
@@ -12,7 +12,7 @@
       }
     }
     // custom css for content in carousel banner
-    .carousel__main {
+    &-main {
       background-color: rgba(0, 0, 0, 0.2);
       inset: 0;
       position: absolute;
@@ -20,57 +20,6 @@
       color: #fff;
       text-shadow: 0 2px 4px rgba(0, 0, 0);
       user-select: text;
-      .carousel__heading {
-        color: #fff;
-        font-weight: 600;
-        font-size: 5rem;
-        letter-spacing: 1.5px;
-        @media screen and (max-width: 767.98px) {
-          font-size: 3rem;
-        }
-      }
-      .carousel__desc {
-        max-width: 580px;
-        @media screen and (max-width: 767.98px) {
-          max-width: 300px;
-        }
-      }
-      .carousel__features {
-        display: flex;
-        gap: 0 20px;
-        margin: 20px 0;
-        span {
-          font-size: 2rem;
-          font-weight: 500;
-        }
-      }
-      .carousel__info {
-        display: flex;
-        gap: 0 20px;
-        ion-icon {
-          font-size: 1.8rem;
-          color: #ffff00;
-        }
-        .carousel__info-label {
-          display: flex;
-          align-items: center;
-          gap: 0 10px;
-          ion-icon {
-            color: $primary-color;
-          }
-        }
-      }
-      .carousel__btn {
-        padding: 10px 20px;
-        margin-top: 30px;
-        display: flex;
-        align-items: center;
-        gap: 0 10px;
-        border-radius: 40px;
-        ion-icon {
-          font-size: 2.2rem;
-        }
-      }
       @media screen and (max-width: 1023.98px) {
         position: unset;
         padding: 40px 80px 80px;
@@ -81,6 +30,57 @@
       }
       @media screen and (max-width: 767.98px) {
         padding: 40px 20px 100px;
+      }
+    }
+    &-heading {
+      color: #fff;
+      font-weight: 600;
+      font-size: 5rem;
+      letter-spacing: 1.5px;
+      @media screen and (max-width: 767.98px) {
+        font-size: 3rem;
+      }
+    }
+    &-desc {
+      max-width: 580px;
+      @media screen and (max-width: 767.98px) {
+        max-width: 300px;
+      }
+    }
+    &-features {
+      display: flex;
+      gap: 0 20px;
+      margin: 20px 0;
+      span {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+    }
+    &-btn {
+      padding: 10px 20px;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 0 10px;
+      border-radius: 40px;
+      ion-icon {
+        font-size: 2.2rem;
+      }
+    }
+    &-info {
+      display: flex;
+      gap: 0 20px;
+      ion-icon {
+        font-size: 1.8rem;
+        color: #ffff00;
+      }
+    }
+    &-info-label {
+      display: flex;
+      align-items: center;
+      gap: 0 10px;
+      ion-icon {
+        color: $primary-color;
       }
     }
   }
@@ -105,8 +105,8 @@
     font-size: 18px;
     color: $grayea;
   }
-  .carousel__prev,
-  .carousel__next {
+  .carousel-prev,
+  .carousel-next {
     position: absolute;
     bottom: 50%;
     transform: translateY(50%);
@@ -122,10 +122,10 @@
       font-size: 4rem;
     }
   }
-  .carousel__prev {
+  .carousel-prev {
     left: 30px;
   }
-  .carousel__next {
+  .carousel-next {
     right: 30px;
   }
 }

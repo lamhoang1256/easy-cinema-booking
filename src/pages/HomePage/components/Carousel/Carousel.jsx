@@ -12,7 +12,7 @@ export const Carousel = () => {
   function PrevArrow(props) {
     const { onClick } = props;
     return (
-      <div className='carousel__prev' onClick={onClick}>
+      <div className='carousel-prev' onClick={onClick}>
         <ion-icon name='chevron-back-outline'></ion-icon>
       </div>
     );
@@ -20,7 +20,7 @@ export const Carousel = () => {
   function NextArrow(props) {
     const { onClick } = props;
     return (
-      <div className='carousel__next' onClick={onClick}>
+      <div className='carousel-next' onClick={onClick}>
         <ion-icon name='chevron-forward-outline'></ion-icon>
       </div>
     );
@@ -43,34 +43,34 @@ export const Carousel = () => {
     <div className='carousel'>
       <Slider {...settings}>
         {dataCarouselHome.map((item) => (
-          <div className='carousel__item' key={item.id}>
+          <div className='carousel-boxed' key={item.id}>
             <img src={`${process.env.REACT_APP_PUBLIC}/${item.img}`} alt={item.img} />
-            <div className='carousel__main'>
+            <div className='carousel-main'>
               <div className='container'>
-                <h2 className='carousel__heading'>{item.name}</h2>
-                <div className='carousel__desc'>{item.desc}</div>
-                <div className='carousel__features'>
+                <h2 className='carousel-heading'>{item.name}</h2>
+                <div className='carousel-desc'>{item.desc}</div>
+                <div className='carousel-features'>
                   {item.features.map((feature, index) => (
                     <span key={index}>{feature}</span>
                   ))}
                 </div>
-                <div className='carousel__info'>
-                  <div className='carousel__info-rate'>
+                <div className='carousel-info'>
+                  <div className='carousel-info-rate'>
                     <ion-icon name='star'></ion-icon>
                     <ion-icon name='star'></ion-icon>
                     <ion-icon name='star'></ion-icon>
                     <ion-icon name='star'></ion-icon>
                     <ion-icon name='star-half'></ion-icon>
                   </div>
-                  <div className='carousel__info-label'>
+                  <div className='carousel-info-label'>
                     <ion-icon name='calendar-outline'></ion-icon> {item.year}
                   </div>
-                  <div className='carousel__info-label'>
+                  <div className='carousel-info-label'>
                     <ion-icon name='alarm-outline'></ion-icon> {item.min} min
                   </div>
                 </div>
                 <button
-                  className='carousel__btn btn btn__primary'
+                  className='carousel-btn btn btn--primary'
                   onClick={() => handleShowTrailer(item.trailer)}
                 >
                   Watch me <ion-icon name='play-circle-outline'></ion-icon>

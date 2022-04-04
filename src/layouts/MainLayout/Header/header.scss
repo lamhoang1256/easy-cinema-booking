@@ -1,36 +1,26 @@
+@use "../../../assets/scss/helpers/index.scss" as *;
 .header {
-  overflow: hidden;
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 20;
+  overflow: hidden;
   transition: all 0.3s linear;
+  @include position(fixed, $z-index: 20);
   &-top {
-    display: flex;
-    justify-content: space-between;
     gap: 0 50px;
+    @include flexbox($justify-content: space-between);
   }
   &-action {
     flex: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    transition: all 0.3s linear;
     gap: 20px 0;
-    @media screen and (max-width: 1023.98px) {
-      width: 300px;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 30;
+    transition: all 0.3s linear;
+    @include flexbox(flex-end, space-between);
+    @include tablet {
       background-color: #fff;
-      flex-direction: column;
-      justify-content: unset;
-      align-items: flex-start !important;
       padding: 60px 30px;
       transform: translateX(100%);
+      flex-direction: column;
+      @include flexbox(flex-start, unset);
+      @include size(300px, 100vh);
+      @include position(fixed, 0, 0, $z-index: 30);
     }
     &.is-show {
       transform: translateX(0);
@@ -39,70 +29,56 @@
   &-auth {
     display: flex;
     gap: 20px;
-    @media screen and (max-width: 1023.98px) {
+    @include tablet {
       flex-direction: column;
     }
   }
   // css for navbar
   .navbar {
-    display: flex;
+    @extend .header-auth;
     gap: 10px 30px;
-    @media screen and (max-width: 1023.98px) {
-      flex-direction: column;
-    }
     &-link {
       color: #fff;
       font-size: 1.8rem;
       font-weight: 600;
       transition: all 0.3s linear;
-      @media screen and (max-width: 1023.98px) {
+      @include tablet {
         font-size: 2.2rem;
         color: #000;
         text-shadow: unset;
       }
     }
-    &-open {
+  }
+  &-open {
+    display: none;
+    font-size: 4rem;
+    color: #000;
+    cursor: pointer;
+    @include tablet {
+      display: block;
       color: #fff;
-      font-size: 4rem;
-      display: none;
-      @media screen and (max-width: 1023.98px) {
-        display: block;
-        color: #000;
-      }
     }
-    &-close {
-      position: fixed;
-      top: 30px;
-      right: 30px;
-      font-size: 4rem;
-      display: none;
-      @media screen and (max-width: 1023.98px) {
-        display: block;
-        color: #000;
-      }
-    }
+  }
+  &-close {
+    @extend .header-open;
+    color: #000;
+    @include position(fixed, 30px, 30px);
   }
   // overplay xuất hiện khi nhấn icon open menu -> click vào sẽ đóng menu lại
   &-overplay {
-    position: fixed;
-    inset: 0;
+    @include position(fixed, 0, 0, 0, 0, -1);
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
   }
 }
 // custom css for header fixed white (when scroll down)
 .header--white {
   background-color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  .header__top {
-    .header__action {
-      align-items: center;
-    }
-    .navbar__link {
-      color: #000;
-    }
-    .navbar__open {
-      color: #000;
-    }
+  .header-top {
+    align-items: center;
+  }
+  .header-open,
+  .navbar-link {
+    color: #000;
   }
 }
