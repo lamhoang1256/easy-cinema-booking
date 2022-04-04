@@ -1,9 +1,9 @@
 .sidenews {
   flex: 1;
   &-item {
-    margin-bottom: 20px;
     display: flex;
     gap: 30px 20px;
+    margin-bottom: 20px;
     @media screen and (max-width: 767.98px) {
       gap: 10px;
     }

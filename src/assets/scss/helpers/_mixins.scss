@@ -42,9 +42,18 @@ $tablet-width: 1023.98px;
   left: $left;
   z-index: $z-index;
 }
-
+// flexbox
 @mixin flexbox($align-items: stretch, $justify-content: flex-start) {
   display: flex;
   align-items: $align-items;
   justify-content: $justify-content;
+}
+// text clamp
+@mixin textClamp($row: 1, $size: 100%) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: $row;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }

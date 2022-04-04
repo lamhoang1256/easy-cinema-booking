@@ -1,6 +1,6 @@
 .addComment {
   padding-top: 30px;
-  .addComment__textarea {
+  &-textarea {
     width: 100%;
     padding: 10px;
     resize: none;
@@ -8,7 +8,7 @@
     margin-top: 10px;
     border-radius: 8px;
   }
-  .addComment__btn {
+  &-btn {
     margin-left: auto;
     margin-top: 10px;
   }

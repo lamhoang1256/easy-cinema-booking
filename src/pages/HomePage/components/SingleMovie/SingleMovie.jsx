@@ -29,12 +29,12 @@ export const SingleMovie = (props) => {
   return (
     <>
       {movie ? (
-        <div className='singleMovie'>
-          <div className='singleMovie__thumb'>
-            <img src={movie.hinhAnh} className='singleMovie__image' alt='singleMovie-thumb' />
-            <div className='singleMovie__score'>{movie.danhGia / 2}</div>
-            <div className='singleMovie__overplay'>
-              <div className='singleMovie__play'>
+        <div className='single-movie'>
+          <div className='single-movie-thumb'>
+            <img src={movie.hinhAnh} className='single-movie-image' alt='single-movie-thumb' />
+            <div className='single-movie-score'>{movie.danhGia / 2}</div>
+            <div className='single-movie-overplay'>
+              <div className='single-movie-play'>
                 <ion-icon
                   onClick={() => {
                     dispatch(openModalTrailerAction(movie.trailer));
@@ -44,19 +44,19 @@ export const SingleMovie = (props) => {
               </div>
             </div>
           </div>
-          <div className='singleMovie__info'>
+          <div className='single-movie-info'>
             <Link to={`detail/${movie.maPhim}`}>
-              <h3 className='singleMovie__title'>{movie.tenPhim}</h3>
+              <h3 className='single-movie-title'>{movie.tenPhim}</h3>
             </Link>
             <div>
-              <div className='singleMovie__rate'>
+              <div className='single-movie-rate'>
                 <div
-                  className='singleMovie__stars'
+                  className='single-movie-stars'
                   dangerouslySetInnerHTML={{ __html: createStarRating() }}
                 ></div>
                 <div>{movie.danhGia / 2}</div>
               </div>
-              <div className='singleMovie__time'>
+              <div className='single-movie-time'>
                 {timeMovie < 100 ? +timeMovie + 100 : timeMovie} phút
               </div>
             </div>

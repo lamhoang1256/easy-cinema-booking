@@ -1,35 +1,29 @@
-.singleMovie {
+@use "../../../../assets/scss/helpers/index.scss" as *;
+.single-movie {
   // phần thông tin bên dưới thumb
-  .singleMovie__info {
+  &-info {
     & > div {
-      display: flex;
-      justify-content: space-between;
+      @include flexbox($justify-content: space-between);
       padding: 5px 0 0;
     }
-    .singleMovie__title {
-      margin-top: 10px;
-      font-size: 1.8rem;
-      cursor: pointer;
-      height: 5.7rem;
-      // check nếu title phim dài quá 2 dòng sẽ xuất hiện ...
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      white-space: normal;
-      @media screen and (max-width: 767.98px) {
-        height: unset;
-      }
+  }
+  &-title {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    height: 5.7rem;
+    // check nếu title phim dài quá 2 dòng sẽ xuất hiện ...
+    @include textClamp(2);
+    @include mobile {
+      height: unset;
     }
-    .singleMovie__rate {
-      display: flex;
-      align-items: center;
-      gap: 0 10px;
-      ion-icon {
-        font-size: 1.8rem;
-        color: #ffd93d;
-      }
+  }
+  &-rate {
+    @include flexbox(center);
+    gap: 0 10px;
+    ion-icon {
+      font-size: 1.8rem;
+      color: #ffd93d;
     }
   }
 }

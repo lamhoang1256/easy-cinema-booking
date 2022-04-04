@@ -1,20 +1,35 @@
-//phần ảnh thumb
-.singleMovie__thumb {
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  max-height: 328px;
-  .singleMovie__image {
+@import "../helpers/index";
+.single-movie {
+  // single-movie-thumb là khối bọc image và overplay
+  &-thumb {
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    max-height: 328px;
+    &:hover {
+      .single-movie-image {
+        transform: scale(1.06);
+      }
+      .single-movie-overplay {
+        display: flex;
+      }
+    }
+    &::after {
+      content: "";
+      background: rgba(0, 0, 0, 0.05);
+      position: absolute;
+      inset: 0;
+    }
+  }
+  &-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: all 0.25s linear;
   }
-  .singleMovie__score {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+  &-score {
     display: block;
+    @include position(absolute, $bottom: 20px, $right: 20px);
     color: #000;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
@@ -22,33 +37,16 @@
     padding: 2px 20px;
     border-radius: 20px;
   }
-  .singleMovie__overplay {
-    display: none;
-    justify-content: center;
-    align-items: center;
+  &-overplay {
     background: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    inset: 0;
+    @include position(absolute, 0, 0, 0, 0, 10);
+    @include flexbox(center, center);
+    display: none;
     transition: all 0.25s linear;
-    z-index: 10;
     ion-icon {
       color: #fff;
       font-size: 6rem;
       cursor: pointer;
     }
-  }
-  &:hover {
-    .singleMovie__image {
-      transform: scale(1.06);
-    }
-    .singleMovie__overplay {
-      display: flex;
-    }
-  }
-  &::after {
-    content: "";
-    background: rgba(0, 0, 0, 0.05);
-    position: absolute;
-    inset: 0;
   }
 }

@@ -1,16 +1,13 @@
-.modalTrailer {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
+@use "../../assets/scss/helpers/index.scss" as *;
+.modal-trailer {
   background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
-  @media screen and (max-width: 1023.98px) {
+  @include flexbox(center, center);
+  @include position(fixed, 0, 0, 0, 0, 40);
+  @include tablet {
     align-items: flex-start;
   }
-  @media screen and (max-width: 767.98px) {
+  @include mobile {
     div {
       height: 320px !important;
     }

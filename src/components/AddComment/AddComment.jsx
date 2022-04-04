@@ -18,12 +18,12 @@ export const AddComment = () => {
     <div className='addComment'>
       <h3>Thêm nhận xét mới</h3>
       <textarea
-        name='addComment__textarea'
-        className='addComment__textarea'
+        name='addComment-textarea'
+        className='addComment-textarea'
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
       ></textarea>
-      <button className='btn btn__primary addComment__btn' onClick={handleAddNewComment}>
+      <button className='btn btn--primary addComment-btn' onClick={handleAddNewComment}>
         Nhận xét
       </button>
     </div>

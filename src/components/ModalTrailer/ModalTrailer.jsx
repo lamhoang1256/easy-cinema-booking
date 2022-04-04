@@ -14,7 +14,7 @@ export const ModalTrailer = () => {
   return (
     <>
       {isShowTrailer && (
-        <div className='modalTrailer' onClick={handleHiddenTrailer}>
+        <div className='modal-trailer' onClick={handleHiddenTrailer}>
           <ReactPlayer
             url={urlTrailer}
             width='900px'
