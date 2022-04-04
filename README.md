@@ -45,3 +45,4 @@ Quá trình làm đồ án ReactJS
 - Tối ưu lại code Scss với mixins, extend ...
 - Tối ưu một số className của một số thẻ tag
 - Thay một số @import file scss bằng @use
+- Xây dựng logic cơ bản cho trang mua vé
