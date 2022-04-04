@@ -26,16 +26,16 @@ export const HomePage = () => {
 
   return (
     <div className='homePage'>
-      <div className='homePage__top'>
+      <div className='homePage-top'>
         <Carousel />
         <ModalTrailer />
       </div>
-      <div className='homePage__main'>
+      <div className='homePage-main'>
         <FilterBooking />
         <div className='container'>
           {/* Tab danh sách phim */}
           {!loading ? (
-            <div className='homePage__tab'>
+            <div className='homePage-tab'>
               <Tabs defaultActiveKey='1'>
                 <TabPane tab='Đang chiếu' key='1'>
                   <ListMovie listMovie={data.isShowingMovie} />

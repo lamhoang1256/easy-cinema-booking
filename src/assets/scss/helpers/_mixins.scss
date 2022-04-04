@@ -43,10 +43,11 @@ $tablet-width: 1023.98px;
   z-index: $z-index;
 }
 // flexbox
-@mixin flexbox($align-items: stretch, $justify-content: flex-start) {
+@mixin flexbox($align-items: null, $justify-content: null, $flex-direction: null) {
   display: flex;
   align-items: $align-items;
   justify-content: $justify-content;
+  flex-direction: $flex-direction;
 }
 // text clamp
 @mixin textClamp($row: 1, $size: 100%) {

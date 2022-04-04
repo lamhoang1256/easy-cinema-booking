@@ -17,8 +17,7 @@
       background-color: #fff;
       padding: 60px 30px;
       transform: translateX(100%);
-      flex-direction: column;
-      @include flexbox(flex-start, unset);
+      @include flexbox(flex-start, unset, column);
       @include size(300px, 100vh);
       @include position(fixed, 0, 0, $z-index: 30);
     }

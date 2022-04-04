@@ -13,35 +13,35 @@ export const NewsDetail = () => {
   return (
     <div className='newDetail'>
       <div
-        className='newDetail__top'
+        className='new-detail-top'
         style={{
           backgroundImage: `url("${process.env.PUBLIC_URL}/assets/background-news.png"
           )`,
         }}
       >
-        <div className='container'>
+        <div className='new-detail-heading'>
           <h2>News Detail</h2>
         </div>
       </div>
       <div className='container'>
-        <div className='newDetail__main'>
-          <div className='newDetail__left'>
+        <div className='new-detail-main'>
+          <div className='new-detail-left'>
             {dataPost && (
-              <div className='newDetail__post'>
+              <div className='new-detail-post'>
                 <p dangerouslySetInnerHTML={{ __html: dataPost.createdAt }}></p>
                 <h2
-                  className='newDetail__title'
+                  className='new-detail-title'
                   dangerouslySetInnerHTML={{ __html: dataPost.title }}
                 ></h2>
                 <div
-                  className='newDetail__content'
+                  className='new-detail-content'
                   dangerouslySetInnerHTML={{ __html: dataPost.content }}
                 ></div>
               </div>
             )}
           </div>
           {/* Phần tin tức bên phải */}
-          <div className='newDetail__right'>
+          <div className='new-detail-right'>
             {/* <SideNew /> */}
             <SideNews />
           </div>

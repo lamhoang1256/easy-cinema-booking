@@ -1,55 +1,55 @@
-.newDetail {
+@use "../../assets/scss/helpers/index.scss" as *;
+.new-detail {
   //phần background banner mờ
-  .newDetail__top {
+  &-top {
     position: relative;
     height: 30vh;
     width: 100%;
+    padding-top: 80px;
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 80px;
+    @include flexbox(center, center);
     &::before {
       content: "";
       position: absolute;
       inset: 0;
       background-color: rgba(0, 0, 0, 0.2);
     }
-    .container {
-      position: relative;
+    @include tablet {
+      height: 30vh;
     }
+  }
+  &-heading {
+    position: relative;
     h2 {
       color: #fff;
       font-size: 4rem;
       text-align: center;
     }
-    @media screen and (max-width: 1023.98px) {
-      height: 30vh;
-    }
   }
+
   //phần thông tin phim
-  .newDetail__main {
+  &-main {
     display: flex;
     gap: 30px;
     padding: 60px 0 20px;
-    .newDetail__left {
-      flex-basis: 65%;
-      @media screen and (max-width: 1023.98px) {
-        flex: 1;
-      }
-      .newDetail__post {
-        img {
-          margin: 20px auto;
-          border-radius: 10px;
-        }
-      }
+  }
+  &-left {
+    flex-basis: 65%;
+    @include tablet {
+      flex: 1;
     }
-    .newDetail__right {
-      flex-basis: 35%;
-      @media screen and (max-width: 1023.98px) {
-        display: none;
-      }
+  }
+  &-right {
+    flex-basis: 35%;
+    @include tablet {
+      display: none;
+    }
+  }
+  &-post {
+    img {
+      margin: 20px auto;
+      border-radius: 10px;
     }
   }
 }

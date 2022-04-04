@@ -1,37 +1,34 @@
-.movieBooking {
+@use "../../assets/scss/helpers/index.scss" as *;
+.movie-booking {
   padding-top: 100px;
-  .movieBooking__realtime {
+  &-realtime {
     text-align: center;
-    .time {
-      color: red;
-    }
   }
-  .movieBooking__container {
+  &-time {
+    color: $primary-color;
+  }
+  &-container {
     display: flex;
     gap: 40px;
-    @media screen and (max-width: 1023.98px) {
+    @include tablet {
       flex-direction: column;
     }
-    .movieBooking__left {
-      flex: 1;
-      .movieBooking__screen {
-        padding: 2px 0;
-        text-align: center;
-        background-color: #d1d1d1;
-        color: #000;
-        border-radius: 50% 50% 0 0;
-      }
-      .movieBooking__title {
-        margin: 10px 0;
-      }
-    }
-    .movieBooking__right {
-      flex-basis: 30%;
-      font-size: 1.8rem;
-      // .movieBooking__thumb {
-      //   width: 200px;
-      //   margin: 0 auto;
-      // }
-    }
+  }
+  &-left {
+    flex: 1;
+  }
+  &-screen {
+    padding: 2px 0;
+    text-align: center;
+    background-color: #d1d1d1;
+    color: #000;
+    border-radius: 50% 50% 0 0;
+  }
+  &-right {
+    flex-basis: 30%;
+    font-size: 1.8rem;
+  }
+  &-title {
+    margin: 10px 0;
   }
 }

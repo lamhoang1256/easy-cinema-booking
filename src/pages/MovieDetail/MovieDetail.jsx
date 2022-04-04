@@ -31,9 +31,9 @@ export const MovieDetail = () => {
   return (
     <>
       {!loading ? (
-        <div className='movieDetail'>
+        <div className='movie-detail'>
           <div
-            className='movieDetail__top'
+            className='movie-detail-top'
             style={{
               backgroundImage: `url(
             ${data.hinhAnh}
@@ -41,19 +41,19 @@ export const MovieDetail = () => {
             }}
           ></div>
           <div className='container'>
-            <div className='movieDetail__main'>
-              <div className='movieDetail__left'>
-                <div className='movieDetail__info'>
+            <div className='movie-detail-main'>
+              <div className='movie-detail-left'>
+                <div className='movie-detail-info'>
                   {/* Thumbnail phim */}
-                  <div className='singleMovie__thumb'>
+                  <div className='single-movie-thumb'>
                     <img
                       src={data.hinhAnh}
-                      className='singleMovie__image'
-                      alt='singleMovie-thumb'
+                      className='single-movie-image'
+                      alt='single-movie-thumb'
                     />
-                    <div className='singleMovie__score'>{data.danhGia / 2}</div>
-                    <div className='singleMovie__overplay'>
-                      <div className='singleMovie__play'>
+                    <div className='single-movie-score'>{data.danhGia / 2}</div>
+                    <div className='single-movie-overplay'>
+                      <div className='single-movie-play'>
                         <ion-icon
                           onClick={() => {
                             dispatch(openModalTrailerAction(data.trailer));
@@ -64,11 +64,11 @@ export const MovieDetail = () => {
                     </div>
                   </div>
                   {/* Chi tiết phim */}
-                  <div className='movieDetail__detail'>
+                  <div className='movie-detail-detail'>
                     <h3>Chi tiết phim</h3>
                     <p>
                       <span className='label'>Tên phim:</span>
-                      <span className='movieDetail__title'>{data.tenPhim}</span>
+                      <span className='movie-detail-title'>{data.tenPhim}</span>
                     </p>
                     <p>
                       <span className='label'>Ngày công chiếu:</span>
@@ -89,21 +89,21 @@ export const MovieDetail = () => {
                   </div>
                 </div>
                 {/* Tóm tắt phim */}
-                <div className='movieDetail__desc'>
+                <div className='movie-detail-desc'>
                   <h3>Tóm tắt phim</h3>
                   <p>{data.moTa}</p>
                 </div>
                 {/* Đánh giá phim (comment) */}
                 <div className='comment'>
                   <h3>Đánh giá</h3>
-                  <div className='comment__list'>
+                  <div className='comment-list'>
                     {!loadingComment && <Comment dataComment={dataComment} />}
                   </div>
                 </div>
                 <AddComment />
               </div>
               {/* Phần tin tức bên phải */}
-              <div className='movieDetail__right'>
+              <div className='movie-detail-right'>
                 <SideNews />
               </div>
             </div>

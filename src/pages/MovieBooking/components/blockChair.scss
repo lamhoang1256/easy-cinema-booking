@@ -1,64 +1,57 @@
-.blockChair {
-  .blockChair__container {
+@use "../../../assets/scss/helpers/index.scss" as *;
+.block-chair {
+  &-container {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-gap: 10px;
     padding: 30px 0;
-    .blockChair__chair {
-      background-color: #d1d1d1;
-      border-radius: 6px;
-      aspect-ratio: 1/1;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      &.selecting {
-        background-color: #2fdd92;
-      }
-      &.selected {
-        background-color: red;
-        cursor: not-allowed;
-      }
-      &.vip {
-        background-color: #ffd124;
-      }
-    }
-
-    @media screen and (max-width: 767.98px) {
+    @include mobile {
       grid-template-columns: repeat(10, 1fr);
       grid-gap: 4px;
-      .blockChair__chair {
+      .block-chair-chair {
         border-radius: 4px;
       }
     }
   }
-}
-
-.movieBooking__info {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  .info__box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  &-square {
+    @include size(40px);
+    background-color: #d1d1d1;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  &-chair {
+    @extend .block-chair-square;
+    height: unset;
+    width: unset;
+    aspect-ratio: 1/1;
+    @include flexbox(center, center);
+  }
+  &-chair--selecting {
+    background-color: #2fdd92;
+  }
+  &-chair--selected {
+    background-color: red;
+    cursor: not-allowed;
+  }
+  &-chair--vip {
+    background-color: #ffd124;
+  }
+  // Phần thông tin ghế mẫu
+  &-info {
+    @include flexbox($justify-content: center);
+    gap: 20px;
+  }
+  &-box {
+    @include flexbox(center, center, column);
     text-align: center;
-    .info__chair {
-      background-color: #d1d1d1;
-      width: 40px;
-      height: 40px;
-      border-radius: 4px;
-    }
-    .info__chair.selecting {
-      background-color: #2fdd92;
-    }
-    .info__chair.selected {
-      background-color: red;
-      cursor: not-allowed;
-    }
-    .info__chair.vip {
-      background-color: #ffd124;
-    }
+  }
+  &-square--selecting {
+    @extend .block-chair-chair--selecting;
+  }
+  &-square--selected {
+    @extend .block-chair-chair--selected;
+  }
+  &-square--vip {
+    @extend .block-chair-chair--vip;
   }
 }

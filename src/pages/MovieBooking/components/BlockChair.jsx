@@ -3,42 +3,42 @@ import "./blockChair.scss";
 export const BlockChair = ({ danhSachGhe }) => {
   console.log(danhSachGhe);
   return (
-    <div className='blockChair'>
+    <div className='block-chair'>
       {/* render danh sách ghế ra giao diện */}
-      <div className='blockChair__container'>
+      <div className='block-chair-container'>
         {danhSachGhe.map((chair, index) => {
           // kiểm tra loại ghế
-          const selected = chair.daDat ? "selected" : "";
-          const vip = chair.loaiGhe === "Vip" ? "vip" : "";
+          const selected = chair.daDat ? "block-chair-chair--selected" : "";
+          const vip = chair.loaiGhe === "Vip" ? "block-chair-chair--vip" : "";
           // const selectedByYou
 
           return (
-            <div className={`blockChair__chair ${selected} ${vip}`} key={index}>
+            <div className={`block-chair-chair ${selected} ${vip}`} key={index}>
               {chair.stt}
             </div>
           );
         })}
 
-        {/* <div className='blockChair__chair selecting'></div>
-        <div className='blockChair__chair selected'>
+        {/* <div className='block-chair-chair selecting'></div>
+        <div className='block-chair-chair selected'>
           <img src='./assets/chair-notchoose.png' alt='' />
         </div> */}
       </div>
-      <div className='movieBooking__info'>
-        <div className='info__box'>
-          <div className='info__chair'></div>
+      <div className='block-chair-info'>
+        <div className='block-chair-box'>
+          <div className='block-chair-square'></div>
           Ghế thường
         </div>
-        <div className='info__box'>
-          <div className='info__chair vip'></div>
+        <div className='block-chair-box'>
+          <div className='block-chair-square block-chair-square--vip'></div>
           Ghế vip
         </div>
-        <div className='info__box'>
-          <div className='info__chair selecting'></div>
+        <div className='block-chair-box'>
+          <div className='block-chair-square block-chair-square--selecting'></div>
           Ghế đang chọn
         </div>
-        <div className='info__box'>
-          <div className='info__chair selected'>
+        <div className='block-chair-box'>
+          <div className='block-chair-square block-chair-square--selected'>
             <img src='./assets/chair-notchoose.png' alt='' />
           </div>
           Ghế đã được mua
