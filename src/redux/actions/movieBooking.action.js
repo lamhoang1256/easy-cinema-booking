@@ -8,7 +8,7 @@ import {
 export const getMovieBookingAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_BOOKING_REQUEST });
-    const data = await axios.get(
+    const response = await axios.get(
       "https://movienew.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=40343",
       {
         headers: {
@@ -17,7 +17,7 @@ export const getMovieBookingAction = () => async (dispatch) => {
         },
       }
     );
-    dispatch({ type: GET_MOVIE_BOOKING_SUCCESS, payload: data });
+    dispatch({ type: GET_MOVIE_BOOKING_SUCCESS, payload: response.data.content });
   } catch (err) {
     dispatch({ type: GET_MOVIE_BOOKING_FAIL, payload: err });
   }

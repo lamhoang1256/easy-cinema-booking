@@ -9,11 +9,15 @@
       border-radius: 6px;
       aspect-ratio: 1/1;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       &.selecting {
         background-color: #2fdd92;
       }
       &.selected {
         background-color: red;
+        cursor: not-allowed;
       }
       &.vip {
         background-color: #ffd124;
@@ -51,6 +55,7 @@
     }
     .info__chair.selected {
       background-color: red;
+      cursor: not-allowed;
     }
     .info__chair.vip {
       background-color: #ffd124;

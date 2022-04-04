@@ -33,6 +33,7 @@ Quá trình làm đồ án ReactJS
 01/04/2022
 
 - Tối ưu lại CSS cho các trang đẹp hơn
+- Thêm chức năng show nhận xét phim ở trang chi tiết phim
 
 02/04/2022
 
