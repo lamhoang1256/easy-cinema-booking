@@ -12,13 +12,13 @@ export const ListMovie = (props) => {
   };
 
   return (
-    <div className='listMovie'>
-      <div className='list'>
+    <div className='listmovie'>
+      <div className='listmovie-container'>
         {slice.map((item, index) => (
           <SingleMovie movie={item} key={index}></SingleMovie>
         ))}
       </div>
-      <button className='btn btn__primary' onClick={handleLoadMore}>
+      <button className='btn btn--primary' onClick={handleLoadMore}>
         Load more
       </button>
     </div>

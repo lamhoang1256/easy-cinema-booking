@@ -1,6 +1,6 @@
 import React from "react";
 import { dataNews } from "../../constants/dataNews";
-import { SideNew } from "../../components/SideNew/SideNew";
+import { SideNews } from "../../components/SideNews/SideNews";
 import { useParams } from "react-router-dom";
 import "./newsDetail.scss";
 
@@ -43,7 +43,7 @@ export const NewsDetail = () => {
           {/* Phần tin tức bên phải */}
           <div className='newDetail__right'>
             {/* <SideNew /> */}
-            <SideNew />
+            <SideNews />
           </div>
         </div>
       </div>

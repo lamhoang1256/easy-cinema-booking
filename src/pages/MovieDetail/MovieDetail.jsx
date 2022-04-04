@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
-import { SideNew } from "../../components/SideNew/SideNew";
+import { SideNews } from "../../components/SideNews/SideNews";
 import { Comment } from "./components/Comment";
 import { AddComment } from "../../components/AddComment/AddComment";
 import { ModalTrailer } from "../../components/ModalTrailer/ModalTrailer";
@@ -104,7 +104,7 @@ export const MovieDetail = () => {
               </div>
               {/* Phần tin tức bên phải */}
               <div className='movieDetail__right'>
-                <SideNew />
+                <SideNews />
               </div>
             </div>
           </div>

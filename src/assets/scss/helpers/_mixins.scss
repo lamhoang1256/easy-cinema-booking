@@ -34,7 +34,7 @@ $tablet-width: 1023.98px;
   height: $height;
 }
 
-@mixin position($position, $top: 0, $right: 0, $bottom: null, $left: null, $z-index: null) {
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
   position: $position;
   top: $top;
   right: $right;

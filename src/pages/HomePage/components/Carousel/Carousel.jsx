@@ -44,7 +44,11 @@ export const Carousel = () => {
       <Slider {...settings}>
         {dataCarouselHome.map((item) => (
           <div className='carousel-boxed' key={item.id}>
-            <img src={`${process.env.REACT_APP_PUBLIC}/${item.img}`} alt={item.img} />
+            <img
+              className='carousel-banner'
+              src={`${process.env.REACT_APP_PUBLIC}/${item.img}`}
+              alt={item.img}
+            />
             <div className='carousel-main'>
               <div className='container'>
                 <h2 className='carousel-heading'>{item.name}</h2>

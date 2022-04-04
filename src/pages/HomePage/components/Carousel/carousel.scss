@@ -3,32 +3,30 @@
   .carousel {
     background-color: #000;
     overflow: hidden;
-    // mỗi carousel boxed là 1 banner phim
     &-boxed {
       position: relative;
-      img {
-        width: 100%;
-        object-fit: cover;
-      }
+    }
+    // ảnh background home
+    &-banner {
+      width: 100%;
+      object-fit: cover;
     }
     // custom css for content in carousel banner
     &-main {
       background-color: rgba(0, 0, 0, 0.2);
-      inset: 0;
       position: absolute;
+      inset: 0;
       padding-top: 25vh;
       color: #fff;
       text-shadow: 0 2px 4px rgba(0, 0, 0);
       user-select: text;
-      @media screen and (max-width: 1023.98px) {
+      @include tablet {
         position: unset;
         padding: 40px 80px 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         flex-direction: column;
+        @include flexbox(center, center);
       }
-      @media screen and (max-width: 767.98px) {
+      @include mobile {
         padding: 40px 20px 100px;
       }
     }
@@ -37,13 +35,13 @@
       font-weight: 600;
       font-size: 5rem;
       letter-spacing: 1.5px;
-      @media screen and (max-width: 767.98px) {
+      @include mobile {
         font-size: 3rem;
       }
     }
     &-desc {
       max-width: 580px;
-      @media screen and (max-width: 767.98px) {
+      @include mobile {
         max-width: 300px;
       }
     }
@@ -57,12 +55,11 @@
       }
     }
     &-btn {
+      @include flexbox(center);
       padding: 10px 20px;
       margin-top: 30px;
-      display: flex;
-      align-items: center;
-      gap: 0 10px;
       border-radius: 40px;
+      gap: 0 10px;
       ion-icon {
         font-size: 2.2rem;
       }
@@ -76,8 +73,7 @@
       }
     }
     &-info-label {
-      display: flex;
-      align-items: center;
+      @include flexbox(center);
       gap: 0 10px;
       ion-icon {
         color: $primary-color;
@@ -85,7 +81,7 @@
     }
   }
 
-  // CUSTOM STYLE SLICK-REACT
+  // CUSTOM STYLE SLICK-REACT (style cho các dots và nút next, prev)
   .slick-slider {
     height: 100vh;
     @media screen and (max-width: 1023.98px) {
@@ -107,17 +103,15 @@
   }
   .carousel-prev,
   .carousel-next {
-    position: absolute;
-    bottom: 50%;
+    @include position(absolute, $bottom: 50%, $z-index: 10);
     transform: translateY(50%);
-    z-index: 10;
     color: #fff;
     font-size: 5rem;
     cursor: pointer;
-    @media screen and (max-width: 1023.98px) {
+    @include tablet {
       bottom: 40%;
     }
-    @media screen and (max-width: 767.98px) {
+    @include mobile {
       bottom: 55px;
       font-size: 4rem;
     }

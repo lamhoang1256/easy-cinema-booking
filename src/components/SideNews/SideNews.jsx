@@ -1,25 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { dataNews } from "../../constants/dataNews";
-import "./sideNew.scss";
+import "./sideNews.scss";
 
-export const SideNew = () => {
+export const SideNews = () => {
   const dataSideNews = dataNews.filter((news) => news.id !== 1);
 
   return (
-    <div className='news__side'>
+    <div className='sidenews'>
       {dataSideNews &&
         dataSideNews.map((news, index) => (
-          <Link to={`/news/${news.id}`} className='news__item' key={index}>
-            <div className='news__image'>
+          <Link to={`/news/${news.id}`} className='sidenews-item' key={index}>
+            <div className='sidenews-image'>
               <img src={news.thumbnail} alt='' />
             </div>
-            <div className='news__content'>
-              <p className='news__time'>
+            <div className='sidenews-content'>
+              <p className='news-time'>
                 <ion-icon name='time-outline'></ion-icon> {news.createdAt}
               </p>
-              <div className='news__title' dangerouslySetInnerHTML={{ __html: news.title }}></div>
-              <div className='news__desc' dangerouslySetInnerHTML={{ __html: news.content }}></div>
+              <div className='news-title' dangerouslySetInnerHTML={{ __html: news.title }}></div>
+              <div className='news-desc' dangerouslySetInnerHTML={{ __html: news.content }}></div>
             </div>
           </Link>
         ))}

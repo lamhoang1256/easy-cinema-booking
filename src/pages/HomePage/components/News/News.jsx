@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SideNew } from "../../../../components/SideNew/SideNew";
+import { SideNews } from "../../../../components/SideNews/SideNews";
 import { dataNews } from "../../../../constants/dataNews";
 import "./news.scss";
 
@@ -9,14 +9,14 @@ export const News = () => {
     <>
       {dataNews && (
         <div className='news'>
-          <h2 className='news__heading'>Top news</h2>
-          <div className='news__container'>
-            <div className='news__main'>
-              <Link to={`news/${dataNews[0].id}`} className='news__main-image'>
-                <img src={dataNews[0].thumbnail} alt='news-image' />
+          <h2 className='news-heading'>Top news</h2>
+          <div className='news-container'>
+            <div className='news-main'>
+              <Link to={`news/${dataNews[0].id}`} className='news-main-image'>
+                <img className='news-thumb' src={dataNews[0].thumbnail} alt='news-image' />
               </Link>
-              <div className='news__content'>
-                <p className='news__time'>
+              <div className='news-content'>
+                <p className='news-time'>
                   <ion-icon name='time-outline'></ion-icon> {dataNews[0].createdAt}
                 </p>
                 <Link
@@ -25,12 +25,12 @@ export const News = () => {
                 ></Link>
                 <Link
                   to={`news/${dataNews[0].id}`}
-                  className='news__desc'
+                  className='news-desc'
                   dangerouslySetInnerHTML={{ __html: dataNews[0].content }}
                 ></Link>
               </div>
             </div>
-            <SideNew />
+            <SideNews />
           </div>
         </div>
       )}

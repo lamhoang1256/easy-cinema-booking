@@ -1,28 +1,28 @@
+@use "../../../assets/scss/helpers/index.scss" as *;
 .footer {
   margin-top: 50px;
   padding: 50px 0 30px;
   background-color: #eaeaea;
-  .footer__top {
-    display: flex;
-    justify-content: space-between;
-    color: #ff0000;
+  .footer-top {
     gap: 20px 0;
-    @media screen and (max-width: 767.98px) {
+    @include flexbox($justify-content: space-between);
+    color: $primary-color;
+    @include mobile {
       flex-direction: column;
       align-items: center;
     }
-    .footer__list {
-      display: flex;
-      gap: 20px 40px;
-      @media screen and (max-width: 767.98px) {
-        flex-direction: column;
-      }
-      .footer__link {
-        color: #000;
-      }
+  }
+  .footer-list {
+    display: flex;
+    gap: 20px 40px;
+    @include mobile {
+      flex-direction: column;
     }
   }
-  .footer__bottom {
+  .footer-link {
+    color: #000;
+  }
+  .footer-bottom {
     margin-top: 40px;
     text-align: center;
   }
