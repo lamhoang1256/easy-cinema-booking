@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { selectChairAction } from "../../../redux/actions/movieBooking.action";
+import { selectChairAction } from "redux/actions/movieBooking.action";
 import "./blockChair.scss";
 
 export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {
@@ -13,22 +13,35 @@ export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {
       {/* render danh sách ghế ra giao diện */}
       <div className='block-chair-container'>
         {danhSachGhe.map((chair, index) => {
-          // kiểm tra loại ghế nếu false trả về "", true trả về className
-          const selected = chair.daDat ? "block-chair-chair--selected" : "";
-          const vip = chair.loaiGhe === "Vip" ? "block-chair-chair--vip" : "";
+          const baseClass = "block-chair-chair";
+          //ghế vip
+          const vip = chair.loaiGhe === "Vip" ? `${baseClass}--vip` : "";
+          //ghế đã được mua
+          const selected = chair.daDat ? `${baseClass}--selected` : "";
+          //ghế được mua bởi bạn
+          const yourchoice =
+            chair.daDat && chair.taiKhoanNguoiDat === "nguyenlam" ? `${baseClass}--yourchoice` : "";
+          //ghế đang chọn
           const selecting =
             listGheDangChon.findIndex((c) => c.maGhe === chair.maGhe) === -1
               ? ""
-              : "block-chair-chair--selecting";
+              : `${baseClass}--selecting`;
 
           return (
             <button
               disabled={selected !== "" ? true : false}
-              className={`block-chair-chair ${selected} ${vip} ${selecting}`}
+              className={`${baseClass} ${selected} ${vip} ${selecting} ${yourchoice}`}
               onClick={() => handleSelectChair(chair)}
               key={index}
             >
-              {selected !== "" ? <img src='./assets/chair-notchoose.png' alt='' /> : chair.stt}
+              {/* nếu ghế đã được mua bởi người khác sẽ hiện hình dấu X, mua bởi bạn thì hiện your choice */}
+              {selected !== "" && chair.taiKhoanNguoiDat !== "nguyenlam" ? (
+                <img src='./assets/chair-notchoose.png' />
+              ) : chair.taiKhoanNguoiDat === "nguyenlam" ? (
+                <img src='./assets/chair-your-choice.png' className='block-chair-yourchoice' />
+              ) : (
+                chair.stt
+              )}
             </button>
           );
         })}

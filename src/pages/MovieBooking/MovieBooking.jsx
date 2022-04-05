@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { BlockChair } from "./components/BlockChair";
-import { buyTicketAction, getMovieBookingAction } from "../../redux/actions/movieBooking.action";
+// component
+import { ModalBill } from "./components/ModalBill/ModalBill";
+import { BlockChair } from "./components/BlockChair/BlockChair";
+// action
+import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBooking.action";
 import "./movieBooking.scss";
 
 export const MovieBooking = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
   const { dataMovieBooking, listGheDangChon, loading } = useSelector((state) => state.movieBooking);
 
   //tính tổng tiền của các ghế
-  const totalMoney = listGheDangChon.reduce(function (previousValue, currentValue) {
-    return previousValue + currentValue.giaVe;
+  const totalMoney = listGheDangChon.reduce(function (prevValue, currentValue) {
+    return prevValue + currentValue.giaVe;
   }, 0);
 
   const handleBuyTicket = async () => {
@@ -21,7 +23,6 @@ export const MovieBooking = () => {
       maLichChieu: dataMovieBooking.thongTinPhim.maLichChieu.toString(),
       danhSachVe: listGheDangChon,
     };
-
     // nếu chưa chọn 1 ghế nào cả -> hiện ra modal nhắc nhở
     if (dataToBuyTicket.danhSachVe.length === 0) {
       Swal.fire({
@@ -32,35 +33,10 @@ export const MovieBooking = () => {
       });
       return;
     }
-    const res = await dispatch(buyTicketAction(dataToBuyTicket));
-
-    // hiển thị modal thông báo thành công hoặc thất bại
-    if (res.isBuyTicketSuccess) {
-      Swal.fire({
-        title: "Đặt vé thành công",
-        text: "Chúc bạn xem phim vui vẻ.",
-        icon: "success",
-        showCancelButton: true,
-        confirmButtonColor: "#28a745",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Tiếp tục đặt vé",
-        cancelButtonText: "Trở về trang chủ",
-        reverseButtons: true,
-      }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.cancel) {
-          navigate("/"); //về home nếu nhấn về trang chủ
-        }
-        if (result.isConfirmed) {
-          // Swal.fire("Deleted!", "Your file has been deleted.", "success");
-          dispatch(getMovieBookingAction());
-        }
-      });
-    } else
-      Swal.fire({
-        icon: "error",
-        title: "Đặt vé thất bại",
-        text: "Đã xảy ra lỗi!",
-      });
+    const { isBuyTicketSuccess } = await dispatch(buyTicketAction(dataToBuyTicket));
+    if (isBuyTicketSuccess) {
+      setOpenModal(!openModal);
+    }
   };
 
   useEffect(() => {
@@ -89,33 +65,67 @@ export const MovieBooking = () => {
                 </div>
               </div>
               <div className='movie-booking-right'>
-                {/* <div className='movie-booking-thumb'>
-                  <img
-                    src='http://movie0706.cybersoft.edu.vn/hinhanh/tran-chien-midway_gp09.jpg'
-                    alt=''
-                  />
-                </div> */}
-                <div className='movie-booking-title'>
-                  Tên phim: {dataMovieBooking.thongTinPhim.tenPhim}
+                <div className='movie-booking-info-movie'>
+                  <h2>Thông tin phim</h2>
+                  <div className='movie-booking-title'>
+                    <span className='label'>Tên phim:</span>
+                    {dataMovieBooking.thongTinPhim.tenPhim}
+                  </div>
+                  <div className='movie-booking-cinema'>
+                    <span className='label'>Rạp: </span>
+                    {dataMovieBooking.thongTinPhim.tenCumRap}
+                  </div>
+                  <div className='movie-booking-location'>
+                    <span className='label'>Địa chỉ: </span>
+                    {dataMovieBooking.thongTinPhim.diaChi}
+                  </div>
+                  <div className='movie-booking-openday'>
+                    <span className='label'>Suất chiếu: </span>
+                    {dataMovieBooking.thongTinPhim.gioChieu}{" "}
+                    {dataMovieBooking.thongTinPhim.ngayChieu}
+                  </div>
+                  <div className='movie-booking-chairs'>
+                    <span className='label'>Số ghế đã chọn:</span>
+                    {listGheDangChon.map((c, index) => {
+                      // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
+                      const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
+                      return chair;
+                    })}
+                  </div>
                 </div>
-                <div className='movie-booking-cinema'>
-                  Rạp: {dataMovieBooking.thongTinPhim.tenCumRap}
+                <div className='movie-booking-info-user'>
+                  <h2>Thông tin khách hàng</h2>
+                  <div className='movie-booking-openday'>
+                    <span className='label'>Họ tên: </span>
+                    Nguyễn Hoàng Lâm
+                  </div>
+                  <div className='movie-booking-openday'>
+                    <span className='label'>Email: </span>
+                    lamhoang@gmail.com
+                  </div>
+                  <div className='movie-booking-openday'>
+                    <span className='label'>Số điện thoại: </span>
+                    0830384028
+                  </div>
                 </div>
-                <div className='movie-booking-location'>
-                  Địa chỉ: {dataMovieBooking.thongTinPhim.diaChi}
+                <div className='movie-booking-bill'>
+                  {/* <div>
+                    <span className='label'> Tổng tiền:</span>
+                    <span className='movie-booking-price'>
+                      {totalMoney.toLocaleString("en-US")} VNĐ
+                    </span>
+                  </div> */}
+                  <h2 className='movie-booking-price'>
+                    Tổng tiền: {totalMoney.toLocaleString("en-US")} VNĐ
+                  </h2>
                 </div>
-                <div className='movie-booking-openday'>
-                  Suất chiếu: {dataMovieBooking.thongTinPhim.gioChieu}{" "}
-                  {dataMovieBooking.thongTinPhim.ngayChieu}
-                </div>
-                <div className='movie-booking-chairs'>Ghế chọn: E4, A3</div>
-                <div className='movie-booking-price'>Giá : {totalMoney} VNĐ</div>
                 <button className='btn btn--primary' onClick={handleBuyTicket}>
                   Đặt vé
                 </button>
               </div>
             </div>
           </div>
+          {openModal && <ModalBill setOpenModall={setOpenModal} openModal={openModal} />}
         </div>
       ) : (
         "Loading"

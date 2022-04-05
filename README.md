@@ -46,3 +46,9 @@ Quá trình làm đồ án ReactJS
 - Tối ưu một số className của một số thẻ tag
 - Thay một số @import file scss bằng @use
 - Xây dựng logic cơ bản cho trang mua vé
+
+05/04/2022
+
+- Thêm modal thông báo đặt vé thành công cho trang đặt vé
+- Tối ưu hiển thị ghế được đặt bởi bạn
+- Thêm tính tiền giá vé,...

@@ -7,6 +7,7 @@ import {
   BUY_TICKET_REQUEST,
   BUY_TICKET_SUCCESS,
   BUY_TICKET_FAIL,
+  RESET_SELETING_CHAIR,
 } from "../constants/movieBooking.constant";
 
 export const getMovieBookingAction = () => async (dispatch) => {
@@ -53,4 +54,8 @@ export const buyTicketAction = (dataToBuyTicket) => async (dispatch) => {
   } catch (err) {
     dispatch({ type: BUY_TICKET_FAIL, payload: err });
   }
+};
+
+export const resetSelectingChair = () => async (dispatch) => {
+  dispatch({ type: RESET_SELETING_CHAIR });
 };

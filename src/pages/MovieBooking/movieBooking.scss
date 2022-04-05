@@ -27,8 +27,13 @@
   &-right {
     flex-basis: 30%;
     font-size: 1.8rem;
+    .label {
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-right: 5px;
+    }
   }
-  &-title {
-    margin: 10px 0;
+  &-price {
+    color: $primary-color;
   }
 }

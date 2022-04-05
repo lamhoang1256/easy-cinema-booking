@@ -4,6 +4,7 @@ import {
   GET_MOVIE_BOOKING_FAIL,
   SELECT_CHAIR,
   BUY_TICKET_SUCCESS,
+  RESET_SELETING_CHAIR,
 } from "../constants/movieBooking.constant";
 
 const initialState = {
@@ -31,8 +32,9 @@ export const movieBooking = (state = initialState, { type, payload }) => {
       } else {
         newListGheDangChon.splice(index, 1);
       }
+      newListGheDangChon.sort((firstItem, secondItem) => firstItem.maGhe - secondItem.maGhe);
       return { ...state, listGheDangChon: newListGheDangChon };
-    case BUY_TICKET_SUCCESS:
+    case RESET_SELETING_CHAIR:
       return { ...state, listGheDangChon: [] };
     default:
       return state;

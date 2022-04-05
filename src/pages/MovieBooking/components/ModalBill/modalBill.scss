@@ -1,0 +1,47 @@
+@use "../../../../assets/scss/helpers/index.scss" as *;
+.modal-bill {
+  position: relative;
+  &-overplay {
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    @include position(fixed, 0, 0, 0, 0, 40);
+  }
+  &-main {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    @include position(fixed, 50%, 50%, $z-index: 50);
+    transform: translate(50%, -50%);
+    max-width: 500px;
+  }
+  &-movie {
+    display: flex;
+    gap: 20px;
+    .info-label {
+      margin-right: 10px;
+    }
+  }
+  &-thumb img {
+    width: 120px;
+    border-radius: 10px;
+  }
+  &-title {
+    color: $primary-color;
+  }
+  // thông tin người dùng
+  &-user {
+    padding: 20px 0;
+    .success {
+      font-weight: 500;
+      color: #28a745;
+    }
+    .user-label {
+      font-weight: 600;
+    }
+  }
+  // modal button actions
+  &-action {
+    margin-top: 20px;
+    @include flexbox(center, space-between);
+  }
+}
