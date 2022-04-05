@@ -21,6 +21,7 @@
     "redux-thunk": "^2.4.1",
     "sass": "^1.49.9",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.4.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -6,7 +6,11 @@ import {
   BUY_TICKET_SUCCESS,
 } from "../constants/movieBooking.constant";
 
-const initialState = { loading: true, dataMovieBooking: {}, listGheDangChon: [] };
+const initialState = {
+  loading: true,
+  dataMovieBooking: {},
+  listGheDangChon: [],
+};
 
 export const movieBooking = (state = initialState, { type, payload }) => {
   switch (type) {

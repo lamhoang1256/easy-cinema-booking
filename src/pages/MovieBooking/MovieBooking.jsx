@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { BlockChair } from "./components/BlockChair";
 import { buyTicketAction, getMovieBookingAction } from "../../redux/actions/movieBooking.action";
@@ -6,6 +8,7 @@ import "./movieBooking.scss";
 
 export const MovieBooking = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { dataMovieBooking, listGheDangChon, loading } = useSelector((state) => state.movieBooking);
 
   //tính tổng tiền của các ghế
@@ -13,14 +16,51 @@ export const MovieBooking = () => {
     return previousValue + currentValue.giaVe;
   }, 0);
 
-  // console.log(dataMovieBooking, loading);
-  const handleBuyTicket = () => {
+  const handleBuyTicket = async () => {
     const dataToBuyTicket = {
       maLichChieu: dataMovieBooking.thongTinPhim.maLichChieu.toString(),
       danhSachVe: listGheDangChon,
     };
-    dispatch(buyTicketAction(dataToBuyTicket));
-    dispatch(getMovieBookingAction());
+
+    // nếu chưa chọn 1 ghế nào cả -> hiện ra modal nhắc nhở
+    if (dataToBuyTicket.danhSachVe.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Vui lòng chọn ghế",
+        text: "Bạn chưa chọn ghế nào cả!",
+        confirmButtonColor: "#d33",
+      });
+      return;
+    }
+    const res = await dispatch(buyTicketAction(dataToBuyTicket));
+
+    // hiển thị modal thông báo thành công hoặc thất bại
+    if (res.isBuyTicketSuccess) {
+      Swal.fire({
+        title: "Đặt vé thành công",
+        text: "Chúc bạn xem phim vui vẻ.",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#28a745",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Tiếp tục đặt vé",
+        cancelButtonText: "Trở về trang chủ",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.cancel) {
+          navigate("/"); //về home nếu nhấn về trang chủ
+        }
+        if (result.isConfirmed) {
+          // Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          dispatch(getMovieBookingAction());
+        }
+      });
+    } else
+      Swal.fire({
+        icon: "error",
+        title: "Đặt vé thất bại",
+        text: "Đã xảy ra lỗi!",
+      });
   };
 
   useEffect(() => {

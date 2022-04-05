@@ -47,8 +47,9 @@ export const buyTicketAction = (dataToBuyTicket) => async (dispatch) => {
         },
       }
     );
-    console.log(response);
+    // console.log(response);
     dispatch({ type: BUY_TICKET_SUCCESS });
+    return { isBuyTicketSuccess: true };
   } catch (err) {
     dispatch({ type: BUY_TICKET_FAIL, payload: err });
   }
