@@ -11,6 +11,7 @@ import { getDetailMovieAction } from "../../redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "../../redux/actions/modalTrailer.action";
 import { getCommentMovieAction } from "../../redux/actions/movieComment.action";
 import "./movieDetail.scss";
+import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 
 export const MovieDetail = () => {
   window.scrollTo(0, 0);
@@ -111,7 +112,7 @@ export const MovieDetail = () => {
           <ModalTrailer />
         </div>
       ) : (
-        "Loading"
+        <LoadingAnimation />
       )}
     </>
   );
