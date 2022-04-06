@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 // component
 import { ModalBill } from "./components/ModalBill/ModalBill";
 import { BlockChair } from "./components/BlockChair/BlockChair";
+import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
 import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBooking.action";
 import "./movieBooking.scss";
-import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
-
+// đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/background-booking.jpg"
 )`;
 

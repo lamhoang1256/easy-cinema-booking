@@ -6,9 +6,9 @@ import { Carousel } from "./components/Carousel/Carousel";
 import { FilterBooking } from "./components/FilterBooking/FilterBooking";
 import { ListMovie } from "./components/ListMovie/ListMovie";
 import { News } from "./components/News/News";
-import { ModalTrailer } from "../../components/ModalTrailer/ModalTrailer";
+import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 // action
-import { getMovieListAction } from "../../redux/actions/movieList.action";
+import { getMovieListAction } from "redux/actions/movieList.action";
 import "./homePage.scss";
 
 export const HomePage = () => {

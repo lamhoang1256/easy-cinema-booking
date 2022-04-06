@@ -52,3 +52,9 @@ Quá trình làm đồ án ReactJS
 - Thêm modal thông báo đặt vé thành công cho trang đặt vé
 - Tối ưu hiển thị ghế được đặt bởi bạn
 - Thêm tính tiền giá vé,...
+
+06/04/2022
+
+- Xử lí relative url với jsconfig.json
+- Thêm loading animation
+- Chỉnh sửa UI booking ticket page

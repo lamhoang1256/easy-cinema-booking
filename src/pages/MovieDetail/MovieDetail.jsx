@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
-import { SideNews } from "../../components/SideNews/SideNews";
 import { Comment } from "./components/Comment";
-import { AddComment } from "../../components/AddComment/AddComment";
-import { ModalTrailer } from "../../components/ModalTrailer/ModalTrailer";
+import { SideNews } from "components/SideNews/SideNews";
+import { AddComment } from "components/AddComment/AddComment";
+import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 // action
-import { getDetailMovieAction } from "../../redux/actions/movieDetail.action";
-import { openModalTrailerAction } from "../../redux/actions/modalTrailer.action";
-import { getCommentMovieAction } from "../../redux/actions/movieComment.action";
+import { getDetailMovieAction } from "redux/actions/movieDetail.action";
+import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
+import { getCommentMovieAction } from "redux/actions/movieComment.action";
 import "./movieDetail.scss";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 

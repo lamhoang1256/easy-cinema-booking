@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { dataNews } from "../../constants/dataNews";
+import { dataNews } from "constants/dataNews";
 import "./sideNews.scss";
 
 export const SideNews = () => {
