@@ -7,6 +7,8 @@ import { MovieDetail } from "./pages/MovieDetail/MovieDetail";
 import { UserInfo } from "./pages/UserInfo/UserInfo";
 import { NewsDetail } from "./pages/NewsDetail/NewsDetail";
 import { MovieBooking } from "./pages/MovieBooking/MovieBooking";
+import { Login } from "./pages/Login/Login";
+import { Register } from "pages/Register/Register";
 import { NotFound } from "./pages/NotFound/NotFound";
 // style css
 import "slick-carousel/slick/slick.css";
@@ -29,7 +31,10 @@ function App() {
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}></Route>
         {/* Auth Layout */}
-        <Route path='/auth' element={<AuthLayout />}></Route>
+        <Route path='/auth' element={<AuthLayout />}>
+          <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} />
+        </Route>
         {/* Not Found 404 */}
         <Route path='*' element={<NotFound />} />
       </Routes>

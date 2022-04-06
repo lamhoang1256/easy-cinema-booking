@@ -1,0 +1,4 @@
+@use "./helpers/variables" as *;
+.text--primary {
+  color: $primary-color;
+}

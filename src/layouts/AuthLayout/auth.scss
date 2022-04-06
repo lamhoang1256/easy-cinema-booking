@@ -1,0 +1,99 @@
+@use "../../assets/scss/helpers/index.scss" as *;
+.auth-layout {
+  background-image: url("../../assets/images/background-auth.jpg");
+  min-height: 100vh;
+  position: relative;
+  .auth {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 10;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.auth {
+  &-container {
+    background-color: #fff;
+    padding: 40px;
+    @include absoluteCenter("both");
+    border-radius: 30px;
+    width: 480px;
+    @include mobile {
+      width: calc(100% - 20px);
+      padding: 30px 20px;
+    }
+  }
+  &-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    font-weight: 600;
+    color: #363a40;
+  }
+  &-box {
+    display: flex;
+    .auth-group {
+      width: 50%;
+    }
+  }
+  &-group {
+    margin: 20px 0;
+    position: relative;
+    ion-icon {
+      @include position(absolute, 50%, $left: 20px);
+      transform: translateY(-50%);
+    }
+  }
+  &-input {
+    background-color: #f2f3f5;
+    border: none;
+    outline: none;
+    padding: 20px;
+    padding-left: 50px;
+    border-radius: 15px;
+    width: 100%;
+  }
+  &-submit.btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+  }
+  &-switch {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+
+.auth.register {
+  .auth-container {
+    width: 640px;
+    @include mobile {
+      width: calc(100% - 20px);
+      padding: 30px 20px;
+    }
+  }
+  .auth-box {
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+  .auth-group {
+    margin: 10px;
+    @include mobile {
+      width: unset;
+      margin: 10px 0;
+    }
+  }
+  .auth-submit.btn {
+    margin-top: 10px;
+  }
+  @include mobile {
+    min-height: 130vh;
+  }
+}
