@@ -43,7 +43,7 @@
     }
   }
   &-group {
-    margin: 20px 0;
+    margin: 20px 0 10px;
     position: relative;
     ion-icon {
       @include position(absolute, 50%, $left: 20px);
@@ -63,6 +63,7 @@
     width: 100%;
     padding: 15px;
     border-radius: 15px;
+    margin-top: 20px;
   }
   &-switch {
     margin-top: 20px;
@@ -89,9 +90,6 @@
       width: unset;
       margin: 10px 0;
     }
-  }
-  .auth-submit.btn {
-    margin-top: 10px;
   }
   @include mobile {
     min-height: 130vh;
