@@ -7,6 +7,10 @@ import { BlockChair } from "./components/BlockChair/BlockChair";
 // action
 import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBooking.action";
 import "./movieBooking.scss";
+import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
+
+const urlBanner = `url("${process.env.PUBLIC_URL}/assets/background-booking.jpg"
+)`;
 
 export const MovieBooking = () => {
   const dispatch = useDispatch();
@@ -33,6 +37,16 @@ export const MovieBooking = () => {
       });
       return;
     }
+    //không đực chọn quá 10 ghế -> hiện modal nhắc nhở
+    if (dataToBuyTicket.danhSachVe.length > 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Không chọn quá 10 ghế",
+        text: "Bạn không được chọn quá 10 ghế!",
+        confirmButtonColor: "#d33",
+      });
+      return;
+    }
     const { isBuyTicketSuccess } = await dispatch(buyTicketAction(dataToBuyTicket));
     if (isBuyTicketSuccess) {
       setOpenModal(!openModal);
@@ -42,10 +56,21 @@ export const MovieBooking = () => {
   useEffect(() => {
     dispatch(getMovieBookingAction());
   }, []);
+
   return (
     <>
       {!loading ? (
         <div className='movie-booking'>
+          <div
+            className='movie-booking-top'
+            style={{
+              backgroundImage: urlBanner,
+            }}
+          >
+            <div className='movie-booking-heading'>
+              <h2>Trang đặt vé phim</h2>
+            </div>
+          </div>
           <div className='container'>
             <div className='movie-booking-container'>
               <div className='movie-booking-left'>
@@ -64,6 +89,7 @@ export const MovieBooking = () => {
                   </div>
                 </div>
               </div>
+              {/* Thông tin phim */}
               <div className='movie-booking-right'>
                 <div className='movie-booking-info-movie'>
                   <h2>Thông tin phim</h2>
@@ -86,11 +112,18 @@ export const MovieBooking = () => {
                   </div>
                   <div className='movie-booking-chairs'>
                     <span className='label'>Số ghế đã chọn:</span>
-                    {listGheDangChon.map((c, index) => {
+                    {listGheDangChon.length !== 0
+                      ? listGheDangChon.map((c, index) => {
+                          // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
+                          const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
+                          return chair;
+                        })
+                      : "Chưa chọn ghế"}
+                    {/* {listGheDangChon.map((c, index) => {
                       // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
                       const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
                       return chair;
-                    })}
+                    })} */}
                   </div>
                 </div>
                 <div className='movie-booking-info-user'>
@@ -99,22 +132,16 @@ export const MovieBooking = () => {
                     <span className='label'>Họ tên: </span>
                     Nguyễn Hoàng Lâm
                   </div>
-                  <div className='movie-booking-openday'>
+                  <div className='movie-booking-email'>
                     <span className='label'>Email: </span>
                     lamhoang@gmail.com
                   </div>
-                  <div className='movie-booking-openday'>
+                  <div className='movie-booking-phone'>
                     <span className='label'>Số điện thoại: </span>
                     0830384028
                   </div>
                 </div>
                 <div className='movie-booking-bill'>
-                  {/* <div>
-                    <span className='label'> Tổng tiền:</span>
-                    <span className='movie-booking-price'>
-                      {totalMoney.toLocaleString("en-US")} VNĐ
-                    </span>
-                  </div> */}
                   <h2 className='movie-booking-price'>
                     Tổng tiền: {totalMoney.toLocaleString("en-US")} VNĐ
                   </h2>
@@ -125,10 +152,13 @@ export const MovieBooking = () => {
               </div>
             </div>
           </div>
-          {openModal && <ModalBill setOpenModall={setOpenModal} openModal={openModal} />}
+          {/* mở modal bill khi đặt vé thành công  */}
+          {openModal && (
+            <ModalBill setOpenModall={setOpenModal} openModal={openModal} totalMoney={totalMoney} />
+          )}
         </div>
       ) : (
-        "Loading"
+        <LoadingAnimation />
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import React from "react";
-import { dataNews } from "../../constants/dataNews";
-import { SideNews } from "../../components/SideNews/SideNews";
 import { useParams } from "react-router-dom";
+import { dataNews } from "constants/dataNews";
+import { SideNews } from "components/SideNews/SideNews";
 import "./newsDetail.scss";
 
 export const NewsDetail = () => {
@@ -11,7 +11,7 @@ export const NewsDetail = () => {
   const dataPost = dataNews.filter((news) => news.id == id)[0];
 
   return (
-    <div className='newDetail'>
+    <div className='new-detail'>
       <div
         className='new-detail-top'
         style={{

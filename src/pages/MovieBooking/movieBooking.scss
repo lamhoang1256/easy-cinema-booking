@@ -1,6 +1,33 @@
 @use "../../assets/scss/helpers/index.scss" as *;
 .movie-booking {
-  padding-top: 100px;
+  //phần background banner mờ
+  &-top {
+    position: relative;
+    height: 30vh;
+    width: 100%;
+    padding-top: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include flexbox(center, center);
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+    @include tablet {
+      height: 30vh;
+    }
+  }
+  &-heading {
+    position: relative;
+    h2 {
+      color: #fff;
+      font-size: 4rem;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
   &-realtime {
     text-align: center;
   }
@@ -10,6 +37,7 @@
   &-container {
     display: flex;
     gap: 40px;
+    padding-top: 40px;
     @include tablet {
       flex-direction: column;
     }
@@ -31,6 +59,9 @@
       font-weight: 600;
       font-size: 1.8rem;
       margin-right: 5px;
+    }
+    h2 {
+      margin-top: 10px;
     }
   }
   &-price {

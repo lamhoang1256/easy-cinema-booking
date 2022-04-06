@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getMovieBookingAction, resetSelectingChair } from "redux/actions/movieBooking.action";
 import "./modalBill.scss";
 
-export const ModalBill = ({ openModal, setOpenModall }) => {
+export const ModalBill = ({ openModal, setOpenModall, totalMoney }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dataMovieBooking, listGheDangChon } = useSelector((state) => state.movieBooking);
@@ -17,6 +17,7 @@ export const ModalBill = ({ openModal, setOpenModall }) => {
     dispatch(getMovieBookingAction());
     setOpenModall(!openModal);
     dispatch(resetSelectingChair());
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -70,7 +71,8 @@ export const ModalBill = ({ openModal, setOpenModall }) => {
             <span className='success'>Đặt vé thành công</span>
           </p>
           <p>
-            <span className='user-label'>Tổng tiền : </span> 120.000đ
+            <span className='user-label'>Tổng tiền : </span> {totalMoney.toLocaleString("en-US")}{" "}
+            VNĐ
           </p>
           <p>Kiểm tra lại thông tin vé đã đặt trong phần thông tin tài khoản của bạn !</p>
         </div>
