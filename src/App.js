@@ -6,7 +6,7 @@ import { HomePage } from "./pages/HomePage/HomePage";
 import { MovieDetail } from "./pages/MovieDetail/MovieDetail";
 import { UserInfo } from "./pages/UserInfo/UserInfo";
 import { NewsDetail } from "./pages/NewsDetail/NewsDetail";
-import { MovieBooking } from "./pages/MovieBooking/MovieBooking";
+import { MovieBuyTicket } from "./pages/MovieBuyTicket/MovieBuyTicket";
 import { Login } from "./pages/Login/Login";
 import { Register } from "pages/Register/Register";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
@@ -26,7 +26,7 @@ function App() {
           <Route path='/detail/:id' element={<MovieDetail />} />
           <Route path='/user' element={<UserInfo />} />
           <Route path='/news/:id' element={<NewsDetail />} />
-          <Route path='/booking/' element={<MovieBooking />} />
+          <Route path='/booking/' element={<MovieBuyTicket />} />
         </Route>
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}></Route>

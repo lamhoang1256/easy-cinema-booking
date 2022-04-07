@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { dataNews } from "constants/dataNews";
-import { SideNews } from "components/SideNews/SideNews";
+import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import "./newsDetail.scss";
 
 export const NewsDetail = () => {
@@ -42,8 +42,7 @@ export const NewsDetail = () => {
           </div>
           {/* Phần tin tức bên phải */}
           <div className='new-detail-right'>
-            {/* <SideNew /> */}
-            <SideNews />
+            <RightSideNews />
           </div>
         </div>
       </div>

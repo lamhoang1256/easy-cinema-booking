@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { dataNews } from "constants/dataNews";
-import "./sideNews.scss";
+import "./rightSideNews.scss";
 
-export const SideNews = () => {
+export const RightSideNews = () => {
   const dataSideNews = dataNews.filter((news) => news.id !== 1);
 
   return (

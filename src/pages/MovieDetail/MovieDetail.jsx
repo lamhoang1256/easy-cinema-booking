@@ -3,15 +3,15 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
 import { Comment } from "./components/Comment";
-import { SideNews } from "components/SideNews/SideNews";
+import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import { AddComment } from "components/AddComment/AddComment";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
+import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
 import { getDetailMovieAction } from "redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
 import { getCommentMovieAction } from "redux/actions/movieComment.action";
 import "./movieDetail.scss";
-import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 
 export const MovieDetail = () => {
   window.scrollTo(0, 0);
@@ -105,7 +105,7 @@ export const MovieDetail = () => {
               </div>
               {/* Phần tin tức bên phải */}
               <div className='movie-detail-right'>
-                <SideNews />
+                <RightSideNews />
               </div>
             </div>
           </div>

@@ -4,8 +4,8 @@ import { Tabs } from "antd";
 // component
 import { Carousel } from "./components/Carousel/Carousel";
 import { FilterBooking } from "./components/FilterBooking/FilterBooking";
-import { ListMovie } from "./components/ListMovie/ListMovie";
-import { News } from "./components/News/News";
+import { MovieList } from "./components/MovieList/MovieList";
+import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 // action
 import { getMovieListAction } from "redux/actions/movieList.action";
@@ -37,13 +37,13 @@ export const HomePage = () => {
             <div className='homePage-tab'>
               <Tabs defaultActiveKey='1'>
                 <TabPane tab='Đang chiếu' key='1'>
-                  <ListMovie listMovie={data.isShowingMovie} />
+                  <MovieList listMovie={data.isShowingMovie} />
                 </TabPane>
                 <TabPane tab='Sắp chiếu' key='2'>
-                  <ListMovie listMovie={data.comingSoonMovie} />
+                  <MovieList listMovie={data.comingSoonMovie} />
                 </TabPane>
                 <TabPane tab='Đang hot' key='3'>
-                  <ListMovie listMovie={data.hotMovie} />
+                  <MovieList listMovie={data.hotMovie} />
                 </TabPane>
               </Tabs>
             </div>
@@ -52,7 +52,7 @@ export const HomePage = () => {
           )}
 
           {/* Phần Tin tức */}
-          <News />
+          <Article />
         </div>
       </div>
       <ModalTrailer />

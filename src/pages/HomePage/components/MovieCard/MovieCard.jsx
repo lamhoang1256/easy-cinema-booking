@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openModalTrailerAction } from "../../../../redux/actions/modalTrailer.action";
-import "./singleMovie.scss";
+import "./movieCard.scss";
 
-export const SingleMovie = (props) => {
+export const MovieCard = (props) => {
   const { movie } = props;
   const dispatch = useDispatch();
   // check điểm đánh giá từ API và tạo các ngôi sao rating

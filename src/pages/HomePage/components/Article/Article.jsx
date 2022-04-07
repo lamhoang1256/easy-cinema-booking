@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SideNews } from "../../../../components/SideNews/SideNews";
+import { RightSideNews } from "../../../../components/RightSideNews/RightSideNews";
 import { dataNews } from "../../../../constants/dataNews";
-import "./news.scss";
+import "./article.scss";
 
-export const News = () => {
+export const Article = () => {
   return (
     <>
       {dataNews && (
@@ -30,7 +30,7 @@ export const News = () => {
                 ></Link>
               </div>
             </div>
-            <SideNews />
+            <RightSideNews />
           </div>
         </div>
       )}

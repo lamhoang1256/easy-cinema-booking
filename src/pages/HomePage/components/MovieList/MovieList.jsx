@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { SingleMovie } from "../SingleMovie/SingleMovie";
-import "./listMovie.scss";
+import { MovieCard } from "../MovieCard/MovieCard";
+import "./movieList.scss";
 
-export const ListMovie = (props) => {
+export const MovieList = (props) => {
   const [numMovie, setNumMovie] = useState(10);
   const { listMovie } = props;
   // handle loadmore
@@ -15,7 +15,7 @@ export const ListMovie = (props) => {
     <div className='listmovie'>
       <div className='listmovie-container'>
         {slice.map((item, index) => (
-          <SingleMovie movie={item} key={index}></SingleMovie>
+          <MovieCard movie={item} key={index}></MovieCard>
         ))}
       </div>
       <button className='btn btn--primary' onClick={handleLoadMore}>

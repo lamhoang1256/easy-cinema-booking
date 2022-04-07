@@ -7,12 +7,12 @@ import { BlockChair } from "./components/BlockChair/BlockChair";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
 import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBooking.action";
-import "./movieBooking.scss";
+import "./movieBuyTicket.scss";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/background-booking.jpg"
 )`;
 
-export const MovieBooking = () => {
+export const MovieBuyTicket = () => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const { dataMovieBooking, listGheDangChon, loading } = useSelector((state) => state.movieBooking);
