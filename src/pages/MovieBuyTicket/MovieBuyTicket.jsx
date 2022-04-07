@@ -6,7 +6,7 @@ import { ModalBill } from "./components/ModalBill/ModalBill";
 import { BlockChair } from "./components/BlockChair/BlockChair";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
-import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBooking.action";
+import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBuyTicket.action";
 import "./movieBuyTicket.scss";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/background-booking.jpg"
@@ -37,7 +37,7 @@ export const MovieBuyTicket = () => {
       });
       return;
     }
-    //không đực chọn quá 10 ghế -> hiện modal nhắc nhở
+    //không được chọn quá 10 ghế -> hiện modal nhắc nhở
     if (dataToBuyTicket.danhSachVe.length > 10) {
       Swal.fire({
         icon: "error",

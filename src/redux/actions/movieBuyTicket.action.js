@@ -8,7 +8,7 @@ import {
   BUY_TICKET_SUCCESS,
   BUY_TICKET_FAIL,
   RESET_SELETING_CHAIR,
-} from "../constants/movieBooking.constant";
+} from "../constants/movieBuyTicket.constant";
 
 export const getMovieBookingAction = () => async (dispatch) => {
   try {

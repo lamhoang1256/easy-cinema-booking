@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMovieBookingAction, resetSelectingChair } from "redux/actions/movieBooking.action";
+import { getMovieBookingAction, resetSelectingChair } from "redux/actions/movieBuyTicket.action";
 import "./modalBill.scss";
 
 export const ModalBill = ({ openModal, setOpenModall, totalMoney }) => {

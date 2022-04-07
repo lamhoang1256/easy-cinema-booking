@@ -18,12 +18,26 @@
 }
 
 .auth {
+  &-backhome {
+    @include position(absolute, 30px, 30px, $z-index: 40);
+    @include size(50px);
+    @include flexbox(center, center);
+    cursor: pointer;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 800;
+    background-color: $primary-color;
+    border-radius: 100rem;
+    &:hover {
+      color: #fff;
+    }
+  }
   &-container {
     background-color: #fff;
     padding: 40px;
-    @include absoluteCenter("both");
     border-radius: 30px;
     width: 480px;
+    @include absoluteCenter("both");
     @include mobile {
       width: calc(100% - 20px);
       padding: 30px 20px;
@@ -38,7 +52,7 @@
   }
   &-wrapper {
     display: flex;
-    gap: 0 30px;
+    gap: 0 20px;
     @include mobile {
       flex-direction: column;
     }

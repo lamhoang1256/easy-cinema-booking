@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { selectChairAction } from "redux/actions/movieBooking.action";
+import { selectChairAction } from "redux/actions/movieBuyTicket.action";
 import "./blockChair.scss";
 
 export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {

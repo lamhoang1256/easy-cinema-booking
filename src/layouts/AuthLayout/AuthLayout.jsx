@@ -1,11 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./auth.scss";
 
 export const AuthLayout = () => {
   return (
     <div className='auth-layout'>
       <Outlet />
+      <Link to='/' className='auth-backhome'>
+        <ion-icon name='home'></ion-icon>
+      </Link>
     </div>
   );
 };

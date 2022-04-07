@@ -1,16 +1,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginAction } from "redux/actions/login.action";
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const { errorLogin } = useSelector((state) => state.login);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   // xử lí login
   const handleLogin = (data) => {
-    console.log(data);
+    const infoLogin = { taiKhoan: data.username, matKhau: data.password };
+    dispatch(loginAction(infoLogin));
   };
 
   return (
@@ -59,10 +65,17 @@ export const Login = () => {
               <span className='text--primary'>Mật khẩu nhiều nhất bao gồm 15 kí tự !</span>
             )}
 
+            {errorLogin && (
+              <span className='text--primary'>
+                Đăng nhập thất bại sai tài khoản hoặc mật khẩu !
+              </span>
+            )}
+
             {/* nút submit */}
             <button className='auth-submit btn btn--primary' type='submit'>
               Đăng nhập
             </button>
+
             <div className='auth-switch'>
               Bạn đã chưa có tài khoản ?{" "}
               <Link to='/auth/register' className='text--primary'>

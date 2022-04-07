@@ -5,7 +5,7 @@ import {
   SELECT_CHAIR,
   BUY_TICKET_SUCCESS,
   RESET_SELETING_CHAIR,
-} from "../constants/movieBooking.constant";
+} from "../constants/movieBuyTicket.constant";
 
 const initialState = {
   loading: true,
