@@ -36,10 +36,17 @@
     font-weight: 600;
     color: #363a40;
   }
-  &-box {
+  &-wrapper {
     display: flex;
-    .auth-group {
+    gap: 0 30px;
+    @include mobile {
+      flex-direction: column;
+    }
+    .auth-box {
       width: 50%;
+      @include mobile {
+        width: 100%;
+      }
     }
   }
   &-group {
@@ -69,11 +76,14 @@
     margin-top: 20px;
     text-align: center;
   }
+  .text--primary {
+    position: relative;
+  }
 }
 
 .auth.register {
   .auth-container {
-    width: 640px;
+    width: 680px;
     @include mobile {
       width: calc(100% - 20px);
       padding: 30px 20px;
@@ -85,10 +95,9 @@
     }
   }
   .auth-group {
-    margin: 10px;
     @include mobile {
       width: unset;
-      margin: 10px 0;
+      margin: 15px 0 0;
     }
   }
   @include mobile {

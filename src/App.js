@@ -9,7 +9,7 @@ import { NewsDetail } from "./pages/NewsDetail/NewsDetail";
 import { MovieBooking } from "./pages/MovieBooking/MovieBooking";
 import { Login } from "./pages/Login/Login";
 import { Register } from "pages/Register/Register";
-import { NotFound } from "./pages/NotFound/NotFound";
+import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 // style css
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -36,7 +36,7 @@ function App() {
           <Route path='register' element={<Register />} />
         </Route>
         {/* Not Found 404 */}
-        <Route path='*' element={<NotFound />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Router>
   );

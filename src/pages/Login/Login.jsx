@@ -8,7 +8,7 @@ export const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(errors);
+  // xử lí login
   const handleLogin = (data) => {
     console.log(data);
   };
