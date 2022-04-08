@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
 import { Comment } from "./components/Comment";
@@ -69,7 +69,9 @@ export const MovieDetail = () => {
                     <h3>Chi tiết phim</h3>
                     <p>
                       <span className='label'>Tên phim:</span>
-                      <span className='movie-detail-title'>{data.tenPhim}</span>
+                      <span className='movie-detail-title'>
+                        <Link to={`/booking/${data.maPhim}`}>{data.tenPhim}</Link>
+                      </span>
                     </p>
                     <p>
                       <span className='label'>Ngày công chiếu:</span>

@@ -67,3 +67,4 @@ Quá trình làm đồ án ReactJS
 08/04/2022
 
 - Xử lí logic register, logout
+- Xây dựng UI trang thông tin user

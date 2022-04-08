@@ -10,11 +10,11 @@ import {
   RESET_SELETING_CHAIR,
 } from "../constants/movieBuyTicket.constant";
 
-export const getMovieBookingAction = () => async (dispatch) => {
+export const getMovieBookingAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_BOOKING_REQUEST });
     const response = await axios.get(
-      "https://movienew.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=40343",
+      "https://movienew.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=40344",
       {
         headers: {
           TokenCybersoft:

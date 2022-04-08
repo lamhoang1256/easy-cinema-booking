@@ -9,7 +9,7 @@ import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBuyTicket.action";
 import "./movieBuyTicket.scss";
 // đường dẫn ảnh banner
-const urlBanner = `url("${process.env.PUBLIC_URL}/assets/background-booking.jpg"
+const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/background-booking.jpg"
 )`;
 
 export const MovieBuyTicket = () => {
@@ -119,11 +119,6 @@ export const MovieBuyTicket = () => {
                           return chair;
                         })
                       : "Chưa chọn ghế"}
-                    {/* {listGheDangChon.map((c, index) => {
-                      // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
-                      const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
-                      return chair;
-                    })} */}
                   </div>
                 </div>
                 <div className='movie-booking-info-user'>

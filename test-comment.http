@@ -15,14 +15,6 @@ Content-Type: application/json
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibmd1eWVubGFtIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoibmd1eWVubGFtMTNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIktoYWNoSGFuZyIsIm5ndXllbmxhbTEzQGdtYWlsLmNvbSIsIkdQMDAiXSwibmJmIjoxNjQ5MDc3ODE5LCJleHAiOjE2NDkwODE0MTl9.0iTIpLtxhBble1M2VAYVX37Q7IihX86PPhQQJi6fBU8
 
 // {
-//   "taiKhoan": "nguyenlam",
-//   "matKhau": "nguyenlam13",
-//   "email": "nguyenlam13@gmail.com",
-//   "soDt": "0789747345",
-//   "maNhom": "GP13",
-//   "hoTen": "Nguyen Hoang Lam"
-// }
-// {
 //   "statusCode": 200,
 //   "message": "Xử lý thành công!",
 //   "content": {
@@ -37,6 +29,7 @@ Content-Type: application/json
 //   "messageConstants": null
 // }
 
+# ĐĂNG KÝ TÀI KHOẢN MỚI
 ### 
 POST https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy
 Content-Type: application/json
@@ -51,11 +44,15 @@ TokenCybersoft : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbm
   "hoTen": "String 103",
 },
 
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVHJhbVF1eW5oMTI3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiVHJhbVF1eW5oMTI3QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJLaGFjaEhhbmciLCJUcmFtUXV5bmgxMjdAZ21haWwuY29tIiwiR1AwMCJdLCJuYmYiOjE2NDk0MTQ5MjUsImV4cCI6MTY0OTQxODUyNX0.SlmtTcHgjj88hOz-z6caZHMxsD6E3wRros-K-q3TlMg
+# LẤY THÔNG TIN TÀI KHOẢN NGƯỜI DÙNG
+###
+POST https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibmd1eWVubGFtIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoibmd1eWVubGFtMTNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIktoYWNoSGFuZyIsIm5ndXllbmxhbTEzQGdtYWlsLmNvbSIsIkdQMDAiXSwibmJmIjoxNjQ5MDc3ODE5LCJleHAiOjE2NDkwODE0MTl9.0iTIpLtxhBble1M2VAYVX37Q7IihX86PPhQQJi6fBU8
+TokenCybersoft:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU
 
-
-
-# "statusCode": 200,
+# {
+#   "statusCode": 200,
 #   "message": "Xử lý thành công!",
 #   "content": {
 #     "taiKhoan": "nguyenlam",
@@ -81,667 +78,7 @@ TokenCybersoft : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbm
 #             "tenRap": "Rạp 3",
 #             "maGhe": 47722,
 #             "tenGhe": "02"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47725,
-#             "tenGhe": "05"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47726,
-#             "tenGhe": "06"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47727,
-#             "tenGhe": "07"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47721,
-#             "tenGhe": "01"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47723,
-#             "tenGhe": "03"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47724,
-#             "tenGhe": "04"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47777,
-#             "tenGhe": "57"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47761,
-#             "tenGhe": "41"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47762,
-#             "tenGhe": "42"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47825,
-#             "tenGhe": "105"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47728,
-#             "tenGhe": "08"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47736,
-#             "tenGhe": "16"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47751,
-#             "tenGhe": "31"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47752,
-#             "tenGhe": "32"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47735,
-#             "tenGhe": "15"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47767,
-#             "tenGhe": "47"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47797,
-#             "tenGhe": "77"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47846,
-#             "tenGhe": "126"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47880,
-#             "tenGhe": "160"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47877,
-#             "tenGhe": "157"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47879,
-#             "tenGhe": "159"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47814,
-#             "tenGhe": "94"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47768,
-#             "tenGhe": "48"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47871,
-#             "tenGhe": "151"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47729,
-#             "tenGhe": "09"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47729,
-#             "tenGhe": "09"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47730,
-#             "tenGhe": "10"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47845,
-#             "tenGhe": "125"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47844,
-#             "tenGhe": "124"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47835,
-#             "tenGhe": "115"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47755,
-#             "tenGhe": "35"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47771,
-#             "tenGhe": "51"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47766,
-#             "tenGhe": "46"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47782,
-#             "tenGhe": "62"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47798,
-#             "tenGhe": "78"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47750,
-#             "tenGhe": "30"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47878,
-#             "tenGhe": "158"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47876,
-#             "tenGhe": "156"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47847,
-#             "tenGhe": "127"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47848,
-#             "tenGhe": "128"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47847,
-#             "tenGhe": "127"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47848,
-#             "tenGhe": "128"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47861,
-#             "tenGhe": "141"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47860,
-#             "tenGhe": "140"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47864,
-#             "tenGhe": "144"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47856,
-#             "tenGhe": "136"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47806,
-#             "tenGhe": "86"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47823,
-#             "tenGhe": "103"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47862,
-#             "tenGhe": "142"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47863,
-#             "tenGhe": "143"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47875,
-#             "tenGhe": "155"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47873,
-#             "tenGhe": "153"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47874,
-#             "tenGhe": "154"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47840,
-#             "tenGhe": "120"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47872,
-#             "tenGhe": "152"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47829,
-#             "tenGhe": "109"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47832,
-#             "tenGhe": "112"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47830,
-#             "tenGhe": "110"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47865,
-#             "tenGhe": "145"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47865,
-#             "tenGhe": "145"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47843,
-#             "tenGhe": "123"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47857,
-#             "tenGhe": "137"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47817,
-#             "tenGhe": "97"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47869,
-#             "tenGhe": "149"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47859,
-#             "tenGhe": "139"
-#           },
-#           {
-#             "maHeThongRap": "BHDStar",
-#             "tenHeThongRap": "BHD Star Cineplex - 3/2",
-#             "maCumRap": "Rạp 3",
-#             "tenCumRap": "Rạp 3",
-#             "maRap": 453,
-#             "tenRap": "Rạp 3",
-#             "maGhe": 47858,
-#             "tenGhe": "138"
-#           }
+#           },      
 #         ],
 #         "maVe": 76742,
 #         "ngayDat": "2022-04-04T20:11:00.597",
@@ -749,8 +86,39 @@ TokenCybersoft : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbm
 #         "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/vi-anh-van-tin_gp09.jpg",
 #         "giaVe": 75000,
 #         "thoiLuongPhim": 120
+#       },
+#       {
+#         "danhSachGhe": [
+#           {
+#             "maHeThongRap": "CGV",
+#             "tenHeThongRap": "CGV - Aeon Bình Tân",
+#             "maCumRap": "Rạp 4",
+#             "tenCumRap": "Rạp 4",
+#             "maRap": 514,
+#             "tenRap": "Rạp 4",
+#             "maGhe": 57496,
+#             "tenGhe": "16"
+#           },
+#           {
+#             "maHeThongRap": "CGV",
+#             "tenHeThongRap": "CGV - Aeon Bình Tân",
+#             "maCumRap": "Rạp 4",
+#             "tenCumRap": "Rạp 4",
+#             "maRap": 514,
+#             "tenRap": "Rạp 4",
+#             "maGhe": 57526,
+#             "tenGhe": "46"
+#           }
+#         ],
+#         "maVe": 76816,
+#         "ngayDat": "2022-04-08T21:41:46.927",
+#         "tenPhim": "Loạn Nhịp",
+#         "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/loan-nhip_gp09.jpg",
+#         "giaVe": 75000,
+#         "thoiLuongPhim": 120
 #       }
 #     ]
 #   },
-#   "dateTime": "2022-04-08T18:58:16.1015589+07:00",
+#   "dateTime": "2022-04-08T21:42:19.6117221+07:00",
 #   "messageConstants": null
+# }

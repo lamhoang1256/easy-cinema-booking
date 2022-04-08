@@ -38,7 +38,10 @@ export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {
               {selected !== "" && chair.taiKhoanNguoiDat !== "nguyenlam" ? (
                 <img src='./assets/chair-notchoose.png' />
               ) : chair.taiKhoanNguoiDat === "nguyenlam" ? (
-                <img src='./assets/chair-your-choice.png' className='block-chair-yourchoice' />
+                <img
+                  src={`${process.env.REACT_APP_PUBLIC}/assets/chair-your-choice.png`}
+                  className='block-chair-yourchoice'
+                />
               ) : (
                 chair.stt
               )}
@@ -61,7 +64,7 @@ export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {
         </div>
         <div className='block-chair-box'>
           <div className='block-chair-square block-chair-square--selected'>
-            <img src='./assets/chair-notchoose.png' alt='' />
+            <img src={`${process.env.REACT_APP_PUBLIC}/assets/chair-notchoose.png`} alt='' />
           </div>
           Ghế đã được mua
         </div>
