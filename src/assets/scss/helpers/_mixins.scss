@@ -28,12 +28,12 @@ $tablet-width: 1023.98px;
     transform: translate(-50%, -50%);
   }
 }
-
+// Set width and height
 @mixin size($width: 100px, $height: $width) {
   width: $width;
   height: $height;
 }
-
+// Set position
 @mixin position($position, $top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
   position: $position;
   top: $top;
@@ -57,4 +57,10 @@ $tablet-width: 1023.98px;
   -webkit-line-clamp: $row;
   -webkit-box-orient: vertical;
   white-space: normal;
+}
+// basic text
+@mixin text($color: null, $font-size: null, $font-weight: null) {
+  color: $color;
+  font-size: $font-size;
+  font-weight: $font-weight;
 }

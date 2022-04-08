@@ -1,13 +1,20 @@
 import axios from "axios";
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL } from "redux/constants/login.constants";
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+} from "redux/constants/auth.constants";
 
-export const loginAction = (infoLogin) => async (dispatch) => {
+export const loginAction = (dataToLogin) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
     const response = await axios.post(
       "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
       // { taiKhoan: "nguyenlam", matKhau: "nguyenlam13" },
-      infoLogin,
+      dataToLogin,
       {
         headers: {
           TokenCybersoft:
@@ -16,8 +23,34 @@ export const loginAction = (infoLogin) => async (dispatch) => {
       }
     );
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.content });
-  } catch (err) {
-    dispatch({ type: LOGIN_FAIL, payload: err });
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAIL,
+      payload: error.response?.data ? error.response.data : error.message,
+    });
+  }
+};
+
+export const registerAction = (dataToRegister) => async (dispatch) => {
+  try {
+    console.log(dataToRegister);
+    dispatch({ type: REGISTER_REQUEST });
+    const response = await axios.post(
+      "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+      dataToRegister,
+      {
+        headers: {
+          TokenCybersoft:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU",
+        },
+      }
+    );
+    dispatch({ type: REGISTER_SUCCESS, payload: response.data.content });
+  } catch (error) {
+    dispatch({
+      type: REGISTER_FAIL,
+      payload: error.response?.data ? error.response.data : error.message,
+    });
   }
 };
 

@@ -22,12 +22,10 @@
     @include position(absolute, 30px, 30px, $z-index: 40);
     @include size(50px);
     @include flexbox(center, center);
-    cursor: pointer;
-    color: #fff;
-    font-size: 2rem;
-    font-weight: 800;
+    @include text(#fff, 2rem);
     background-color: $primary-color;
     border-radius: 100rem;
+    cursor: pointer;
     &:hover {
       color: #fff;
     }
@@ -46,9 +44,7 @@
   &-heading {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 3rem;
-    font-weight: 600;
-    color: #363a40;
+    @include text(#363a40, 3rem, 600);
   }
   &-wrapper {
     display: flex;

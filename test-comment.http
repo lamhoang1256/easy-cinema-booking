@@ -36,3 +36,17 @@ Content-Type: application/json
 //   "dateTime": "2022-04-04T20:09:40.6882168+07:00",
 //   "messageConstants": null
 // }
+
+### 
+POST https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy
+Content-Type: application/json
+TokenCybersoft : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU
+
+{
+  "taiKhoan": "string153",
+  "matKhau": "string153",
+  "email": "string1684@gmail.com",
+  "soDt": "0908079232",
+  "maNhom": "GP13",
+  "hoTen": "String 103",
+},

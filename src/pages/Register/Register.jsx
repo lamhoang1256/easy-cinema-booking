@@ -1,8 +1,12 @@
-import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { registerAction } from "redux/actions/auth.action";
 
 export const Register = () => {
+  const dispatch = useDispatch();
+  const { errorRegister } = useSelector((state) => state.auth);
+  console.log(errorRegister);
   const {
     register,
     handleSubmit,
@@ -12,7 +16,16 @@ export const Register = () => {
 
   // xử lí register
   const handleRegister = (data) => {
-    console.log(data);
+    const dataToRegister = {
+      taiKhoan: data.username,
+      matKhau: data.password,
+      email: data.email,
+      soDt: data.phone,
+      maNhom: "GP00",
+      hoTen: data.fullname,
+    };
+    console.log(dataToRegister);
+    dispatch(registerAction(dataToRegister));
   };
 
   return (
@@ -144,6 +157,8 @@ export const Register = () => {
               )}
             </div>
           </div>
+
+          {errorRegister && <p className='text--primary text-center'>{errorRegister.content}</p>}
 
           <button className='auth-submit btn btn--primary' type='submit'>
             Đăng kí
