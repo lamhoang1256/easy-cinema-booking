@@ -1,3 +1,4 @@
+import { dataFakeAvatar } from "constants/dataFakeAvatar";
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./header.scss";
@@ -10,10 +11,10 @@ const headerNav = [
 ];
 
 export const Header = () => {
+  const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
+
   // change background Navbar from Transparent to White when scroll
   const [isWhiteNav, setIsWhiteNav] = useState(false);
-
-  // lắng nghe sự kiện scroll trang
   const listenScrollEvent = () => {
     window.scrollY > 10 ? setIsWhiteNav(true) : setIsWhiteNav(false);
   };
@@ -30,6 +31,7 @@ export const Header = () => {
   const handleToggleMenu = () => {
     setIsShowMenu(!isShowMenu);
   };
+  console.log(`${process.env.REACT_APP_PUBLIC}/assets/${dataFakeAvatar[0].url}`);
 
   return (
     <header className={`header ${isWhiteNav ? "header--white" : ""}`}>
@@ -51,14 +53,31 @@ export const Header = () => {
                 ))}
               </ul>
               {/* navbar register, login */}
-              <div className='header-auth'>
+              {userLocalStorage ? (
+                <Link to='/user'>
+                  <img
+                    className='header-avatar'
+                    src={`${process.env.REACT_APP_PUBLIC}/assets/${dataFakeAvatar[0].url}`}
+                  />
+                </Link>
+              ) : (
+                <div className='header-auth'>
+                  <Link to='/auth/register'>
+                    <button className='header-register btn btn-secondary'>Đăng ký</button>
+                  </Link>
+                  <Link to='/auth/login'>
+                    <button className='header-login btn btn--primary'>Đăng nhập</button>
+                  </Link>
+                </div>
+              )}
+              {/* <div className='header-auth'>
                 <Link to='/auth/register'>
                   <button className='header-register btn btn-secondary'>Đăng ký</button>
                 </Link>
                 <Link to='/auth/login'>
                   <button className='header-login btn btn--primary'>Đăng nhập</button>
                 </Link>
-              </div>
+              </div> */}
               {/* navbar mobile close menu */}
               <div className='header-close' onClick={handleToggleMenu}>
                 <ion-icon name='close-outline'></ion-icon>

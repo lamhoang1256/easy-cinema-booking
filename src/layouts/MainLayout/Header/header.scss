@@ -32,6 +32,11 @@
       flex-direction: column;
     }
   }
+  &-avatar {
+    @include size(45px);
+    border-radius: 100rem;
+    object-fit: cover;
+  }
   // css for navbar
   .navbar {
     @extend .header-auth;
