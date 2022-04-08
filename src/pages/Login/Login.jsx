@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginAction } from "redux/actions/auth.action";
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const { errorLogin } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const { errorLogin, userInfo } = useSelector((state) => state.auth);
+  const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
+
   const {
     register,
     handleSubmit,
@@ -18,6 +21,12 @@ export const Login = () => {
     const dataToLogin = { taiKhoan: data.username, matKhau: data.password };
     dispatch(loginAction(dataToLogin));
   };
+
+  useEffect(() => {
+    if (userLocalStorage) {
+      navigate("/");
+    }
+  }, [userLocalStorage]);
 
   return (
     <div className='auth login'>
@@ -72,12 +81,14 @@ export const Login = () => {
               Đăng nhập
             </button>
 
-            <div className='auth-switch'>
-              Bạn đã chưa có tài khoản ?{" "}
-              <Link to='/auth/register' className='text--primary'>
-                Đăng kí
-              </Link>
-            </div>
+            {!userInfo && (
+              <div className='auth-switch'>
+                Bạn đã chưa có tài khoản ?{" "}
+                <Link to='/auth/register' className='text--primary'>
+                  Đăng kí
+                </Link>
+              </div>
+            )}
           </form>
         </div>
       </div>
