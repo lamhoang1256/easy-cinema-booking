@@ -2,13 +2,80 @@
 .user-info {
   &-top {
     transform: translateY(-20%);
-    @include flexbox($align-items: center);
     gap: 0 40px;
+    @include flexbox($align-items: center);
+    @include mobile {
+      flex-direction: column;
+    }
   }
   &-avatar {
-    @include size(200px);
     overflow: hidden;
     border: 3px solid #fff;
     border-radius: 100rem;
+    @include size(200px);
+    @include mobile {
+      @include size(160px);
+    }
+  }
+  &-basic {
+    font-size: 2rem;
+    .line {
+      margin: 10px 0;
+    }
+    .label {
+      font-weight: 500;
+      margin-right: 10px;
+      display: inline-block;
+      width: 180px;
+      @include mobile {
+        display: block;
+      }
+    }
+  }
+
+  &-edit {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 40px;
+    &-group {
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 10px;
+      background-color: #f2f3f5;
+      border: none;
+      outline: none;
+      font-size: 1.8rem;
+    }
+    &-submit {
+      margin: 30px auto;
+    }
+  }
+
+  &-title {
+    margin-bottom: 20px;
+    @include text($font-size: 2.8rem, $font-weight: 500);
+  }
+
+  // style css tab antd
+  .ant-tabs {
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: $primary-color;
+  }
+  .ant-tabs-left > .ant-tabs-content-holder,
+  .ant-tabs-left > div > .ant-tabs-content-holder {
+    @include tablet {
+      margin-top: 30px;
+    }
+  }
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn,
+  .ant-tabs-tab:hover {
+    color: $primary-color;
   }
 }

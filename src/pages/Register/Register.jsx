@@ -50,7 +50,7 @@ export const Register = () => {
                   type='text'
                   className='auth-input auth-username'
                   placeholder='Họ và tên *'
-                  {...register("fullname", { required: true })}
+                  {...register("fullname", { required: true, minLength: 6, maxLength: 28 })}
                 />
               </div>
               {errors.fullname && errors.fullname.type === "required" && (
@@ -70,7 +70,7 @@ export const Register = () => {
                   type='text'
                   className='auth-input auth-username'
                   placeholder='Tên tài khoản *'
-                  {...register("username", { required: true })}
+                  {...register("username", { required: true, minLength: 6, maxLength: 15 })}
                 />
               </div>
               {errors.username && errors.username.type === "required" && (
@@ -90,7 +90,7 @@ export const Register = () => {
                   type='password'
                   className='auth-input auth-password'
                   placeholder='Mật khẩu *'
-                  {...register("password", { required: true, minLength: 6, maxLength: 20 })}
+                  {...register("password", { required: true, minLength: 6, maxLength: 15 })}
                 />
               </div>
               {errors.password && errors.password.type === "required" && (
@@ -100,7 +100,7 @@ export const Register = () => {
                 <span className='text--primary'>Mật khẩu ít nhất bao gồm 6 kí tự !</span>
               )}
               {errors.password && errors.password.type === "maxLength" && (
-                <span className='text--primary'>Mật khẩu nhiều nhất bao gồm 28 kí tự !</span>
+                <span className='text--primary'>Mật khẩu nhiều nhất bao gồm 15 kí tự !</span>
               )}
             </div>
 
@@ -126,7 +126,7 @@ export const Register = () => {
                   type='email'
                   className='auth-input auth-email'
                   placeholder='Email *'
-                  {...register("email", { required: true })}
+                  {...register("email", { required: true, minLength: 6, maxLength: 28 })}
                 />
               </div>
               {errors.email && errors.email.type === "required" && (

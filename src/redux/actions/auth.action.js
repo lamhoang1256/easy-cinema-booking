@@ -34,7 +34,6 @@ export const loginAction = (dataToLogin) => async (dispatch) => {
 
 export const registerAction = (dataToRegister) => async (dispatch) => {
   try {
-    console.log(dataToRegister);
     dispatch({ type: REGISTER_REQUEST });
     const response = await axios.post(
       "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",

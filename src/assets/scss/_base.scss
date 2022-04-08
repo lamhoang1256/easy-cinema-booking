@@ -1,3 +1,4 @@
+@use "./helpers/variables" as *;
 html {
   font-size: 62.5%;
 }
@@ -16,4 +17,7 @@ body {
 }
 .swal2-popup.swal2-modal {
   font-size: 16px;
+}
+.ant-tabs-ink-bar {
+  background-color: $primary-color;
 }
