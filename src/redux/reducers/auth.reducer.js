@@ -5,10 +5,11 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGOUT,
 } from "redux/constants/auth.constants";
 
 const initialState = {
-  userInfo: null,
+  userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
   errorLogin: null,
   errorRegister: null,
 };
@@ -29,6 +30,9 @@ export const auth = (state = initialState, { type, payload }) => {
       return { ...state, userInfo: payload, errorRegister: null };
     case REGISTER_FAIL:
       return { ...state, errorRegister: payload };
+    case LOGOUT:
+      localStorage.removeItem("userInfo");
+      return { ...state, userInfo: null, errorLogin: null, errorRegister: null };
     default:
       return state;
   }

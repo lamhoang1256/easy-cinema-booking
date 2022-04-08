@@ -6,6 +6,7 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGOUT,
 } from "redux/constants/auth.constants";
 
 export const loginAction = (dataToLogin) => async (dispatch) => {
@@ -52,6 +53,12 @@ export const registerAction = (dataToRegister) => async (dispatch) => {
       payload: error.response?.data ? error.response.data : error.message,
     });
   }
+};
+
+export const logoutAction = () => {
+  return {
+    type: LOGOUT,
+  };
 };
 
 // {

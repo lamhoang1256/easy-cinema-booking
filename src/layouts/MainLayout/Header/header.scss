@@ -1,7 +1,6 @@
 @use "../../../assets/scss/helpers/index.scss" as *;
 .header {
   width: 100%;
-  overflow: hidden;
   transition: all 0.3s linear;
   @include position(fixed, 0, 0, $z-index: 20);
   &-top {
@@ -33,9 +32,54 @@
     }
   }
   &-avatar {
-    @include size(45px);
-    border-radius: 100rem;
-    object-fit: cover;
+    position: relative;
+    img {
+      @include size(45px);
+      border-radius: 100rem;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      @include size(80px, 20px);
+      @include position(absolute, $bottom: -20%, $left: 50%);
+      transform: translate(-50%, 50%);
+    }
+    &:hover {
+      .header-user {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  &-user {
+    opacity: 0;
+    visibility: hidden;
+    width: 200px;
+    background-color: #fff;
+    padding: 20px 14px;
+    border-radius: 8px;
+    @include position(absolute, $bottom: calc(-100% - 30px), $left: 50);
+    transform: translate(-50%, 50%);
+    transition: all 0.35s linear;
+    &::before {
+      content: "";
+      @include size(20px);
+      @include position(absolute, $top: -20px, $left: 50%);
+      transform: translate(50%, 50%) rotate(45deg);
+      background-color: #fff;
+    }
+  }
+  &-user-item {
+    display: block;
+    padding: 5px 0;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.25s linear;
+    font-weight: 500;
+    &:hover {
+      color: $primary-color;
+    }
   }
   // css for navbar
   .navbar {

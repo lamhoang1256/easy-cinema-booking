@@ -1,6 +1,8 @@
 import { dataFakeAvatar } from "constants/dataFakeAvatar";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { logoutAction } from "redux/actions/auth.action";
 import "./header.scss";
 
 const headerNav = [
@@ -11,27 +13,30 @@ const headerNav = [
 ];
 
 export const Header = () => {
-  const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.auth);
 
-  // change background Navbar from Transparent to White when scroll
-  const [isWhiteNav, setIsWhiteNav] = useState(false);
-  const listenScrollEvent = () => {
-    window.scrollY > 10 ? setIsWhiteNav(true) : setIsWhiteNav(false);
+  const handleLogout = () => {
+    dispatch(logoutAction());
   };
-
-  useEffect(() => {
-    window.addEventListener("scroll", listenScrollEvent);
-    return () => {
-      window.removeEventListener("scroll", listenScrollEvent);
-    };
-  }, []);
 
   // xử lí toggle menu
   const [isShowMenu, setIsShowMenu] = useState(false);
   const handleToggleMenu = () => {
     setIsShowMenu(!isShowMenu);
   };
-  console.log(`${process.env.REACT_APP_PUBLIC}/assets/${dataFakeAvatar[0].url}`);
+
+  // change background Navbar from Transparent to White when scroll > 10
+  const [isWhiteNav, setIsWhiteNav] = useState(false);
+  const listenScrollEvent = () => {
+    window.scrollY > 10 ? setIsWhiteNav(true) : setIsWhiteNav(false);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", listenScrollEvent);
+    return () => {
+      window.removeEventListener("scroll", listenScrollEvent);
+    };
+  }, []);
 
   return (
     <header className={`header ${isWhiteNav ? "header--white" : ""}`}>
@@ -53,13 +58,18 @@ export const Header = () => {
                 ))}
               </ul>
               {/* navbar register, login */}
-              {userLocalStorage ? (
-                <Link to='/user'>
-                  <img
-                    className='header-avatar'
-                    src={`${process.env.REACT_APP_PUBLIC}/assets/${dataFakeAvatar[0].url}`}
-                  />
-                </Link>
+              {userInfo ? (
+                <div className='header-avatar'>
+                  <img src={`${process.env.REACT_APP_PUBLIC}/assets/${dataFakeAvatar[0].url}`} />
+                  <div className='header-user'>
+                    <Link to='/user' className='header-user-item'>
+                      Thông tin tài khoản
+                    </Link>
+                    <div className='header-user-item' onClick={handleLogout}>
+                      Đăng xuất
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <div className='header-auth'>
                   <Link to='/auth/register'>
@@ -70,15 +80,6 @@ export const Header = () => {
                   </Link>
                 </div>
               )}
-              {/* <div className='header-auth'>
-                <Link to='/auth/register'>
-                  <button className='header-register btn btn-secondary'>Đăng ký</button>
-                </Link>
-                <Link to='/auth/login'>
-                  <button className='header-login btn btn--primary'>Đăng nhập</button>
-                </Link>
-              </div> */}
-              {/* navbar mobile close menu */}
               <div className='header-close' onClick={handleToggleMenu}>
                 <ion-icon name='close-outline'></ion-icon>
               </div>
