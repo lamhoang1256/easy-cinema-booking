@@ -58,3 +58,12 @@ Quá trình làm đồ án ReactJS
 - Xử lí relative url với jsconfig.json
 - Thêm loading animation
 - Chỉnh sửa UI booking ticket page
+
+07/04/2022
+
+- Xây dựng UI trang Login, Register
+- Xử lí logic trang login
+
+08/04/2022
+
+- Xử lí logic register, logout

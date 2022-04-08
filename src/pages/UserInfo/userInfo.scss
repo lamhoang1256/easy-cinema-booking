@@ -1,0 +1,14 @@
+@use "../../assets/scss/helpers/index.scss" as *;
+.user-info {
+  &-top {
+    transform: translateY(-20%);
+    @include flexbox($align-items: center);
+    gap: 0 40px;
+  }
+  &-avatar {
+    @include size(200px);
+    overflow: hidden;
+    border: 3px solid #fff;
+    border-radius: 100rem;
+  }
+}

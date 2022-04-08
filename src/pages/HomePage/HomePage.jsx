@@ -16,7 +16,6 @@ export const HomePage = () => {
 
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.movieList);
-  console.log(loading, data);
 
   // tab antd
   const { TabPane } = Tabs;
