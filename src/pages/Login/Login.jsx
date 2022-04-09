@@ -1,8 +1,25 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginAction } from "redux/actions/user.action";
+
+// tạo một validation schema với yup
+const schemaLogin = yup.object().shape({
+  username: yup
+    .string()
+    .required("Tên tài khoản không được để trống !")
+    .min(6, "Tên tài khoản ít nhất bao gồm 6 kí tự !")
+    .max(15, "Tên tài khoản nhiều nhất bao gồm 15 kí tự !"),
+  password: yup
+    .string()
+    .required("Mật khẩu không được để trống !")
+    .min(6, "Mật khẩu ít nhất bao gồm 6 kí tự !")
+    .max(15, "Mật khẩu nhiều nhất bao gồm 15 kí tự !"),
+});
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -14,7 +31,7 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schemaLogin) });
 
   // xử lí login
   const handleLogin = (data) => {
@@ -41,18 +58,10 @@ export const Login = () => {
                 type='text'
                 className='auth-input auth-username'
                 placeholder='Tên tài khoản *'
-                {...register("username", { required: true, minLength: 6, maxLength: 14 })}
+                {...register("username")}
               />
             </div>
-            {errors.username && errors.username.type === "required" && (
-              <span className='text--primary'>Tên tài khoản không được để trống !</span>
-            )}
-            {errors.username && errors.username.type === "minLength" && (
-              <span className='text--primary'>Tên tài khoản ít nhất bao gồm 6 kí tự !</span>
-            )}
-            {errors.username && errors.username.type === "maxLength" && (
-              <span className='text--primary'>Tên tài khoản nhiều nhất bao gồm 15 kí tự !</span>
-            )}
+            {errors.username && <span className='text--primary'>{errors.username.message}</span>}
 
             {/* mật khẩu */}
             <div className='auth-group'>
@@ -61,16 +70,16 @@ export const Login = () => {
                 type='password'
                 className='auth-input auth-password'
                 placeholder='Mật khẩu *'
-                {...register("password", { required: true, minLength: 6, maxLength: 16 })}
+                {...register("password")}
               />
             </div>
             {errors.password && errors.password.type === "required" && (
               <span className='text--primary'>Mật khẩu không được để trống !</span>
             )}
-            {errors.password && errors.password.type === "minLength" && (
+            {errors.password && errors.password.type === "min" && (
               <span className='text--primary'>Mật khẩu ít nhất bao gồm 6 kí tự !</span>
             )}
-            {errors.password && errors.password.type === "maxLength" && (
+            {errors.password && errors.password.type === "max" && (
               <span className='text--primary'>Mật khẩu nhiều nhất bao gồm 15 kí tự !</span>
             )}
 

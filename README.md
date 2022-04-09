@@ -73,3 +73,4 @@ Quá trình làm đồ án ReactJS
 
 - Xử lí update user profile
 - Tối ưu redux folder -> gom movieDetail + movieComment thành movieDetail
+- Thành công xử lí lịch sử đặt vé
