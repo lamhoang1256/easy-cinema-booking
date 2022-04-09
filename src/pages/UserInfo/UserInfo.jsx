@@ -1,8 +1,9 @@
 import React from "react";
 import { Tabs } from "antd";
-import "./userInfo.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import "./userInfo.scss";
+import { updateUserAction } from "redux/actions/user.action";
 
 export const UserInfo = () => {
   const { TabPane } = Tabs;
@@ -16,7 +17,17 @@ export const UserInfo = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
   const handleUpdateProfile = (data) => {
-    console.log(data);
+    const dataToUpdateUser = {
+      taiKhoan: data.username,
+      matKhau: data.password,
+      email: data.email,
+      soDt: data.phone,
+      maNhom: "GP00",
+      hoTen: data.fullname,
+      maLoaiNguoiDung: "KhachHang",
+    };
+    // console.log(dataToUpdateUser);
+    dispatch(updateUserAction(dataToUpdateUser));
   };
 
   return (

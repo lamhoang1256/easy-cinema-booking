@@ -6,7 +6,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGOUT,
-} from "redux/constants/auth.constants";
+} from "redux/constants/auth.constant";
 
 const initialState = {
   userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,

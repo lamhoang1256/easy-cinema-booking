@@ -28,7 +28,7 @@ export const Register = () => {
       taiKhoan: data.username,
       matKhau: data.password,
       email: data.email,
-      soDT: data.phone,
+      soDt: data.phone,
       maNhom: "GP00",
       hoTen: data.fullname,
     };

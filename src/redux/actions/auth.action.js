@@ -7,7 +7,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGOUT,
-} from "redux/constants/auth.constants";
+} from "redux/constants/auth.constant";
 
 export const loginAction = (dataToLogin) => async (dispatch) => {
   try {
