@@ -8,9 +8,8 @@ import { AddComment } from "components/AddComment/AddComment";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
-import { getDetailMovieAction } from "redux/actions/movieDetail.action";
+import { getDetailMovieAction, getCommentMovieAction } from "redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
-import { getCommentMovieAction } from "redux/actions/movieComment.action";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {
@@ -19,7 +18,7 @@ export const MovieDetail = () => {
   const dispatch = useDispatch();
 
   const { data, loading } = useSelector((state) => state.movieDetail);
-  const { dataComment, loadingComment } = useSelector((state) => state.movieComment);
+  const { dataComment, loadingComment } = useSelector((state) => state.movieDetail);
   if (!loadingComment) {
     console.log(dataComment);
   }
