@@ -64,8 +64,11 @@ $hover-text-color: #ffffff;
 
 .movie-history-chairs {
   overflow-x: auto;
+  span {
+    padding: 0 5px;
+  }
   &::-webkit-scrollbar {
-    height: 8px;
+    height: 10px;
   }
   &::-webkit-scrollbar-track {
     background-color: #edeef2;

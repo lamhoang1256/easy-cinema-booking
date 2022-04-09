@@ -1,10 +1,10 @@
-import React from "react";
-import { Tabs } from "antd";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Tabs } from "antd";
 import { useForm } from "react-hook-form";
-import { updateUserAction } from "redux/actions/user.action";
-import "./userInfo.scss";
 import { MovieHistory } from "./components/MovieHistory";
+import { getDetailUserAction, updateUserAction } from "redux/actions/user.action";
+import "./userInfo.scss";
 
 export const UserInfo = () => {
   const { TabPane } = Tabs;
@@ -16,7 +16,8 @@ export const UserInfo = () => {
     formState: { errors },
   } = useForm();
 
-  const { userInfo } = useSelector((state) => state.user);
+  const { userDetail } = useSelector((state) => state.user);
+
   const handleUpdateProfile = (data) => {
     const dataToUpdateUser = {
       taiKhoan: data.username,
@@ -27,9 +28,13 @@ export const UserInfo = () => {
       hoTen: data.fullname,
       maLoaiNguoiDung: "KhachHang",
     };
-    // console.log(dataToUpdateUser);
     dispatch(updateUserAction(dataToUpdateUser));
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getDetailUserAction());
+  }, []);
 
   return (
     <div className='user-info'>
@@ -44,7 +49,7 @@ export const UserInfo = () => {
           <h2>Thông tin tài khoản</h2>
         </div>
       </div>
-      {userInfo ? (
+      {userDetail ? (
         <div className='user-info-wrapper'>
           <div className='container'>
             <div className='user-info-top'>
@@ -58,36 +63,34 @@ export const UserInfo = () => {
             </div>
             <Tabs tabPosition={"left"}>
               <TabPane tab='Thông tin cơ bản' key='1'>
-                {userInfo ? (
+                {userDetail ? (
                   <div className='user-info-basic'>
                     <h2 className='user-info-title'>Thông tin cơ bản</h2>
                     <p className='line'>
-                      <span className='label'>Tên tài khoản:</span> {userInfo.taiKhoan}
+                      <span className='label'>Tên tài khoản:</span> {userDetail.taiKhoan}
                     </p>
                     <p className='line'>
                       <span className='label'>Họ và tên:</span>
-                      {userInfo.hoTen}
+                      {userDetail.hoTen}
                     </p>
                     <p className='line'>
                       <span className='label'>Email:</span>
-                      {userInfo.email}
+                      {userDetail.email}
                     </p>
                     <p className='line'>
                       <span className='label'>Số điện thoại:</span>
-                      {userInfo.soDT}
+                      {userDetail.soDT}
                     </p>
                     <p className='line'>
                       <span className='label'>Quyền truy cập:</span>{" "}
-                      {userInfo.maLoaiNguoiDung === "KhachHang" ? "Khách Hàng" : "Quản Trị"}
+                      {userDetail.maLoaiNguoiDung === "KhachHang" ? "Khách Hàng" : "Quản Trị"}
                     </p>
                   </div>
                 ) : (
                   "Trống"
                 )}
               </TabPane>
-              {/* // "taiKhoan": "TramQuynh127", // "matKhau": "123456789", // "email":
-            "TramQuynh127@gmail.com", // "soDt": "090481451", // "maNhom": "GP00", //
-            "maLoaiNguoiDung": "QuanTri", // "hoTen": "Nguyễn Thị Quỳnh Trâm" */}
+
               <TabPane tab='Chỉnh sửa thông tin' key='2'>
                 <h2 className='user-info-title'>Chỉnh sửa thông tin</h2>
                 <form className='user-info-edit' onSubmit={handleSubmit(handleUpdateProfile)}>
@@ -96,7 +99,7 @@ export const UserInfo = () => {
                     <h3>Tên tài khoản</h3>
                     <input
                       type='text'
-                      defaultValue={userInfo.taiKhoan}
+                      defaultValue={userDetail.taiKhoan}
                       placeholder='Tên tài khoản'
                       {...register("username", { required: true, minLength: 6, maxLength: 15 })}
                     />
@@ -119,7 +122,7 @@ export const UserInfo = () => {
                     <input
                       type='text'
                       placeholder='Họ và tên'
-                      defaultValue={userInfo.hoTen}
+                      defaultValue={userDetail.hoTen}
                       {...register("fullname", { required: true, minLength: 6, maxLength: 28 })}
                     />
                     {errors.fullname && errors.fullname.type === "required" && (
@@ -139,7 +142,7 @@ export const UserInfo = () => {
                     <input
                       type='email'
                       placeholder='Email'
-                      defaultValue={userInfo.email}
+                      defaultValue={userDetail.email}
                       {...register("email", { required: true, minLength: 6, maxLength: 28 })}
                     />
                     {errors.email && errors.email.type === "required" && (
@@ -159,7 +162,7 @@ export const UserInfo = () => {
                     <input
                       type='text'
                       placeholder='Số điện thoại'
-                      defaultValue={userInfo.soDT}
+                      defaultValue={userDetail.soDT}
                       {...register("phone", { required: true })}
                     />
                     {errors.phone && errors.phone.type === "required" && (
@@ -173,7 +176,7 @@ export const UserInfo = () => {
                     <input
                       type='password'
                       placeholder='Mật khẩu'
-                      defaultValue={userInfo.matKhau}
+                      defaultValue={userDetail.matKhau}
                       {...register("password", { required: true, minLength: 6, maxLength: 15 })}
                     />
                     {errors.password && errors.password.type === "required" && (
@@ -193,7 +196,7 @@ export const UserInfo = () => {
                     <input
                       type='password'
                       placeholder='Xác nhận mật khẩu'
-                      defaultValue={userInfo.matKhau}
+                      defaultValue={userDetail.matKhau}
                       {...register("password_repeat", {
                         required: true,
                         validate: (value) => {
@@ -220,8 +223,8 @@ export const UserInfo = () => {
 
               <TabPane tab='Lịch sử đặt vé' key='3'>
                 <div className='user-info-history'>
-                  <h2>Lịch sử đặt vé</h2>
-                  <MovieHistory />
+                  <h2 className='user-info-title'>Lịch sử đặt vé</h2>
+                  <MovieHistory thongTinDatVe={userDetail.thongTinDatVe} />
                 </div>
               </TabPane>
             </Tabs>

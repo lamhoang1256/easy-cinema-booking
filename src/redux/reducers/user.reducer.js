@@ -9,6 +9,9 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
+  USER_DETAIL_PROFILE_REQUEST,
+  USER_DETAIL_PROFILE_SUCCESS,
+  USER_DETAIL_PROFILE_FAIL,
 } from "redux/constants/user.constant";
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   errorLogin: null,
   errorRegister: null,
   errorUpdate: null,
+  userDetail: null,
 };
 
 export const user = (state = initialState, { type, payload }) => {
@@ -36,6 +40,14 @@ export const user = (state = initialState, { type, payload }) => {
       return { ...state, userInfo: payload, errorRegister: null };
     case USER_REGISTER_FAIL:
       return { ...state, userInfo: null, errorRegister: payload };
+
+    // get detail user
+    case USER_DETAIL_PROFILE_REQUEST:
+      return { ...state };
+    case USER_DETAIL_PROFILE_SUCCESS:
+      return { ...state, userDetail: payload };
+    case USER_DETAIL_PROFILE_FAIL:
+      return { ...state, errorUpdate: payload };
 
     //update
     case USER_UPDATE_PROFILE_REQUEST:

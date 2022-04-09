@@ -1,7 +1,13 @@
 import React from "react";
 import "./movieHistory.scss";
 
-export const MovieHistory = () => {
+export const MovieHistory = ({ thongTinDatVe }) => {
+  // tạo mảng danh sách stt ghế đã đặt và lọc theo stt nhỏ đến lớn
+  const getIdChair = (allChair) => {
+    const filterIdChair = allChair.map((row) => row.tenGhe);
+    return filterIdChair.sort((a, b) => a - b);
+  };
+
   return (
     <div className='movie-history'>
       <table className='movie-history-table'>
@@ -15,52 +21,33 @@ export const MovieHistory = () => {
             <th>Tổng tiền</th>
           </tr>
         </thead>
-        {/* body */}
+
+        {/* table body */}
         <tbody className='movie-history-body'>
-          <tr className='movie-history-row'>
-            <td>Cuộc chiến bắt đầu sau 5 giây</td>
-            <td>
-              <img
-                className='movie-history-thumb'
-                src='https://movienew.cybersoft.edu.vn/hinhanh/avengers-infinity-war.jpg'
-                alt=''
-              />
-            </td>
-            <td>12/12/2022</td>
-            <td>CVG - Bình Tân</td>
-            <td className='movie-history-chairs'>
-              1,2,3,4,7,1,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,71,2,3,4,7
-            </td>
-            <td>430.000 VNĐ</td>
-          </tr>
-          <tr className='movie-history-row'>
-            <td>Loạn nhịp</td>
-            <td>
-              <img
-                className='movie-history-thumb'
-                src='https://movienew.cybersoft.edu.vn/hinhanh/avengers-infinity-war.jpg'
-                alt=''
-              />
-            </td>
-            <td>12/12/2022</td>
-            <td>CVG - Bình Tân</td>
-            <td>1,2,3,4,7</td>
-            <td>430.000 VNĐ</td>
-          </tr>
-          <tr className='movie-history-row'>
-            <td>Loạn nhịp</td>
-            <td>
-              <img
-                className='movie-history-thumb'
-                src='https://movienew.cybersoft.edu.vn/hinhanh/avengers-infinity-war.jpg'
-                alt=''
-              />
-            </td>
-            <td>12/12/2022</td>
-            <td>CVG - Bình Tân</td>
-            <td>1,2,3,4,7</td>
-            <td>430.000 VNĐ</td>
-          </tr>
+          {thongTinDatVe.map((item, index) => (
+            <tr className='movie-history-row' key={index}>
+              <td>{item.tenPhim}</td>
+              <td>
+                <img className='movie-history-thumb' src={item.hinhAnh} />
+              </td>
+              <td>
+                {new Date(item.ngayDat).toLocaleDateString()}{" "}
+                {new Date(item.ngayDat).toLocaleTimeString("en-US", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </td>
+              <td>{item.danhSachGhe[0].tenHeThongRap}</td>
+              <td>
+                <div className='movie-history-chairs'>
+                  {getIdChair(item.danhSachGhe).map((seat, index) => (
+                    <span key={index}>{seat}</span>
+                  ))}
+                </div>
+              </td>
+              <td>{(item.giaVe * item.danhSachGhe.length).toLocaleString("en-US")} VNĐ</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

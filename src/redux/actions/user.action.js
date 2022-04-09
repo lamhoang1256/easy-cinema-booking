@@ -10,6 +10,9 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   USER_LOGOUT,
+  USER_DETAIL_PROFILE_REQUEST,
+  USER_DETAIL_PROFILE_SUCCESS,
+  USER_DETAIL_PROFILE_FAIL,
 } from "redux/constants/user.constant";
 
 // Đăng nhập tài khoản
@@ -60,6 +63,20 @@ export const updateUserAction = (dataToUpdateUser) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
+      payload: error.response?.data ? error.response.data : error.message,
+    });
+  }
+};
+
+// Lấy thông tin chi tiết của người dùng (bao gồm thông tin cơ bản + lịch sử đặt vé)
+export const getDetailUserAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: USER_DETAIL_PROFILE_REQUEST });
+    const response = await axiosClient.post("QuanLyNguoiDung/ThongTinTaiKhoan");
+    dispatch({ type: USER_DETAIL_PROFILE_SUCCESS, payload: response.data.content });
+  } catch (error) {
+    dispatch({
+      type: USER_DETAIL_PROFILE_FAIL,
       payload: error.response?.data ? error.response.data : error.message,
     });
   }
