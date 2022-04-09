@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosClient from "apis/axiosClient";
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -12,17 +12,7 @@ import {
 export const loginAction = (dataToLogin) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
-    const response = await axios.post(
-      "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
-      // { taiKhoan: "nguyenlam", matKhau: "nguyenlam13" },
-      dataToLogin,
-      {
-        headers: {
-          TokenCybersoft:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU",
-        },
-      }
-    );
+    const response = await axiosClient.post("QuanLyNguoiDung/DangNhap", dataToLogin);
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.content });
   } catch (error) {
     dispatch({
@@ -35,16 +25,7 @@ export const loginAction = (dataToLogin) => async (dispatch) => {
 export const registerAction = (dataToRegister) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_REQUEST });
-    const response = await axios.post(
-      "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
-      dataToRegister,
-      {
-        headers: {
-          TokenCybersoft:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU",
-        },
-      }
-    );
+    const response = await axiosClient.post("/QuanLyNguoiDung/DangKy", dataToRegister);
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.content });
   } catch (error) {
     dispatch({

@@ -1,22 +1,14 @@
+import axiosClient from "apis/axiosClient";
 import {
   GET_MOVIE_LIST_REQUEST,
   GET_MOVIE_LIST_SUCCESS,
   GET_MOVIE_LIST_FAIL,
 } from "../constants/movieList.constant";
-import axios from "axios";
 
 export const getMovieListAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_LIST_REQUEST });
-    const response = await axios.get(
-      "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP13",
-      {
-        headers: {
-          TokenCybersoft:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU",
-        },
-      }
-    );
+    const response = await axiosClient.get(`QuanLyPhim/LayDanhSachPhim?maNhom=GP13`);
 
     // lọc dữ liệu trả về để lấy ra các thể loại phim cho tab Homepage
     const filterTypeMovie = () => {
