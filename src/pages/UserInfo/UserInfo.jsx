@@ -2,8 +2,9 @@ import React from "react";
 import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import "./userInfo.scss";
 import { updateUserAction } from "redux/actions/user.action";
+import "./userInfo.scss";
+import { MovieHistory } from "./components/MovieHistory";
 
 export const UserInfo = () => {
   const { TabPane } = Tabs;
@@ -216,8 +217,12 @@ export const UserInfo = () => {
                   </button>
                 </form>
               </TabPane>
+
               <TabPane tab='Lịch sử đặt vé' key='3'>
-                Lịch sử đặt vé
+                <div className='user-info-history'>
+                  <h2>Lịch sử đặt vé</h2>
+                  <MovieHistory />
+                </div>
               </TabPane>
             </Tabs>
           </div>

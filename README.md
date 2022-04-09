@@ -68,3 +68,8 @@ Quá trình làm đồ án ReactJS
 
 - Xử lí logic register, logout
 - Xây dựng UI trang thông tin user
+
+09/04/2022
+
+- Xử lí update user profile
+- Tối ưu redux folder -> gom movieDetail + movieComment thành movieDetail
