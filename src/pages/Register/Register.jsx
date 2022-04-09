@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { registerAction } from "redux/actions/auth.action";
+import { registerAction } from "redux/actions/user.action";
 
 export const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { errorRegister, userInfo } = useSelector((state) => state.auth);
+  const { errorRegister, userInfo } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (userInfo) {

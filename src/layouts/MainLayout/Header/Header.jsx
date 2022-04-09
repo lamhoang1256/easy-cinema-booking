@@ -2,7 +2,7 @@ import { dataFakeAvatar } from "constants/dataFakeAvatar";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { logoutAction } from "redux/actions/auth.action";
+import { logoutAction } from "redux/actions/user.action";
 import "./header.scss";
 
 const headerNav = [
@@ -14,7 +14,7 @@ const headerNav = [
 
 export const Header = () => {
   const dispatch = useDispatch();
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.user);
 
   const handleLogout = () => {
     dispatch(logoutAction());

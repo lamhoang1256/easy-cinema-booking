@@ -15,7 +15,7 @@ export const UserInfo = () => {
     formState: { errors },
   } = useForm();
 
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.user);
   const handleUpdateProfile = (data) => {
     const dataToUpdateUser = {
       taiKhoan: data.username,

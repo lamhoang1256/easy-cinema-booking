@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginAction } from "redux/actions/auth.action";
+import { loginAction } from "redux/actions/user.action";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { errorLogin, userInfo } = useSelector((state) => state.auth);
+  const { errorLogin, userInfo } = useSelector((state) => state.user);
   const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
 
   const {
