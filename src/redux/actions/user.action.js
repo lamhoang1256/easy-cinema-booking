@@ -56,6 +56,7 @@ export const updateUserAction = (dataToUpdateUser) => async (dispatch) => {
       dataToUpdateUser
     );
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: response.data.content });
+    dispatch({ type: USER_LOGOUT });
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,

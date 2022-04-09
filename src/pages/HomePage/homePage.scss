@@ -22,7 +22,7 @@
   .ant-tabs-ink-bar {
     background-color: $primary-color;
   }
-  @media screen and (max-width: 767.98px) {
+  @include mobile {
     .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
       justify-content: unset;
       overflow: scroll;

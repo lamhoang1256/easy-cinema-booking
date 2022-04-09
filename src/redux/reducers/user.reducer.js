@@ -15,6 +15,7 @@ const initialState = {
   userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
   errorLogin: null,
   errorRegister: null,
+  errorUpdate: null,
 };
 
 export const user = (state = initialState, { type, payload }) => {
@@ -36,19 +37,18 @@ export const user = (state = initialState, { type, payload }) => {
     case USER_REGISTER_FAIL:
       return { ...state, userInfo: null, errorRegister: payload };
 
-    // logout
-    case USER_LOGOUT:
-      localStorage.removeItem("userInfo");
-      return { ...state, userInfo: null, errorLogin: null, errorRegister: null };
-
     //update
     case USER_UPDATE_PROFILE_REQUEST:
       return { ...state };
     case USER_UPDATE_PROFILE_SUCCESS:
-      localStorage.setItem("userInfo", JSON.stringify(payload));
       return { ...state };
     case USER_UPDATE_PROFILE_FAIL:
-      return { ...state };
+      return { ...state, errorUpdate: payload };
+
+    // logout
+    case USER_LOGOUT:
+      localStorage.removeItem("userInfo");
+      return { ...state, userInfo: null, errorLogin: null, errorRegister: null, errorUpdate: null };
 
     default:
       return state;

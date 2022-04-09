@@ -10,6 +10,7 @@ import {
   RESET_SELETING_CHAIR,
 } from "../constants/movieBuyTicket.constant";
 
+// lấy thông tin phòng vé (thông tin phim + danh sách ghế)
 export const getMovieBookingAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_BOOKING_REQUEST });
@@ -20,11 +21,13 @@ export const getMovieBookingAction = (id) => async (dispatch) => {
   }
 };
 
+// chọn ghế
 export const selectChairAction = (infoChair) => async (dispatch) => {
   console.log(infoChair);
   dispatch({ type: SELECT_CHAIR, payload: infoChair });
 };
 
+// xử lí mua vé
 export const buyTicketAction = (dataToBuyTicket) => async (dispatch) => {
   try {
     dispatch({ type: BUY_TICKET_REQUEST });
@@ -39,6 +42,7 @@ export const buyTicketAction = (dataToBuyTicket) => async (dispatch) => {
   }
 };
 
+// xóa các ghế đang chọn khi thanh toán thành công
 export const resetSelectingChair = () => async (dispatch) => {
   dispatch({ type: RESET_SELETING_CHAIR });
 };
