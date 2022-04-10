@@ -1,4 +1,4 @@
-export const dataNews = [
+export const dataFakeNews = [
   {
     id: 1,
     thumbnail: "https://s3.cloud.cmctelecom.vn/tinhte1/2014/12/2663849_sbm2_pc.jpg",

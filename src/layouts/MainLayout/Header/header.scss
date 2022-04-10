@@ -59,6 +59,7 @@
     background-color: #fff;
     padding: 20px 14px;
     border-radius: 8px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     @include position(absolute, $bottom: calc(-100% - 30px), $left: 50);
     transform: translate(-50%, 50%);
     transition: all 0.35s linear;

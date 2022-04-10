@@ -1,15 +1,18 @@
+import { Tabs } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Tabs } from "antd";
+import { getDetailUserAction, updateUserAction } from "redux/actions/user.action";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
-
+// components
 import { MovieHistory } from "./components/MovieHistory";
-import { getDetailUserAction, updateUserAction } from "redux/actions/user.action";
-import "./userInfo.scss";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
+import "./userInfo.scss";
+// đường dẫn ảnh banner
+const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
+)`;
 
 export const UserInfo = () => {
   const { TabPane } = Tabs;
@@ -47,8 +50,7 @@ export const UserInfo = () => {
           <div
             className='new-detail-top'
             style={{
-              backgroundImage: `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
-          )`,
+              backgroundImage: urlBanner,
             }}
           >
             <div className='new-detail-heading'>

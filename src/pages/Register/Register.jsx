@@ -1,10 +1,11 @@
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
-
+// redux
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 import { registerAction } from "redux/actions/user.action";
 
 export const Register = () => {

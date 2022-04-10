@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupLogin } from "constants/schemaYupLogin";
-
+// redux
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 import { loginAction } from "redux/actions/user.action";
 
 export const Login = () => {
