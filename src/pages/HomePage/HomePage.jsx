@@ -7,12 +7,13 @@ import { FilterBooking } from "./components/FilterBooking/FilterBooking";
 import { MovieList } from "./components/MovieList/MovieList";
 import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
+import { Cinema } from "./components/Cinema/Cinema";
 // action
 import { getMovieListAction } from "redux/actions/movieList.action";
 import "./homePage.scss";
 
 export const HomePage = () => {
-  window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
 
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.movieList);
@@ -29,6 +30,7 @@ export const HomePage = () => {
         <Carousel />
       </div>
       <div className='homePage-main'>
+        <Cinema />
         <FilterBooking />
         <div className='container'>
           {/* Tab danh sách phim */}

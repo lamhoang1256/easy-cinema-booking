@@ -36,7 +36,7 @@ export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {
             >
               {/* nếu ghế đã được mua bởi người khác sẽ hiện hình dấu X, mua bởi bạn thì hiện your choice */}
               {selected !== "" && chair.taiKhoanNguoiDat !== "nguyenlam" ? (
-                <img src='./assets/chair-notchoose.png' />
+                <img src={`${process.env.REACT_APP_PUBLIC}/assets/images/chair-notchoose.png`} />
               ) : chair.taiKhoanNguoiDat === "nguyenlam" ? (
                 <img
                   src={`${process.env.REACT_APP_PUBLIC}/assets/images/chair-your-choice.png`}

@@ -1,0 +1,21 @@
+@use "../../../../assets/scss/helpers/index.scss" as *;
+.cinema {
+  padding: 100px 0;
+  border: 1px solid red;
+}
+
+.cinema-icon {
+  width: 60px;
+}
+
+.cinema-boxed {
+  display: flex;
+  gap: 0 10px;
+  &-img {
+    @include size(50px);
+  }
+  &-info {
+    font-size: 1.4rem;
+    max-width: 200px;
+  }
+}
