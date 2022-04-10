@@ -2,20 +2,48 @@
 .cinema {
   padding: 100px 0;
   border: 1px solid red;
-}
-
-.cinema-icon {
-  width: 60px;
-}
-
-.cinema-boxed {
-  display: flex;
-  gap: 0 10px;
-  &-img {
-    @include size(50px);
+  &-icon {
+    width: 60px;
   }
-  &-info {
+  &-name {
     font-size: 1.4rem;
-    max-width: 200px;
+  }
+  &-top {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 10px;
+  }
+  &-boxed {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  &-thumb {
+    img {
+      width: 120px;
+      border-radius: 8px;
+    }
+  }
+  &-showtime {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    gap: 10px;
+    &-big {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    &-item {
+      @include text(#0284c7, 1.4rem);
+      padding: 5px 10px;
+      border-radius: 4px;
+      background-color: #e0f2fe;
+      cursor: pointer;
+      border: 1px solid #38bdf8;
+    }
+  }
+  .ant-tabs-content-holder {
+    width: 100%;
   }
 }

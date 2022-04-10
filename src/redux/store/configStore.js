@@ -5,6 +5,7 @@ import { modalTrailer } from "../reducers/modalTrailer.reducer";
 import { movieList } from "../reducers/movieList.reducer";
 import { movieDetail } from "../reducers/movieDetail.reducer";
 import { movieBooking } from "../reducers/movieBuyTicket.reducer";
+import { movieCinema } from "../reducers/movieCinema.reducer";
 import { user } from "../reducers/user.reducer";
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   movieList,
   movieDetail,
   movieBooking,
+  movieCinema,
   user,
 });
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
