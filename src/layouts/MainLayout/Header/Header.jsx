@@ -44,7 +44,10 @@ export const Header = () => {
         <div className='container'>
           <div className='header-top'>
             <Link to='/' className='header-logo'>
-              <img src={`${process.env.REACT_APP_PUBLIC}/assets/logo-star-cineplex.png`} alt='' />
+              <img
+                src={`${process.env.REACT_APP_PUBLIC}/assets/images/logo-star-cineplex.png`}
+                alt='header-logo'
+              />
             </Link>
             <div className={`header-action ${isShowMenu ? "is-show" : ""}`}>
               {/* navbar link */}
@@ -60,7 +63,9 @@ export const Header = () => {
               {/* navbar register, login */}
               {userInfo ? (
                 <div className='header-avatar'>
-                  <img src={`${process.env.REACT_APP_PUBLIC}/assets/${dataFakeAvatar[0].url}`} />
+                  <img
+                    src={`${process.env.REACT_APP_PUBLIC}/assets/images/${dataFakeAvatar[0].url}`}
+                  />
                   <div className='header-user'>
                     <Link to='/user' className='header-user-item'>
                       Thông tin tài khoản

@@ -1,25 +1,11 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { schemaYupLogin } from "constants/schemaYupLogin";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginAction } from "redux/actions/user.action";
-
-// tạo một validation schema với yup
-const schemaLogin = yup.object().shape({
-  username: yup
-    .string()
-    .required("Tên tài khoản không được để trống !")
-    .min(6, "Tên tài khoản ít nhất bao gồm 6 kí tự !")
-    .max(15, "Tên tài khoản nhiều nhất bao gồm 15 kí tự !"),
-  password: yup
-    .string()
-    .required("Mật khẩu không được để trống !")
-    .min(6, "Mật khẩu ít nhất bao gồm 6 kí tự !")
-    .max(15, "Mật khẩu nhiều nhất bao gồm 15 kí tự !"),
-});
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -31,7 +17,7 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaLogin) });
+  } = useForm({ resolver: yupResolver(schemaYupLogin) });
 
   // xử lí login
   const handleLogin = (data) => {

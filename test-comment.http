@@ -36,20 +36,38 @@ Content-Type: application/json
 TokenCybersoft : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU
 
 {
-  "taiKhoan": "string153",
-  "matKhau": "string153",
-  "email": "string1684@gmail.com",
-  "soDt": "0908079232",
+  "taiKhoan": "stri21ng1531",
+  "matKhau": "stri2n1g153",
+  "email": "string1611814@gmail.com",
+  "soDT": "0908079232",
   "maNhom": "GP13",
   "hoTen": "String 103",
 },
+
+  # "taiKhoan": "string1531",
+  #   "matKhau": "string153",
+  #   "email": "string16814@gmail.com",
+  #   "soDt": "0908079232",
+  #   "maNhom": "GP00",
+  #   "hoTen": "String 103"
+
+# ĐĂNG NHẬP
+### 
+POST https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap
+Content-Type: application/json
+TokenCybersoft : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU
+
+{
+  "taiKhoan": "nguyenlam",
+  "matKhau": "123456789"
+}
 
 # LẤY THÔNG TIN TÀI KHOẢN NGƯỜI DÙNG
 ###
 POST https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan
 Content-Type: application/json
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibmd1eWVubGFtIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoibmd1eWVubGFtMTNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIktoYWNoSGFuZyIsIm5ndXllbmxhbTEzQGdtYWlsLmNvbSIsIkdQMDAiXSwibmJmIjoxNjQ5MDc3ODE5LCJleHAiOjE2NDkwODE0MTl9.0iTIpLtxhBble1M2VAYVX37Q7IihX86PPhQQJi6fBU8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVHJhbVF1eW5oMTI3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiVHJhbVF1eW5oMTI3QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJRdWFuVHJpIiwiVHJhbVF1eW5oMTI3QGdtYWlsLmNvbSIsIkdQMDAiXSwibmJmIjoxNjQ5NDcxMDIyLCJleHAiOjE2NDk0NzQ2MjJ9.5QhdmN2pKBqQXwxDrEQINxNJmGF7wBmCsP2-LHqJtEI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibmd1eWVubGFtIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoibmd1eWVubGFtMTNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIktoYWNoSGFuZyIsIm5ndXllbmxhbTEzQGdtYWlsLmNvbSIsIkdQMDAiXSwibmJmIjoxNjQ5MDc3ODE5LCJleHAiOjE2NDkwODE0MTl9.0iTIpLtxhBble1M2VAYVX37Q7IihX86PPhQQJi6fBU8
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoicGh1b2N0cmFuMSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InBodW9jdHJhbjFAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIktoYWNoSGFuZyIsInBodW9jdHJhbjFAZ21haWwuY29tIiwiR1AwMCJdLCJuYmYiOjE2NDk1MTMyMzIsImV4cCI6MTY0OTUxNjgzMn0.MM6SqDTLq3kos4M-aVBqrxoymiOFvTBCsRjeTzEHd8A
 TokenCybersoft:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU
 
 # {

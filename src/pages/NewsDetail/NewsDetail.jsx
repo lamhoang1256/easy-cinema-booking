@@ -15,7 +15,7 @@ export const NewsDetail = () => {
       <div
         className='new-detail-top'
         style={{
-          backgroundImage: `url("${process.env.PUBLIC_URL}/assets/background-news.png"
+          backgroundImage: `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
           )`,
         }}
       >

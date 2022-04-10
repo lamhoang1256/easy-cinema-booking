@@ -9,7 +9,7 @@ import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBuyTicket.action";
 import "./movieBuyTicket.scss";
 // đường dẫn ảnh banner
-const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/background-booking.jpg"
+const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
 
 export const MovieBuyTicket = () => {

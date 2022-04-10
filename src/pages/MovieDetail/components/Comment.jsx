@@ -11,7 +11,7 @@ export const Comment = ({ dataComment }) => {
               <div className='comment-info'>
                 <img
                   className='comment-avatar'
-                  src={`${process.env.REACT_APP_PUBLIC}/assets/user-avatar-1.jpg`}
+                  src={`${process.env.REACT_APP_PUBLIC}/assets/images/user-avatar-1.jpg`}
                   alt='comment-avatar'
                 />
                 <div className='comment-profile'>
