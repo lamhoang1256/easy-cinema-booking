@@ -64,6 +64,15 @@
       margin-top: 10px;
     }
   }
+  &-boxed {
+    display: flex;
+    gap: 20px;
+  }
+  &-thumb {
+    width: 140px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
   &-price {
     color: $primary-color;
   }

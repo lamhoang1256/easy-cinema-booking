@@ -96,32 +96,38 @@ export const MovieBuyTicket = () => {
               <div className='movie-booking-right'>
                 <div className='movie-booking-info-movie'>
                   <h2>Thông tin phim</h2>
-                  <div className='movie-booking-title'>
-                    <span className='label'>Tên phim:</span>
-                    {dataMovieBooking.thongTinPhim.tenPhim}
+
+                  <div className='movie-booking-thumb'>
+                    <img src={dataMovieBooking.thongTinPhim.hinhAnh} alt='movie-thumb' />
                   </div>
-                  <div className='movie-booking-cinema'>
-                    <span className='label'>Rạp: </span>
-                    {dataMovieBooking.thongTinPhim.tenCumRap}
-                  </div>
-                  <div className='movie-booking-location'>
-                    <span className='label'>Địa chỉ: </span>
-                    {dataMovieBooking.thongTinPhim.diaChi}
-                  </div>
-                  <div className='movie-booking-openday'>
-                    <span className='label'>Suất chiếu: </span>
-                    {dataMovieBooking.thongTinPhim.gioChieu}{" "}
-                    {dataMovieBooking.thongTinPhim.ngayChieu}
-                  </div>
-                  <div className='movie-booking-chairs'>
-                    <span className='label'>Số ghế đã chọn:</span>
-                    {listGheDangChon.length !== 0
-                      ? listGheDangChon.map((c, index) => {
-                          // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
-                          const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
-                          return chair;
-                        })
-                      : "Chưa chọn ghế"}
+                  <div>
+                    <div className='movie-booking-title'>
+                      <span className='label'>Tên phim:</span>
+                      {dataMovieBooking.thongTinPhim.tenPhim}
+                    </div>
+                    <div className='movie-booking-cinema'>
+                      <span className='label'>Rạp: </span>
+                      {dataMovieBooking.thongTinPhim.tenCumRap}
+                    </div>
+                    <div className='movie-booking-location'>
+                      <span className='label'>Địa chỉ: </span>
+                      {dataMovieBooking.thongTinPhim.diaChi}
+                    </div>
+                    <div className='movie-booking-openday'>
+                      <span className='label'>Suất chiếu: </span>
+                      {dataMovieBooking.thongTinPhim.gioChieu}{" "}
+                      {dataMovieBooking.thongTinPhim.ngayChieu}
+                    </div>
+                    <div className='movie-booking-chairs'>
+                      <span className='label'>Số ghế đã chọn:</span>
+                      {listGheDangChon.length !== 0
+                        ? listGheDangChon.map((c, index) => {
+                            // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
+                            const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
+                            return chair;
+                          })
+                        : "Chưa chọn ghế"}
+                    </div>
                   </div>
                 </div>
                 <div className='movie-booking-info-user'>
