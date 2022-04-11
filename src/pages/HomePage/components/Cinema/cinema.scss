@@ -1,8 +1,5 @@
 @use "../../../../assets/scss/helpers/index.scss" as *;
 .cinema {
-  @include mobile {
-    display: none;
-  }
   padding: 100px 0;
   &-heading {
     text-align: center;
@@ -45,12 +42,10 @@
     &::-webkit-scrollbar {
       width: 10px;
     }
-
     &::-webkit-scrollbar-track {
       box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
       border-radius: 8px;
     }
-
     &::-webkit-scrollbar-thumb {
       background-color: darkgrey;
       border-radius: 8px;
@@ -64,6 +59,7 @@
     flex-wrap: wrap;
     max-width: 600px;
     gap: 10px;
+    padding-top: 20px;
     &-big {
       font-size: 1.4rem;
       font-weight: 600;
@@ -72,7 +68,6 @@
       @include text(#0284c7, 1.3rem);
       padding: 5px 10px;
       border-radius: 4px;
-      // background-color: #e0f2fe;
       cursor: pointer;
       border: 1px solid #38bdf8;
     }
@@ -93,7 +88,6 @@
   .ant-tabs-top > .ant-tabs-nav .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     border: 1px solid $primary-color;
   }
-
   .ant-tabs-left > .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list {
     @extend .cinema-main;
   }
@@ -108,5 +102,18 @@
   }
   .ant-tabs-content-holder {
     width: 100%;
+  }
+}
+
+.cinema-mobile {
+  .ant-tabs-nav-list {
+    padding: 10px;
+    gap: 20px;
+  }
+  .ant-tabs-top > .ant-tabs-nav {
+    margin: 0;
+  }
+  .ant-tabs-tab + .ant-tabs-tab {
+    margin: 0;
   }
 }

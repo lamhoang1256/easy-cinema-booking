@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Tabs } from "antd";
+import { useMediaQuery } from "hooks/useMediaQuery";
 // component
 import { Carousel } from "./components/Carousel/Carousel";
 import { FilterBooking } from "./components/FilterBooking/FilterBooking";
@@ -15,6 +16,8 @@ import "./homePage.scss";
 
 export const HomePage = () => {
   // window.scrollTo(0, 0);
+  // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
+  const isMobile = useMediaQuery("(max-width:767.98px)");
 
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.movieList);
@@ -31,8 +34,8 @@ export const HomePage = () => {
         <Carousel />
       </div>
       <div className='homePage-main'>
-        <Cinema />
-        <CinemaMobile />
+        {isMobile ? <CinemaMobile /> : <Cinema />}
+
         <FilterBooking />
         <div className='container'>
           {/* Tab danh sách phim */}
