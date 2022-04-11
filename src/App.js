@@ -26,7 +26,7 @@ function App() {
           <Route path='/detail/:id' element={<MovieDetail />} />
           <Route path='/user' element={<UserInfo />} />
           <Route path='/news/:id' element={<NewsDetail />} />
-          <Route path='/booking/' element={<MovieBuyTicket />} />
+          <Route path='/booking/:id' element={<MovieBuyTicket />} />
         </Route>
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}></Route>

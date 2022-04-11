@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemaAction } from "redux/actions/movieCinema.action";
@@ -32,50 +33,62 @@ export const Cinema = () => {
     <div className='cinema'>
       {dataCinema ? (
         <div className='container'>
-          {/* hệ thống rạp */}
-          <Tabs defaultActiveKey='1' tabPosition='top'>
-            {dataCinema.map((systemCinema, index) => (
-              <TabPane tab={<img className='cinema-icon' src={systemCinema.logo} />} key={index}>
-                {/* cụm rạp */}
-                <Tabs defaultActiveKey='1' tabPosition='left'>
-                  {systemCinema.lstCumRap.map((cinema, index) => (
-                    <TabPane key={index} tab={<p className='cinema-name'>{cinema.tenCumRap}</p>}>
-                      <div className='cinema-top'>
-                        <h3 className='cinema-label'>Lịch chiếu phim {cinema.tenCumRap}</h3>
-                        <p className='cinema-label'>Địa chỉ: {cinema.diaChi}</p>
-                      </div>
-                      {/* danh sách phim đang chiếu của rạp */}
-                      {cinema.danhSachPhim.map((movie, indexMovie) => (
-                        <div className='cinema-boxed' key={indexMovie}>
-                          <div className='cinema-thumb'>
-                            <img src={movie.hinhAnh} alt='cinema-movie' />
+          <h2 className='cinema-heading'>Lịch chiếu phim</h2>
+          <div className='cinema-container'>
+            {/* hệ thống rạp */}
+            <Tabs defaultActiveKey='1' tabPosition='top'>
+              {dataCinema.map((systemCinema, index) => (
+                <TabPane tab={<img className='cinema-icon' src={systemCinema.logo} />} key={index}>
+                  {/* cụm rạp */}
+                  <Tabs defaultActiveKey='1' tabPosition='left'>
+                    {systemCinema.lstCumRap.map((cinema, index) => (
+                      <TabPane key={index} tab={<p className='cinema-name'>{cinema.tenCumRap}</p>}>
+                        <div className='cinema-main'>
+                          <div className='cinema-top'>
+                            <h3 className='cinema-label'>Lịch chiếu phim {cinema.tenCumRap}</h3>
+                            <p className='cinema-label'>Địa chỉ: {cinema.diaChi}</p>
                           </div>
-                          <div className='cinema-title'>
-                            <div className='cinema-code'>C{movie.maPhim}</div>
-                            <h3>{movie.tenPhim}</h3>
-                            <span>2D Phụ đề</span>
-                            <div className='cinema-showtime'>
-                              {movie.lstLichChieuTheoPhim.slice(0, 10).map((time, keyShowtime) => (
-                                <div key={keyShowtime} className='cinema-showtime-item'>
-                                  <span className='cinema-showtime-big'>
-                                    {formatDateToHour(time.ngayChieuGioChieu)}
-                                  </span>
-                                  <span> ~ </span>
-                                  {formatDateToHour(increaseDate(time.ngayChieuGioChieu, 7200000))}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </TabPane>
-                  ))}
-                </Tabs>
-              </TabPane>
-            ))}
-          </Tabs>
+                          {/* danh sách phim đang chiếu của rạp */}
 
-          {/* <Tabs defaultActiveKey='1' tabPosition='left'>
+                          {cinema.danhSachPhim.map((movie, indexMovie) => (
+                            <div className='cinema-boxed' key={indexMovie}>
+                              <div className='cinema-thumb'>
+                                <img src={movie.hinhAnh} alt='cinema-movie' />
+                              </div>
+                              <div>
+                                <h3 className='cinema-title'>{movie.tenPhim}</h3>
+                                <span>2D Phụ đề</span>
+                                <div className='cinema-showtime'>
+                                  {movie.lstLichChieuTheoPhim
+                                    .slice(0, 10)
+                                    .map((time, keyShowtime) => (
+                                      <Link
+                                        to={`/booking/${time.maLichChieu}`}
+                                        key={keyShowtime}
+                                        className='cinema-showtime-item'
+                                      >
+                                        <span className='cinema-showtime-big'>
+                                          {formatDateToHour(time.ngayChieuGioChieu)}
+                                        </span>
+                                        <span> ~ </span>
+                                        {formatDateToHour(
+                                          increaseDate(time.ngayChieuGioChieu, 7200000)
+                                        )}
+                                      </Link>
+                                    ))}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </TabPane>
+                    ))}
+                  </Tabs>
+                </TabPane>
+              ))}
+            </Tabs>
+
+            {/* <Tabs defaultActiveKey='1' tabPosition='left'>
             <TabPane
               tab={
                 <img
@@ -157,6 +170,7 @@ export const Cinema = () => {
               </Tabs>
             </TabPane>
           </Tabs> */}
+          </div>
         </div>
       ) : (
         "Loading"

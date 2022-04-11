@@ -8,11 +8,13 @@ import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
 import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBuyTicket.action";
 import "./movieBuyTicket.scss";
+import { useParams } from "react-router-dom";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
 
 export const MovieBuyTicket = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const { dataMovieBooking, listGheDangChon, loading } = useSelector((state) => state.movieBooking);
@@ -54,7 +56,8 @@ export const MovieBuyTicket = () => {
   };
 
   useEffect(() => {
-    dispatch(getMovieBookingAction());
+    dispatch(getMovieBookingAction(id));
+    window.scrollTo(0, 0);
   }, []);
 
   return (

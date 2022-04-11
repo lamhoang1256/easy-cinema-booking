@@ -14,7 +14,7 @@ import {
 export const getMovieBookingAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_BOOKING_REQUEST });
-    const response = await axiosClient.get("QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=40344");
+    const response = await axiosClient.get(`QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`);
     dispatch({ type: GET_MOVIE_BOOKING_SUCCESS, payload: response.data.content });
   } catch (err) {
     dispatch({ type: GET_MOVIE_BOOKING_FAIL, payload: err });
