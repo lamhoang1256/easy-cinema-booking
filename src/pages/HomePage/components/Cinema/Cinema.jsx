@@ -48,8 +48,8 @@ export const Cinema = () => {
                             <h3 className='cinema-label'>Lịch chiếu phim {cinema.tenCumRap}</h3>
                             <p className='cinema-label'>Địa chỉ: {cinema.diaChi}</p>
                           </div>
-                          {/* danh sách phim đang chiếu của rạp */}
 
+                          {/* danh sách phim đang chiếu của rạp */}
                           {cinema.danhSachPhim.map((movie, indexMovie) => (
                             <div className='cinema-boxed' key={indexMovie}>
                               <div className='cinema-thumb'>

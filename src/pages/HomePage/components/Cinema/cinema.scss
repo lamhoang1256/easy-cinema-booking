@@ -1,5 +1,8 @@
 @use "../../../../assets/scss/helpers/index.scss" as *;
 .cinema {
+  @include mobile {
+    display: none;
+  }
   padding: 100px 0;
   &-heading {
     text-align: center;

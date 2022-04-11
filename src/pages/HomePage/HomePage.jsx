@@ -8,6 +8,7 @@ import { MovieList } from "./components/MovieList/MovieList";
 import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { Cinema } from "./components/Cinema/Cinema";
+import { CinemaMobile } from "./components/Cinema/CinemaMobile";
 // action
 import { getMovieListAction } from "redux/actions/movieList.action";
 import "./homePage.scss";
@@ -31,6 +32,7 @@ export const HomePage = () => {
       </div>
       <div className='homePage-main'>
         <Cinema />
+        <CinemaMobile />
         <FilterBooking />
         <div className='container'>
           {/* Tab danh sách phim */}
