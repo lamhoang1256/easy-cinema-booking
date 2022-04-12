@@ -24,7 +24,7 @@ export const DetailCinema = () => {
   }, []);
 
   return (
-    <div className='cinema'>
+    <div className='cinema cinema-detail'>
       {dataCinema ? (
         <div className='container'>
           <h2 className='cinema-heading'>Lịch chiếu phim</h2>
@@ -40,31 +40,24 @@ export const DetailCinema = () => {
                         tab={<p className='cinema-name'>{cinemaItem.tenCumRap}</p>}
                       >
                         <div className='cinema-main'>
-                          {/* danh sách phim đang chiếu của rạp */}
-
-                          {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
-                            <div className='cinema-boxed' key={indexMovie}>
-                              <div>
-                                {/* <p className='cinema-title'>
-                                  {new Date(movie.ngayChieuGioChieu).toLocaleDateString("vi-VI")}
-                                </p> */}
-                                <div className='cinema-showtime'>
-                                  <Link
-                                    to={`/booking/${movie.maLichChieu}`}
-                                    className='cinema-showtime-item'
-                                  >
-                                    <span className='cinema-showtime-big'>
-                                      {`${new Date(movie.ngayChieuGioChieu).toLocaleDateString(
-                                        "vi-VI"
-                                      )} lúc ${formatDateToHour(movie.ngayChieuGioChieu)} (${
-                                        movie.tenRap
-                                      })`}
-                                    </span>
-                                  </Link>
-                                </div>
+                          <div className='cinema-detail-main'>
+                            {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
+                              <div className='cinema-showtime'>
+                                <Link
+                                  to={`/booking/${movie.maLichChieu}`}
+                                  className='cinema-showtime-item'
+                                >
+                                  <span className='cinema-showtime-big'>
+                                    {`${new Date(movie.ngayChieuGioChieu).toLocaleDateString(
+                                      "vi-VI"
+                                    )} lúc ${formatDateToHour(movie.ngayChieuGioChieu)} (${
+                                      movie.tenRap
+                                    })`}
+                                  </span>
+                                </Link>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
                       </TabPane>
                     ))}

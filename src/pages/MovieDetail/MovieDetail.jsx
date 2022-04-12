@@ -16,13 +16,17 @@ import {
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
 import "./movieDetail.scss";
 import { DetailCinema } from "./components/DetailCinema/DetailCinema";
+import { DetailCinemaMobile } from "./components/DetailCinema/DetaiCinemaMobile";
+import { useMediaQuery } from "hooks/useMediaQuery";
 
 export const MovieDetail = () => {
   window.scrollTo(0, 0);
+
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
-
   const { data, loading, dataComment, loadingComment } = useSelector((state) => state.movieDetail);
+  // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
+  const isMobile = useMediaQuery("(max-width:767.98px)");
 
   // get data detail movie from API thông qua id
   useEffect(() => {
@@ -97,7 +101,7 @@ export const MovieDetail = () => {
                   <p>{data.moTa}</p>
                 </div>
 
-                <DetailCinema />
+                {isMobile ? <DetailCinemaMobile /> : <DetailCinema />}
 
                 {/* Đánh giá phim (comment) */}
                 <div className='comment'>

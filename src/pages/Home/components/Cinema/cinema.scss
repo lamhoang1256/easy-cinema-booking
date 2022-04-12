@@ -11,7 +11,7 @@
     box-shadow: 0 2px 8px 0 rgb(20 16 11 / 7%);
   }
   &-icon {
-    width: 60px;
+    width: 40px;
   }
   &-name {
     font-size: 1.4rem;
@@ -59,7 +59,7 @@
     flex-wrap: wrap;
     max-width: 600px;
     gap: 10px;
-    padding-top: 20px;
+    padding: 8px 0;
     &-big {
       font-size: 1.4rem;
       font-weight: 600;
