@@ -45,21 +45,21 @@ export const DetailCinema = () => {
                           {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
                             <div className='cinema-boxed' key={indexMovie}>
                               <div>
-                                <p className='cinema-title'>
+                                {/* <p className='cinema-title'>
                                   {new Date(movie.ngayChieuGioChieu).toLocaleDateString("vi-VI")}
-                                </p>
+                                </p> */}
                                 <div className='cinema-showtime'>
                                   <Link
                                     to={`/booking/${movie.maLichChieu}`}
                                     className='cinema-showtime-item'
                                   >
                                     <span className='cinema-showtime-big'>
-                                      {formatDateToHour(movie.ngayChieuGioChieu)}
+                                      {`${new Date(movie.ngayChieuGioChieu).toLocaleDateString(
+                                        "vi-VI"
+                                      )} lúc ${formatDateToHour(movie.ngayChieuGioChieu)} (${
+                                        movie.tenRap
+                                      })`}
                                     </span>
-                                    <span> ~ </span>
-                                    {formatDateToHour(
-                                      increaseDate(movie.ngayChieuGioChieu, 7200000)
-                                    )}
                                   </Link>
                                 </div>
                               </div>
