@@ -158,3 +158,739 @@ TokenCybersoft:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQg
   "maLoaiNguoiDung": "KhachHang",
   "hoTen": "Nguyen Hoang Lam"
 }
+
+###
+GET https://movienew.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=1521
+Content-Type: application/json
+TokenCybersoft:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQgNzAiLCJIZXRIYW5TdHJpbmciOiIxNC8xMC8yMDIyIiwiSGV0SGFuVGltZSI6IjE2NjU3MDU2MDAwMDAiLCJuYmYiOjE2Mzc0Mjc2MDAsImV4cCI6MTY2NTg1MzIwMH0.RAzH9H37ZyQ8ZT6A62fw3_bDfJOCq0A9vz08qT262EU
+
+{
+  "statusCode": 200,
+  "message": "Xử lý thành công!",
+  "content": {
+    "heThongRapChieu": [
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+            ],
+            "maCumRap": "bhd-star-cineplex-vincom-le-van-viet",
+            "tenCumRap": "BHD Star Cineplex - Vincom Lê Văn Việt",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "L4-Vincom Plaza, 50 Lê Văn Việt, Q.9"
+          },
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "44228",
+                "maRap": "454",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2021-08-18T09:00:00",
+                "giaVe": 100000.0,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "bhd-star-cineplex-3-2",
+            "tenCumRap": "BHD Star Cineplex - 3/2",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "L5-Vincom 3/2, 3C Đường 3/2, Q.10"
+          },
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "44229",
+                "maRap": "466",
+                "tenRap": "Rạp 6",
+                "ngayChieuGioChieu": "2021-08-18T09:00:00",
+                "giaVe": 100000.0,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "bhd-star-cineplex-bitexco",
+            "tenCumRap": "BHD Star Cineplex - Bitexco",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "L3-Bitexco Icon 68, 2 Hải Triều, Q.1"
+          }
+        ],
+        "maHeThongRap": "BHDStar",
+        "tenHeThongRap": "BHD Star Cineplex",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
+      },
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "27277",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-01T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27278",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-01T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27279",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-01T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27280",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-01T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27281",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-01T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27282",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-01T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27283",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-02T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27284",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-02T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27285",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-02T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27286",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-02T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27287",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-02T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27288",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-02T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27289",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-03T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27290",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-03T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27291",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-03T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27292",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-03T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27293",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-03T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27294",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-03T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27295",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-04T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27296",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-04T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27297",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-04T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27298",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-04T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27299",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-04T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27300",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-04T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27301",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-05T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27302",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-05T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27303",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-05T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27304",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-05T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27305",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-05T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27306",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-05T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27307",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-06T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27308",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-06T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27309",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-06T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27310",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-06T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27311",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-06T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27312",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-06T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27313",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-07T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27314",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-07T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27315",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-07T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27316",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-07T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27317",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-07T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27318",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-07T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27319",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-08T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27320",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-08T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27321",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-08T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27322",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-08T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27323",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-08T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27324",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-08T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27325",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-09T10:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27326",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-09T12:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27327",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-09T14:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27328",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-09T16:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27329",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-09T18:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "27330",
+                "maRap": "674",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2019-01-09T20:10:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "cgv-vincom-dong-khoi",
+            "tenCumRap": "CGV - Vincom Đồng Khởi",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "Tầng 3, TTTM Vincom Center B, 72 Lê Thánh Tôn, Bến Nghé, Q. 1"
+          }
+        ],
+        "maHeThongRap": "CGV",
+        "tenHeThongRap": "cgv",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
+      },
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "44470",
+                "maRap": "728",
+                "tenRap": "Rạp 8",
+                "ngayChieuGioChieu": "2021-10-19T09:20:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "cns-hai-ba-trung",
+            "tenCumRap": "CNS - Hai Bà Trưng",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "135 Hai Bà Trưng, Bến Nghé, Q.1[Bản đồ]"
+          },
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "44471",
+                "maRap": "733",
+                "tenRap": "Rạp 3",
+                "ngayChieuGioChieu": "2021-10-19T09:20:00",
+                "giaVe": 75000.0,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "cns-quoc-thanh",
+            "tenCumRap": "CNS - Quốc Thanh",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "271 Nguyễn Trãi, Q.1"
+          }
+        ],
+        "maHeThongRap": "CineStar",
+        "tenHeThongRap": "CineStar",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/cinestar.png"
+      }
+    ],
+    "maPhim": 1521,
+    "tenPhim": "Specter 445",
+    "biDanh": "specter-445",
+    "trailer": "https://www.youtube.com/embed/LTDaET-JweU",
+    "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/specter1123_gp13.jpg",
+    "moTa": "A cryptic message from Bond's past sends him on a trail to uncover a sinister organization. While M battles political forces to keep the secret service alive, Bond peels back the layers of deceit to reveal the terrible truth behind SPECTER.",
+    "maNhom": "GP13",
+    "hot": true,
+    "dangChieu": true,
+    "sapChieu": false,
+    "ngayKhoiChieu": "2021-11-04T16:24:27.64",
+    "danhGia": 8
+  },
+  "dateTime": "2022-04-12T10:15:01.4097842+07:00",
+  "messageConstants": null
+}
+
+
+
+
+
+
+
+
+
+
+
+# https://movienew.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=8002
+{
+  "statusCode": 200,
+  "message": "Xử lý thành công!",
+  "content": {
+    "heThongRapChieu": [
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "44210",
+                "maRap": "455",
+                "tenRap": "Rạp 5",
+                "ngayChieuGioChieu": "2021-08-26T10:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44219",
+                "maRap": "453",
+                "tenRap": "Rạp 3",
+                "ngayChieuGioChieu": "2021-08-28T07:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44220",
+                "maRap": "452",
+                "tenRap": "Rạp 2",
+                "ngayChieuGioChieu": "2021-08-28T07:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44221",
+                "maRap": "460",
+                "tenRap": "Rạp 10",
+                "ngayChieuGioChieu": "2021-08-28T07:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "bhd-star-cineplex-3-2",
+            "tenCumRap": "BHD Star Cineplex - 3/2",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "L5-Vincom 3/2, 3C Đường 3/2, Q.10"
+          }
+        ],
+        "maHeThongRap": "BHDStar",
+        "tenHeThongRap": "BHD Star Cineplex",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
+      },
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "44211",
+                "maRap": "514",
+                "tenRap": "Rạp 4",
+                "ngayChieuGioChieu": "2021-08-25T10:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "cgv-aeon-binh-tan",
+            "tenCumRap": "CGV - Aeon Bình Tân",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "Tầng 3, TTTM Aeon Mall Bình Tân, Số 1 đường số 17A, khu phố 11, Bình Trị Đông B, Bình Tân"
+          }
+        ],
+        "maHeThongRap": "CGV",
+        "tenHeThongRap": "cgv",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/cgv.png"
+      },
+      {
+        "cumRapChieu": [
+          {
+            "lichChieuPhim": [
+              {
+                "maLichChieu": "44212",
+                "maRap": "726",
+                "tenRap": "Rạp 6",
+                "ngayChieuGioChieu": "2021-08-25T11:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44213",
+                "maRap": "729",
+                "tenRap": "Rạp 9",
+                "ngayChieuGioChieu": "2021-08-26T01:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44214",
+                "maRap": "722",
+                "tenRap": "Rạp 2",
+                "ngayChieuGioChieu": "2021-08-26T02:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44215",
+                "maRap": "726",
+                "tenRap": "Rạp 6",
+                "ngayChieuGioChieu": "2021-08-26T03:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44216",
+                "maRap": "727",
+                "tenRap": "Rạp 7",
+                "ngayChieuGioChieu": "2021-08-26T04:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44217",
+                "maRap": "729",
+                "tenRap": "Rạp 9",
+                "ngayChieuGioChieu": "2021-08-28T06:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              },
+              {
+                "maLichChieu": "44218",
+                "maRap": "721",
+                "tenRap": "Rạp 1",
+                "ngayChieuGioChieu": "2021-08-28T07:00:00",
+                "giaVe": 90000,
+                "thoiLuong": 120
+              }
+            ],
+            "maCumRap": "cns-hai-ba-trung",
+            "tenCumRap": "CNS - Hai Bà Trưng",
+            "hinhAnh": "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png",
+            "diaChi": "135 Hai Bà Trưng, Bến Nghé, Q.1[Bản đồ]"
+          }
+        ],
+        "maHeThongRap": "CineStar",
+        "tenHeThongRap": "CineStar",
+        "logo": "https://movienew.cybersoft.edu.vn/hinhanh/cinestar.png"
+      }
+    ],
+    "maPhim": 8002,
+    "tenPhim": "Everybody’s Talking About Jamie",
+    "biDanh": "everybody’s-talking-about-jamie",
+    "trailer": "https://www.youtube.com/embed/CpOeZw7xdfI",
+    "hinhAnh": "https://movienew.cybersoft.edu.vn/hinhanh/everybody’s-talking-about-jamie_gp13.jpg",
+    "moTa": "Inspired by true events, New Regency’s and Film4’s “Everybody’s Talking About Jamie” is the film adaptation of the hit musical. Jamie New is 16 and doesn’t quite fit in—instead of pursuing a “real” career he dreams of becoming a drag queen. Uncertain about his future, Jamie knows one thing for sure: he is going to be a sensation. Supported by his loving mom and his amazing friends, Jamie overcomes prejudice, beats the bullies and steps out of the darkness, into the spotlight.",
+    "maNhom": "GP13",
+    "hot": true,
+    "dangChieu": true,
+    "sapChieu": false,
+    "ngayKhoiChieu": "2021-11-09T01:44:51.87",
+    "danhGia": 7
+  },
+  "dateTime": "2022-04-12T09:07:44.4950697+07:00",
+  "messageConstants": null
+}

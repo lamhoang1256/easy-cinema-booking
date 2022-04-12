@@ -3,7 +3,6 @@ import "./addComment.scss";
 
 export const AddComment = () => {
   const [newComment, setNewComment] = useState("");
-  console.log(newComment);
   // xử lí thêm mới nhận xét
   const handleAddNewComment = () => {
     if (newComment.length < 40) {

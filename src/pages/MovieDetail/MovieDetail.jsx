@@ -8,24 +8,27 @@ import { AddComment } from "components/AddComment/AddComment";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
-import { getDetailMovieAction, getCommentMovieAction } from "redux/actions/movieDetail.action";
+import {
+  getDetailMovieAction,
+  getCommentMovieAction,
+  getCinemaDetailMovieAction,
+} from "redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
 import "./movieDetail.scss";
+import { DetailCinema } from "./components/DetailCinema/DetailCinema";
 
 export const MovieDetail = () => {
   window.scrollTo(0, 0);
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
 
-  const { data, loading } = useSelector((state) => state.movieDetail);
-  const { dataComment, loadingComment } = useSelector((state) => state.movieDetail);
-  if (!loadingComment) {
-    console.log(dataComment);
-  }
+  const { data, loading, dataComment, loadingComment } = useSelector((state) => state.movieDetail);
+
   // get data detail movie from API thông qua id
   useEffect(() => {
     dispatch(getDetailMovieAction(id));
     dispatch(getCommentMovieAction(id));
+    dispatch(getCinemaDetailMovieAction(id));
   }, []);
 
   return (
@@ -68,9 +71,7 @@ export const MovieDetail = () => {
                     <h3>Chi tiết phim</h3>
                     <p>
                       <span className='label'>Tên phim:</span>
-                      <span className='movie-detail-title'>
-                        <Link to={`/booking/${data.maPhim}`}>{data.tenPhim}</Link>
-                      </span>
+                      <span className='movie-detail-title'>{data.tenPhim}</span>
                     </p>
                     <p>
                       <span className='label'>Ngày công chiếu:</span>
@@ -95,6 +96,9 @@ export const MovieDetail = () => {
                   <h3>Tóm tắt phim</h3>
                   <p>{data.moTa}</p>
                 </div>
+
+                <DetailCinema />
+
                 {/* Đánh giá phim (comment) */}
                 <div className='comment'>
                   <h3>Đánh giá</h3>

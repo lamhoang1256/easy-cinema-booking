@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import axiosClient from "apis/axiosClient";
 import {
   GET_DETAIL_MOVIE_REQUEST,
@@ -7,6 +8,9 @@ import {
   GET_DETAIL_COMMENT_REQUEST,
   GET_DETAIL_COMMENT_SUCCESS,
   GET_DETAIL_COMMENT_FAIL,
+  GET_DETAIL_CINEMA_REQUEST,
+  GET_DETAIL_CINEMA_SUCCESS,
+  GET_DETAIL_CINEMA_FAIL,
 } from "../constants/movieDetail.constant";
 
 // lấy thông tin phim chi tiết qua id
@@ -17,6 +21,37 @@ export const getDetailMovieAction = (id) => async (dispatch) => {
     dispatch({ type: GET_DETAIL_MOVIE_SUCCESS, payload: data.content });
   } catch (err) {
     dispatch({ type: GET_DETAIL_MOVIE_FAIL, payload: err });
+  }
+};
+
+// lấy danh sách cụm rạp đang chiếu phim này
+export const getCinemaDetailMovieAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_DETAIL_CINEMA_REQUEST });
+    const { data } = await axiosClient.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
+    console.log(data.content.heThongRapChieu);
+
+    // lọc lấy tất cả các ngày có chiếu phim này
+    const arrDay = data.content.heThongRapChieu.map((cinema) => {
+      // console.log(cinema);
+      return cinema.cumRapChieu.map((showtime) => {
+        return showtime.lichChieuPhim.map((openday) => {
+          return moment(openday.ngayChieuGioChieu).utc().format("DD/MM/YYYY");
+        });
+      });
+    });
+
+    // gộp các ngày riêng lẻ thành 1 mảng và không trùng lặp các ngày với nhau (sắp xếp tăng dần)
+    const filterDay = arrDay.map((item) => {
+      let arrUniqueDay = [];
+      item.map((e) => (arrUniqueDay = arrUniqueDay.concat(e)));
+      return [...new Set(arrUniqueDay)].sort((a, b) => a - b);
+    });
+    console.log(filterDay);
+
+    dispatch({ type: GET_DETAIL_CINEMA_SUCCESS, payload: data.content });
+  } catch (err) {
+    dispatch({ type: GET_DETAIL_CINEMA_FAIL, payload: err });
   }
 };
 

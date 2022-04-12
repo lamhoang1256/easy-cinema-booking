@@ -1,0 +1,105 @@
+@use "../../../../assets/scss/helpers/index.scss" as *;
+.detail-cinema {
+  padding-bottom: 100px;
+  &-heading {
+    text-align: center;
+    margin: 30px 0;
+  }
+  &-container {
+    border-radius: 8px;
+    border: 1px solid rgb(219, 219, 219);
+    box-shadow: 0 2px 8px 0 rgb(20 16 11 / 7%);
+  }
+  &-icon {
+    width: 60px;
+  }
+  &-name {
+    font-size: 1.4rem;
+  }
+  &-top {
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  &-boxed {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+  &-thumb {
+    width: 120px;
+    img {
+      border-radius: 8px;
+    }
+  }
+  &-main {
+    height: 54rem;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      border-radius: 8px;
+    }
+  }
+  &-title {
+    font-size: 2rem;
+  }
+  &-showtime {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    gap: 10px;
+    padding-top: 20px;
+    &-big {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    &-item {
+      @include text(#0284c7, 1.3rem);
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid #38bdf8;
+    }
+  }
+  .ant-tabs-top > .ant-tabs-nav {
+    padding-left: 40px;
+  }
+  &-container > .ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-btn {
+    @include size(50px);
+    background-color: #fff;
+    border: 1px solid rgba(219, 219, 219);
+    border-radius: 6px;
+    transition: all 0.25s linear;
+  }
+  &-container > .ant-tabs-top .ant-tabs-ink-bar {
+    display: none;
+  }
+  &-container > .ant-tabs-top > .ant-tabs-nav .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    border: 1px solid $primary-color;
+  }
+}
+
+.cinema-mobile {
+  padding-bottom: 70px;
+  .ant-tabs-nav-list {
+    padding: 10px;
+    gap: 20px;
+  }
+  .ant-tabs-top > .ant-tabs-nav {
+    margin: 0;
+  }
+  .ant-tabs-tab + .ant-tabs-tab {
+    margin: 0;
+  }
+}
