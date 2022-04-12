@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AdminLayout } from "./layouts/AdminLayout/AdminLayout";
 import { AuthLayout } from "./layouts/AuthLayout/AuthLayout";
 import { MainLayout } from "./layouts/MainLayout/MainLayout";
-import { HomePage } from "./pages/HomePage/HomePage";
+import { Home } from "./pages/Home/Home";
 import { MovieDetail } from "./pages/MovieDetail/MovieDetail";
 import { UserInfo } from "./pages/UserInfo/UserInfo";
 import { NewsDetail } from "./pages/NewsDetail/NewsDetail";
@@ -22,7 +22,7 @@ function App() {
       <Routes>
         {/* Main Layout */}
         <Route path='/' element={<MainLayout />}>
-          <Route index element={<HomePage />} />
+          <Route index element={<Home />} />
           <Route path='/detail/:id' element={<MovieDetail />} />
           <Route path='/user' element={<UserInfo />} />
           <Route path='/news/:id' element={<NewsDetail />} />

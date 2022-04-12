@@ -85,7 +85,7 @@ export const FilterBooking = () => {
               </Select>
             </div>
             {/* Button mua vé */}
-            <button className='filter__btn btn btn__primary'>MUA VÉ NGAY</button>
+            <button className='filter__btn btn btn--primary'>MUA VÉ NGAY</button>
           </div>
         </div>
       </div>

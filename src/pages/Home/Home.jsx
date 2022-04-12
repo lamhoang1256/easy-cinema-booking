@@ -12,9 +12,9 @@ import { Cinema } from "./components/Cinema/Cinema";
 import { CinemaMobile } from "./components/Cinema/CinemaMobile";
 // action
 import { getMovieListAction } from "redux/actions/movieList.action";
-import "./homePage.scss";
+import "./home.scss";
 
-export const HomePage = () => {
+export const Home = () => {
   // window.scrollTo(0, 0);
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
@@ -29,18 +29,16 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <div className='homePage'>
-      <div className='homePage-top'>
+    <div className='home'>
+      <div className='home-top'>
         <Carousel />
       </div>
-      <div className='homePage-main'>
-        {isMobile ? <CinemaMobile /> : <Cinema />}
-
+      <div className='home-main'>
         <FilterBooking />
         <div className='container'>
           {/* Tab danh sách phim */}
           {!loading ? (
-            <div className='homePage-tab'>
+            <div className='home-tab'>
               <Tabs defaultActiveKey='1'>
                 <TabPane tab='Đang chiếu' key='1'>
                   <MovieList listMovie={data.isShowingMovie} />
@@ -56,7 +54,8 @@ export const HomePage = () => {
           ) : (
             "Loading"
           )}
-
+          {/* Phần Lịch chiếu phim */}
+          {isMobile ? <CinemaMobile /> : <Cinema />}
           {/* Phần Tin tức */}
           <Article />
         </div>

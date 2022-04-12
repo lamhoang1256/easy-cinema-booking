@@ -1,0 +1,19 @@
+@use "../../../../assets/scss/helpers/index.scss" as *;
+.listmovie {
+  &-container {
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 30px 25px;
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  .btn.btn--primary {
+    margin: 20px auto;
+    padding: 10px 40px;
+  }
+}

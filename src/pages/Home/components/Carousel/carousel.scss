@@ -1,0 +1,122 @@
+@use "../../../../assets/scss/helpers/index.scss" as *;
+.carousel {
+  background-color: #000;
+  overflow: hidden;
+  &-boxed {
+    position: relative;
+  }
+  // ảnh background home
+  &-banner {
+    width: 100%;
+    object-fit: cover;
+  }
+  // custom css for content in carousel banner
+  &-main {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    inset: 0;
+    padding-top: 25vh;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0);
+    user-select: text;
+    @include tablet {
+      position: unset;
+      padding: 40px 80px 80px;
+      flex-direction: column;
+      @include flexbox(center, center);
+    }
+    @include mobile {
+      padding: 40px 20px 100px;
+    }
+  }
+  &-heading {
+    color: #fff;
+    font-weight: 600;
+    font-size: 5rem;
+    letter-spacing: 1.5px;
+    @include mobile {
+      font-size: 3rem;
+    }
+  }
+  &-desc {
+    max-width: 580px;
+    @include mobile {
+      max-width: 300px;
+    }
+  }
+  &-features {
+    display: flex;
+    gap: 0 20px;
+    margin: 20px 0;
+    span {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+  }
+  &-btn {
+    @include flexbox(center);
+    padding: 10px 20px;
+    margin-top: 30px;
+    border-radius: 40px;
+    gap: 0 10px;
+    ion-icon {
+      font-size: 2.2rem;
+    }
+  }
+  &-info {
+    display: flex;
+    gap: 0 20px;
+    ion-icon {
+      font-size: 1.8rem;
+      color: #ffff00;
+    }
+  }
+  &-info-label {
+    @include flexbox(center);
+    gap: 0 10px;
+    ion-icon {
+      color: $primary-color;
+    }
+  }
+  // CUSTOM STYLE SLICK-REACT (style cho các dots và nút next, prev)
+  .slick-slider {
+    height: 100vh;
+    @media screen and (max-width: 1023.98px) {
+      height: unset;
+      min-height: 80vh;
+    }
+  }
+  .slick-dots {
+    bottom: 50px;
+    .slick-active {
+      button:before {
+        color: $primary-color;
+      }
+    }
+  }
+  .slick-dots li button:before {
+    font-size: 18px;
+    color: $grayea;
+  }
+  .carousel-prev,
+  .carousel-next {
+    @include position(absolute, $bottom: 50%, $z-index: 10);
+    transform: translateY(50%);
+    color: #fff;
+    font-size: 5rem;
+    cursor: pointer;
+    @include tablet {
+      bottom: 40%;
+    }
+    @include mobile {
+      bottom: 55px;
+      font-size: 4rem;
+    }
+  }
+  .carousel-prev {
+    left: 30px;
+  }
+  .carousel-next {
+    right: 30px;
+  }
+}

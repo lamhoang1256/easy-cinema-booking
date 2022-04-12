@@ -74,3 +74,12 @@ Quá trình làm đồ án ReactJS
 - Xử lí update user profile
 - Tối ưu redux folder -> gom movieDetail + movieComment thành movieDetail
 - Thành công xử lí lịch sử đặt vé
+
+10/04/2022
+
+- Tạo giao diện desktop của Đặt vé phim
+
+11/04/2022
+
+- Responsize đặt vé phim ở tablet
+- Tạo giao diện mobile cho Đặt vé phim
