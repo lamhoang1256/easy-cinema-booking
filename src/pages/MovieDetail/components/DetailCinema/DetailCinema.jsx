@@ -7,49 +7,68 @@ import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
 import formatDateToHour from "utilities/formatDateToHour";
 import "./detailCinema.scss";
-import { filterDayCinema } from "utilities/filterDayCinema";
 
 export const DetailCinema = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieDetail);
   const { TabPane } = Tabs;
 
-  function padTo2Digits(num) {
-    return num.toString().padStart(2, "0");
-  }
-
-  function formatDate(date) {
-    return [
-      padTo2Digits(date.getDate()),
-      padTo2Digits(date.getMonth() + 1),
-      date.getFullYear(),
-    ].join("/");
-  }
+  const increaseDate = (time, numSecondIncrease) => {
+    const timestamp = new Date(time).getTime();
+    const increaseTime = timestamp + numSecondIncrease;
+    return increaseTime;
+  };
 
   useEffect(() => {
     dispatch(getCinemaAction());
   }, []);
 
   return (
-    <div className='detail-cinema'>
+    <div className='cinema'>
       {dataCinema ? (
         <div className='container'>
-          <h2 className='detail-cinema-heading'>Lịch chiếu phim</h2>
-          <div className='detail-cinema-container'>
+          <h2 className='cinema-heading'>Lịch chiếu phim</h2>
+          <div className='cinema-container'>
             {/* hệ thống rạp */}
             <Tabs defaultActiveKey='1' tabPosition='top'>
               {dataCinema.heThongRapChieu.map((cinema, index) => (
-                <TabPane tab={<img className='detail-cinema-icon' src={cinema.logo} />} key={index}>
-                  {cinema.cumRapChieu.map((showtime, indexShowtime) => {
-                    console.log(showtime);
-                    return (
-                      <Tabs defaultActiveKey='1' tabPosition='left'>
-                        <TabPane tab={showtime.tenCumRap} key={indexShowtime}>
-                          {filterDayCinema(showtime.lichChieuPhim)}
-                        </TabPane>
-                      </Tabs>
-                    );
-                  })}
+                <TabPane tab={<img className='cinema-icon' src={cinema.logo} />} key={index}>
+                  <Tabs defaultActiveKey='1' tabPosition='left'>
+                    {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
+                      <TabPane
+                        key={cinemaItemIndex}
+                        tab={<p className='cinema-name'>{cinemaItem.tenCumRap}</p>}
+                      >
+                        <div className='cinema-main'>
+                          {/* danh sách phim đang chiếu của rạp */}
+
+                          {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
+                            <div className='cinema-boxed' key={indexMovie}>
+                              <div>
+                                <p className='cinema-title'>
+                                  {new Date(movie.ngayChieuGioChieu).toLocaleDateString("vi-VI")}
+                                </p>
+                                <div className='cinema-showtime'>
+                                  <Link
+                                    to={`/booking/${movie.maLichChieu}`}
+                                    className='cinema-showtime-item'
+                                  >
+                                    <span className='cinema-showtime-big'>
+                                      {formatDateToHour(movie.ngayChieuGioChieu)}
+                                    </span>
+                                    <span> ~ </span>
+                                    {formatDateToHour(
+                                      increaseDate(movie.ngayChieuGioChieu, 7200000)
+                                    )}
+                                  </Link>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </TabPane>
+                    ))}
+                  </Tabs>
                 </TabPane>
               ))}
             </Tabs>
