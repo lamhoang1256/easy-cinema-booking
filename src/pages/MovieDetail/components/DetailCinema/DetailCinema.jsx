@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,12 +12,6 @@ export const DetailCinema = () => {
   const { dataCinema } = useSelector((state) => state.movieDetail);
   const { TabPane } = Tabs;
 
-  const increaseDate = (time, numSecondIncrease) => {
-    const timestamp = new Date(time).getTime();
-    const increaseTime = timestamp + numSecondIncrease;
-    return increaseTime;
-  };
-
   useEffect(() => {
     dispatch(getCinemaAction());
   }, []);
@@ -28,44 +21,48 @@ export const DetailCinema = () => {
       {dataCinema ? (
         <div className='container'>
           <h2 className='cinema-heading'>Lịch chiếu phim</h2>
-          <div className='cinema-container'>
-            {/* hệ thống rạp */}
-            <Tabs defaultActiveKey='1' tabPosition='top'>
-              {dataCinema.heThongRapChieu.map((cinema, index) => (
-                <TabPane tab={<img className='cinema-icon' src={cinema.logo} />} key={index}>
-                  <Tabs defaultActiveKey='1' tabPosition='left'>
-                    {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
-                      <TabPane
-                        key={cinemaItemIndex}
-                        tab={<p className='cinema-name'>{cinemaItem.tenCumRap}</p>}
-                      >
-                        <div className='cinema-main'>
-                          <div className='cinema-detail-main'>
-                            {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
-                              <div className='cinema-showtime'>
-                                <Link
-                                  to={`/booking/${movie.maLichChieu}`}
-                                  className='cinema-showtime-item'
-                                >
-                                  <span className='cinema-showtime-big'>
-                                    {`${new Date(movie.ngayChieuGioChieu).toLocaleDateString(
-                                      "vi-VI"
-                                    )} lúc ${formatDateToHour(movie.ngayChieuGioChieu)} (${
-                                      movie.tenRap
-                                    })`}
-                                  </span>
-                                </Link>
-                              </div>
-                            ))}
+          {dataCinema.heThongRapChieu.length !== 0 ? (
+            <div className='cinema-container'>
+              {/* hệ thống rạp */}
+              <Tabs defaultActiveKey='1' tabPosition='top'>
+                {dataCinema.heThongRapChieu.map((cinema, index) => (
+                  <TabPane tab={<img className='cinema-icon' src={cinema.logo} />} key={index}>
+                    <Tabs defaultActiveKey='1' tabPosition='left'>
+                      {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
+                        <TabPane
+                          key={cinemaItemIndex}
+                          tab={<p className='cinema-name'>{cinemaItem.tenCumRap}</p>}
+                        >
+                          <div className='cinema-main'>
+                            <div className='cinema-detail-main'>
+                              {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
+                                <div className='cinema-showtime' key={indexMovie}>
+                                  <Link
+                                    to={`/booking/${movie.maLichChieu}`}
+                                    className='cinema-showtime-item'
+                                  >
+                                    <span className='cinema-showtime-big'>
+                                      {`${new Date(movie.ngayChieuGioChieu).toLocaleDateString(
+                                        "vi-VI"
+                                      )} lúc ${formatDateToHour(movie.ngayChieuGioChieu)} (${
+                                        movie.tenRap
+                                      })`}
+                                    </span>
+                                  </Link>
+                                </div>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      </TabPane>
-                    ))}
-                  </Tabs>
-                </TabPane>
-              ))}
-            </Tabs>
-          </div>
+                        </TabPane>
+                      ))}
+                    </Tabs>
+                  </TabPane>
+                ))}
+              </Tabs>
+            </div>
+          ) : (
+            "Hiện chưa có lịch chiếu cho phim này!"
+          )}
         </div>
       ) : (
         "Loading"
