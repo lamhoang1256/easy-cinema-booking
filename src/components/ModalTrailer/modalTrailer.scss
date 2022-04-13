@@ -3,7 +3,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   @include flexbox(center, center);
-  @include position(fixed, 0, 0, 0, 0, 40);
+  @include position(fixed, 0, 0, 0, 0, 200);
   @include tablet {
     align-items: flex-start;
   }

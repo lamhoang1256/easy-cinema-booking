@@ -53,22 +53,17 @@ export const MovieDetail = () => {
               <div className='movie-detail-left'>
                 <div className='movie-detail-info'>
                   {/* Thumbnail phim */}
-                  <div className='single-movie-thumb'>
-                    <img
-                      src={data.hinhAnh}
-                      className='single-movie-image'
-                      alt='single-movie-thumb'
-                    />
-                    <div className='single-movie-score'>{data.danhGia / 2}</div>
-                    <div className='single-movie-overplay'>
-                      <div className='single-movie-play'>
-                        <ion-icon
-                          onClick={() => {
-                            dispatch(openModalTrailerAction(data.trailer));
-                          }}
-                          name='play-circle-outline'
-                        ></ion-icon>
-                      </div>
+                  <div className='movie-card-thumb'>
+                    <img src={data.hinhAnh} className='movie-card-image' alt='movie-card-thumb' />
+                    <div className='movie-card-score'>{data.danhGia / 2}</div>
+                    <div className='movie-card-overplay'></div>
+                    <div className='movie-card-play'>
+                      <ion-icon
+                        onClick={() => {
+                          dispatch(openModalTrailerAction(data.trailer));
+                        }}
+                        name='play-circle-outline'
+                      ></ion-icon>
                     </div>
                   </div>
                   {/* Chi tiết phim */}
