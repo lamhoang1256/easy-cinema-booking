@@ -29,14 +29,14 @@ export const Showtime = () => {
           <h2 className='showtime-heading'>Lịch chiếu phim</h2>
           <div className='showtime-container'>
             {/* hệ thống rạp */}
-            <Tabs defaultActiveKey='1' tabPosition='top'>
+            <Tabs defaultActiveKey='0' tabPosition='top'>
               {dataCinema.map((systemCinema, index) => (
                 <TabPane
                   tab={<img className='showtime-icon' src={systemCinema.logo} />}
                   key={index}
                 >
                   {/* cụm rạp */}
-                  <Tabs defaultActiveKey='1' tabPosition='left'>
+                  <Tabs defaultActiveKey='0' tabPosition='left'>
                     {systemCinema.lstCumRap.map((cinema, index) => (
                       <TabPane
                         key={index}

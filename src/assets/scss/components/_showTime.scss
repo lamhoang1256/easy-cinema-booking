@@ -103,6 +103,15 @@
   .ant-tabs-content-holder {
     width: 100%;
   }
+  .ant-tabs-left .ant-tabs-tab + .ant-tabs-tab {
+    margin: 0;
+  }
+  .ant-tabs-left .ant-tabs-tab.ant-tabs-tab-active {
+    background-color: #3d6ef7;
+    p {
+      color: #fff;
+    }
+  }
 }
 
 .showtime-mobile {

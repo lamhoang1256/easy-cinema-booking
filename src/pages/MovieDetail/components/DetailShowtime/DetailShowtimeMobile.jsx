@@ -6,7 +6,7 @@ import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
 import formatDateToHour from "utilities/formatDateToHour";
 import increaseDate from "utilities/increaseDate";
-// import "./detailShowtime.scss";
+import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
 export const DetailShowtimeMobile = () => {
@@ -27,7 +27,7 @@ export const DetailShowtimeMobile = () => {
           {dataCinema.length !== 0 ? (
             <div className='showtime-container'>
               {/* hệ thống rạp */}
-              <Tabs defaultActiveKey='1' tabPosition='top'>
+              <Tabs defaultActiveKey='0' tabPosition='top'>
                 {dataCinema.map((item, index) => (
                   <TabPane
                     tab={
@@ -39,7 +39,7 @@ export const DetailShowtimeMobile = () => {
                     key={index}
                   >
                     {/* tên hệ thống rạp*/}
-                    <Collapse defaultActiveKey={["1"]}>
+                    <Collapse defaultActiveKey={["0"]}>
                       {/* tên cụm rạp */}
                       {item.heThongRap.map((cinemaItem, cinemaItemIndex) => (
                         <Panel

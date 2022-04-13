@@ -20,11 +20,11 @@ export const DetailShowtime = () => {
 
   return (
     <div className='showtime-detail detail-showtime'>
-      <h2 className='showtime-heading'>Lịch chiếu phim</h2>
+      <h3 className='showtime-heading'>Lịch chiếu phim</h3>
       {dataCinema ? (
         <div className='showtime-wrapper'>
           {dataCinema.length !== 0 ? (
-            <Tabs defaultActiveKey='1'>
+            <Tabs defaultActiveKey='0'>
               {dataCinema.map((item, index) => (
                 <TabPane
                   tab={
@@ -35,7 +35,7 @@ export const DetailShowtime = () => {
                   }
                   key={index}
                 >
-                  <Tabs defaultActiveKey='1' tabPosition='left'>
+                  <Tabs defaultActiveKey='0' tabPosition='left'>
                     {item.heThongRap.map((cinema, cinemaIndex) => (
                       <TabPane
                         tab={<img className='showtime-icon' src={cinema.logo} alt='cinema-logo' />}
@@ -43,7 +43,10 @@ export const DetailShowtime = () => {
                       >
                         {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
                           <div key={cinemaItemIndex}>
-                            <h3>{cinemaItem.tenCumRap}</h3>
+                            <h3>
+                              {cinemaItem.tenCumRap} (
+                              {new Date(item.date).toLocaleDateString("vi-VI")})
+                            </h3>
                             <div className='showtime-openday'>
                               {cinemaItem.lichChieuPhim.map((item, itemIndex) => (
                                 <Link
