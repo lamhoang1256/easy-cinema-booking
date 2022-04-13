@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // component
 import { Comment } from "./components/Comment/Comment";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
-import { Showtime } from "./components/Showtime/Showtime";
-import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
+
 import { AddComment } from "components/AddComment/AddComment";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
@@ -18,6 +17,8 @@ import {
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
 import { useMediaQuery } from "hooks/useMediaQuery";
 import "./movieDetail.scss";
+import { DetailShowtime } from "./components/DetailShowtime/DetailShowtime";
+import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtimeMobile";
 
 export const MovieDetail = () => {
   window.scrollTo(0, 0);
@@ -26,6 +27,7 @@ export const MovieDetail = () => {
   const { data, loading, dataComment, loadingComment } = useSelector((state) => state.movieDetail);
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
+  console.log(isMobile);
 
   // get data detail movie from API thông qua id
   useEffect(() => {
@@ -100,7 +102,7 @@ export const MovieDetail = () => {
                   <p>{data.moTa}</p>
                 </div>
 
-                {isMobile ? <Showtime /> : <ShowtimeMobile />}
+                {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
 
                 {/* Đánh giá phim (comment) */}
                 <div className='comment'>

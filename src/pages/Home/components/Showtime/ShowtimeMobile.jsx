@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Collapse, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemaAction } from "redux/actions/movieCinema.action";
-import "./cinema.scss";
+// import "./showtime.scss";
 
-export const CinemaMobile = () => {
+export const ShowtimeMobile = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieCinema);
   console.log(dataCinema);
@@ -31,44 +31,44 @@ export const CinemaMobile = () => {
     dispatch(getCinemaAction());
   }, []);
 
-  const text = `
-    A dog is a type of domesticated animal.
-    Known for its loyalty and faithfulness,
-    it can be found as a welcome guest in many households across the world.
-  `;
-
   return (
-    <div className='cinema-mobile'>
+    <div className='showtime-mobile'>
       {dataCinema ? (
         <div className='container'>
-          <h2 className='cinema-heading'>Lịch chiếu phim</h2>
-          <div className='cinema-container'>
+          <h2 className='showtime-heading'>Lịch chiếu phim</h2>
+          <div className='showtime-container'>
             {/* hệ thống rạp */}
             <Tabs defaultActiveKey='1' tabPosition='top'>
               {dataCinema.map((systemCinema, index) => (
-                <TabPane tab={<img className='cinema-icon' src={systemCinema.logo} />} key={index}>
+                <TabPane
+                  tab={<img className='showtime-icon' src={systemCinema.logo} />}
+                  key={index}
+                >
                   {/* cụm rạp */}
                   <Collapse defaultActiveKey={["1"]}>
                     {systemCinema.lstCumRap.map((cinema, index) => (
-                      <Panel header={<p className='cinema-name'>{cinema.tenCumRap}</p>} key={index}>
+                      <Panel
+                        header={<p className='showtime-name'>{cinema.tenCumRap}</p>}
+                        key={index}
+                      >
                         {cinema.danhSachPhim.map((movie, indexMovie) => (
-                          <div className='cinema-boxed' key={indexMovie}>
-                            <div className='cinema-thumb'>
-                              <img src={movie.hinhAnh} alt='cinema-movie' />
+                          <div className='showtime-boxed' key={indexMovie}>
+                            <div className='showtime-thumb'>
+                              <img src={movie.hinhAnh} alt='showtime-movie' />
                             </div>
                             <div>
-                              <h3 className='cinema-title'>{movie.tenPhim}</h3>
+                              <h3 className='showtime-title'>{movie.tenPhim}</h3>
                               <span>2D Phụ đề</span>
-                              <div className='cinema-showtime'>
+                              <div className='showtime-openday'>
                                 {movie.lstLichChieuTheoPhim
                                   .slice(0, 10)
                                   .map((time, keyShowtime) => (
                                     <Link
                                       to={`/booking/${time.maLichChieu}`}
                                       key={keyShowtime}
-                                      className='cinema-showtime-item'
+                                      className='showtime-openday-item'
                                     >
-                                      <span className='cinema-showtime-big'>
+                                      <span className='showtime-openday-big'>
                                         {formatDateToHour(time.ngayChieuGioChieu)}
                                       </span>
                                       <span> ~ </span>

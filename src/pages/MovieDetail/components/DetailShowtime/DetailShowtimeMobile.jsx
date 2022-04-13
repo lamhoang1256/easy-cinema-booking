@@ -6,11 +6,10 @@ import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
 import formatDateToHour from "utilities/formatDateToHour";
 import increaseDate from "utilities/increaseDate";
-
-import "./detailCinema.scss";
+// import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
-export const ShowtimeMobile = () => {
+export const DetailShowtimeMobile = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieDetail);
   const { Panel } = Collapse;
@@ -21,18 +20,18 @@ export const ShowtimeMobile = () => {
   }, []);
 
   return (
-    <div className='cinema-mobile'>
+    <div className='detail-showtime-mobile'>
       {dataCinema ? (
         <div>
-          <h2 className='cinema-heading'>Lịch chiếu phim</h2>
+          <h2 className='showtime-heading'>Lịch chiếu phim</h2>
           {dataCinema.length !== 0 ? (
-            <div className='cinema-container'>
+            <div className='showtime-container'>
               {/* hệ thống rạp */}
               <Tabs defaultActiveKey='1' tabPosition='top'>
                 {dataCinema.map((item, index) => (
                   <TabPane
                     tab={
-                      <div>
+                      <div className='showtime-openday'>
                         <p>{arrDate[new Date(item.date).getDay()]}</p>
                         <p>{new Date(item.date).toLocaleDateString("vi-VI")}</p>
                       </div>
@@ -45,9 +44,9 @@ export const ShowtimeMobile = () => {
                       {item.heThongRap.map((cinemaItem, cinemaItemIndex) => (
                         <Panel
                           header={
-                            <div className='cinema-mobile-logo'>
-                              <img className='cinema-icon' src={cinemaItem.logo} />
-                              <span>{cinemaItem.tenHeThongRap.toUpperCase()}</span>
+                            <div className='showtime-mobile-logo'>
+                              <img className='showtime-icon' src={cinemaItem.logo} />
+                              <div>{cinemaItem.tenHeThongRap.toUpperCase()}</div>
                             </div>
                           }
                           key={cinemaItemIndex}
@@ -56,19 +55,19 @@ export const ShowtimeMobile = () => {
                           {cinemaItem.cumRapChieu.map((movie, indexMovie) => (
                             <div key={indexMovie}>
                               <h3>{movie.tenCumRap}</h3>
-                              <div className='cinema-showtime'>
-                                {movie.lichChieuPhim.map((showtime, showtimeIndex) => (
+                              <div className='showtime-openday'>
+                                {movie.lichChieuPhim.map((openday, opendayIndex) => (
                                   <Link
-                                    to={`/booking/${showtime.maLichChieu}`}
-                                    key={showtimeIndex}
-                                    className='cinema-showtime-item'
+                                    to={`/booking/${openday.maLichChieu}`}
+                                    key={opendayIndex}
+                                    className='showtime-openday-item'
                                   >
-                                    <span className='cinema-showtime-big'>
-                                      {formatDateToHour(showtime.ngayChieuGioChieu)}
+                                    <span className='showtime-openday-big'>
+                                      {formatDateToHour(openday.ngayChieuGioChieu)}
                                     </span>
                                     <span> ~ </span>
                                     {formatDateToHour(
-                                      increaseDate(showtime.ngayChieuGioChieu, 7200000)
+                                      increaseDate(openday.ngayChieuGioChieu, 7200000)
                                     )}
                                   </Link>
                                 ))}

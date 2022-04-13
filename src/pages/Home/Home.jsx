@@ -8,8 +8,8 @@ import { FilterBooking } from "./components/FilterBooking/FilterBooking";
 import { MovieList } from "./components/MovieList/MovieList";
 import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
-import { Cinema } from "./components/Cinema/Cinema";
-import { CinemaMobile } from "./components/Cinema/CinemaMobile";
+import { Showtime } from "./components/Showtime/Showtime";
+import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
 // action
 import { getMovieListAction } from "redux/actions/movieList.action";
 import "./home.scss";
@@ -55,7 +55,7 @@ export const Home = () => {
             "Loading"
           )}
           {/* Phần Lịch chiếu phim */}
-          {isMobile ? <CinemaMobile /> : <Cinema />}
+          {isMobile ? <ShowtimeMobile /> : <Showtime />}
           {/* Phần Tin tức */}
           <Article />
         </div>

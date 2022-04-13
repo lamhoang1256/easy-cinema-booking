@@ -6,10 +6,10 @@ import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
 import formatDateToHour from "utilities/formatDateToHour";
 import increaseDate from "utilities/increaseDate";
-import "./detailCinema.scss";
+import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
-export const Showtime = () => {
+export const DetailShowtime = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieDetail);
   const { TabPane } = Tabs;
@@ -19,16 +19,16 @@ export const Showtime = () => {
   }, []);
 
   return (
-    <div className='cinema-detail'>
-      <h2 className='cinema-heading'>Lịch chiếu phim</h2>
+    <div className='showtime-detail detail-showtime'>
+      <h2 className='showtime-heading'>Lịch chiếu phim</h2>
       {dataCinema ? (
-        <div className='cinema-wrapper'>
+        <div className='showtime-wrapper'>
           {dataCinema.length !== 0 ? (
             <Tabs defaultActiveKey='1'>
               {dataCinema.map((item, index) => (
                 <TabPane
                   tab={
-                    <div>
+                    <div className='showtime-header'>
                       <p>{arrDate[new Date(item.date).getDay()]}</p>
                       <p>{new Date(item.date).toLocaleDateString("vi-VI")}</p>
                     </div>
@@ -38,20 +38,20 @@ export const Showtime = () => {
                   <Tabs defaultActiveKey='1' tabPosition='left'>
                     {item.heThongRap.map((cinema, cinemaIndex) => (
                       <TabPane
-                        tab={<img className='cinema-icon' src={cinema.logo} />}
+                        tab={<img className='showtime-icon' src={cinema.logo} alt='cinema-logo' />}
                         key={cinemaIndex}
                       >
                         {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
                           <div key={cinemaItemIndex}>
                             <h3>{cinemaItem.tenCumRap}</h3>
-                            <div className='cinema-showtime'>
+                            <div className='showtime-openday'>
                               {cinemaItem.lichChieuPhim.map((item, itemIndex) => (
                                 <Link
                                   to={`/booking/${item.maLichChieu}`}
                                   key={itemIndex}
-                                  className='cinema-showtime-item'
+                                  className='showtime-openday-item'
                                 >
-                                  <span className='cinema-showtime-big'>
+                                  <span className='showtime-openday-big'>
                                     {formatDateToHour(item.ngayChieuGioChieu)}
                                   </span>
                                   <span> ~ </span>

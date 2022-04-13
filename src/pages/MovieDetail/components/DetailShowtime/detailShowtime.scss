@@ -1,7 +1,4 @@
-.cinema-detail {
-  &-showtime {
-    display: unset;
-  }
+.detail-showtime {
   .ant-tabs-nav-list {
     overflow-x: auto;
     &::-webkit-scrollbar {
@@ -20,16 +17,19 @@
     display: none;
   }
 }
-
-.cinema-mobile-logo {
+.detail-showtime-mobile {
+  .ant-tabs > .ant-tabs-nav {
+    margin: 0;
+  }
+  .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list {
+    padding-left: 20px;
+  }
+}
+.showtime-mobile-logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-.cinema-mobile .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+.detail-showtime-mobile .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   align-items: center;
 }
-// .cinema-mobile .ant-tabs-top .ant-tabs-ink-bar {
-//   display: none;
-// }
