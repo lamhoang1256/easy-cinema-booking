@@ -1,11 +1,29 @@
 .cinema-detail {
-  &-main {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 20px;
-    padding-bottom: 30px;
-  }
   &-showtime {
     display: unset;
   }
+  .ant-tabs-nav-list {
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      border-radius: 8px;
+    }
+  }
+}
+
+.cinema-mobile-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  align-items: center;
 }

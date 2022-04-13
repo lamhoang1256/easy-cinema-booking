@@ -14,6 +14,12 @@ export const DetailCinemaMobile = () => {
   const { Panel } = Collapse;
   const { TabPane } = Tabs;
 
+  const increaseDate = (time, numSecondIncrease) => {
+    const timestamp = new Date(time).getTime();
+    const increaseTime = timestamp + numSecondIncrease;
+    return increaseTime;
+  };
+
   const formatDateToHour = (time) => {
     const formatDate = new Date(time).toLocaleTimeString("vi-VN", {
       hour: "2-digit",
@@ -21,6 +27,7 @@ export const DetailCinemaMobile = () => {
     });
     return formatDate;
   };
+  const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
   useEffect(() => {
     dispatch(getCinemaAction());
@@ -34,29 +41,47 @@ export const DetailCinemaMobile = () => {
           <div className='cinema-container'>
             {/* hệ thống rạp */}
             <Tabs defaultActiveKey='1' tabPosition='top'>
-              {dataCinema.heThongRapChieu.map((cinema, index) => (
-                <TabPane tab={<img className='cinema-icon' src={cinema.logo} />} key={index}>
+              {dataCinema.map((item, index) => (
+                <TabPane
+                  tab={
+                    <div>
+                      <p>{arrDate[new Date(item.date).getDay()]}</p>
+                      <p>{new Date(item.date).toLocaleDateString("vi-VI")}</p>
+                    </div>
+                  }
+                  key={index}
+                >
                   {/* cụm rạp */}
                   <Collapse defaultActiveKey={["1"]}>
-                    {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
+                    {item.heThongRap.map((cinemaItem, cinemaItemIndex) => (
                       <Panel
-                        header={<p className='cinema-name'>{cinemaItem.tenCumRap}</p>}
+                        header={
+                          <div className='cinema-mobile-logo'>
+                            <img className='cinema-icon' src={cinemaItem.logo} />
+                            <span>{cinemaItem.tenHeThongRap.toUpperCase()}</span>
+                          </div>
+                        }
                         key={cinemaItemIndex}
                       >
-                        {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
-                          <div className='cinema-showtime' key={indexMovie}>
-                            <Link
-                              to={`/booking/${movie.maLichChieu}`}
-                              className='cinema-showtime-item'
-                            >
-                              <span className='cinema-showtime-big'>
-                                {`${new Date(movie.ngayChieuGioChieu).toLocaleDateString(
-                                  "vi-VI"
-                                )} lúc ${formatDateToHour(movie.ngayChieuGioChieu)} (${
-                                  movie.tenRap
-                                })`}
-                              </span>
-                            </Link>
+                        {cinemaItem.cumRapChieu.map((movie, indexMovie) => (
+                          <div key={indexMovie}>
+                            <h3>{movie.tenCumRap}</h3>
+                            <div className='cinema-showtime'>
+                              {movie.lichChieuPhim.map((item, itemIndex) => (
+                                // <div key={itemIndex}>{item.ngayChieuGioChieu}</div>
+                                <Link
+                                  to={`/booking/${item.maLichChieu}`}
+                                  key={itemIndex}
+                                  className='cinema-showtime-item'
+                                >
+                                  <span className='cinema-showtime-big'>
+                                    {formatDateToHour(item.ngayChieuGioChieu)}
+                                  </span>
+                                  <span> ~ </span>
+                                  {formatDateToHour(increaseDate(item.ngayChieuGioChieu, 7200000))}
+                                </Link>
+                              ))}
+                            </div>
                           </div>
                         ))}
                       </Panel>
