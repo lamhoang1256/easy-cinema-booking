@@ -10,6 +10,7 @@ import "./detailCinema.scss";
 export const DetailCinema = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieDetail);
+  console.log(dataCinema);
   const { TabPane } = Tabs;
 
   useEffect(() => {
@@ -17,52 +18,28 @@ export const DetailCinema = () => {
   }, []);
 
   return (
-    <div className='cinema cinema-detail'>
+    <div className='cinema-detail'>
       {dataCinema ? (
         <div className='container'>
           <h2 className='cinema-heading'>Lịch chiếu phim</h2>
-          {dataCinema.heThongRapChieu.length !== 0 ? (
-            <div className='cinema-container'>
-              {/* hệ thống rạp */}
-              <Tabs defaultActiveKey='1' tabPosition='top'>
-                {dataCinema.heThongRapChieu.map((cinema, index) => (
-                  <TabPane tab={<img className='cinema-icon' src={cinema.logo} />} key={index}>
-                    <Tabs defaultActiveKey='1' tabPosition='left'>
-                      {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
-                        <TabPane
-                          key={cinemaItemIndex}
-                          tab={<p className='cinema-name'>{cinemaItem.tenCumRap}</p>}
-                        >
-                          <div className='cinema-main'>
-                            <div className='cinema-detail-main'>
-                              {cinemaItem.lichChieuPhim.map((movie, indexMovie) => (
-                                <div className='cinema-showtime' key={indexMovie}>
-                                  <Link
-                                    to={`/booking/${movie.maLichChieu}`}
-                                    className='cinema-showtime-item'
-                                  >
-                                    <span className='cinema-showtime-big'>
-                                      {`${new Date(movie.ngayChieuGioChieu).toLocaleDateString(
-                                        "vi-VI"
-                                      )} lúc ${formatDateToHour(movie.ngayChieuGioChieu)} (${
-                                        movie.tenRap
-                                      })`}
-                                    </span>
-                                  </Link>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </TabPane>
-                      ))}
-                    </Tabs>
-                  </TabPane>
-                ))}
-              </Tabs>
-            </div>
-          ) : (
-            "Hiện chưa có lịch chiếu cho phim này!"
-          )}
+          <div className='cinema-wrapper'>
+            <Tabs defaultActiveKey='1'>
+              {dataCinema.map((item, index) => (
+                <TabPane tab={item.date} key={index}>
+                  <Tabs defaultActiveKey='1'>
+                    {item.heThongRap.map((cinema, cinemaIndex) => (
+                      <TabPane
+                        tab={<img className='cinema-icon' src={cinema.logo} />}
+                        key={cinemaIndex}
+                      >
+                        Content of Tab Pane 1
+                      </TabPane>
+                    ))}
+                  </Tabs>
+                </TabPane>
+              ))}
+            </Tabs>
+          </div>
         </div>
       ) : (
         "Loading"
