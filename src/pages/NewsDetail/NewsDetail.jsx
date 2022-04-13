@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { dataFakeNews } from "constants/dataFakeNews";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import "./newsDetail.scss";
+import { Banner } from "components/Banner/Banner";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
@@ -20,16 +21,7 @@ export const NewsDetail = () => {
     <>
       {dataPost ? (
         <div className='new-detail'>
-          <div
-            className='new-detail-top'
-            style={{
-              backgroundImage: urlBanner,
-            }}
-          >
-            <div className='new-detail-heading'>
-              <h2>News Detail</h2>
-            </div>
-          </div>
+          <Banner urlBanner={urlBanner} heading={"Trang tin chi tiết"} />
           <div className='container'>
             <div className='new-detail-main'>
               <div className='new-detail-left'>

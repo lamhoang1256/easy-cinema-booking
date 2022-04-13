@@ -1,0 +1,28 @@
+@use "../../assets/scss/helpers/index.scss" as *;
+.banner {
+  position: relative;
+  height: 30vh;
+  width: 100%;
+  padding-top: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  @include flexbox(center, center);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  @include tablet {
+    height: 30vh;
+  }
+  &-heading {
+    position: relative;
+    h2 {
+      color: #fff;
+      font-size: 4rem;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
+}

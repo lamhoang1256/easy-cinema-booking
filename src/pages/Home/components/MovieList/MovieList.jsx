@@ -19,7 +19,7 @@ export const MovieList = (props) => {
         ))}
       </div>
       <button className='btn btn--primary' onClick={handleLoadMore}>
-        Load more
+        Xem thêm
       </button>
     </div>
   );

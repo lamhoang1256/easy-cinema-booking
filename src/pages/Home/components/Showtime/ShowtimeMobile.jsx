@@ -3,29 +3,15 @@ import { Link } from "react-router-dom";
 import { Collapse, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemaAction } from "redux/actions/movieCinema.action";
-// import "./showtime.scss";
+// utilities
+import formatDateToHour from "utilities/formatDateToHour";
+import increaseDate from "utilities/increaseDate";
 
 export const ShowtimeMobile = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieCinema);
-  console.log(dataCinema);
-
   const { Panel } = Collapse;
   const { TabPane } = Tabs;
-
-  const increaseDate = (time, numSecondIncrease) => {
-    const timestamp = new Date(time).getTime();
-    const increaseTime = timestamp + numSecondIncrease;
-    return increaseTime;
-  };
-
-  const formatDateToHour = (time) => {
-    const formatDate = new Date(time).toLocaleTimeString("vi-VN", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    return formatDate;
-  };
 
   useEffect(() => {
     dispatch(getCinemaAction());
@@ -95,28 +81,3 @@ export const ShowtimeMobile = () => {
     </div>
   );
 };
-
-{
-  /* <Collapse defaultActiveKey={["1"]}>
-  <Panel header='This is panel header 1' key='1'>
-    <p>{text}</p>
-  </Panel>
-</Collapse> */
-}
-{
-  /* {dataCinema ? (
-    <Collapse defaultActiveKey={["1"]}>
-      <Panel header='This is panel header 1' key='1'>
-        <p>{text}</p>
-      </Panel>
-      <Panel header='This is panel header 2' key='2'>
-        <p>{text}</p>
-      </Panel>
-      <Panel header='This is panel header 3' key='3'>
-        <p>{text}</p>
-      </Panel>
-    </Collapse>
-  ) : (
-    "Loading"
-  )} */
-}

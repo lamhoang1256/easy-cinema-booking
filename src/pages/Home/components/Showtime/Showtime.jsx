@@ -5,18 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
 import formatDateToHour from "utilities/formatDateToHour";
-// import "./showtime.scss";
+import increaseDate from "utilities/increaseDate";
 
 export const Showtime = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieCinema);
   const { TabPane } = Tabs;
-
-  const increaseDate = (time, numSecondIncrease) => {
-    const timestamp = new Date(time).getTime();
-    const increaseTime = timestamp + numSecondIncrease;
-    return increaseTime;
-  };
 
   useEffect(() => {
     dispatch(getCinemaAction());

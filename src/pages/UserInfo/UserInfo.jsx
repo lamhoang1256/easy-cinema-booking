@@ -10,6 +10,7 @@ import { schemaYupRegister } from "constants/schemaYupRegister";
 import { MovieHistory } from "./components/MovieHistory";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 import "./userInfo.scss";
+import { Banner } from "components/Banner/Banner";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
@@ -44,19 +45,10 @@ export const UserInfo = () => {
   }, []);
 
   return (
-    <div className='user-info'>
+    <>
       {userDetail ? (
-        <>
-          <div
-            className='new-detail-top'
-            style={{
-              backgroundImage: urlBanner,
-            }}
-          >
-            <div className='new-detail-heading'>
-              <h2>Thông tin tài khoản</h2>
-            </div>
-          </div>
+        <div className='user-info'>
+          <Banner urlBanner={urlBanner} heading={"Thông tin tài khoản"} />
           <div className='user-info-wrapper'>
             <div className='container'>
               <div className='user-info-top'>
@@ -204,11 +196,11 @@ export const UserInfo = () => {
               </Tabs>
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <LoadingAnimation />
       )}
-    </div>
+    </>
   );
 };
 

@@ -19,6 +19,7 @@ import { useMediaQuery } from "hooks/useMediaQuery";
 import "./movieDetail.scss";
 import { DetailShowtime } from "./components/DetailShowtime/DetailShowtime";
 import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtimeMobile";
+import { Banner } from "components/Banner/Banner";
 
 export const MovieDetail = () => {
   window.scrollTo(0, 0);
@@ -42,11 +43,7 @@ export const MovieDetail = () => {
         <div className='movie-detail'>
           <div
             className='movie-detail-top'
-            style={{
-              backgroundImage: `url(
-            ${data.hinhAnh}
-          )`,
-            }}
+            style={{ backgroundImage: `url(${data.hinhAnh})` }}
           ></div>
           <div className='container'>
             <div className='movie-detail-main'>

@@ -9,6 +9,7 @@ import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBuyTicket.action";
 import "./movieBuyTicket.scss";
 import { useParams } from "react-router-dom";
+import { Banner } from "components/Banner/Banner";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
@@ -64,16 +65,7 @@ export const MovieBuyTicket = () => {
     <>
       {!loading ? (
         <div className='movie-booking'>
-          <div
-            className='movie-booking-top'
-            style={{
-              backgroundImage: urlBanner,
-            }}
-          >
-            <div className='movie-booking-heading'>
-              <h2>Trang đặt vé phim</h2>
-            </div>
-          </div>
+          <Banner urlBanner={urlBanner} heading={"Trang đặt vé phim"} />
           <div className='container'>
             <div className='movie-booking-container'>
               <div className='movie-booking-left'>
