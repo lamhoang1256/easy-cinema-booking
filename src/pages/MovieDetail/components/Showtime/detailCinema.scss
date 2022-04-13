@@ -16,6 +16,9 @@
       border-radius: 8px;
     }
   }
+  .ant-tabs-top .ant-tabs-ink-bar {
+    display: none;
+  }
 }
 
 .cinema-mobile-logo {
@@ -24,6 +27,9 @@
   gap: 10px;
 }
 
-.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+.cinema-mobile .ant-collapse > .ant-collapse-item > .ant-collapse-header {
   align-items: center;
 }
+// .cinema-mobile .ant-tabs-top .ant-tabs-ink-bar {
+//   display: none;
+// }

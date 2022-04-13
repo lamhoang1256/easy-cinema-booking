@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
-import { Comment } from "./components/Comment";
+import { Comment } from "./components/Comment/Comment";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
+import { Showtime } from "./components/Showtime/Showtime";
+import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
 import { AddComment } from "components/AddComment/AddComment";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
@@ -14,14 +16,11 @@ import {
   getCinemaDetailMovieAction,
 } from "redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
-import "./movieDetail.scss";
-import { DetailCinema } from "./components/DetailCinema/DetailCinema";
-import { DetailCinemaMobile } from "./components/DetailCinema/DetaiCinemaMobile";
 import { useMediaQuery } from "hooks/useMediaQuery";
+import "./movieDetail.scss";
 
 export const MovieDetail = () => {
   window.scrollTo(0, 0);
-
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
   const { data, loading, dataComment, loadingComment } = useSelector((state) => state.movieDetail);
@@ -101,7 +100,7 @@ export const MovieDetail = () => {
                   <p>{data.moTa}</p>
                 </div>
 
-                {isMobile ? <DetailCinemaMobile /> : <DetailCinema />}
+                {isMobile ? <Showtime /> : <ShowtimeMobile />}
 
                 {/* Đánh giá phim (comment) */}
                 <div className='comment'>
