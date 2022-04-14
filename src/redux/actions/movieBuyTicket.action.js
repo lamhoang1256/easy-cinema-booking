@@ -23,7 +23,6 @@ export const getMovieBookingAction = (id) => async (dispatch) => {
 
 // chọn ghế
 export const selectChairAction = (infoChair) => async (dispatch) => {
-  console.log(infoChair);
   dispatch({ type: SELECT_CHAIR, payload: infoChair });
 };
 

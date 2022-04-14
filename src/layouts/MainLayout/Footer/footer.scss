@@ -1,29 +1,27 @@
 @use "../../../assets/scss/helpers/index.scss" as *;
 .footer {
   margin-top: 50px;
-  padding: 50px 0 30px;
-  background-color: #eaeaea;
-  .footer-top {
-    gap: 20px 0;
-    @include flexbox($justify-content: space-between);
-    color: $primary-color;
+  padding: 50px 0 50px;
+  background-color: #e3e3e3;
+  &-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
     @include mobile {
-      flex-direction: column;
-      align-items: center;
+      grid-template-columns: repeat(1, 1fr);
     }
   }
-  .footer-list {
-    display: flex;
-    gap: 20px 40px;
-    @include mobile {
-      flex-direction: column;
+  &-item:last-child {
+    h3 {
+      font-size: 3rem;
+      color: $primary-color;
     }
   }
-  .footer-link {
-    color: #000;
-  }
-  .footer-bottom {
-    margin-top: 40px;
+  &-copyright {
     text-align: center;
+    padding-top: 60px;
   }
 }

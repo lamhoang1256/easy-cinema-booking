@@ -4,17 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { getMovieBookingAction, resetSelectingChair } from "redux/actions/movieBuyTicket.action";
 import "./modalBill.scss";
 
-export const ModalBill = ({ openModal, setOpenModall, totalMoney }) => {
+export const ModalBill = ({ openModal, setOpenModall, totalMoney, id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { dataMovieBooking, listGheDangChon } = useSelector((state) => state.movieBooking);
+  const { userInfo } = useSelector((state) => state.user);
 
   const handleComebackHome = () => {
     navigate("/");
   };
 
   const handleContinueBuyTicket = () => {
-    dispatch(getMovieBookingAction());
+    dispatch(getMovieBookingAction(id));
     setOpenModall(!openModal);
     dispatch(resetSelectingChair());
     window.scrollTo(0, 0);
@@ -25,10 +26,7 @@ export const ModalBill = ({ openModal, setOpenModall, totalMoney }) => {
       <div className='modal-bill-main'>
         <div className='modal-bill-movie'>
           <div className='modal-bill-thumb'>
-            <img
-              src='http://movie0706.cybersoft.edu.vn/hinhanh/tran-chien-midway_gp09.jpg'
-              alt=''
-            />
+            <img src={dataMovieBooking.thongTinPhim.hinhAnh} alt='modal-thumb' />
           </div>
           <div className='modal-bill-info'>
             <div>
@@ -58,13 +56,13 @@ export const ModalBill = ({ openModal, setOpenModall, totalMoney }) => {
         <div className='modal-bill-user'>
           <h2>Thông tin đặt vé</h2>
           <p>
-            <span className='user-label'>Họ tên: </span> Nguyễn Hoàng Lâm
+            <span className='user-label'>Họ tên: </span> {userInfo.hoTen}
           </p>
           <p>
-            <span className='user-label'>Điện thoại: </span> 0893832123
+            <span className='user-label'>Điện thoại: </span> {userInfo.soDT}
           </p>
           <p>
-            <span className='user-label'>Email : </span> hoanglam@gmail.com
+            <span className='user-label'>Email : </span> {userInfo.email}
           </p>
           <p>
             <span className='user-label'>Trạng thái : </span>

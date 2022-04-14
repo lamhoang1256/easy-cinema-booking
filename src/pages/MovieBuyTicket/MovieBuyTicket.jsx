@@ -19,6 +19,7 @@ export const MovieBuyTicket = () => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const { dataMovieBooking, listGheDangChon, loading } = useSelector((state) => state.movieBooking);
+  const { userInfo } = useSelector((state) => state.user);
 
   //tính tổng tiền của các ghế
   const totalMoney = listGheDangChon.reduce(function (prevValue, currentValue) {
@@ -50,6 +51,15 @@ export const MovieBuyTicket = () => {
       });
       return;
     }
+    if (!userInfo) {
+      Swal.fire({
+        icon: "error",
+        title: "Mua vé thất bại",
+        text: "Vui lòng đăng nhập để tiếp tục mua vé!",
+        confirmButtonColor: "#d33",
+      });
+      return;
+    }
     const { isBuyTicketSuccess } = await dispatch(buyTicketAction(dataToBuyTicket));
     if (isBuyTicketSuccess) {
       setOpenModal(!openModal);
@@ -59,7 +69,7 @@ export const MovieBuyTicket = () => {
   useEffect(() => {
     dispatch(getMovieBookingAction(id));
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -150,7 +160,12 @@ export const MovieBuyTicket = () => {
           </div>
           {/* mở modal bill khi đặt vé thành công  */}
           {openModal && (
-            <ModalBill setOpenModall={setOpenModal} openModal={openModal} totalMoney={totalMoney} />
+            <ModalBill
+              setOpenModall={setOpenModal}
+              openModal={openModal}
+              totalMoney={totalMoney}
+              id={id}
+            />
           )}
         </div>
       ) : (
