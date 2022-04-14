@@ -12,7 +12,9 @@ import { Showtime } from "./components/Showtime/Showtime";
 import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
 // action
 import { getMovieListAction } from "redux/actions/movieList.action";
+import Skeleton from "react-loading-skeleton";
 import "./home.scss";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const Home = () => {
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
@@ -39,18 +41,18 @@ export const Home = () => {
             <div className='home-tab'>
               <Tabs defaultActiveKey='1'>
                 <TabPane tab='Đang chiếu' key='1'>
-                  <MovieList listMovie={data.isShowingMovie} />
+                  <MovieList listMovie={data?.isShowingMovie} />
                 </TabPane>
                 <TabPane tab='Sắp chiếu' key='2'>
-                  <MovieList listMovie={data.comingSoonMovie} />
+                  <MovieList listMovie={data?.comingSoonMovie} />
                 </TabPane>
                 <TabPane tab='Đang hot' key='3'>
-                  <MovieList listMovie={data.hotMovie} />
+                  <MovieList listMovie={data?.hotMovie} />
                 </TabPane>
               </Tabs>
             </div>
           ) : (
-            "Loading"
+            <Skeleton height={600} />
           )}
           {/* Phần Lịch chiếu phim */}
           <div id='showtime'>{isMobile ? <ShowtimeMobile /> : <Showtime />}</div>

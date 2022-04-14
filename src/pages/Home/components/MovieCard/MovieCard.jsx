@@ -62,7 +62,7 @@ export const MovieCard = (props) => {
           </div>
         </div>
       ) : (
-        "Loading"
+        "Loading Movie Card"
       )}
     </>
   );
