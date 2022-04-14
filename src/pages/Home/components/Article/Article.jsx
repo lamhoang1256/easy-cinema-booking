@@ -8,7 +8,7 @@ export const Article = () => {
   return (
     <>
       {dataFakeNews && (
-        <div className='news'>
+        <div className='news' id='news'>
           <h2 className='news-heading'>Top news</h2>
           <div className='news-container'>
             <div className='news-main'>

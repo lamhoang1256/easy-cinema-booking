@@ -98,7 +98,6 @@ export const MovieBuyTicket = () => {
               <div className='movie-booking-right'>
                 <div className='movie-booking-info-movie'>
                   <h2>Thông tin phim</h2>
-
                   <div className='movie-booking-thumb'>
                     <img src={dataMovieBooking.thongTinPhim.hinhAnh} alt='movie-thumb' />
                   </div>
@@ -134,18 +133,24 @@ export const MovieBuyTicket = () => {
                 </div>
                 <div className='movie-booking-info-user'>
                   <h2>Thông tin khách hàng</h2>
-                  <div className='movie-booking-openday'>
-                    <span className='label'>Họ tên: </span>
-                    Nguyễn Hoàng Lâm
-                  </div>
-                  <div className='movie-booking-email'>
-                    <span className='label'>Email: </span>
-                    lamhoang@gmail.com
-                  </div>
-                  <div className='movie-booking-phone'>
-                    <span className='label'>Số điện thoại: </span>
-                    0830384028
-                  </div>
+                  {userInfo ? (
+                    <>
+                      <div className='movie-booking-openday'>
+                        <span className='label'>Họ tên: </span>
+                        {userInfo.hoTen}
+                      </div>
+                      <div className='movie-booking-email'>
+                        <span className='label'>Email: </span>
+                        {userInfo.email}
+                      </div>
+                      <div className='movie-booking-phone'>
+                        <span className='label'>Số điện thoại: </span>
+                        {userInfo.soDT}
+                      </div>
+                    </>
+                  ) : (
+                    "Đăng nhập để xem thông tin của bạn"
+                  )}
                 </div>
                 <div className='movie-booking-bill'>
                   <h2 className='movie-booking-price'>

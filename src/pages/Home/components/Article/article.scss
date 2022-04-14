@@ -1,5 +1,6 @@
 @use "../../../../assets/scss/helpers/index.scss" as *;
 .news {
+  padding-top: 100px;
   &-container {
     display: flex;
     gap: 40px;

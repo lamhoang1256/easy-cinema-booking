@@ -1,23 +1,44 @@
 import { dataFakeAvatar } from "constants/dataFakeAvatar";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { logoutAction } from "redux/actions/user.action";
+import { scroller } from "react-scroll";
 import "./header.scss";
 
 const headerNav = [
-  { display: "Lịch chiếu", path: "/" },
+  { display: "Lịch chiếu", path: "showtime" },
+  { display: "Tin tức", path: "news" },
   { display: "Cụm rạp", path: "/" },
-  { display: "Tin tức", path: "/" },
   { display: "Ứng dụng", path: "/" },
 ];
 
 export const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { userInfo } = useSelector((state) => state.user);
 
   const handleLogout = () => {
     dispatch(logoutAction());
+  };
+
+  // xử lí khi nhấn các link trong navbar header
+  const handleClickLink = async (id) => {
+    if (location.pathname === "/") {
+      scroller.scrollTo(id, {
+        duration: 800,
+        smooth: "easeInOutQuart",
+      });
+    } else {
+      await navigate("/");
+      setTimeout(() => {
+        scroller.scrollTo(id, {
+          duration: 800,
+          smooth: "easeInOutQuart",
+        });
+      }, 600);
+    }
   };
 
   // xử lí toggle menu
@@ -54,9 +75,9 @@ export const Header = () => {
               <ul className='navbar'>
                 {headerNav.map((item, index) => (
                   <li className='navbar-item' key={index}>
-                    <NavLink to={item.path} className='navbar-link'>
+                    <span className='navbar-link' onClick={() => handleClickLink(item.path)}>
                       {item.display}
-                    </NavLink>
+                    </span>
                   </li>
                 ))}
               </ul>

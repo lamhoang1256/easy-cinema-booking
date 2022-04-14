@@ -15,10 +15,8 @@ import { getMovieListAction } from "redux/actions/movieList.action";
 import "./home.scss";
 
 export const Home = () => {
-  // window.scrollTo(0, 0);
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
-
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.movieList);
 
@@ -55,7 +53,7 @@ export const Home = () => {
             "Loading"
           )}
           {/* Phần Lịch chiếu phim */}
-          {isMobile ? <ShowtimeMobile /> : <Showtime />}
+          <div id='showtime'>{isMobile ? <ShowtimeMobile /> : <Showtime />}</div>
           {/* Phần Tin tức */}
           <Article />
         </div>
