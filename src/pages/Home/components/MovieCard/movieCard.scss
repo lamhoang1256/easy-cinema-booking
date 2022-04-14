@@ -1,6 +1,7 @@
 @use "../../../../assets/scss/helpers/index.scss" as *;
 .movie-card {
   // phần thông tin bên dưới thumb
+  margin: 0 10px 20px;
   &-info {
     & > div {
       @include flexbox($justify-content: space-between);

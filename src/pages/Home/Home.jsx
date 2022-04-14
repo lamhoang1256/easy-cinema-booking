@@ -12,15 +12,13 @@ import { Showtime } from "./components/Showtime/Showtime";
 import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
 // action
 import { getMovieListAction } from "redux/actions/movieList.action";
-import Skeleton from "react-loading-skeleton";
 import "./home.scss";
-import "react-loading-skeleton/dist/skeleton.css";
 
 export const Home = () => {
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
   const dispatch = useDispatch();
-  const { data, loading } = useSelector((state) => state.movieList);
+  // const { data, loading } = useSelector((state) => state.movieList);
 
   // tab antd
   const { TabPane } = Tabs;
@@ -37,23 +35,8 @@ export const Home = () => {
         <FilterBooking />
         <div className='container'>
           {/* Tab danh sách phim */}
-          {!loading ? (
-            <div className='home-tab'>
-              <Tabs defaultActiveKey='1'>
-                <TabPane tab='Đang chiếu' key='1'>
-                  <MovieList listMovie={data?.isShowingMovie} />
-                </TabPane>
-                <TabPane tab='Sắp chiếu' key='2'>
-                  <MovieList listMovie={data?.comingSoonMovie} />
-                </TabPane>
-                <TabPane tab='Đang hot' key='3'>
-                  <MovieList listMovie={data?.hotMovie} />
-                </TabPane>
-              </Tabs>
-            </div>
-          ) : (
-            <Skeleton height={600} />
-          )}
+          <MovieList />
+
           {/* Phần Lịch chiếu phim */}
           <div id='showtime'>{isMobile ? <ShowtimeMobile /> : <Showtime />}</div>
           {/* Phần Tin tức */}

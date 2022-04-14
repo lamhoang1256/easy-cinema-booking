@@ -1,19 +1,48 @@
 @use "../../../../assets/scss/helpers/index.scss" as *;
-.listmovie {
-  &-container {
-    margin: 30px auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 30px 25px;
-    @include tablet {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @include mobile {
-      grid-template-columns: repeat(1, 1fr);
+.movie-list {
+  &-boxed {
+    margin-top: 40px;
+  }
+  &-group {
+    position: relative;
+    @media screen and (max-width: $container) {
+      margin: 0;
     }
   }
-  .btn.btn--primary {
-    margin: 20px auto;
-    padding: 10px 40px;
+  &-heading {
+    margin: 10px;
+  }
+  &-group-prev,
+  &-group-next {
+    cursor: pointer;
+    position: absolute;
+    z-index: 40;
+    top: 35%;
+    @include size(40px);
+    @include flexbox(center, center);
+    border-radius: 100rem;
+    color: #fff;
+    background-color: #3d6ef7;
+  }
+  &-group-prev {
+    left: 0;
+  }
+  &-group-next {
+    right: 0;
+  }
+  .slick-dots {
+    .slick-active {
+      button:before {
+        color: #3d6ef7;
+      }
+    }
+  }
+  .slick-dots li button:before {
+    font-size: 14px;
+    color: #6a7280;
+  }
+
+  .skeleton-card {
+    padding: 0 10px;
   }
 }

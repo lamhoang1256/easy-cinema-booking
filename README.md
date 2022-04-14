@@ -83,3 +83,16 @@ Quá trình làm đồ án ReactJS
 
 - Responsize đặt vé phim ở tablet
 - Tạo giao diện mobile cho Đặt vé phim
+
+12/04/2022
+
+- Xây dựng component Lịch chiếu
+
+13/04/2022
+
+- Tối ưu Movie Detail, Movie Card, Showtime
+
+14/04/2022
+
+- Thêm hiệu ứng behavior scroll (scroll mượt hơn) cho header navbar
+- Xây dựng lại component Movie List
