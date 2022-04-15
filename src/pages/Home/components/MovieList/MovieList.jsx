@@ -21,6 +21,33 @@ function NextArrow(props) {
     </div>
   );
 }
+
+export const MovieList = ({ data, heading }) => {
+  return (
+    <div className='movie-list'>
+      <div className='movie-list-boxed'>
+        <h2 className='movie-list-heading'>{heading}</h2>
+        <div className='movie-list-group'>
+          {data ? (
+            <Slider {...settings}>
+              {data.map((item, index) => (
+                <MovieCard movie={item} key={index}></MovieCard>
+              ))}
+            </Slider>
+          ) : (
+            <Slider {...settings}>
+              {[1, 2, 3, 4, 5, 6].map((item) => (
+                <div className='skeleton-card' key={item}>
+                  <Skeleton height={340} borderRadius={10} />
+                </div>
+              ))}
+            </Slider>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 const settings = {
   dots: true,
   slidesToShow: 6,
@@ -69,30 +96,4 @@ const settings = {
       },
     },
   ],
-};
-export const MovieList = ({ data, heading }) => {
-  return (
-    <div className='movie-list'>
-      <div className='movie-list-boxed'>
-        <h2 className='movie-list-heading'>{heading}</h2>
-        <div className='movie-list-group'>
-          {data ? (
-            <Slider {...settings}>
-              {data.map((item, index) => (
-                <MovieCard movie={item} key={index}></MovieCard>
-              ))}
-            </Slider>
-          ) : (
-            <Slider {...settings}>
-              {[1, 2, 3, 4, 5, 6].map((item) => (
-                <div className='skeleton-card' key={item}>
-                  <Skeleton height={340} borderRadius={10} />
-                </div>
-              ))}
-            </Slider>
-          )}
-        </div>
-      </div>
-    </div>
-  );
 };
