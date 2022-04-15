@@ -1,29 +1,41 @@
 import React from "react";
 import moment from "moment";
+import { useSelector } from "react-redux";
 import "./comment.scss";
 
-export const Comment = ({ dataComment }) => {
+export const Comment = () => {
+  const { dataComment } = useSelector((state) => state.movieDetail);
+  console.log(dataComment);
   return (
     <>
-      {dataComment.length !== 0
-        ? dataComment.map((comment) => (
-            <div className='comment-item' key={comment.id}>
-              <div className='comment-info'>
-                <img
-                  className='comment-avatar'
-                  src={`${process.env.REACT_APP_PUBLIC}/assets/images/avatar/user-avatar-1.jpg`}
-                  alt='comment-avatar'
-                />
-                <div className='comment-profile'>
-                  <h3>{comment.username}</h3>
-                  {/* tạo timeago */}
-                  <span>{moment(moment.unix(1648816259).format()).fromNow()}</span>
+      {dataComment ? (
+        <>
+          {dataComment.length !== 0
+            ? dataComment.map((comment) => (
+                <div className='comment-item' key={comment.id}>
+                  <div className='comment-info'>
+                    <img
+                      className='comment-avatar'
+                      src={`${process.env.REACT_APP_PUBLIC}/assets/images/avatar/user-avatar-1.jpg`}
+                      alt='comment-avatar'
+                    />
+                    <div className='comment-profile'>
+                      <h3>{comment.username}</h3>
+                      {/* tạo timeago */}
+                      <span>{moment(1650030687576).fromNow()}</span>
+                    </div>
+                  </div>
+                  <div className='comment-desc'>{comment.content}</div>
                 </div>
-              </div>
-              <div className='comment-desc'>{comment.content}</div>
-            </div>
-          ))
-        : "Chưa có nhận xét"}
+              ))
+            : "Chưa có nhận xét"}
+        </>
+      ) : (
+        <div class='comment-load'>
+          <div class='comment-load-bar'></div>
+          <p>Loading Comments</p>
+        </div>
+      )}
     </>
   );
 };

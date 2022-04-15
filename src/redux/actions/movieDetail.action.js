@@ -1,16 +1,18 @@
 import axios from "axios";
-import moment from "moment";
 import axiosClient from "apis/axiosClient";
 import {
   GET_DETAIL_MOVIE_REQUEST,
   GET_DETAIL_MOVIE_SUCCESS,
   GET_DETAIL_MOVIE_FAIL,
-  GET_DETAIL_COMMENT_REQUEST,
-  GET_DETAIL_COMMENT_SUCCESS,
-  GET_DETAIL_COMMENT_FAIL,
   GET_DETAIL_CINEMA_REQUEST,
   GET_DETAIL_CINEMA_SUCCESS,
   GET_DETAIL_CINEMA_FAIL,
+  GET_DETAIL_COMMENT_REQUEST,
+  GET_DETAIL_COMMENT_SUCCESS,
+  GET_DETAIL_COMMENT_FAIL,
+  POST_COMMENT_REQUEST,
+  POST_COMMENT_SUCCESS,
+  POST_COMMENT_FAIL,
 } from "../constants/movieDetail.constant";
 
 // lấy thông tin phim chi tiết qua id
@@ -21,6 +23,20 @@ export const getDetailMovieAction = (id) => async (dispatch) => {
     dispatch({ type: GET_DETAIL_MOVIE_SUCCESS, payload: data.content });
   } catch (err) {
     dispatch({ type: GET_DETAIL_MOVIE_FAIL, payload: err });
+  }
+};
+
+// lấy thông tin phim chi tiết qua id
+export const postCommentAction = (dataToPostComment) => async (dispatch) => {
+  try {
+    dispatch({ type: POST_COMMENT_REQUEST });
+    const { data } = await axiosClient.post(
+      `https://62459f866b7ecf057c216c44.mockapi.io/api/comments`,
+      dataToPostComment
+    );
+    dispatch({ type: POST_COMMENT_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({ type: POST_COMMENT_FAIL, payload: err });
   }
 };
 

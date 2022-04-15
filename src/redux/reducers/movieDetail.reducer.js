@@ -8,9 +8,19 @@ import {
   GET_DETAIL_CINEMA_REQUEST,
   GET_DETAIL_CINEMA_SUCCESS,
   GET_DETAIL_CINEMA_FAIL,
+  POST_COMMENT_REQUEST,
+  POST_COMMENT_SUCCESS,
+  POST_COMMENT_FAIL,
 } from "../constants/movieDetail.constant";
 
-const initialState = { loading: true, loadingComment: false, dataCinema: null };
+const initialState = {
+  loading: true,
+  loadingComment: false,
+  dataCinema: null,
+  dataComment: null,
+  error: null,
+  togglePostComment: false,
+};
 
 export const movieDetail = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -29,13 +39,21 @@ export const movieDetail = (state = initialState, { type, payload }) => {
     case GET_DETAIL_CINEMA_FAIL:
       return { ...state, loadingCinema: false, error: payload };
 
-    //comment
+    // get comment
     case GET_DETAIL_COMMENT_REQUEST:
       return { ...state, loadingComment: true };
     case GET_DETAIL_COMMENT_SUCCESS:
       return { ...state, loadingComment: false, dataComment: payload };
     case GET_DETAIL_COMMENT_FAIL:
       return { ...state, loadingComment: false, error: payload };
+
+    // add new comment
+    case POST_COMMENT_REQUEST:
+      return { ...state };
+    case POST_COMMENT_SUCCESS:
+      return { ...state, togglePostComment: !state.togglePostComment };
+    case POST_COMMENT_FAIL:
+      return { ...state, error: payload };
     default:
       return state;
   }

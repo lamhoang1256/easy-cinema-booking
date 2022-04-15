@@ -5,10 +5,10 @@ Content-Type: application/json
 
 {
  "username":"hoanglam1309a",
- "content":"Tuyệt vời !!!",
+ "content":"Tuyệt vời 2 !!!",
  "rating":5,
  "like":1,
- "idMovie":8188
+ "idMovie":1551
 }
 
 // access token Bearer +

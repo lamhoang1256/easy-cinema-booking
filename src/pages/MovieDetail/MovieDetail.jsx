@@ -22,20 +22,24 @@ import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtime
 import { Banner } from "components/Banner/Banner";
 
 export const MovieDetail = () => {
-  window.scrollTo(0, 0);
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
-  const { data, loading, dataComment, loadingComment } = useSelector((state) => state.movieDetail);
+  const { data, loading, dataComment, loadingComment, togglePostComment } = useSelector(
+    (state) => state.movieDetail
+  );
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
-  console.log(isMobile);
 
   // get data detail movie from API thông qua id
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getDetailMovieAction(id));
-    dispatch(getCommentMovieAction(id));
     dispatch(getCinemaDetailMovieAction(id));
   }, []);
+
+  useEffect(() => {
+    dispatch(getCommentMovieAction(id));
+  }, [togglePostComment]);
 
   return (
     <>
@@ -100,7 +104,7 @@ export const MovieDetail = () => {
                 <div className='comment'>
                   <h3>Đánh giá</h3>
                   <div className='comment-list'>
-                    {!loadingComment && <Comment dataComment={dataComment} />}
+                    {!loadingComment ? <Comment dataComment={dataComment} /> : "Loading comment"}
                   </div>
                 </div>
                 <AddComment />
