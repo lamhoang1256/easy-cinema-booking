@@ -8,7 +8,7 @@ import "./header.scss";
 
 const headerNav = [
   { display: "Lịch chiếu", path: "showtime" },
-  { display: "Tin tức", path: "news" },
+  { display: "Tin tức", path: "article" },
   { display: "Cụm rạp", path: "/" },
   { display: "Ứng dụng", path: "/" },
 ];

@@ -97,3 +97,8 @@ Quá trình làm đồ án ReactJS
 - Thêm hiệu ứng behavior scroll (scroll mượt hơn) cho header navbar
 - Xây dựng lại component Movie List
 - Thêm hiệu ứng loading skeleton cho Movie Card
+
+15/04/2022
+
+- Thêm lazy loading Movie Card thumb image
+- Tối ưu responsize cho Movie List

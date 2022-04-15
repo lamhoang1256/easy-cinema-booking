@@ -15,11 +15,14 @@ export const RightSideNews = () => {
               <img src={news.thumbnail} alt='' />
             </div>
             <div className='sidenews-content'>
-              <p className='news-time'>
+              <p className='article-time'>
                 <ion-icon name='time-outline'></ion-icon> {news.createdAt}
               </p>
-              <div className='news-title' dangerouslySetInnerHTML={{ __html: news.title }}></div>
-              <div className='news-desc' dangerouslySetInnerHTML={{ __html: news.content }}></div>
+              <div className='article-title' dangerouslySetInnerHTML={{ __html: news.title }}></div>
+              <div
+                className='article-desc'
+                dangerouslySetInnerHTML={{ __html: news.content }}
+              ></div>
             </div>
           </Link>
         ))}
