@@ -22,7 +22,7 @@ export const Comment = () => {
                     <div className='comment-profile'>
                       <h3>{comment.username}</h3>
                       {/* tạo timeago */}
-                      <span>{moment(1650030687576).fromNow()}</span>
+                      <span>{moment(comment.createdAt).fromNow()}</span>
                     </div>
                   </div>
                   <div className='comment-desc'>{comment.content}</div>
