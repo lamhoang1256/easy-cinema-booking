@@ -18,7 +18,7 @@ export const Home = () => {
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
   const dispatch = useDispatch();
-  // const { data, loading } = useSelector((state) => state.movieList);
+  const { data, loading } = useSelector((state) => state.movieList);
 
   // tab antd
   const { TabPane } = Tabs;
@@ -35,7 +35,8 @@ export const Home = () => {
         <FilterBooking />
         <div className='container'>
           {/* Tab danh sách phim */}
-          <MovieList />
+          <MovieList data={data?.comingSoonMovie} heading='Phim sắp chiếu' />
+          <MovieList data={data?.isShowingMovie} heading='Phim đang chiếu' />
 
           {/* Phần Lịch chiếu phim */}
           <div id='showtime'>{isMobile ? <ShowtimeMobile /> : <Showtime />}</div>

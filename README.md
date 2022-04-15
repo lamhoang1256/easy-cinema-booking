@@ -96,3 +96,4 @@ Quá trình làm đồ án ReactJS
 
 - Thêm hiệu ứng behavior scroll (scroll mượt hơn) cho header navbar
 - Xây dựng lại component Movie List
+- Thêm hiệu ứng loading skeleton cho Movie Card

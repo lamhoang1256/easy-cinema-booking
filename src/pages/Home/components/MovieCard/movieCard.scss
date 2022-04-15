@@ -21,9 +21,9 @@
   }
   &-rate {
     @include flexbox(center);
-    gap: 0 10px;
+    gap: 0 8px;
     ion-icon {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #ffd93d;
     }
   }

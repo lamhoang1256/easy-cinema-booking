@@ -31,7 +31,12 @@ export const MovieCard = (props) => {
       {movie ? (
         <div className='movie-card'>
           <div className='movie-card-thumb'>
-            <img src={movie.hinhAnh} className='movie-card-image' alt='movie-card-thumb' />
+            <img
+              src={movie.hinhAnh}
+              loading='lazy'
+              className='movie-card-image'
+              alt='movie-card-thumb'
+            />
             <div className='movie-card-score'>{movie.danhGia / 2}</div>
             <div className='movie-card-overplay'></div>
             <div className='movie-card-play'>

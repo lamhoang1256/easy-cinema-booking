@@ -6,9 +6,7 @@ import "./movieList.scss";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-export const MovieList = () => {
-  const { data, loading } = useSelector((state) => state.movieList);
-
+export const MovieList = ({ data, heading }) => {
   // custom button next, prev carousel
   function PrevArrow(props) {
     const { onClick } = props;
@@ -28,21 +26,37 @@ export const MovieList = () => {
   }
   const settings = {
     dots: true,
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 2,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1300,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 5,
+          slidesToScroll: 4,
           dots: true,
         },
       },
       {
-        breakpoint: 740,
+        breakpoint: 1050,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 650,
         settings: {
           dots: false,
           slidesToShow: 2,
@@ -63,34 +77,23 @@ export const MovieList = () => {
   return (
     <div className='movie-list'>
       <div className='movie-list-boxed'>
-        <h2 className='movie-list-heading'>Phim đang chiếu</h2>
+        <h2 className='movie-list-heading'>{heading}</h2>
         <div className='movie-list-group'>
-          {!true ? (
+          {data ? (
             <Slider {...settings}>
-              {data.isShowingMovie.map((item, index) => (
+              {data.map((item, index) => (
                 <MovieCard movie={item} key={index}></MovieCard>
               ))}
             </Slider>
           ) : (
             <Slider {...settings}>
-              {[1, 2, 3, 4, 5].map((item) => (
+              {[1, 2, 3, 4, 5, 6].map((item) => (
                 <div className='skeleton-card' key={item}>
                   <Skeleton height={340} borderRadius={10} />
                 </div>
               ))}
             </Slider>
           )}
-        </div>
-      </div>
-      <div className='movie-list-boxed'>
-        <h2 className='movie-list-heading'>Phim sắp chiếu</h2>
-        <div className='movie-list-group'>
-          <Slider {...settings}>
-            {!loading &&
-              data.comingSoonMovie.map((item, index) => (
-                <MovieCard movie={item} key={index}></MovieCard>
-              ))}
-          </Slider>
         </div>
       </div>
     </div>
