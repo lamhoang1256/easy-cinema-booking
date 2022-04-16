@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Dropdown } from "./components/Dropdown";
+import { DropdownCinema } from "./components/DropdownCinema";
+import { DropdownFilm } from "./components/DropdownFilm";
 import "./filterBooking.scss";
 
 export const FilterBooking = () => {
   const { data } = useSelector((state) => state.movieList);
   const list = data?.movieList;
-  console.log(list);
 
   return (
     <div className='filter-booking'>
@@ -14,7 +14,8 @@ export const FilterBooking = () => {
         <div className='filter-container'>
           <div className='filter-boxed'>
             <span>Chọn phim</span>
-            <Dropdown options={list} />
+            <DropdownFilm options={list} />
+            <DropdownCinema options={list} />
           </div>
         </div>
       </div>
