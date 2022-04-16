@@ -1,0 +1,24 @@
+.notfound {
+  &-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  &-gradient {
+    color: transparent;
+    font-size: 12rem;
+    font-weight: 800;
+    line-height: 1;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to right, #bc4e9c, #f80759);
+  }
+  &-heading {
+    font-size: 4rem;
+    font-weight: 600;
+  }
+}
