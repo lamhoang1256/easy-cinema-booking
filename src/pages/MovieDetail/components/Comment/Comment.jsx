@@ -1,4 +1,3 @@
-import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import "./comment.scss";
@@ -20,8 +19,7 @@ export const Comment = () => {
                   />
                   <div className='comment-profile'>
                     <h3>{comment.username}</h3>
-                    {/* tạo timeago */}
-                    <span>{moment(comment.createdAt).fromNow()}</span>
+                    <span>{moment(comment.createdAt).fromNow()}</span> {/* tạo timeago */}
                   </div>
                 </div>
                 <div className='comment-desc'>{comment.content}</div>

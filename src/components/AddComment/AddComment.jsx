@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { postCommentAction, getCommentMovieAction } from "redux/actions/movieDetail.action";
+import { postCommentAction } from "redux/actions/movieDetail.action";
 import Swal from "sweetalert2";
 import "./addComment.scss";
 
 export const AddComment = () => {
   const dispatch = useDispatch();
-  const { id } = useParams(); // lấy id từ thanh url
+  const { id } = useParams(); // lấy id phim từ thanh url
   const { userInfo } = useSelector((state) => state.user);
-  const { dataComment } = useSelector((state) => state.movieDetail);
-  console.log(dataComment);
 
   // xử lí thêm mới nhận xét
   const [newComment, setNewComment] = useState("");
@@ -26,7 +24,7 @@ export const AddComment = () => {
       });
       return;
     }
-    // nếu nhận xét ít hơn 40 kí tự đưa ra lỗi
+    // nếu nhận xét ít hơn 40 hoặc nhiều hơn 400 kí tự đưa ra lỗi
     if (newComment.length < 40) {
       setError("Nhận xét ít nhất gồm 40 kí tự");
       return;
@@ -34,19 +32,18 @@ export const AddComment = () => {
     if (newComment.length > 400) {
       setError("Nhận xét nhiều nhất gồm 400 kí tự");
       return;
-    } else {
-      const dataToPostComment = {
-        createdAt: Date.now(),
-        username: userInfo.taiKhoan,
-        content: newComment,
-        rating: 0,
-        like: 0,
-        idMovie: id,
-      };
-      dispatch(postCommentAction(dataToPostComment));
-      setError("");
-      setNewComment("");
     }
+    const dataToPostComment = {
+      createdAt: Date.now(),
+      username: userInfo.taiKhoan,
+      content: newComment,
+      rating: 0,
+      like: 0,
+      idMovie: id,
+    };
+    dispatch(postCommentAction(dataToPostComment));
+    setError("");
+    setNewComment("");
   };
 
   return (

@@ -16,9 +16,10 @@ import {
 const initialState = {
   loading: true,
   loadingComment: false,
+  error: null,
+  dataMovie: null,
   dataCinema: null,
   dataComment: null,
-  error: null,
   togglePostComment: false,
 };
 
@@ -27,7 +28,7 @@ export const movieDetail = (state = initialState, { type, payload }) => {
     case GET_DETAIL_MOVIE_REQUEST:
       return { ...state, loading: true };
     case GET_DETAIL_MOVIE_SUCCESS:
-      return { ...state, loading: false, data: payload };
+      return { ...state, loading: false, dataMovie: payload };
     case GET_DETAIL_MOVIE_FAIL:
       return { ...state, loading: false, error: payload };
 

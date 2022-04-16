@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
-import { Comment } from "./components/Comment/Comment";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
-
 import { AddComment } from "components/AddComment/AddComment";
+import { Comment } from "./components/Comment/Comment";
+import { DetailShowtime } from "./components/DetailShowtime/DetailShowtime";
+import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtimeMobile";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
@@ -17,16 +18,11 @@ import {
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
 import { useMediaQuery } from "hooks/useMediaQuery";
 import "./movieDetail.scss";
-import { DetailShowtime } from "./components/DetailShowtime/DetailShowtime";
-import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtimeMobile";
-import { Banner } from "components/Banner/Banner";
 
 export const MovieDetail = () => {
   const { id } = useParams(); // lấy id từ thanh url
   const dispatch = useDispatch();
-  const { data, loading, dataComment, loadingComment, togglePostComment } = useSelector(
-    (state) => state.movieDetail
-  );
+  const { dataMovie, loading, togglePostComment } = useSelector((state) => state.movieDetail);
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
 
@@ -36,7 +32,6 @@ export const MovieDetail = () => {
     dispatch(getDetailMovieAction(id));
     dispatch(getCinemaDetailMovieAction(id));
   }, []);
-
   useEffect(() => {
     dispatch(getCommentMovieAction(id));
   }, [togglePostComment]);
@@ -47,7 +42,7 @@ export const MovieDetail = () => {
         <div className='movie-detail'>
           <div
             className='movie-detail-top'
-            style={{ backgroundImage: `url(${data.hinhAnh})` }}
+            style={{ backgroundImage: `url(${dataMovie.hinhAnh})` }}
           ></div>
           <div className='container'>
             <div className='movie-detail-main'>
@@ -55,13 +50,17 @@ export const MovieDetail = () => {
                 <div className='movie-detail-info'>
                   {/* Thumbnail phim */}
                   <div className='movie-card-thumb'>
-                    <img src={data.hinhAnh} className='movie-card-image' alt='movie-card-thumb' />
-                    <div className='movie-card-score'>{data.danhGia / 2}</div>
+                    <img
+                      src={dataMovie.hinhAnh}
+                      className='movie-card-image'
+                      alt='movie-card-thumb'
+                    />
+                    <div className='movie-card-score'>{dataMovie.danhGia / 2}</div>
                     <div className='movie-card-overplay'></div>
                     <div className='movie-card-play'>
                       <ion-icon
                         onClick={() => {
-                          dispatch(openModalTrailerAction(data.trailer));
+                          dispatch(openModalTrailerAction(dataMovie.trailer));
                         }}
                         name='play-circle-outline'
                       ></ion-icon>
@@ -72,15 +71,15 @@ export const MovieDetail = () => {
                     <h3>Chi tiết phim</h3>
                     <p>
                       <span className='label'>Tên phim:</span>
-                      <span className='movie-detail-title'>{data.tenPhim}</span>
+                      <span className='movie-detail-title'>{dataMovie.tenPhim}</span>
                     </p>
                     <p>
                       <span className='label'>Ngày công chiếu:</span>
-                      <span>{new Date(data.ngayKhoiChieu).toLocaleDateString("vi-VI")}</span>
+                      <span>{new Date(dataMovie.ngayKhoiChieu).toLocaleDateString("vi-VI")}</span>
                     </p>
                     <p>
                       <span className='label'>Điểm đánh giá:</span>
-                      <span>{data.danhGia / 2} / 5</span>
+                      <span>{dataMovie.danhGia / 2} / 5</span>
                     </p>
                     <p>
                       <span className='label'>Đạo diễn:</span>
@@ -95,17 +94,16 @@ export const MovieDetail = () => {
                 {/* Tóm tắt phim */}
                 <div className='movie-detail-desc'>
                   <h3>Tóm tắt phim</h3>
-                  <p>{data.moTa}</p>
+                  <p>{dataMovie.moTa}</p>
                 </div>
-
+                {/* Lịch chiếu phim */}
                 {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
-
-                {/* Đánh giá phim (comment) */}
+                {/* Nhận xét phim (comment) */}
                 <div className='comment'>
                   <h3>Đánh giá</h3>
-
                   <Comment />
                 </div>
+                {/* Thêm nhận xét phim */}
                 <AddComment />
               </div>
               {/* Phần tin tức bên phải */}
