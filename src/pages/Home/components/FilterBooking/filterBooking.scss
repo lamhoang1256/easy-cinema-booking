@@ -1,60 +1,7 @@
 @use "../../../../assets/scss/helpers/index.scss" as *;
-.filter__booking {
-  background-color: $grayf9;
-  height: 200px;
-  margin-bottom: 50px;
-  position: relative;
-  text-align: center;
-  padding-top: 50px;
-  @media screen and (max-width: 1023.98px) {
-    display: none;
-  }
-  .filter {
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-    width: 70%;
-    padding: 10px;
-    margin: 0 auto;
-    transform: translateY(50%);
-    position: absolute;
-    bottom: 0;
-    left: 15%;
-    .filter__container {
-      display: grid;
-      grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
-      grid-gap: 10px;
-    }
-    .filter__heading {
-      font-size: 2.4rem;
-      font-weight: 600;
-    }
-    .filter__desc {
-      color: $gray61;
-    }
-    .filter__cinema,
-    .filter__time,
-    .filter__showtime {
-      overflow: hidden;
-      border-left: 1px solid $gray80;
-    }
-    .filter__btn {
-      font-weight: 600;
-      border-radius: 30px;
-      .filter__btn.is-finish {
-        background-color: $grayf9;
-      }
-    }
-  }
-
-  // custom for select antd form get booking homepage
-  .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-    height: unset;
-    padding: 10px 11px;
-  }
-  .ant-select-single:not(.ant-select-customize-input)
-    .ant-select-selector
-    .ant-select-selection-search-input {
-    height: 50px;
+.filter {
+  &-container {
+    display: flex;
+    gap: 30px;
   }
 }

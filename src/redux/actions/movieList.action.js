@@ -12,7 +12,11 @@ export const getMovieListAction = () => async (dispatch) => {
 
     // lọc dữ liệu trả về để lấy ra các thể loại phim cho tab Homepage
     const filterTypeMovie = () => {
-      const dataFilter = { isShowingMovie: [], comingSoonMovie: [] };
+      const dataFilter = {
+        movieList: response.data.content,
+        isShowingMovie: [],
+        comingSoonMovie: [],
+      };
       response.data.content.map((item) => {
         if (item.sapChieu === true) {
           dataFilter.comingSoonMovie.push(item); //phim sắp chiếu
