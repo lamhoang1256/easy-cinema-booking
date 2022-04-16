@@ -57,6 +57,7 @@ export const AddComment = () => {
         className='addComment-textarea'
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
+        placeholder='Viết nhận xét...'
       ></textarea>
       {error !== "" && <span className='text--primary'>{error}</span>}
       <button className='btn btn--primary addComment-btn' onClick={handleAddNewComment}>

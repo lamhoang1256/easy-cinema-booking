@@ -102,3 +102,4 @@ Quá trình làm đồ án ReactJS
 
 - Thêm lazy loading Movie Card thumb image
 - Tối ưu responsize cho Movie List
+- Thêm chức năng đăng nhận xét phim

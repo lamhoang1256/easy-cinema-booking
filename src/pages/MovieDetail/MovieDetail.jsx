@@ -103,9 +103,8 @@ export const MovieDetail = () => {
                 {/* Đánh giá phim (comment) */}
                 <div className='comment'>
                   <h3>Đánh giá</h3>
-                  <div className='comment-list'>
-                    {!loadingComment ? <Comment dataComment={dataComment} /> : "Loading comment"}
-                  </div>
+
+                  <Comment />
                 </div>
                 <AddComment />
               </div>
