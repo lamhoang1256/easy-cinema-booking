@@ -5,6 +5,18 @@ html {
 body {
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #fafafa;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(-45deg, #6a5af9, #d66efd);
+    border-radius: 50px;
+  }
 }
 .container {
   width: 100%;

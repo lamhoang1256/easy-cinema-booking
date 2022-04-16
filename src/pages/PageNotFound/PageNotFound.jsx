@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./pageNotFound.scss";
 
 export const PageNotFound = () => {
@@ -13,7 +14,9 @@ export const PageNotFound = () => {
             Nếu bạn đang lưu URL này , hãy thử truy cập lại từ trang chủ thay vì dùng URL đã lưu.
           </p>
         </div>
-        <button className='btn btn--primary'>Quay lại trang chủ</button>
+        <Link to='/'>
+          <button className='btn btn--primary'>Quay lại trang chủ</button>
+        </Link>
       </div>
     </div>
   );
