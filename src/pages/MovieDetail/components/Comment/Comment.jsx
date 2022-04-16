@@ -1,9 +1,20 @@
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { dataFakeAvatar, yourAvatar } from "constants/dataFakeAvatar";
 import "./comment.scss";
 
 export const Comment = () => {
   const { dataComment } = useSelector((state) => state.movieDetail);
+  const { userInfo } = useSelector((state) => state.user);
+  console.log(userInfo.taiKhoan);
+
+  // tạo avatar giả cho user comment
+  const fakeAvatarUser = () => {
+    const length = dataFakeAvatar.length;
+    const random = Math.floor(Math.random() * length);
+    return dataFakeAvatar[random].url;
+  };
+
   return (
     <>
       {dataComment && (
@@ -12,9 +23,10 @@ export const Comment = () => {
             dataComment.map((comment) => (
               <div className='comment-item' key={comment.id}>
                 <div className='comment-info'>
+                  {/* {dataComment.username === userInfo.taiKhoan ? : } */}
                   <img
                     className='comment-avatar'
-                    src={`${process.env.REACT_APP_PUBLIC}/assets/images/avatar/avatar-conan.jpg`}
+                    src={`${process.env.REACT_APP_PUBLIC}/assets/images/${fakeAvatarUser()}`}
                     alt='comment-avatar'
                   />
                   <div className='comment-profile'>

@@ -44,6 +44,7 @@
   gap: 0 8px;
   @include flexbox(center);
   ion-icon {
+    --ionicon-stroke-width: 50px;
     color: $primary-color;
     font-size: 2rem;
   }

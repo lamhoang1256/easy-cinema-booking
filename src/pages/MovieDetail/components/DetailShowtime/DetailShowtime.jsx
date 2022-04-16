@@ -20,7 +20,7 @@ export const DetailShowtime = () => {
 
   return (
     <div className='showtime-detail detail-showtime'>
-      <h3 className='showtime-heading'>Lịch chiếu phim</h3>
+      <h3 className='showtime-heading text--primary'>Lịch chiếu phim</h3>
       {dataCinema ? (
         <div className='showtime-wrapper'>
           {dataCinema.length !== 0 ? (

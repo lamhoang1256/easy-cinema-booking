@@ -20,7 +20,7 @@ export const Showtime = () => {
 
   return (
     <div className='showtime'>
-      <h2 className='showtime-heading'>Lịch chiếu phim</h2>
+      <h2 className='showtime-heading text--primary'>Lịch chiếu phim</h2>
       {dataCinema ? (
         <div className='showtime-container'>
           {/* hệ thống rạp */}

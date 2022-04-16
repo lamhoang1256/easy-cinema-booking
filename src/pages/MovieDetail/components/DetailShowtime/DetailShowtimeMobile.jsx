@@ -23,7 +23,7 @@ export const DetailShowtimeMobile = () => {
     <div className='detail-showtime-mobile'>
       {dataCinema ? (
         <div>
-          <h2 className='showtime-heading'>Lịch chiếu phim</h2>
+          <h3 className='showtime-heading text--primary'>Lịch chiếu phim</h3>
           {dataCinema.length !== 0 ? (
             <div className='showtime-container'>
               {/* hệ thống rạp */}

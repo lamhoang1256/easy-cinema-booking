@@ -9,7 +9,7 @@ import "./article.scss";
 export const Article = () => {
   return (
     <div className='article' id='article'>
-      <h2 className='article-heading'>Tin tức</h2>
+      <h2 className='article-heading text--primary'>Tin tức</h2>
       {dataFakeNews ? (
         <div className='article-container'>
           <div className='article-main'>

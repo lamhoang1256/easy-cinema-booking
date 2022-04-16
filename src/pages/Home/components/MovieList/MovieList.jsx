@@ -26,7 +26,7 @@ export const MovieList = ({ data, heading }) => {
   return (
     <div className='movie-list'>
       <div className='movie-list-boxed'>
-        <h2 className='movie-list-heading'>{heading}</h2>
+        <h2 className='movie-list-heading text--primary'>{heading}</h2>
         <div className='movie-list-group'>
           {data ? (
             <Slider {...settings}>

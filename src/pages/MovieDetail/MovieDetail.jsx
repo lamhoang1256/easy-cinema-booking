@@ -92,15 +92,15 @@ export const MovieDetail = () => {
                   </div>
                 </div>
                 {/* Tóm tắt phim */}
-                <div className='movie-detail-desc'>
-                  <h3>Tóm tắt phim</h3>
-                  <p>{dataMovie.moTa}</p>
+                <div>
+                  <h3 className='text--primary'>Tóm tắt phim</h3>
+                  <p className='movie-detail-desc'>{dataMovie.moTa}</p>
                 </div>
                 {/* Lịch chiếu phim */}
                 {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
                 {/* Nhận xét phim (comment) */}
                 <div className='comment'>
-                  <h3>Đánh giá</h3>
+                  <h3 className='text--primary'>Đánh giá</h3>
                   <Comment />
                 </div>
                 {/* Thêm nhận xét phim */}

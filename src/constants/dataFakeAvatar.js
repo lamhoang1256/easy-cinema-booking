@@ -5,7 +5,7 @@ export const dataFakeAvatar = [
   },
   {
     id: 2,
-    url: "avatar/avatar-boss-baby.jpg",
+    url: "avatar/avatar-loli.jpg",
   },
   {
     id: 3,
@@ -32,3 +32,8 @@ export const dataFakeAvatar = [
     url: "avatar/avatar-pokemon.jpg",
   },
 ];
+
+export const yourAvatar = {
+  id: 0,
+  url: "avatar/avatar-boss-baby.jpg",
+};
