@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getIdBookingAction } from "redux/actions/movieFilter.action";
+import { getIdToBooking } from "redux/actions/movieSearch.action";
 import "./dropdown.scss";
 
-export const DropdownShowtime = () => {
+export const SearchShowtime = () => {
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState({ ngayChieuGioChieu: "" });
-  const { dataShowtime } = useSelector((state) => state.movieFilter);
+  const { showtimeList } = useSelector((state) => state.movieSearch);
 
   const getCinemaFilter = (openday) => {
     setSelectedOption(openday);
-    dispatch(getIdBookingAction(openday.maLichChieu));
+    dispatch(getIdToBooking(openday.maLichChieu));
   };
 
   useEffect(() => {
     setSelectedOption({ ngayChieuGioChieu: "" });
-  }, [dataShowtime]);
+  }, [showtimeList]);
 
   return (
     <div className='dropdown-menu'>
@@ -47,9 +47,9 @@ export const DropdownShowtime = () => {
         </div>
         {visibility && (
           <div className='options'>
-            {dataShowtime ? (
+            {showtimeList ? (
               <ul>
-                {dataShowtime.map((option, index) => (
+                {showtimeList.map((option, index) => (
                   <li
                     key={index}
                     className={selectedOption === option ? "active-option" : null}

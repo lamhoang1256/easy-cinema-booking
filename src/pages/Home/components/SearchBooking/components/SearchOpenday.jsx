@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getShowtimeFilterAction } from "redux/actions/movieFilter.action";
+import { fetchShowtimeListToSearch } from "redux/actions/movieSearch.action";
 import "./dropdown.scss";
 
-export const DropdownDay = () => {
+export const SearchOpenday = () => {
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState({ ngayChieuGioChieu: "" });
-  const { dataOpenday } = useSelector((state) => state.movieFilter);
-  let unique = dataOpenday?.reduce((accumulator, current) => {
+  const { opendayList } = useSelector((state) => state.movieSearch);
+  let unique = opendayList?.reduce((accumulator, current) => {
     if (
       !accumulator.some(
         (x) => x.ngayChieuGioChieu.split("T")[0] === current.ngayChieuGioChieu.split("T")[0]
@@ -21,12 +21,12 @@ export const DropdownDay = () => {
 
   const getCinemaFilter = (openday) => {
     setSelectedOption(openday);
-    dispatch(getShowtimeFilterAction(openday));
+    dispatch(fetchShowtimeListToSearch(openday));
   };
 
   useEffect(() => {
     setSelectedOption({ ngayChieuGioChieu: "" });
-  }, [dataOpenday]);
+  }, [opendayList]);
 
   return (
     <div className='dropdown-menu'>

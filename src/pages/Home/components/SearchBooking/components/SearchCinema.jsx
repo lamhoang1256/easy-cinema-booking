@@ -1,23 +1,23 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDayFilterAction } from "redux/actions/movieFilter.action";
+import { fetchOpendayListToSearch } from "redux/actions/movieSearch.action";
 import "./dropdown.scss";
 
-export const DropdownCinema = () => {
+export const SearchCinema = () => {
   const dispatch = useDispatch();
-  const { dataCinema } = useSelector((state) => state.movieFilter);
-  // console.log(dataCinema && dataCinema.heThongRapChieu);
+  const { cinemaList } = useSelector((state) => state.movieSearch);
+  // console.log(cinemaList && cinemaList.heThongRapChieu);
   const [visibility, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState({ tenCumRap: "" });
 
   const getOpendayFilter = (cinema) => {
     setSelectedOption(cinema);
-    dispatch(getDayFilterAction(cinema.lichChieuPhim));
+    dispatch(fetchOpendayListToSearch(cinema.lichChieuPhim));
   };
 
   useEffect(() => {
     setSelectedOption({ tenCumRap: "" });
-  }, [dataCinema]);
+  }, [cinemaList]);
 
   return (
     <div className='dropdown-menu'>
@@ -44,9 +44,9 @@ export const DropdownCinema = () => {
         </div>
         {visibility && (
           <div className='options'>
-            {dataCinema ? (
+            {cinemaList ? (
               <ul>
-                {dataCinema.heThongRapChieu.map((item, index) => (
+                {cinemaList.heThongRapChieu.map((item, index) => (
                   <Fragment key={index}>
                     {item.cumRapChieu.map((e, id) => (
                       <li

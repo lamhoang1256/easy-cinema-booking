@@ -4,7 +4,7 @@ import { Tabs } from "antd";
 import { useMediaQuery } from "hooks/useMediaQuery";
 // component
 import { Carousel } from "./components/Carousel/Carousel";
-import { FilterBooking } from "./components/FilterBooking/FilterBooking";
+import { SearchBooking } from "./components/SearchBooking/SearchBooking";
 import { MovieList } from "./components/MovieList/MovieList";
 import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
@@ -32,7 +32,7 @@ export const Home = () => {
         <Carousel />
       </div>
       <div className='home-main'>
-        <FilterBooking />
+        <SearchBooking />
         <div className='container'>
           {/* Tab danh sách phim */}
           <MovieList data={data?.comingSoonMovie} heading='Phim sắp chiếu' />

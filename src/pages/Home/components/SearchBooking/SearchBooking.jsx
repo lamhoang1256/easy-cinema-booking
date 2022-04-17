@@ -1,15 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { DropdownCinema } from "./components/DropdownCinema";
-import { DropdownDay } from "./components/DropdownDay";
-import { DropdownFilm } from "./components/DropdownFilm";
-import { DropdownShowtime } from "./components/DropdownShowtime";
-import "./filterBooking.scss";
+import { SearchCinema } from "./components/SearchCinema";
+import { SearchOpenday } from "./components/SearchOpenday";
+import { SearchMovie } from "./components/SearchMovie";
+import { SearchShowtime } from "./components/SearchShowtime";
+import "./searchBooking.scss";
 
-export const FilterBooking = () => {
-  const { data } = useSelector((state) => state.movieList);
-  const { idBooking } = useSelector((state) => state.movieFilter);
+export const SearchBooking = () => {
+  const { idBooking } = useSelector((state) => state.movieSearch);
 
   return (
     <div className='filter-booking'>
@@ -17,19 +16,19 @@ export const FilterBooking = () => {
         <div className='filter-container'>
           <div className='filter-boxed'>
             <span>Chọn phim</span>
-            <DropdownFilm />
+            <SearchMovie />
           </div>
           <div className='filter-boxed'>
             <span>Chọn rạp chiếu</span>
-            <DropdownCinema />
+            <SearchCinema />
           </div>
           <div className='filter-boxed'>
             <span>Chọn ngày xem</span>
-            <DropdownDay />
+            <SearchOpenday />
           </div>
           <div className='filter-boxed'>
             <span>Chọn suất chiếu</span>
-            <DropdownShowtime />
+            <SearchShowtime />
           </div>
           <div className='filter-boxed'>
             {idBooking ? (
