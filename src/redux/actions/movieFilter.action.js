@@ -5,6 +5,7 @@ import {
   GET_CINEMA_FILTER_FAIL,
   GET_OPENDAY_FILTER,
   GET_SHOWTIME_FILTER,
+  GET_ID_BOOKING,
 } from "redux/constants/movieFilter.constant";
 
 export const getCinemaFilterAction = (idMovie) => async (dispatch) => {
@@ -27,4 +28,8 @@ export const getShowtimeFilterAction = (data) => async (dispatch, useState) => {
     (item) => item.ngayChieuGioChieu.split("T")[0] === data.ngayChieuGioChieu.split("T")[0]
   );
   dispatch({ type: GET_SHOWTIME_FILTER, payload: dataShowtime });
+};
+
+export const getIdBookingAction = (idBooking) => async (dispatch) => {
+  dispatch({ type: GET_ID_BOOKING, payload: idBooking });
 };

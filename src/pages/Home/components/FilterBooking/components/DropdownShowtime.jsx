@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getIdBookingAction } from "redux/actions/movieFilter.action";
 import "./dropdown.scss";
 
 export const DropdownShowtime = () => {
+  const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState({ ngayChieuGioChieu: "" });
   const { dataShowtime } = useSelector((state) => state.movieFilter);
 
   const getCinemaFilter = (openday) => {
     setSelectedOption(openday);
+    dispatch(getIdBookingAction(openday.maLichChieu));
   };
 
   useEffect(() => {
