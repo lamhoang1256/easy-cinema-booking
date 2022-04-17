@@ -1,5 +1,8 @@
 import axiosClient from "apis/axiosClient";
 import {
+  GET_MOVIE_FILTER_REQUEST,
+  GET_MOVIE_FILTER_SUCCESS,
+  GET_MOVIE_FILTER_FAIL,
   GET_CINEMA_FILTER_REQUEST,
   GET_CINEMA_FILTER_SUCCESS,
   GET_CINEMA_FILTER_FAIL,
@@ -7,6 +10,16 @@ import {
   GET_SHOWTIME_FILTER,
   GET_ID_BOOKING,
 } from "redux/constants/movieFilter.constant";
+
+export const getMovieFilterAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_MOVIE_FILTER_REQUEST });
+    const { data } = await axiosClient.get(`QuanLyPhim/LayDanhSachPhim?maNhom=GP02`);
+    dispatch({ type: GET_MOVIE_FILTER_SUCCESS, payload: data.content });
+  } catch (err) {
+    dispatch({ type: GET_MOVIE_FILTER_FAIL, payload: err });
+  }
+};
 
 export const getCinemaFilterAction = (idMovie) => async (dispatch) => {
   try {

@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { getCinemaFilterAction } from "redux/actions/movieFilter.action";
+import { useDispatch, useSelector } from "react-redux";
+import { getCinemaFilterAction, getMovieFilterAction } from "redux/actions/movieFilter.action";
 import "./dropdown.scss";
 
-export const DropdownFilm = ({ options }) => {
+export const DropdownFilm = () => {
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState({ tenPhim: "" });
-  // console.log(selectedOption);
+  const { dataMovie } = useSelector((state) => state.movieFilter);
+
   const getCinemaFilter = (option) => {
     setSelectedOption(option);
     dispatch(getCinemaFilterAction(option.maPhim));
   };
+
+  useEffect(() => {
+    dispatch(getMovieFilterAction());
+  }, []);
 
   return (
     <div className='dropdown-menu'>
@@ -37,7 +42,7 @@ export const DropdownFilm = ({ options }) => {
         {visibility && (
           <div className='options'>
             <ul>
-              {options.map((option, index) => (
+              {dataMovie?.map((option, index) => (
                 <li
                   key={index}
                   className={selectedOption === option ? "active-option" : null}
