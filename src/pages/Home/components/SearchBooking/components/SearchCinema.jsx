@@ -6,17 +6,17 @@ import "./dropdown.scss";
 export const SearchCinema = () => {
   const dispatch = useDispatch();
   const { cinemaList } = useSelector((state) => state.movieSearch);
-  // console.log(cinemaList && cinemaList.heThongRapChieu);
   const [visibility, setVisibility] = useState(false);
-  const [selectedOption, setSelectedOption] = useState({ tenCumRap: "" });
+  const [selectedCinema, setSelectedCinema] = useState({ tenCumRap: "" });
 
-  const getOpendayFilter = (cinema) => {
-    setSelectedOption(cinema);
+  //lấy toàn bộ các ngày có chiếu phim này
+  const handleGetOpendayList = (cinema) => {
+    setSelectedCinema(cinema);
     dispatch(fetchOpendayListToSearch(cinema.lichChieuPhim));
   };
 
   useEffect(() => {
-    setSelectedOption({ tenCumRap: "" });
+    setSelectedCinema({ tenCumRap: "" });
   }, [cinemaList]);
 
   return (
@@ -31,14 +31,12 @@ export const SearchCinema = () => {
         }}
       >
         <div className='selected-option'>
-          <span
-            title={selectedOption.tenCumRap === "" ? "Select a state" : selectedOption.tenCumRap}
-          >
-            {selectedOption.tenCumRap === ""
+          <span title={selectedCinema.tenCumRap === "" ? "Chọn Rạp" : selectedCinema.tenCumRap}>
+            {selectedCinema.tenCumRap === ""
               ? "Chọn Rạp"
-              : selectedOption.tenCumRap.length <= 20
-              ? selectedOption.tenCumRap
-              : `${selectedOption.tenCumRap.slice(0, 20)}...`}
+              : selectedCinema.tenCumRap.length <= 20
+              ? selectedCinema.tenCumRap
+              : `${selectedCinema.tenCumRap.slice(0, 20)}...`}
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
@@ -46,15 +44,15 @@ export const SearchCinema = () => {
           <div className='options'>
             {cinemaList ? (
               <ul>
-                {cinemaList.heThongRapChieu.map((item, index) => (
+                {cinemaList.heThongRapChieu.map((cinemaGroup, index) => (
                   <Fragment key={index}>
-                    {item.cumRapChieu.map((e, id) => (
+                    {cinemaGroup.cumRapChieu.map((cinema, id) => (
                       <li
                         key={id}
-                        // className={selectedOption === item ? "active-option" : null}
-                        onClick={() => getOpendayFilter(e)}
+                        className={selectedCinema === cinema ? "active-option" : null}
+                        onClick={() => handleGetOpendayList(cinema)}
                       >
-                        {e.tenCumRap}
+                        {cinema.tenCumRap}
                       </li>
                     ))}
                   </Fragment>

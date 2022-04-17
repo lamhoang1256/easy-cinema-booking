@@ -5,14 +5,14 @@ import "./dropdown.scss";
 
 export const SearchMovie = () => {
   const dispatch = useDispatch();
-  const [visibility, setVisibility] = useState(false);
-  const [selectedOption, setSelectedOption] = useState({ tenPhim: "" });
   const { movieList } = useSelector((state) => state.movieSearch);
+  const [visibility, setVisibility] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState({ tenPhim: "" });
 
   // lấy danh sách các rạp có chiếu phim vừa chọn
-  const handleGetCinemaList = (option) => {
-    setSelectedOption(option);
-    dispatch(fetchCinemaListToSearch(option.maPhim));
+  const handleGetCinemaList = (movie) => {
+    setSelectedMovie(movie);
+    dispatch(fetchCinemaListToSearch(movie.maPhim));
   };
 
   useEffect(() => {
@@ -31,25 +31,25 @@ export const SearchMovie = () => {
         }}
       >
         <div className='selected-option'>
-          <span title={selectedOption.tenPhim === "" ? "Select a state" : selectedOption.tenPhim}>
-            {selectedOption.tenPhim === ""
-              ? "Chọn phim"
-              : selectedOption.tenPhim.length <= 20
-              ? selectedOption.tenPhim
-              : `${selectedOption.tenPhim.slice(0, 20)}...`}
+          <span title={selectedMovie.tenPhim === "" ? "Chọn Phim" : selectedMovie.tenPhim}>
+            {selectedMovie.tenPhim === ""
+              ? "Chọn Phim"
+              : selectedMovie.tenPhim.length <= 20
+              ? selectedMovie.tenPhim
+              : `${selectedMovie.tenPhim.slice(0, 20)}...`}
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
         {visibility && (
           <div className='options'>
             <ul>
-              {movieList?.map((option, index) => (
+              {movieList?.map((movie, index) => (
                 <li
                   key={index}
-                  className={selectedOption === option ? "active-option" : null}
-                  onClick={() => handleGetCinemaList(option)}
+                  className={selectedMovie === movie ? "active-option" : null}
+                  onClick={() => handleGetCinemaList(movie)}
                 >
-                  {option.tenPhim}
+                  {movie.tenPhim}
                 </li>
               ))}
             </ul>

@@ -5,27 +5,31 @@ import "./dropdown.scss";
 
 export const SearchOpenday = () => {
   const dispatch = useDispatch();
-  const [visibility, setVisibility] = useState(false);
-  const [selectedOption, setSelectedOption] = useState({ ngayChieuGioChieu: "" });
   const { opendayList } = useSelector((state) => state.movieSearch);
-  let unique = opendayList?.reduce((accumulator, current) => {
+  const [visibility, setVisibility] = useState(false);
+  const [selectedOpenday, setSelectedOpenday] = useState({ ngayChieuGioChieu: "" });
+
+  // tạo mảng ngày không bị trùng lặp
+  let uniqueOpendayList = opendayList?.reduce((previousValue, current) => {
     if (
-      !accumulator.some(
-        (x) => x.ngayChieuGioChieu.split("T")[0] === current.ngayChieuGioChieu.split("T")[0]
-      )
+      !previousValue.some(function (x) {
+        const time = x.ngayChieuGioChieu.split("T")[0];
+        const currentTime = current.ngayChieuGioChieu.split("T")[0];
+        return time === currentTime;
+      })
     ) {
-      accumulator.push(current);
+      previousValue.push(current);
     }
-    return accumulator;
+    return previousValue;
   }, []);
 
-  const getCinemaFilter = (openday) => {
-    setSelectedOption(openday);
+  const handleGetShowtimeList = (openday) => {
+    setSelectedOpenday(openday);
     dispatch(fetchShowtimeListToSearch(openday));
   };
 
   useEffect(() => {
-    setSelectedOption({ ngayChieuGioChieu: "" });
+    setSelectedOpenday({ ngayChieuGioChieu: "" });
   }, [opendayList]);
 
   return (
@@ -42,30 +46,30 @@ export const SearchOpenday = () => {
         <div className='selected-option'>
           <span
             title={
-              selectedOption.ngayChieuGioChieu === ""
-                ? "Select a state"
-                : selectedOption.ngayChieuGioChieu
+              selectedOpenday.ngayChieuGioChieu === ""
+                ? "Chọn ngày"
+                : selectedOpenday.ngayChieuGioChieu
             }
           >
-            {selectedOption.ngayChieuGioChieu === ""
+            {selectedOpenday.ngayChieuGioChieu === ""
               ? "Chọn ngày"
-              : selectedOption.ngayChieuGioChieu.length <= 20
-              ? selectedOption.ngayChieuGioChieu
-              : `${selectedOption.ngayChieuGioChieu.slice(0, 20)}...`}
+              : selectedOpenday.ngayChieuGioChieu.length <= 20
+              ? selectedOpenday.ngayChieuGioChieu
+              : `${selectedOpenday.ngayChieuGioChieu.slice(0, 20)}...`}
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
         {visibility && (
           <div className='options'>
-            {unique ? (
+            {uniqueOpendayList ? (
               <ul>
-                {unique.map((option, index) => (
+                {uniqueOpendayList.map((openday, index) => (
                   <li
                     key={index}
-                    className={selectedOption === option ? "active-option" : null}
-                    onClick={() => getCinemaFilter(option)}
+                    className={selectedOpenday === openday ? "active-option" : null}
+                    onClick={() => handleGetShowtimeList(openday)}
                   >
-                    {new Date(option.ngayChieuGioChieu.split("T")[0]).toLocaleDateString("vi-VI")}
+                    {new Date(openday.ngayChieuGioChieu.split("T")[0]).toLocaleDateString("vi-VI")}
                   </li>
                 ))}
               </ul>

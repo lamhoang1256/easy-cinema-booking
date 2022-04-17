@@ -6,16 +6,17 @@ import "./dropdown.scss";
 export const SearchShowtime = () => {
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
-  const [selectedOption, setSelectedOption] = useState({ ngayChieuGioChieu: "" });
+  const [selectedShowtime, setSelectedShowtime] = useState({ ngayChieuGioChieu: "" });
   const { showtimeList } = useSelector((state) => state.movieSearch);
 
-  const getCinemaFilter = (openday) => {
-    setSelectedOption(openday);
+  // lấy id phòng chiếu để chuyển sang đặt vé
+  const handleGetIdBooking = (openday) => {
+    setSelectedShowtime(openday);
     dispatch(getIdToBooking(openday.maLichChieu));
   };
 
   useEffect(() => {
-    setSelectedOption({ ngayChieuGioChieu: "" });
+    setSelectedShowtime({ ngayChieuGioChieu: "" });
   }, [showtimeList]);
 
   return (
@@ -32,16 +33,16 @@ export const SearchShowtime = () => {
         <div className='selected-option'>
           <span
             title={
-              selectedOption.ngayChieuGioChieu === ""
-                ? "Select a state"
-                : selectedOption.ngayChieuGioChieu
+              selectedShowtime.ngayChieuGioChieu === ""
+                ? "Chọn suất chiếu"
+                : selectedShowtime.ngayChieuGioChieu
             }
           >
-            {selectedOption.ngayChieuGioChieu === ""
+            {selectedShowtime.ngayChieuGioChieu === ""
               ? "Chọn suất chiếu"
-              : selectedOption.ngayChieuGioChieu.length <= 20
-              ? selectedOption.ngayChieuGioChieu
-              : `${selectedOption.ngayChieuGioChieu.slice(0, 20)}...`}
+              : selectedShowtime.ngayChieuGioChieu.length <= 20
+              ? selectedShowtime.ngayChieuGioChieu
+              : `${selectedShowtime.ngayChieuGioChieu.slice(0, 20)}...`}
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
@@ -49,13 +50,13 @@ export const SearchShowtime = () => {
           <div className='options'>
             {showtimeList ? (
               <ul>
-                {showtimeList.map((option, index) => (
+                {showtimeList.map((showtime, index) => (
                   <li
                     key={index}
-                    className={selectedOption === option ? "active-option" : null}
-                    onClick={() => getCinemaFilter(option)}
+                    className={selectedShowtime === showtime ? "active-option" : null}
+                    onClick={() => handleGetIdBooking(showtime)}
                   >
-                    {option.ngayChieuGioChieu}
+                    {showtime.ngayChieuGioChieu}
                   </li>
                 ))}
               </ul>
