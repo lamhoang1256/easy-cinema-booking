@@ -7,7 +7,7 @@ export const DropdownDay = () => {
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState({ ngayChieuGioChieu: "" });
-  const { dataCinema, dataOpenday } = useSelector((state) => state.movieFilter);
+  const { dataOpenday } = useSelector((state) => state.movieFilter);
   let unique = dataOpenday?.reduce((accumulator, current) => {
     if (
       !accumulator.some(

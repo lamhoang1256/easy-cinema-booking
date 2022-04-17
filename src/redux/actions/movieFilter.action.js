@@ -9,6 +9,8 @@ import {
   GET_OPENDAY_FILTER,
   GET_SHOWTIME_FILTER,
   GET_ID_BOOKING,
+  GET_OPENDAY_FILTER_START,
+  GET_OPENDAY_FILTER_FINISH,
 } from "redux/constants/movieFilter.constant";
 
 export const getMovieFilterAction = () => async (dispatch) => {
@@ -32,7 +34,8 @@ export const getCinemaFilterAction = (idMovie) => async (dispatch) => {
 };
 
 export const getDayFilterAction = (data) => async (dispatch) => {
-  dispatch({ type: GET_OPENDAY_FILTER, payload: data });
+  dispatch({ type: GET_OPENDAY_FILTER_START });
+  dispatch({ type: GET_OPENDAY_FILTER_FINISH, payload: data });
 };
 
 export const getShowtimeFilterAction = (data) => async (dispatch, useState) => {

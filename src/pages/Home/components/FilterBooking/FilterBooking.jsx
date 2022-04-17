@@ -11,16 +11,13 @@ export const FilterBooking = () => {
   const { data } = useSelector((state) => state.movieList);
   const { idBooking } = useSelector((state) => state.movieFilter);
 
-  console.log(idBooking);
-  const list = data?.movieList;
-
   return (
     <div className='filter-booking'>
       <div className='container'>
         <div className='filter-container'>
           <div className='filter-boxed'>
             <span>Chọn phim</span>
-            <DropdownFilm options={list} />
+            <DropdownFilm />
           </div>
           <div className='filter-boxed'>
             <span>Chọn rạp chiếu</span>
