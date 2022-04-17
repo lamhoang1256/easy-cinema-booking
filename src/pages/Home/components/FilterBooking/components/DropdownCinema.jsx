@@ -1,19 +1,18 @@
 import React, { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCinemaFilterAction } from "redux/actions/movieFilter.action";
+import { getDayFilterAction } from "redux/actions/movieFilter.action";
 import "./dropdown.scss";
 
-export const DropdownCinema = ({ options }) => {
+export const DropdownCinema = () => {
   const dispatch = useDispatch();
   const { dataCinema } = useSelector((state) => state.movieFilter);
-  console.log(dataCinema && dataCinema.heThongRapChieu);
+  // console.log(dataCinema && dataCinema.heThongRapChieu);
   const [visibility, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState({ tenCumRap: "" });
-  // console.log(selectedOption);
+
   const getOpendayFilter = (cinema) => {
-    // console.log(cinema);
     setSelectedOption(cinema);
-    // dispatch(getCinemaFilterAction(cinema.maPhim));
+    dispatch(getDayFilterAction(cinema.lichChieuPhim));
   };
 
   return (

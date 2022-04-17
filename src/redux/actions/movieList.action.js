@@ -8,7 +8,7 @@ import {
 export const getMovieListAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_LIST_REQUEST });
-    const response = await axiosClient.get(`QuanLyPhim/LayDanhSachPhim?maNhom=GP13`);
+    const response = await axiosClient.get(`QuanLyPhim/LayDanhSachPhim?maNhom=GP02`);
 
     // lọc dữ liệu trả về để lấy ra các thể loại phim cho tab Homepage
     const filterTypeMovie = () => {
