@@ -17,8 +17,17 @@ export const FilterBooking = () => {
           <div className='filter-boxed'>
             <span>Chọn phim</span>
             <DropdownFilm options={list} />
+          </div>
+          <div className='filter-boxed'>
+            <span>Chọn rạp chiếu</span>
             <DropdownCinema />
+          </div>
+          <div className='filter-boxed'>
+            <span>Chọn ngày xem</span>
             <DropdownDay />
+          </div>
+          <div className='filter-boxed'>
+            <span>Chọn suất chiếu</span>
             <DropdownShowtime />
           </div>
         </div>

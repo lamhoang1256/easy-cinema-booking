@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCinemaFilterAction } from "redux/actions/movieFilter.action";
 import "./dropdown.scss";
