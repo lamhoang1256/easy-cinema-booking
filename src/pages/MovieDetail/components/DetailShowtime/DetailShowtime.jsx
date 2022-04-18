@@ -11,7 +11,7 @@ const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Th
 
 export const DetailShowtime = () => {
   const dispatch = useDispatch();
-  const { dataCinema } = useSelector((state) => state.movieDetail);
+  const { calendarShowList } = useSelector((state) => state.movieDetail);
   const { TabPane } = Tabs;
 
   useEffect(() => {
@@ -21,44 +21,48 @@ export const DetailShowtime = () => {
   return (
     <div className='showtime-detail detail-showtime'>
       <h3 className='showtime-heading text--primary'>Lịch chiếu phim</h3>
-      {dataCinema ? (
+      {calendarShowList ? (
         <div className='showtime-wrapper'>
-          {dataCinema.length !== 0 ? (
+          {calendarShowList.length !== 0 ? (
             <Tabs defaultActiveKey='0'>
-              {dataCinema.map((item, index) => (
+              {calendarShowList.map((calendar, index) => (
                 <TabPane
                   tab={
                     <div className='showtime-header'>
-                      <p>{arrDate[new Date(item.date).getDay()]}</p>
-                      <p>{new Date(item.date).toLocaleDateString("vi-VI")}</p>
+                      <p>{arrDate[new Date(calendar.date).getDay()]}</p>
+                      <p>{new Date(calendar.date).toLocaleDateString("vi-VI")}</p>
                     </div>
                   }
                   key={index}
                 >
                   <Tabs defaultActiveKey='0' tabPosition='left'>
-                    {item.heThongRap.map((cinema, cinemaIndex) => (
+                    {calendar.heThongRap.map((cinemaGroup, cinemaGroupIndex) => (
                       <TabPane
-                        tab={<img className='showtime-icon' src={cinema.logo} alt='cinema-logo' />}
-                        key={cinemaIndex}
+                        tab={
+                          <img className='showtime-icon' src={cinemaGroup.logo} alt='cinema-logo' />
+                        }
+                        key={cinemaGroupIndex}
                       >
-                        {cinema.cumRapChieu.map((cinemaItem, cinemaItemIndex) => (
-                          <div key={cinemaItemIndex}>
+                        {cinemaGroup.cumRapChieu.map((cinema, cinemaIndex) => (
+                          <div key={cinemaIndex}>
                             <h3>
-                              {cinemaItem.tenCumRap} (
-                              {new Date(item.date).toLocaleDateString("vi-VI")})
+                              {cinema.tenCumRap} (
+                              {new Date(calendar.date).toLocaleDateString("vi-VI")})
                             </h3>
                             <div className='showtime-openday'>
-                              {cinemaItem.lichChieuPhim.map((item, itemIndex) => (
+                              {cinema.lichChieuPhim.map((showtime, showtimeIndex) => (
                                 <Link
-                                  to={`/booking/${item.maLichChieu}`}
-                                  key={itemIndex}
+                                  key={showtimeIndex}
+                                  to={`/booking/${showtime.maLichChieu}`}
                                   className='showtime-openday-item'
                                 >
                                   <span className='showtime-openday-big'>
-                                    {formatDateToHours(item.ngayChieuGioChieu)}
+                                    {formatDateToHours(showtime.ngayChieuGioChieu)}
                                   </span>
                                   <span> ~ </span>
-                                  {formatDateToHours(increaseDate(item.ngayChieuGioChieu, 7200000))}
+                                  {formatDateToHours(
+                                    increaseDate(showtime.ngayChieuGioChieu, 7200000)
+                                  )}
                                 </Link>
                               ))}
                             </div>

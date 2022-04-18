@@ -4,9 +4,8 @@ import { dataFakeAvatar, yourAvatar } from "constants/dataFakeAvatar";
 import "./comment.scss";
 
 export const Comment = () => {
-  const { dataComment } = useSelector((state) => state.movieDetail);
+  const { commentList } = useSelector((state) => state.movieDetail);
   const { userInfo } = useSelector((state) => state.user);
-  console.log(userInfo.taiKhoan);
 
   // tạo avatar giả cho user comment
   const fakeAvatarUser = () => {
@@ -17,13 +16,13 @@ export const Comment = () => {
 
   return (
     <>
-      {dataComment && (
+      {commentList && (
         <div className='comment-list'>
-          {dataComment.length !== 0 ? (
-            dataComment.map((comment) => (
+          {commentList.length !== 0 ? (
+            commentList.map((comment) => (
               <div className='comment-item' key={comment.id}>
                 <div className='comment-info'>
-                  {/* {dataComment.username === userInfo.taiKhoan ? : } */}
+                  {/* {commentList.username === userInfo.taiKhoan ? : } */}
                   <img
                     className='comment-avatar'
                     src={`${process.env.REACT_APP_PUBLIC}/assets/images/${fakeAvatarUser()}`}

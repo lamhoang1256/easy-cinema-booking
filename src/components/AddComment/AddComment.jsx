@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { postCommentAction } from "redux/actions/movieDetail.action";
+import { postComment } from "redux/actions/movieDetail.action";
 import Swal from "sweetalert2";
 import "./addComment.scss";
 
@@ -41,7 +41,7 @@ export const AddComment = () => {
       like: 0,
       idMovie: id,
     };
-    dispatch(postCommentAction(dataToPostComment));
+    dispatch(postComment(dataToPostComment));
     setError("");
     setNewComment("");
   };

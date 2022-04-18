@@ -1,33 +1,33 @@
 import axios from "axios";
 import axiosClient from "apis/axiosClient";
 import {
-  GET_DETAIL_MOVIE_REQUEST,
-  GET_DETAIL_MOVIE_SUCCESS,
-  GET_DETAIL_MOVIE_FAIL,
-  GET_DETAIL_CINEMA_REQUEST,
-  GET_DETAIL_CINEMA_SUCCESS,
-  GET_DETAIL_CINEMA_FAIL,
-  GET_DETAIL_COMMENT_REQUEST,
-  GET_DETAIL_COMMENT_SUCCESS,
-  GET_DETAIL_COMMENT_FAIL,
+  GET_MOVIE_DETAIL_REQUEST,
+  GET_MOVIE_DETAIL_SUCCESS,
+  GET_MOVIE_DETAIL_FAIL,
+  GET_CALENDAR_SHOW_REQUEST,
+  GET_CALENDAR_SHOW_SUCCESS,
+  GET_CALENDAR_SHOW_FAIL,
+  GET_COMMENTS_REQUEST,
+  GET_COMMENTS_SUCCESS,
+  GET_COMMENTS_FAIL,
   POST_COMMENT_REQUEST,
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAIL,
 } from "../constants/movieDetail.constant";
 
 // lấy thông tin phim chi tiết qua id
-export const getDetailMovieAction = (id) => async (dispatch) => {
+export const getMovieDetail = (id) => async (dispatch) => {
   try {
-    dispatch({ type: GET_DETAIL_MOVIE_REQUEST });
+    dispatch({ type: GET_MOVIE_DETAIL_REQUEST });
     const { data } = await axiosClient.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);
-    dispatch({ type: GET_DETAIL_MOVIE_SUCCESS, payload: data.content });
+    dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: data.content });
   } catch (err) {
-    dispatch({ type: GET_DETAIL_MOVIE_FAIL, payload: err });
+    dispatch({ type: GET_MOVIE_DETAIL_FAIL, payload: err });
   }
 };
 
 // lấy thông tin phim chi tiết qua id
-export const postCommentAction = (dataToPostComment) => async (dispatch) => {
+export const postComment = (dataToPostComment) => async (dispatch) => {
   try {
     dispatch({ type: POST_COMMENT_REQUEST });
     const { data } = await axiosClient.post(
@@ -41,9 +41,9 @@ export const postCommentAction = (dataToPostComment) => async (dispatch) => {
 };
 
 // lấy danh sách cụm rạp đang chiếu phim này
-export const getCinemaDetailMovieAction = (id) => async (dispatch) => {
+export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
   try {
-    dispatch({ type: GET_DETAIL_CINEMA_REQUEST });
+    dispatch({ type: GET_CALENDAR_SHOW_REQUEST });
     const { data } = await axiosClient.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
 
     // kiểm tra có lịch chiếu hay không, nếu không có thông báo hiện tại chưa có lịch chiếu
@@ -121,21 +121,24 @@ export const getCinemaDetailMovieAction = (id) => async (dispatch) => {
     console.log(arrayHeThongRapChieuFilterByDay, isEmptyData);
     // return { arrayHeThongRapChieuFilterByDay, isEmptyData };
 
-    dispatch({ type: GET_DETAIL_CINEMA_SUCCESS, payload: arrayHeThongRapChieuFilterByDay });
+    dispatch({
+      type: GET_CALENDAR_SHOW_SUCCESS,
+      payload: arrayHeThongRapChieuFilterByDay,
+    });
   } catch (err) {
-    dispatch({ type: GET_DETAIL_CINEMA_FAIL, payload: err });
+    dispatch({ type: GET_CALENDAR_SHOW_FAIL, payload: err });
   }
 };
 
 // lấy danh sách bình luận về phim
-export const getCommentMovieAction = (idMovie) => async (dispatch) => {
+export const getCommentList = (idMovie) => async (dispatch) => {
   try {
-    dispatch({ type: GET_DETAIL_COMMENT_REQUEST });
+    dispatch({ type: GET_COMMENTS_REQUEST });
     const response = await axios.get("https://62459f866b7ecf057c216c44.mockapi.io/api/comments");
     //lấy ra các comment có mã phim trùng với mã phim trên url của trang hiện tại
     const dataComment = response.data.filter((comment) => comment.idMovie == idMovie);
-    dispatch({ type: GET_DETAIL_COMMENT_SUCCESS, payload: dataComment });
+    dispatch({ type: GET_COMMENTS_SUCCESS, payload: dataComment });
   } catch (err) {
-    dispatch({ type: GET_DETAIL_COMMENT_FAIL, payload: err });
+    dispatch({ type: GET_COMMENTS_FAIL, payload: err });
   }
 };

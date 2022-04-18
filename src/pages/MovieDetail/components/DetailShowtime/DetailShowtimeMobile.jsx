@@ -7,11 +7,12 @@ import { getCinemaAction } from "redux/actions/movieCinema.action";
 import { formatDateToHours } from "utilities/formatDate";
 import increaseDate from "utilities/increaseDate";
 import "./detailShowtime.scss";
+
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
 export const DetailShowtimeMobile = () => {
   const dispatch = useDispatch();
-  const { dataCinema } = useSelector((state) => state.movieDetail);
+  const { calendarShowList } = useSelector((state) => state.movieDetail);
   const { Panel } = Collapse;
   const { TabPane } = Tabs;
 
@@ -21,19 +22,19 @@ export const DetailShowtimeMobile = () => {
 
   return (
     <div className='detail-showtime-mobile'>
-      {dataCinema ? (
+      {calendarShowList ? (
         <div>
           <h3 className='showtime-heading text--primary'>Lịch chiếu phim</h3>
-          {dataCinema.length !== 0 ? (
+          {calendarShowList.length !== 0 ? (
             <div className='showtime-container'>
               {/* hệ thống rạp */}
               <Tabs defaultActiveKey='0' tabPosition='top'>
-                {dataCinema.map((item, index) => (
+                {calendarShowList.map((calendar, index) => (
                   <TabPane
                     tab={
                       <div className='showtime-openday'>
-                        <p>{arrDate[new Date(item.date).getDay()]}</p>
-                        <p>{new Date(item.date).toLocaleDateString("vi-VI")}</p>
+                        <p>{arrDate[new Date(calendar.date).getDay()]}</p>
+                        <p>{new Date(calendar.date).toLocaleDateString("vi-VI")}</p>
                       </div>
                     }
                     key={index}
@@ -41,33 +42,33 @@ export const DetailShowtimeMobile = () => {
                     {/* tên hệ thống rạp*/}
                     <Collapse defaultActiveKey={["0"]}>
                       {/* tên cụm rạp */}
-                      {item.heThongRap.map((cinemaItem, cinemaItemIndex) => (
+                      {calendar.heThongRap.map((cinemaGroup, cinemaGroupIndex) => (
                         <Panel
                           header={
                             <div className='showtime-mobile-logo'>
-                              <img className='showtime-icon' src={cinemaItem.logo} />
-                              <div>{cinemaItem.tenHeThongRap.toUpperCase()}</div>
+                              <img className='showtime-icon' src={cinemaGroup.logo} />
+                              <div>{cinemaGroup.tenHeThongRap.toUpperCase()}</div>
                             </div>
                           }
-                          key={cinemaItemIndex}
+                          key={cinemaGroupIndex}
                         >
                           {/* danh sách thời điểm chiếu */}
-                          {cinemaItem.cumRapChieu.map((movie, indexMovie) => (
-                            <div key={indexMovie}>
-                              <h3>{movie.tenCumRap}</h3>
+                          {cinemaGroup.cumRapChieu.map((cinema, cinemaIndex) => (
+                            <div key={cinemaIndex}>
+                              <h3>{cinema.tenCumRap}</h3>
                               <div className='showtime-openday'>
-                                {movie.lichChieuPhim.map((openday, opendayIndex) => (
+                                {cinema.lichChieuPhim.map((showtime, showtimeIndex) => (
                                   <Link
-                                    to={`/booking/${openday.maLichChieu}`}
-                                    key={opendayIndex}
+                                    to={`/booking/${showtime.maLichChieu}`}
+                                    key={showtimeIndex}
                                     className='showtime-openday-item'
                                   >
                                     <span className='showtime-openday-big'>
-                                      {formatDateToHours(openday.ngayChieuGioChieu)}
+                                      {formatDateToHours(showtime.ngayChieuGioChieu)}
                                     </span>
                                     <span> ~ </span>
                                     {formatDateToHours(
-                                      increaseDate(openday.ngayChieuGioChieu, 7200000)
+                                      increaseDate(showtime.ngayChieuGioChieu, 7200000)
                                     )}
                                   </Link>
                                 ))}

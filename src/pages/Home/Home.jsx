@@ -18,6 +18,7 @@ export const Home = () => {
   const [comingSoonMovieList, setComingSoonMovieList] = useState(null);
   const [nowShowingMovieList, setNowShowingMovieList] = useState(null);
 
+  // lấy danh sách phim sắp chiếu
   const fetchComingSoonMovieList = async () => {
     try {
       const { data } = await moviesApi.getMovieList("01");
@@ -26,6 +27,7 @@ export const Home = () => {
       console.log(err);
     }
   };
+  // lấy danh sách phim đang chiếu
   const fetchNowShowingMovieList = async () => {
     try {
       const { data } = await moviesApi.getMovieList("13");
