@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShowtimeListToSearch } from "redux/actions/movieFilter.action";
+import { formatISOtoLocaleDateString } from "utilities/formatDate";
 import "./filter.scss";
 
 export const FilterOpenday = () => {
@@ -48,15 +49,13 @@ export const FilterOpenday = () => {
           <span
             title={
               selectedOpenday.ngayChieuGioChieu === ""
-                ? "Chọn ngày"
+                ? "Chọn Ngày"
                 : selectedOpenday.ngayChieuGioChieu
             }
           >
             {selectedOpenday.ngayChieuGioChieu === ""
-              ? "Chọn ngày"
-              : selectedOpenday.ngayChieuGioChieu.length <= 20
-              ? selectedOpenday.ngayChieuGioChieu
-              : `${selectedOpenday.ngayChieuGioChieu.slice(0, 20)}...`}
+              ? "Chọn Ngày"
+              : formatISOtoLocaleDateString(selectedOpenday.ngayChieuGioChieu)}
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
@@ -71,7 +70,7 @@ export const FilterOpenday = () => {
                     className={selectedOpenday === openday ? "active-option" : null}
                     onClick={() => handleGetShowtimeList(openday)}
                   >
-                    {new Date(openday.ngayChieuGioChieu.split("T")[0]).toLocaleDateString("vi-VI")}
+                    {formatISOtoLocaleDateString(openday.ngayChieuGioChieu)}
                   </li>
                 ))}
               </ul>

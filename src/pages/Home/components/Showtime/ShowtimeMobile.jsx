@@ -6,7 +6,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
-import formatDateToHour from "utilities/formatDateToHour";
+import { formatDateToHours } from "utilities/formatDate";
 import increaseDate from "utilities/increaseDate";
 
 export const ShowtimeMobile = () => {
@@ -48,10 +48,10 @@ export const ShowtimeMobile = () => {
                                   className='showtime-openday-item'
                                 >
                                   <span className='showtime-openday-big'>
-                                    {formatDateToHour(time.ngayChieuGioChieu)}
+                                    {formatDateToHours(time.ngayChieuGioChieu)}
                                   </span>
                                   <span> ~ </span>
-                                  {formatDateToHour(increaseDate(time.ngayChieuGioChieu, 7200000))}
+                                  {formatDateToHours(increaseDate(time.ngayChieuGioChieu, 7200000))}
                                 </Link>
                               ))}
                             </div>

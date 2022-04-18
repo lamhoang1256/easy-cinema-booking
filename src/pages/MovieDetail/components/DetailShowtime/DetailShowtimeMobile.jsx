@@ -4,7 +4,7 @@ import { Collapse, Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
-import formatDateToHour from "utilities/formatDateToHour";
+import { formatDateToHours } from "utilities/formatDate";
 import increaseDate from "utilities/increaseDate";
 import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
@@ -63,10 +63,10 @@ export const DetailShowtimeMobile = () => {
                                     className='showtime-openday-item'
                                   >
                                     <span className='showtime-openday-big'>
-                                      {formatDateToHour(openday.ngayChieuGioChieu)}
+                                      {formatDateToHours(openday.ngayChieuGioChieu)}
                                     </span>
                                     <span> ~ </span>
-                                    {formatDateToHour(
+                                    {formatDateToHours(
                                       increaseDate(openday.ngayChieuGioChieu, 7200000)
                                     )}
                                   </Link>

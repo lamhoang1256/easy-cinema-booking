@@ -41,9 +41,9 @@ export const fetchOpendayListToSearch = (data) => async (dispatch) => {
 
 // lấy danh sách các suất chiếu có trong ngày vừa chọn
 export const fetchShowtimeListToSearch = (data) => async (dispatch, useState) => {
-  const { movieSearch } = useState();
-  const opendayList = movieSearch.opendayList.filter(
-    (item) => item.ngayChieuGioChieu.split("T")[0] === data.ngayChieuGioChieu.split("T")[0]
+  const { movieFilter } = useState();
+  const opendayList = movieFilter.opendayList.filter(
+    (openday) => openday.ngayChieuGioChieu.split("T")[0] === data.ngayChieuGioChieu.split("T")[0]
   );
   dispatch({ type: MOVIE_FILTER_SHOWTIME, payload: opendayList });
 };

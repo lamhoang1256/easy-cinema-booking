@@ -2,10 +2,15 @@
 .filter {
   &-container {
     display: flex;
-    gap: 30px;
+    align-items: flex-end;
+    gap: 20px;
     .btn {
-      display: block;
-      margin-top: 30px;
+      padding: 16px 30px;
     }
+  }
+  &-label {
+    display: block;
+    color: #767676;
+    margin-bottom: 6px;
   }
 }

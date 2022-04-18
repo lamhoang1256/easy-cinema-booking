@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIdToBooking } from "redux/actions/movieFilter.action";
+import { formatISOtoHours } from "utilities/formatDate";
 import "./filter.scss";
 
 export const FilterShowtime = () => {
@@ -40,9 +41,7 @@ export const FilterShowtime = () => {
           >
             {selectedShowtime.ngayChieuGioChieu === ""
               ? "Chọn suất chiếu"
-              : selectedShowtime.ngayChieuGioChieu.length <= 20
-              ? selectedShowtime.ngayChieuGioChieu
-              : `${selectedShowtime.ngayChieuGioChieu.slice(0, 20)}...`}
+              : formatISOtoHours(selectedShowtime.ngayChieuGioChieu)}
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
@@ -57,7 +56,7 @@ export const FilterShowtime = () => {
                     className={selectedShowtime === showtime ? "active-option" : null}
                     onClick={() => handleGetIdBooking(showtime)}
                   >
-                    {showtime.ngayChieuGioChieu}
+                    {formatISOtoHours(showtime.ngayChieuGioChieu)}
                   </li>
                 ))}
               </ul>
