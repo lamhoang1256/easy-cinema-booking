@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { getTicketRoom, resetSelectingSeat } from "redux/actions/movieTicketRoom.action";
 import "./modalBill.scss";
 
-export const ModalBill = ({ openModal, setOpenModall, totalMoney, id }) => {
+export const ModalBill = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isModalBillVisible, setIsModalBillVisiblel, totalMoney, id } = props;
   const { dataTicketRoom, listSelectingSeat } = useSelector((state) => state.movieTicketRoom);
   const { userInfo } = useSelector((state) => state.user);
 
@@ -16,7 +17,7 @@ export const ModalBill = ({ openModal, setOpenModall, totalMoney, id }) => {
 
   const handleContinueBuyTicket = () => {
     dispatch(getTicketRoom(id));
-    setOpenModall(!openModal);
+    setIsModalBillVisiblel(!isModalBillVisible);
     dispatch(resetSelectingSeat());
     window.scrollTo(0, 0);
   };

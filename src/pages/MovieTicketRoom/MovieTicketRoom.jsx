@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 // component
+import { Banner } from "components/Banner/Banner";
 import { ModalBill } from "./components/ModalBill/ModalBill";
-import { BlockChair } from "./components/BlockChair/BlockChair";
+import { SeatingPlan } from "./components/SeatingPlan/SeatingPlan";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
 import { getTicketRoom, buyTicket, resetSelectingSeat } from "redux/actions/movieTicketRoom.action";
-import "./movieBuyTicket.scss";
-import { useParams } from "react-router-dom";
-import { Banner } from "components/Banner/Banner";
+
+import "./movieTicketRoom.scss";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
 
-export const MovieBuyTicket = () => {
+export const MovieTicketRoom = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [openModal, setOpenModal] = useState(false);
+  const [isModalBillVisible, setIsModalBillVisible] = useState(false);
   const { userInfo } = useSelector((state) => state.user);
   const { dataTicketRoom, listSelectingSeat, isLoadingTicketRoom } = useSelector(
     (state) => state.movieTicketRoom
@@ -63,8 +64,9 @@ export const MovieBuyTicket = () => {
       return;
     }
     const { isBuyTicketSuccess } = await dispatch(buyTicket(dataToBuyTicket));
+    //nếu mua vé thành công hiện modal bill
     if (isBuyTicketSuccess) {
-      setOpenModal(!openModal);
+      setIsModalBillVisible(!isModalBillVisible);
     }
   };
 
@@ -90,7 +92,7 @@ export const MovieBuyTicket = () => {
                   <div className='movie-booking-choice'>
                     <h3 className='movie-booking-title'>Chọn ghế</h3>
                     <div className='movie-booking-screen'>Màn hình</div>
-                    <BlockChair
+                    <SeatingPlan
                       listSelectingSeat={listSelectingSeat}
                       danhSachGhe={dataTicketRoom.danhSachGhe}
                     />
@@ -121,13 +123,13 @@ export const MovieBuyTicket = () => {
                       <span className='label'>Suất chiếu: </span>
                       {dataTicketRoom.thongTinPhim.gioChieu} {dataTicketRoom.thongTinPhim.ngayChieu}
                     </div>
-                    <div className='movie-booking-chairs'>
+                    <div className='movie-booking-seats'>
                       <span className='label'>Số ghế đã chọn:</span>
                       {listSelectingSeat.length !== 0
                         ? listSelectingSeat.map((c, index) => {
                             // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
-                            const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
-                            return chair;
+                            const seat = index === 0 ? c.tenGhe : ", " + c.tenGhe;
+                            return seat;
                           })
                         : "Chưa chọn ghế"}
                     </div>
@@ -166,12 +168,12 @@ export const MovieBuyTicket = () => {
             </div>
           </div>
           {/* mở modal bill khi đặt vé thành công  */}
-          {openModal && (
+          {isModalBillVisible && (
             <ModalBill
-              setOpenModall={setOpenModal}
-              openModal={openModal}
-              totalMoney={totalMoney}
               id={id}
+              totalMoney={totalMoney}
+              isModalBillVisible={isModalBillVisible}
+              setIsModalBillVisible={setIsModalBillVisible}
             />
           )}
         </div>

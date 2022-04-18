@@ -1,5 +1,5 @@
 @use "assets/scss/helpers/index.scss" as *;
-.block-chair {
+.seating-plan {
   &-container {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
@@ -8,7 +8,7 @@
     @include mobile {
       grid-template-columns: repeat(10, 1fr);
       grid-gap: 4px;
-      .block-chair-chair {
+      .seating-plan-seat {
         border-radius: 4px;
       }
     }
@@ -19,8 +19,8 @@
     border-radius: 6px;
     cursor: pointer;
   }
-  &-chair {
-    @extend .block-chair-square;
+  &-seat {
+    @extend .seating-plan-square;
     height: unset;
     width: unset;
     border: none;
@@ -29,17 +29,17 @@
     aspect-ratio: 1/1;
     @include flexbox(center, center);
   }
-  &-chair--vip {
+  &-seat--vip {
     background-color: #ffd124;
   }
-  &-chair--selecting {
+  &-seat--selecting {
     background-color: #2fdd92;
   }
-  &-chair--selected {
+  &-seat--selected {
     background-color: red;
     cursor: not-allowed;
   }
-  &-chair--yourchoice {
+  &-seat--yourchoice {
     background-color: #bfbfbf;
   }
   &-yourchoice {
@@ -56,12 +56,12 @@
     text-align: center;
   }
   &-square--vip {
-    @extend .block-chair-chair--vip;
+    @extend .seating-plan-seat--vip;
   }
   &-square--selecting {
-    @extend .block-chair-chair--selecting;
+    @extend .seating-plan-seat--selecting;
   }
   &-square--selected {
-    @extend .block-chair-chair--selected;
+    @extend .seating-plan-seat--selected;
   }
 }
