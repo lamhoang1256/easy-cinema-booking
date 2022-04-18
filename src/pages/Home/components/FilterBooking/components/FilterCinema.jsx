@@ -1,18 +1,18 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOpendayListToSearch } from "redux/actions/movieSearch.action";
+import { fetchOpendayListToSearch } from "redux/actions/movieFilter.action";
 import "./filter.scss";
 
 export const FilterCinema = () => {
   const dispatch = useDispatch();
-  const { cinemaList } = useSelector((state) => state.movieSearch);
+  const { cinemaList } = useSelector((state) => state.movieFilter);
   const [visibility, setVisibility] = useState(false);
   const [selectedCinema, setSelectedCinema] = useState({ tenCumRap: "" });
 
-  //lấy toàn bộ các ngày có chiếu phim này
-  const handleGetOpendayList = (cinema) => {
-    setSelectedCinema(cinema);
-    dispatch(fetchOpendayListToSearch(cinema.lichChieuPhim));
+  //lấy toàn bộ các ngày có chiếu phim ở rạp đang chọn
+  const handleGetOpendayList = (cinemaSelected) => {
+    setSelectedCinema(cinemaSelected);
+    dispatch(fetchOpendayListToSearch(cinemaSelected.lichChieuPhim));
   };
 
   useEffect(() => {
@@ -40,6 +40,7 @@ export const FilterCinema = () => {
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
+        {/* Danh sách RẠP đang chiếu PHIM vừa chọn */}
         {visibility && (
           <div className='filter-options'>
             {cinemaList ? (
@@ -49,7 +50,7 @@ export const FilterCinema = () => {
                     {cinemaGroup.cumRapChieu.map((cinema, id) => (
                       <li
                         key={id}
-                        className={selectedCinema === cinema ? "filter-active-option" : null}
+                        className={selectedCinema === cinema ? "active-option" : null}
                         onClick={() => handleGetOpendayList(cinema)}
                       >
                         {cinema.tenCumRap}

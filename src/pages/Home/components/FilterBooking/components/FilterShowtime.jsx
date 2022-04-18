@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getIdToBooking } from "redux/actions/movieSearch.action";
+import { getIdToBooking } from "redux/actions/movieFilter.action";
 import "./filter.scss";
 
 export const FilterShowtime = () => {
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [selectedShowtime, setSelectedShowtime] = useState({ ngayChieuGioChieu: "" });
-  const { showtimeList } = useSelector((state) => state.movieSearch);
+  const { showtimeList } = useSelector((state) => state.movieFilter);
 
   // lấy id phòng chiếu để chuyển sang đặt vé
-  const handleGetIdBooking = (openday) => {
-    setSelectedShowtime(openday);
-    dispatch(getIdToBooking(openday.maLichChieu));
+  const handleGetIdBooking = (showtimeSelected) => {
+    setSelectedShowtime(showtimeSelected);
+    dispatch(getIdToBooking(showtimeSelected.maLichChieu));
   };
 
   useEffect(() => {
@@ -46,6 +46,7 @@ export const FilterShowtime = () => {
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
+        {/* Danh sách các SUẤT CHIẾU có trong NGÀY ở RẠP vừa chọn */}
         {visibility && (
           <div className='filter-options'>
             {showtimeList ? (
@@ -53,7 +54,7 @@ export const FilterShowtime = () => {
                 {showtimeList.map((showtime, index) => (
                   <li
                     key={index}
-                    className={selectedShowtime === showtime ? "filter-active-option" : null}
+                    className={selectedShowtime === showtime ? "active-option" : null}
                     onClick={() => handleGetIdBooking(showtime)}
                   >
                     {showtime.ngayChieuGioChieu}

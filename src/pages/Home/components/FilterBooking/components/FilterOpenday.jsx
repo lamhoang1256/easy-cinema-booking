@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchShowtimeListToSearch } from "redux/actions/movieSearch.action";
+import { fetchShowtimeListToSearch } from "redux/actions/movieFilter.action";
 import "./filter.scss";
 
 export const FilterOpenday = () => {
   const dispatch = useDispatch();
-  const { opendayList } = useSelector((state) => state.movieSearch);
+  const { opendayList } = useSelector((state) => state.movieFilter);
   const [visibility, setVisibility] = useState(false);
   const [selectedOpenday, setSelectedOpenday] = useState({ ngayChieuGioChieu: "" });
 
@@ -23,9 +23,10 @@ export const FilterOpenday = () => {
     return previousValue;
   }, []);
 
-  const handleGetShowtimeList = (openday) => {
-    setSelectedOpenday(openday);
-    dispatch(fetchShowtimeListToSearch(openday));
+  // lấy danh sách các suất chiếu có trong ngày vừa được chọn
+  const handleGetShowtimeList = (opendaySelected) => {
+    setSelectedOpenday(opendaySelected);
+    dispatch(fetchShowtimeListToSearch(opendaySelected));
   };
 
   useEffect(() => {
@@ -59,6 +60,7 @@ export const FilterOpenday = () => {
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
+        {/* Danh sách các NGÀY đang chiếu PHIM ở RẠP vừa chọn */}
         {visibility && (
           <div className='filter-options'>
             {uniqueOpendayList ? (
@@ -66,7 +68,7 @@ export const FilterOpenday = () => {
                 {uniqueOpendayList.map((openday, index) => (
                   <li
                     key={index}
-                    className={selectedOpenday === openday ? "filter-active-option" : null}
+                    className={selectedOpenday === openday ? "active-option" : null}
                     onClick={() => handleGetShowtimeList(openday)}
                   >
                     {new Date(openday.ngayChieuGioChieu.split("T")[0]).toLocaleDateString("vi-VI")}

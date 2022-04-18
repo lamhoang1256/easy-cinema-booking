@@ -8,12 +8,13 @@ import { FilterShowtime } from "./components/FilterShowtime";
 import "./filterBooking.scss";
 
 export const FilterBooking = () => {
-  const { idBooking } = useSelector((state) => state.movieSearch);
+  const { idBooking } = useSelector((state) => state.movieFilter);
 
   return (
     <div className='filter-booking'>
       <div className='container'>
         <div className='filter-container'>
+          {/* Chọn phim -> chọn rạp -> chọn ngày xem -> chọn suất chiếu */}
           <div className='filter-boxed'>
             <span>Chọn phim</span>
             <FilterMovie />
@@ -33,10 +34,10 @@ export const FilterBooking = () => {
           <div className='filter-boxed'>
             {idBooking ? (
               <Link to={`/booking/${idBooking}`}>
-                <button className={`btn ${idBooking ? "btn--primary" : ""}`}>Đặt vé</button>
+                <button className='btn btn--primary'>Đặt vé</button>
               </Link>
             ) : (
-              <button className={`btn`}>Đặt vé</button>
+              <button className='btn'>Đặt vé</button>
             )}
           </div>
         </div>

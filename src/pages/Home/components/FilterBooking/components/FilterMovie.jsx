@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCinemaListToSearch, fetchMovieListToSearch } from "redux/actions/movieSearch.action";
+import { fetchCinemaListToSearch, fetchMovieListToSearch } from "redux/actions/movieFilter.action";
 import "./filter.scss";
 
 export const FilterMovie = () => {
   const dispatch = useDispatch();
-  const { movieList } = useSelector((state) => state.movieSearch);
+  const { movieList } = useSelector((state) => state.movieFilter);
   const [visibility, setVisibility] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({ tenPhim: "" });
 
   // lấy danh sách các rạp có chiếu phim vừa chọn
-  const handleGetCinemaList = (movie) => {
-    setSelectedMovie(movie);
-    dispatch(fetchCinemaListToSearch(movie.maPhim));
+  const handleGetCinemaList = (movieSelected) => {
+    setSelectedMovie(movieSelected);
+    dispatch(fetchCinemaListToSearch(movieSelected.maPhim));
   };
 
+  // lấy danh sách các tên phim
   useEffect(() => {
     dispatch(fetchMovieListToSearch());
   }, []);
@@ -40,13 +41,14 @@ export const FilterMovie = () => {
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
+        {/* Danh sách tên PHIM */}
         {visibility && (
           <div className='filter-options'>
             <ul>
               {movieList?.map((movie, index) => (
                 <li
                   key={index}
-                  className={selectedMovie === movie ? "filter-active-option" : null}
+                  className={selectedMovie === movie ? "active-option" : null}
                   onClick={() => handleGetCinemaList(movie)}
                 >
                   {movie.tenPhim}
