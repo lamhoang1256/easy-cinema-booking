@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIdToBooking } from "redux/actions/movieSearch.action";
-import "./dropdown.scss";
+import "./filter.scss";
 
-export const SearchShowtime = () => {
+export const FilterShowtime = () => {
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [selectedShowtime, setSelectedShowtime] = useState({ ngayChieuGioChieu: "" });
@@ -20,9 +20,9 @@ export const SearchShowtime = () => {
   }, [showtimeList]);
 
   return (
-    <div className='dropdown-menu'>
+    <div className='filter-menu'>
       <div
-        className='select'
+        className='filter-select'
         onClick={(e) => {
           setVisibility(!visibility);
           e.currentTarget.children[0].children[1].innerHTML = visibility
@@ -30,7 +30,7 @@ export const SearchShowtime = () => {
             : "arrow_drop_up";
         }}
       >
-        <div className='selected-option'>
+        <div className='filter-selected-option'>
           <span
             title={
               selectedShowtime.ngayChieuGioChieu === ""
@@ -47,13 +47,13 @@ export const SearchShowtime = () => {
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
         {visibility && (
-          <div className='options'>
+          <div className='filter-options'>
             {showtimeList ? (
               <ul>
                 {showtimeList.map((showtime, index) => (
                   <li
                     key={index}
-                    className={selectedShowtime === showtime ? "active-option" : null}
+                    className={selectedShowtime === showtime ? "filter-active-option" : null}
                     onClick={() => handleGetIdBooking(showtime)}
                   >
                     {showtime.ngayChieuGioChieu}

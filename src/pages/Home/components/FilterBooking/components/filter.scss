@@ -1,4 +1,4 @@
-.select {
+.filter-select {
   width: 240px;
   display: block;
   padding: 16px;
@@ -9,7 +9,7 @@
   cursor: pointer;
 }
 
-.selected-option {
+.filter-selected-option {
   height: inherit;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
   }
 }
 
-.options {
+.filter-options {
   position: absolute;
   top: 50px;
   left: 0;
@@ -49,16 +49,8 @@
     &:hover {
       background: rgba(10, 39, 206, 0.082);
     }
-    &.active-option {
+    &.filter-active-option {
       background: rgba(10, 39, 206, 0.082);
     }
   }
-}
-
-.search-options {
-  padding-top: 8px;
-  background: #fff;
-  position: fixed;
-  height: 40px;
-  width: 208px;
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShowtimeListToSearch } from "redux/actions/movieSearch.action";
-import "./dropdown.scss";
+import "./filter.scss";
 
-export const SearchOpenday = () => {
+export const FilterOpenday = () => {
   const dispatch = useDispatch();
   const { opendayList } = useSelector((state) => state.movieSearch);
   const [visibility, setVisibility] = useState(false);
@@ -33,9 +33,9 @@ export const SearchOpenday = () => {
   }, [opendayList]);
 
   return (
-    <div className='dropdown-menu'>
+    <div className='filter-menu'>
       <div
-        className='select'
+        className='filter-select'
         onClick={(e) => {
           setVisibility(!visibility);
           e.currentTarget.children[0].children[1].innerHTML = visibility
@@ -43,7 +43,7 @@ export const SearchOpenday = () => {
             : "arrow_drop_up";
         }}
       >
-        <div className='selected-option'>
+        <div className='filter-selected-option'>
           <span
             title={
               selectedOpenday.ngayChieuGioChieu === ""
@@ -60,13 +60,13 @@ export const SearchOpenday = () => {
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
         {visibility && (
-          <div className='options'>
+          <div className='filter-options'>
             {uniqueOpendayList ? (
               <ul>
                 {uniqueOpendayList.map((openday, index) => (
                   <li
                     key={index}
-                    className={selectedOpenday === openday ? "active-option" : null}
+                    className={selectedOpenday === openday ? "filter-active-option" : null}
                     onClick={() => handleGetShowtimeList(openday)}
                   >
                     {new Date(openday.ngayChieuGioChieu.split("T")[0]).toLocaleDateString("vi-VI")}

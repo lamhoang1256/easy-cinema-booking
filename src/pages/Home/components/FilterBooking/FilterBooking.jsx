@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { SearchCinema } from "./components/SearchCinema";
-import { SearchOpenday } from "./components/SearchOpenday";
-import { SearchMovie } from "./components/SearchMovie";
-import { SearchShowtime } from "./components/SearchShowtime";
-import "./searchBooking.scss";
+import { FilterCinema } from "./components/FilterCinema";
+import { FilterOpenday } from "./components/FilterOpenday";
+import { FilterMovie } from "./components/FilterMovie";
+import { FilterShowtime } from "./components/FilterShowtime";
+import "./filterBooking.scss";
 
-export const SearchBooking = () => {
+export const FilterBooking = () => {
   const { idBooking } = useSelector((state) => state.movieSearch);
 
   return (
@@ -16,19 +16,19 @@ export const SearchBooking = () => {
         <div className='filter-container'>
           <div className='filter-boxed'>
             <span>Chọn phim</span>
-            <SearchMovie />
+            <FilterMovie />
           </div>
           <div className='filter-boxed'>
             <span>Chọn rạp chiếu</span>
-            <SearchCinema />
+            <FilterCinema />
           </div>
           <div className='filter-boxed'>
             <span>Chọn ngày xem</span>
-            <SearchOpenday />
+            <FilterOpenday />
           </div>
           <div className='filter-boxed'>
             <span>Chọn suất chiếu</span>
-            <SearchShowtime />
+            <FilterShowtime />
           </div>
           <div className='filter-boxed'>
             {idBooking ? (

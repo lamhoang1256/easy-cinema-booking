@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOpendayListToSearch } from "redux/actions/movieSearch.action";
-import "./dropdown.scss";
+import "./filter.scss";
 
-export const SearchCinema = () => {
+export const FilterCinema = () => {
   const dispatch = useDispatch();
   const { cinemaList } = useSelector((state) => state.movieSearch);
   const [visibility, setVisibility] = useState(false);
@@ -20,9 +20,9 @@ export const SearchCinema = () => {
   }, [cinemaList]);
 
   return (
-    <div className='dropdown-menu'>
+    <div className='filter-menu'>
       <div
-        className='select'
+        className='filter-select'
         onClick={(e) => {
           setVisibility(!visibility);
           e.currentTarget.children[0].children[1].innerHTML = visibility
@@ -30,7 +30,7 @@ export const SearchCinema = () => {
             : "arrow_drop_up";
         }}
       >
-        <div className='selected-option'>
+        <div className='filter-selected-option'>
           <span title={selectedCinema.tenCumRap === "" ? "Chọn Rạp" : selectedCinema.tenCumRap}>
             {selectedCinema.tenCumRap === ""
               ? "Chọn Rạp"
@@ -41,7 +41,7 @@ export const SearchCinema = () => {
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
         {visibility && (
-          <div className='options'>
+          <div className='filter-options'>
             {cinemaList ? (
               <ul>
                 {cinemaList.heThongRapChieu.map((cinemaGroup, index) => (
@@ -49,7 +49,7 @@ export const SearchCinema = () => {
                     {cinemaGroup.cumRapChieu.map((cinema, id) => (
                       <li
                         key={id}
-                        className={selectedCinema === cinema ? "active-option" : null}
+                        className={selectedCinema === cinema ? "filter-active-option" : null}
                         onClick={() => handleGetOpendayList(cinema)}
                       >
                         {cinema.tenCumRap}

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCinemaListToSearch, fetchMovieListToSearch } from "redux/actions/movieSearch.action";
-import "./dropdown.scss";
+import "./filter.scss";
 
-export const SearchMovie = () => {
+export const FilterMovie = () => {
   const dispatch = useDispatch();
   const { movieList } = useSelector((state) => state.movieSearch);
   const [visibility, setVisibility] = useState(false);
@@ -20,9 +20,9 @@ export const SearchMovie = () => {
   }, []);
 
   return (
-    <div className='dropdown-menu'>
+    <div className='filter-menu'>
       <div
-        className='select'
+        className='filter-select'
         onClick={(e) => {
           setVisibility(!visibility);
           e.currentTarget.children[0].children[1].innerHTML = visibility
@@ -30,7 +30,7 @@ export const SearchMovie = () => {
             : "arrow_drop_up";
         }}
       >
-        <div className='selected-option'>
+        <div className='filter-selected-option'>
           <span title={selectedMovie.tenPhim === "" ? "Chọn Phim" : selectedMovie.tenPhim}>
             {selectedMovie.tenPhim === ""
               ? "Chọn Phim"
@@ -41,12 +41,12 @@ export const SearchMovie = () => {
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>
         {visibility && (
-          <div className='options'>
+          <div className='filter-options'>
             <ul>
               {movieList?.map((movie, index) => (
                 <li
                   key={index}
-                  className={selectedMovie === movie ? "active-option" : null}
+                  className={selectedMovie === movie ? "filter-active-option" : null}
                   onClick={() => handleGetCinemaList(movie)}
                 >
                   {movie.tenPhim}
