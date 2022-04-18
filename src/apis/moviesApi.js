@@ -5,6 +5,11 @@ export const moviesApi = {
     const path = `QuanLyPhim/LayDanhSachPhim?maNhom=GP${groupCode}`;
     return axiosClient.get(path);
   },
+  //lấy chi tiết phim thông qua id
+  getMovieDetail: (movieCode) => {
+    const path = `QuanLyPhim/LayThongTinPhim?MaPhim=${movieCode}`;
+    return axiosClient.get(path);
+  },
   //lấy thông tin lịch chiếu của phim theo id
   getCalendarShow: (movieCode) => {
     const path = `QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieCode}`;

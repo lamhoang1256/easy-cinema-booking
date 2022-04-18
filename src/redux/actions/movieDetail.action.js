@@ -1,5 +1,3 @@
-import axios from "axios";
-import axiosClient from "apis/axiosClient";
 import {
   GET_MOVIE_DETAIL_REQUEST,
   GET_MOVIE_DETAIL_SUCCESS,
@@ -14,29 +12,17 @@ import {
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAIL,
 } from "../constants/movieDetail.constant";
+import { moviesApi } from "apis/moviesApi";
+import { commentsApi } from "apis/commentsApi";
 
 // lấy thông tin phim chi tiết qua id
 export const getMovieDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_DETAIL_REQUEST });
-    const { data } = await axiosClient.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);
+    const { data } = await moviesApi.getMovieDetail(id);
     dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: data.content });
-  } catch (err) {
-    dispatch({ type: GET_MOVIE_DETAIL_FAIL, payload: err });
-  }
-};
-
-// lấy thông tin phim chi tiết qua id
-export const postComment = (dataToPostComment) => async (dispatch) => {
-  try {
-    dispatch({ type: POST_COMMENT_REQUEST });
-    const { data } = await axiosClient.post(
-      `https://62459f866b7ecf057c216c44.mockapi.io/api/comments`,
-      dataToPostComment
-    );
-    dispatch({ type: POST_COMMENT_SUCCESS, payload: data });
-  } catch (err) {
-    dispatch({ type: POST_COMMENT_FAIL, payload: err });
+  } catch (errors) {
+    dispatch({ type: GET_MOVIE_DETAIL_FAIL, payload: errors });
   }
 };
 
@@ -44,18 +30,14 @@ export const postComment = (dataToPostComment) => async (dispatch) => {
 export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_CALENDAR_SHOW_REQUEST });
-    const { data } = await axiosClient.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
+    const { data } = await moviesApi.getCalendarShow(id);
 
-    // kiểm tra có lịch chiếu hay không, nếu không có thông báo hiện tại chưa có lịch chiếu
-    const isEmptyData = data.content.heThongRapChieu?.length === 0;
-    const heThongRapChieu = data.content.heThongRapChieu;
-
-    // BƯỚC 1: tạo mảng chứa tất cả maLichChieu,
-    // thêm một số property sử dụng cho việc hiển thị dữ liệu: tenHeThongRap, tenCumRap, logo
-    const arrayAllLichChieuPhimAddProp = heThongRapChieu?.reduce((colect1, heThongRapChieuItem) => {
+    const systemCinema = data.content.heThongRapChieu;
+    // tạo mảng chứa tất cả maLichChieu và thêm một số property sử dụng cho việc hiển thị dữ liệu: tenHeThongRap, tenCumRap, logo
+    const calendarShowList = systemCinema?.reduce((colect1, systemCinemaItem) => {
       return [
         ...colect1,
-        ...heThongRapChieuItem.cumRapChieu?.reduce((colect2, cumRapChieuItem) => {
+        ...systemCinemaItem.cumRapChieu?.reduce((colect2, cumRapChieuItem) => {
           return [
             ...colect2,
             ...cumRapChieuItem.lichChieuPhim?.reduce((colect3, lichChieuPhimItem) => {
@@ -63,9 +45,9 @@ export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
                 ...colect3,
                 {
                   ...lichChieuPhimItem,
-                  tenHeThongRap: heThongRapChieuItem.tenHeThongRap,
+                  tenHeThongRap: systemCinemaItem.tenHeThongRap,
                   tenCumRap: cumRapChieuItem.tenCumRap,
-                  logo: heThongRapChieuItem.logo,
+                  logo: systemCinemaItem.logo,
                 },
               ];
             }, []),
@@ -74,33 +56,33 @@ export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
       ];
     }, []);
 
-    // BƯỚC 2: tạo mảng ngày
+    // tạo mảng ngày không bị trùng lặp và sắp xếp lại thứ tự
     const arrayDay = [
-      ...new Set(arrayAllLichChieuPhimAddProp?.map((item) => item.ngayChieuGioChieu?.slice(0, 10))),
+      ...new Set(calendarShowList?.map((item) => item.ngayChieuGioChieu?.slice(0, 10))),
     ].sort();
 
-    // BƯỚC 3: dựa trên mảng ngày, tạo ra mảng dữ liệu chính bằng cách lọc ra item theo ngày
-    // sau đó return về arrayHeThongRapChieuFilterByDay để render
-    const arrayHeThongRapChieuFilterByDay = arrayDay.map((date) => {
-      const arrayLichChieuPhimFilterByDay = arrayAllLichChieuPhimAddProp.filter(
+    // dựa trên mảng ngày vừa tạo, tạo ra mảng dữ liệu chính bằng cách lọc ra item theo ngày
+    // sau đó return về systemCinemaFilterByDay để render
+    const systemCinemaFilterByDay = arrayDay.map((date) => {
+      const calendarShowListFilterByDay = calendarShowList.filter(
         (item) => item.ngayChieuGioChieu.slice(0, 10) === date
       );
 
-      const arrayHeThongRapRemoveDup = arrayLichChieuPhimFilterByDay?.filter(
+      const systemCinemaRemoveDuplicate = calendarShowListFilterByDay?.filter(
         (itemIncrease, indexIncrease, arr) =>
           indexIncrease === arr.findIndex((t) => t.tenHeThongRap === itemIncrease.tenHeThongRap)
       );
-      const arrayHeThongRapItem = arrayHeThongRapRemoveDup.map((heThongRapItem) => {
-        const arrayLichChieuPhimFilterByHeThongRap = arrayLichChieuPhimFilterByDay?.filter(
+      const systemCinema = systemCinemaRemoveDuplicate.map((heThongRapItem) => {
+        const calendarShowListFilterBySystemCinema = calendarShowListFilterByDay?.filter(
           (item) => item.tenHeThongRap === heThongRapItem.tenHeThongRap
         );
-        const arrayCumRapChieuRemoveDup = arrayLichChieuPhimFilterByHeThongRap?.filter(
+        const cinemaGroupRemoveDuplicate = calendarShowListFilterBySystemCinema?.filter(
           (itemIncrease, indexIncrease, arr) =>
             indexIncrease === arr.findIndex((t) => t.tenCumRap === itemIncrease.tenCumRap)
         );
 
-        const cumRapChieu = arrayCumRapChieuRemoveDup.map((cumRapChieu) => {
-          const lichChieuPhim = arrayLichChieuPhimFilterByHeThongRap.filter(
+        const cumRapChieu = cinemaGroupRemoveDuplicate.map((cumRapChieu) => {
+          const lichChieuPhim = calendarShowListFilterBySystemCinema.filter(
             (lichChieuPhim) => lichChieuPhim.tenCumRap === cumRapChieu.tenCumRap
           );
           return {
@@ -115,18 +97,15 @@ export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
           cumRapChieu,
         };
       });
-
-      return { date, heThongRap: arrayHeThongRapItem };
+      return { date, heThongRap: systemCinema };
     });
-    console.log(arrayHeThongRapChieuFilterByDay, isEmptyData);
-    // return { arrayHeThongRapChieuFilterByDay, isEmptyData };
 
     dispatch({
       type: GET_CALENDAR_SHOW_SUCCESS,
-      payload: arrayHeThongRapChieuFilterByDay,
+      payload: systemCinemaFilterByDay,
     });
-  } catch (err) {
-    dispatch({ type: GET_CALENDAR_SHOW_FAIL, payload: err });
+  } catch (errors) {
+    dispatch({ type: GET_CALENDAR_SHOW_FAIL, payload: errors });
   }
 };
 
@@ -134,11 +113,22 @@ export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
 export const getCommentList = (idMovie) => async (dispatch) => {
   try {
     dispatch({ type: GET_COMMENTS_REQUEST });
-    const response = await axios.get("https://62459f866b7ecf057c216c44.mockapi.io/api/comments");
+    const response = await commentsApi.getComments();
     //lấy ra các comment có mã phim trùng với mã phim trên url của trang hiện tại
-    const dataComment = response.data.filter((comment) => comment.idMovie == idMovie);
-    dispatch({ type: GET_COMMENTS_SUCCESS, payload: dataComment });
-  } catch (err) {
-    dispatch({ type: GET_COMMENTS_FAIL, payload: err });
+    const commentList = response.data.filter((comment) => comment.idMovie == idMovie);
+    dispatch({ type: GET_COMMENTS_SUCCESS, payload: commentList });
+  } catch (errors) {
+    dispatch({ type: GET_COMMENTS_FAIL, payload: errors });
+  }
+};
+
+// đăng nhận xét mới về phim
+export const postComment = (requestComment) => async (dispatch) => {
+  try {
+    dispatch({ type: POST_COMMENT_REQUEST });
+    const { data } = await commentsApi.postComments(requestComment);
+    dispatch({ type: POST_COMMENT_SUCCESS, payload: data });
+  } catch (errors) {
+    dispatch({ type: POST_COMMENT_FAIL, payload: errors });
   }
 };

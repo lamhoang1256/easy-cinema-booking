@@ -33,11 +33,11 @@ export const movieDetail = (state = initialState, { type, payload }) => {
 
     // get danh sách lịch chiếu phim
     case GET_CALENDAR_SHOW_REQUEST:
-      return { ...state, loadingCinema: true };
+      return { ...state };
     case GET_CALENDAR_SHOW_SUCCESS:
-      return { ...state, loadingCinema: false, calendarShowList: payload };
+      return { ...state, calendarShowList: payload };
     case GET_CALENDAR_SHOW_FAIL:
-      return { ...state, loadingCinema: false, errors: payload };
+      return { ...state, errors: payload };
 
     // get danh sách comment
     case GET_COMMENTS_REQUEST:
