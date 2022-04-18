@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Tabs } from "antd";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
 // component
 import { Carousel } from "./components/Carousel/Carousel";
@@ -10,20 +8,36 @@ import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { Showtime } from "./components/Showtime/Showtime";
 import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
-// action
-import { getMovieListAction } from "redux/actions/movieList.action";
+
+import { moviesApi } from "apis/moviesApi";
 import "./home.scss";
 
 export const Home = () => {
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
-  const dispatch = useDispatch();
-  const { data, loading } = useSelector((state) => state.movieList);
+  const [comingSoonMovieList, setComingSoonMovieList] = useState(null);
+  const [nowShowingMovieList, setNowShowingMovieList] = useState(null);
 
-  // tab antd
-  const { TabPane } = Tabs;
+  const fetchComingSoonMovieList = async () => {
+    try {
+      const { data } = await moviesApi.getMovieList("01");
+      setComingSoonMovieList(data.content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const fetchNowShowingMovieList = async () => {
+    try {
+      const { data } = await moviesApi.getMovieList("13");
+      setNowShowingMovieList(data.content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    dispatch(getMovieListAction());
+    fetchComingSoonMovieList();
+    fetchNowShowingMovieList();
   }, []);
 
   return (
@@ -34,10 +48,9 @@ export const Home = () => {
       <div className='home-main'>
         <FilterBooking />
         <div className='container'>
-          {/* Tab danh sách phim */}
-          <MovieList data={data?.comingSoonMovie} heading='Phim sắp chiếu' />
-          <MovieList data={data?.isShowingMovie} heading='Phim đang chiếu' />
-
+          {/* Danh sách phim */}
+          <MovieList data={comingSoonMovieList} heading='Phim sắp chiếu' />
+          <MovieList data={nowShowingMovieList} heading='Phim đang chiếu' />
           {/* Phần Lịch chiếu phim */}
           <div id='showtime'>{isMobile ? <ShowtimeMobile /> : <Showtime />}</div>
           {/* Phần Tin tức */}
