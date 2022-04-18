@@ -13,7 +13,7 @@ export const Article = () => {
       {dataFakeNews ? (
         <div className='article-container'>
           <div className='article-main'>
-            <Link to={`article/${dataFakeNews[0].id}`} className='article-main-image'>
+            <Link to={`news/${dataFakeNews[0].id}`} className='article-main-image'>
               <img className='article-thumb' src={dataFakeNews[0].thumbnail} alt='article-image' />
             </Link>
             <div className='article-content'>
@@ -21,11 +21,11 @@ export const Article = () => {
                 <ion-icon name='time-outline'></ion-icon> {dataFakeNews[0].createdAt}
               </p>
               <Link
-                to={`article/${dataFakeNews[0].id}`}
+                to={`news/${dataFakeNews[0].id}`}
                 dangerouslySetInnerHTML={{ __html: dataFakeNews[0].title }}
               ></Link>
               <Link
-                to={`article/${dataFakeNews[0].id}`}
+                to={`news/${dataFakeNews[0].id}`}
                 className='article-desc'
                 dangerouslySetInnerHTML={{ __html: dataFakeNews[0].content }}
               ></Link>

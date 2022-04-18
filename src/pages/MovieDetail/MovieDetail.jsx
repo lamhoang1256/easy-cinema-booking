@@ -20,7 +20,7 @@ import { useMediaQuery } from "hooks/useMediaQuery";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {
-  const { id } = useParams(); // lấy id từ thanh url
+  const { idDetail } = useParams(); // lấy idDetail từ thanh url
   const dispatch = useDispatch();
   const { movieDetail, isLoadingMovieDetail, togglePostComment } = useSelector(
     (state) => state.movieDetail
@@ -28,15 +28,15 @@ export const MovieDetail = () => {
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
 
-  // get data detail movie from API thông qua id
+  // get data detail movie from API thông qua idDetail
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getMovieDetail(id));
-    dispatch(getCalendarShowMovieDetail(id));
+    dispatch(getMovieDetail(idDetail));
+    dispatch(getCalendarShowMovieDetail(idDetail));
   }, []);
 
   useEffect(() => {
-    dispatch(getCommentList(id));
+    dispatch(getCommentList(idDetail));
   }, [togglePostComment]);
 
   return (

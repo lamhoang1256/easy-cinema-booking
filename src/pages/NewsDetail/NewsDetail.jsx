@@ -9,9 +9,9 @@ const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.
 )`;
 
 export const NewsDetail = () => {
-  const { id } = useParams();
-  // lọc lấy tin cần đọc theo id trên url
-  const dataPost = dataFakeNews.filter((news) => news.id == id)[0];
+  const { idNewsDetail } = useParams();
+  // lọc lấy tin cần đọc theo idNewsDetail trên url
+  const dataPost = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);

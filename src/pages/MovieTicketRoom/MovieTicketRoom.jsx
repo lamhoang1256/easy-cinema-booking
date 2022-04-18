@@ -16,7 +16,7 @@ const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background
 )`;
 
 export const MovieTicketRoom = () => {
-  const { id } = useParams();
+  const { idTicketRoom } = useParams();
   const dispatch = useDispatch();
   const [isModalBillVisible, setIsModalBillVisible] = useState(false);
   const { userInfo } = useSelector((state) => state.user);
@@ -72,9 +72,9 @@ export const MovieTicketRoom = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getTicketRoom(id));
+    dispatch(getTicketRoom(idTicketRoom));
     dispatch(resetSelectingSeat());
-  }, [id]);
+  }, [idTicketRoom]);
 
   return (
     <>
@@ -170,7 +170,7 @@ export const MovieTicketRoom = () => {
           {/* mở modal bill khi đặt vé thành công  */}
           {isModalBillVisible && (
             <ModalBill
-              id={id}
+              idTicketRoom={idTicketRoom}
               totalMoney={totalMoney}
               isModalBillVisible={isModalBillVisible}
               setIsModalBillVisible={setIsModalBillVisible}

@@ -23,10 +23,10 @@ function App() {
         {/* Main Layout */}
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='/detail/:id' element={<MovieDetail />} />
+          <Route path='/detail/:idDetail' element={<MovieDetail />} />
           <Route path='/user' element={<UserInfo />} />
-          <Route path='/news/:id' element={<NewsDetail />} />
-          <Route path='/booking/:id' element={<MovieTicketRoom />} />
+          <Route path='/news/:idNewsDetail' element={<NewsDetail />} />
+          <Route path='/booking/:idTicketRoom' element={<MovieTicketRoom />} />
         </Route>
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}></Route>
