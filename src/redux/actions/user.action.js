@@ -1,43 +1,43 @@
 import axiosClient from "apis/axiosClient";
 import {
-  USER_UPDATE_PROFILE_REQUEST,
-  USER_UPDATE_PROFILE_SUCCESS,
-  USER_UPDATE_PROFILE_FAIL,
-  USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
-  USER_LOGIN_FAIL,
-  USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS,
-  USER_REGISTER_FAIL,
-  USER_DETAIL_PROFILE_REQUEST,
-  USER_DETAIL_PROFILE_SUCCESS,
-  USER_DETAIL_PROFILE_FAIL,
-  USER_LOGOUT,
+  LOGIN_USER_REQUEST,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAIL,
+  LOGOUT_USER,
+  REGISTER_USER_REQUEST,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAIL,
+  UPDATE_USER_PROFILE_REQUEST,
+  UPDATE_USER_PROFILE_SUCCESS,
+  UPDATE_USER_PROFILE_FAIL,
+  GET_USER_PROFILE_REQUEST,
+  GET_USER_PROFILE_SUCCESS,
+  GET_USER_PROFILE_FAIL,
 } from "redux/constants/user.constant";
 
 // Đăng nhập tài khoản
-export const loginAction = (dataToLogin) => async (dispatch) => {
+export const loginUser = (dataToLogin) => async (dispatch) => {
   try {
-    dispatch({ type: USER_LOGIN_REQUEST });
+    dispatch({ type: LOGIN_USER_REQUEST });
     const response = await axiosClient.post("QuanLyNguoiDung/DangNhap", dataToLogin);
-    dispatch({ type: USER_LOGIN_SUCCESS, payload: response.data.content });
+    dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data.content });
   } catch (error) {
     dispatch({
-      type: USER_LOGIN_FAIL,
+      type: LOGIN_USER_FAIL,
       payload: error.response?.data ? error.response.data : error.message,
     });
   }
 };
 
 // Đăng ký tài khoản người dùng
-export const registerAction = (dataToRegister) => async (dispatch) => {
+export const registerUser = (dataToRegister) => async (dispatch) => {
   try {
-    dispatch({ type: USER_REGISTER_REQUEST });
+    dispatch({ type: REGISTER_USER_REQUEST });
     const response = await axiosClient.post("/QuanLyNguoiDung/DangKy", dataToRegister);
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data.content });
+    dispatch({ type: REGISTER_USER_SUCCESS, payload: response.data.content });
   } catch (error) {
     dispatch({
-      type: USER_REGISTER_FAIL,
+      type: REGISTER_USER_FAIL,
       payload: error.response?.data ? error.response.data : error.message,
     });
   }
@@ -46,23 +46,23 @@ export const registerAction = (dataToRegister) => async (dispatch) => {
 // Đăng xuất
 export const logoutAction = () => {
   return {
-    type: USER_LOGOUT,
+    type: LOGOUT_USER,
   };
 };
 
 // Cập nhật thông tin người dùng
 export const updateUserAction = (dataToUpdateUser) => async (dispatch) => {
   try {
-    dispatch({ type: USER_UPDATE_PROFILE_REQUEST });
+    dispatch({ type: UPDATE_USER_PROFILE_REQUEST });
     const response = await axiosClient.put(
       "QuanLyNguoiDung/CapNhatThongTinNguoiDung",
       dataToUpdateUser
     );
-    dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: response.data.content });
-    dispatch({ type: USER_LOGOUT });
+    dispatch({ type: UPDATE_USER_PROFILE_SUCCESS, payload: response.data.content });
+    dispatch({ type: LOGOUT_USER });
   } catch (error) {
     dispatch({
-      type: USER_UPDATE_PROFILE_FAIL,
+      type: UPDATE_USER_PROFILE_FAIL,
       payload: error.response?.data ? error.response.data : error.message,
     });
   }
@@ -71,12 +71,12 @@ export const updateUserAction = (dataToUpdateUser) => async (dispatch) => {
 // Lấy thông tin chi tiết của người dùng (bao gồm thông tin cơ bản + lịch sử đặt vé)
 export const getDetailUserAction = () => async (dispatch) => {
   try {
-    dispatch({ type: USER_DETAIL_PROFILE_REQUEST });
+    dispatch({ type: GET_USER_PROFILE_REQUEST });
     const response = await axiosClient.post("QuanLyNguoiDung/ThongTinTaiKhoan");
-    dispatch({ type: USER_DETAIL_PROFILE_SUCCESS, payload: response.data.content });
+    dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: response.data.content });
   } catch (error) {
     dispatch({
-      type: USER_DETAIL_PROFILE_FAIL,
+      type: GET_USER_PROFILE_FAIL,
       payload: error.response?.data ? error.response.data : error.message,
     });
   }

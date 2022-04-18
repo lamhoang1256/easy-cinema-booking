@@ -21,8 +21,8 @@ export const getMovieDetail = (id) => async (dispatch) => {
     dispatch({ type: GET_MOVIE_DETAIL_REQUEST });
     const { data } = await moviesApi.getMovieDetail(id);
     dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: data.content });
-  } catch (errors) {
-    dispatch({ type: GET_MOVIE_DETAIL_FAIL, payload: errors });
+  } catch (error) {
+    dispatch({ type: GET_MOVIE_DETAIL_FAIL, payload: error });
   }
 };
 
@@ -104,8 +104,8 @@ export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
       type: GET_CALENDAR_SHOW_SUCCESS,
       payload: systemCinemaFilterByDay,
     });
-  } catch (errors) {
-    dispatch({ type: GET_CALENDAR_SHOW_FAIL, payload: errors });
+  } catch (error) {
+    dispatch({ type: GET_CALENDAR_SHOW_FAIL, payload: error });
   }
 };
 
@@ -117,8 +117,8 @@ export const getCommentList = (idMovie) => async (dispatch) => {
     //lấy ra các comment có mã phim trùng với mã phim trên url của trang hiện tại
     const commentList = response.data.filter((comment) => comment.idMovie == idMovie);
     dispatch({ type: GET_COMMENTS_SUCCESS, payload: commentList });
-  } catch (errors) {
-    dispatch({ type: GET_COMMENTS_FAIL, payload: errors });
+  } catch (error) {
+    dispatch({ type: GET_COMMENTS_FAIL, payload: error });
   }
 };
 
@@ -128,7 +128,7 @@ export const postComment = (requestComment) => async (dispatch) => {
     dispatch({ type: POST_COMMENT_REQUEST });
     const { data } = await commentsApi.postComments(requestComment);
     dispatch({ type: POST_COMMENT_SUCCESS, payload: data });
-  } catch (errors) {
-    dispatch({ type: POST_COMMENT_FAIL, payload: errors });
+  } catch (error) {
+    dispatch({ type: POST_COMMENT_FAIL, payload: error });
   }
 };

@@ -6,24 +6,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupLogin } from "constants/schemaYupLogin";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction } from "redux/actions/user.action";
+import { loginUser } from "redux/actions/user.action";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { errorLogin, userInfo } = useSelector((state) => state.user);
   const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupLogin) });
 
-  // xử lí login
+  // xử lí login user
   const handleLogin = (data) => {
-    const dataToLogin = { taiKhoan: data.username, matKhau: data.password };
-    dispatch(loginAction(dataToLogin));
+    const requestLogin = { taiKhoan: data.username, matKhau: data.password };
+    dispatch(loginUser(requestLogin));
   };
 
   useEffect(() => {
@@ -69,7 +68,6 @@ export const Login = () => {
             {errors.password && errors.password.type === "max" && (
               <span className='text--primary'>Mật khẩu nhiều nhất bao gồm 15 kí tự !</span>
             )}
-
             {errorLogin && <p className='text--primary'>{errorLogin.content}</p>}
 
             {/* nút submit */}

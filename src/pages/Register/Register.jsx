@@ -6,29 +6,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { registerAction } from "redux/actions/user.action";
+import { registerUser } from "redux/actions/user.action";
 
 export const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { errorRegister, userInfo } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/auth/login");
-    }
-  }, [userInfo, dispatch]);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
 
-  // xử lí register
+  // xử lí register user
   const handleRegister = (data) => {
-    const dataToRegister = {
+    const requestRegister = {
       taiKhoan: data.username,
       matKhau: data.password,
       email: data.email,
@@ -36,13 +28,19 @@ export const Register = () => {
       maNhom: "GP00",
       hoTen: data.fullname,
     };
-    dispatch(registerAction(dataToRegister));
+    dispatch(registerUser(requestRegister));
   };
+
+  useEffect(() => {
+    //đăng kí thành công có dữ liệu user trong redux chuyển sang trang login
+    if (userInfo) {
+      navigate("/auth/login");
+    }
+  }, [userInfo]);
 
   return (
     <div className='auth register'>
       <div className='auth-container'>
-        {/* <div className='auth-main'> */}
         <h2 className='auth-heading'>Đăng kí</h2>
         <form className='auth-content' onSubmit={handleSubmit(handleRegister)}>
           <div className='auth-wrapper'>
@@ -137,7 +135,6 @@ export const Register = () => {
           </div>
         </form>
       </div>
-      {/* </div> */}
     </div>
   );
 };

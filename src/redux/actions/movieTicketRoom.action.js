@@ -39,8 +39,8 @@ export const getTicketRoom = (ticketRoom) => async (dispatch) => {
     dispatch({ type: GET_TICKET_ROOM_REQUEST });
     const { data } = await moviesApi.getTicketRoom(ticketRoom);
     dispatch({ type: GET_TICKET_ROOM_SUCCESS, payload: data.content });
-  } catch (errors) {
-    dispatch({ type: GET_TICKET_ROOM_FAIL, payload: errors });
+  } catch (error) {
+    dispatch({ type: GET_TICKET_ROOM_FAIL, payload: error });
   }
 };
 
@@ -51,7 +51,7 @@ export const buyTicket = (requestBuyTicket) => async (dispatch) => {
     const response = await moviesApi.buyTicket(requestBuyTicket);
     dispatch({ type: BUY_TICKET_SUCCESS });
     return { isBuyTicketSuccess: true };
-  } catch (errors) {
-    dispatch({ type: BUY_TICKET_FAIL, payload: errors });
+  } catch (error) {
+    dispatch({ type: BUY_TICKET_FAIL, payload: error });
   }
 };

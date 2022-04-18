@@ -19,7 +19,7 @@ const initialState = {
   calendarShowList: null,
   commentList: null,
   togglePostComment: false,
-  errors: null,
+  error: null,
 };
 
 export const movieDetail = (state = initialState, { type, payload }) => {
@@ -29,7 +29,7 @@ export const movieDetail = (state = initialState, { type, payload }) => {
     case GET_MOVIE_DETAIL_SUCCESS:
       return { ...state, isLoadingMovieDetail: false, movieDetail: payload };
     case GET_MOVIE_DETAIL_FAIL:
-      return { ...state, isLoadingMovieDetail: false, errors: payload };
+      return { ...state, isLoadingMovieDetail: false, error: payload };
 
     // get danh sách lịch chiếu phim
     case GET_CALENDAR_SHOW_REQUEST:
@@ -37,7 +37,7 @@ export const movieDetail = (state = initialState, { type, payload }) => {
     case GET_CALENDAR_SHOW_SUCCESS:
       return { ...state, calendarShowList: payload };
     case GET_CALENDAR_SHOW_FAIL:
-      return { ...state, errors: payload };
+      return { ...state, error: payload };
 
     // get danh sách comment
     case GET_COMMENTS_REQUEST:
@@ -45,7 +45,7 @@ export const movieDetail = (state = initialState, { type, payload }) => {
     case GET_COMMENTS_SUCCESS:
       return { ...state, commentList: payload };
     case GET_COMMENTS_FAIL:
-      return { ...state, errors: payload };
+      return { ...state, error: payload };
 
     // add new comment
     case POST_COMMENT_REQUEST:
@@ -53,7 +53,7 @@ export const movieDetail = (state = initialState, { type, payload }) => {
     case POST_COMMENT_SUCCESS:
       return { ...state, togglePostComment: !state.togglePostComment };
     case POST_COMMENT_FAIL:
-      return { ...state, errors: payload };
+      return { ...state, error: payload };
     default:
       return state;
   }

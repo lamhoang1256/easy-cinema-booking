@@ -10,7 +10,7 @@ const initialState = {
   isLoadingTicketRoom: true,
   dataTicketRoom: {},
   listSelectingSeat: [],
-  errors: null,
+  error: null,
 };
 
 export const movieTicketRoom = (state = initialState, { type, payload }) => {
@@ -20,7 +20,7 @@ export const movieTicketRoom = (state = initialState, { type, payload }) => {
     case GET_TICKET_ROOM_SUCCESS:
       return { ...state, isLoadingTicketRoom: false, dataTicketRoom: payload };
     case GET_TICKET_ROOM_FAIL:
-      return { ...state, isLoadingTicketRoom: false, errors: payload };
+      return { ...state, isLoadingTicketRoom: false, error: payload };
 
     case SELECT_SEAT:
       return { ...state, listSelectingSeat: payload };

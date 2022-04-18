@@ -1,64 +1,64 @@
 import {
-  USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
-  USER_LOGIN_FAIL,
-  USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS,
-  USER_REGISTER_FAIL,
-  USER_LOGOUT,
-  USER_UPDATE_PROFILE_REQUEST,
-  USER_UPDATE_PROFILE_SUCCESS,
-  USER_UPDATE_PROFILE_FAIL,
-  USER_DETAIL_PROFILE_REQUEST,
-  USER_DETAIL_PROFILE_SUCCESS,
-  USER_DETAIL_PROFILE_FAIL,
+  LOGIN_USER_REQUEST,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAIL,
+  REGISTER_USER_REQUEST,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAIL,
+  LOGOUT_USER,
+  UPDATE_USER_PROFILE_REQUEST,
+  UPDATE_USER_PROFILE_SUCCESS,
+  UPDATE_USER_PROFILE_FAIL,
+  GET_USER_PROFILE_REQUEST,
+  GET_USER_PROFILE_SUCCESS,
+  GET_USER_PROFILE_FAIL,
 } from "redux/constants/user.constant";
 
 const initialState = {
   userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
+  userProfile: null,
   errorLogin: null,
   errorRegister: null,
   errorUpdate: null,
-  userDetail: null,
 };
 
 export const user = (state = initialState, { type, payload }) => {
   switch (type) {
-    // login
-    case USER_LOGIN_REQUEST:
+    // login user
+    case LOGIN_USER_REQUEST:
       return { ...state };
-    case USER_LOGIN_SUCCESS:
+    case LOGIN_USER_SUCCESS:
       localStorage.setItem("userInfo", JSON.stringify(payload));
       return { ...state, userInfo: payload, errorLogin: null };
-    case USER_LOGIN_FAIL:
+    case LOGIN_USER_FAIL:
       return { ...state, userInfo: null, errorLogin: payload };
 
-    // register
-    case USER_REGISTER_REQUEST:
+    // register user
+    case REGISTER_USER_REQUEST:
       return { ...state };
-    case USER_REGISTER_SUCCESS:
+    case REGISTER_USER_SUCCESS:
       return { ...state, userInfo: payload, errorRegister: null };
-    case USER_REGISTER_FAIL:
+    case REGISTER_USER_FAIL:
       return { ...state, userInfo: null, errorRegister: payload };
 
-    // get detail user
-    case USER_DETAIL_PROFILE_REQUEST:
+    // get profile user
+    case GET_USER_PROFILE_REQUEST:
       return { ...state };
-    case USER_DETAIL_PROFILE_SUCCESS:
-      return { ...state, userDetail: payload };
-    case USER_DETAIL_PROFILE_FAIL:
+    case GET_USER_PROFILE_SUCCESS:
+      return { ...state, userProfile: payload };
+    case GET_USER_PROFILE_FAIL:
       return { ...state, errorUpdate: payload };
 
-    //update
-    case USER_UPDATE_PROFILE_REQUEST:
+    //update profile user
+    case UPDATE_USER_PROFILE_REQUEST:
       return { ...state };
-    case USER_UPDATE_PROFILE_SUCCESS:
+    case UPDATE_USER_PROFILE_SUCCESS:
       return { ...state };
-    case USER_UPDATE_PROFILE_FAIL:
+    case UPDATE_USER_PROFILE_FAIL:
       return { ...state, errorUpdate: payload };
 
-    // logout
-    case USER_LOGOUT:
+    // logout user
+    case LOGOUT_USER:
       localStorage.removeItem("userInfo");
       return { ...state, userInfo: null, errorLogin: null, errorRegister: null, errorUpdate: null };
 

@@ -18,7 +18,7 @@ const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.
 export const UserInfo = () => {
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
-  const { userDetail } = useSelector((state) => state.user);
+  const { userProfile } = useSelector((state) => state.user);
 
   const {
     register,
@@ -46,7 +46,7 @@ export const UserInfo = () => {
 
   return (
     <>
-      {userDetail ? (
+      {userProfile ? (
         <div className='user-info'>
           <Banner urlBanner={urlBanner} heading={"Thông tin tài khoản"} />
           <div className='user-info-wrapper'>
@@ -65,27 +65,27 @@ export const UserInfo = () => {
               </div>
               <Tabs tabPosition={"left"}>
                 <TabPane tab='Thông tin cơ bản' key='1'>
-                  {userDetail ? (
+                  {userProfile ? (
                     <div className='user-info-basic'>
                       <h2 className='user-info-title'>Thông tin cơ bản</h2>
                       <p className='line'>
-                        <span className='label'>Tên tài khoản:</span> {userDetail.taiKhoan}
+                        <span className='label'>Tên tài khoản:</span> {userProfile.taiKhoan}
                       </p>
                       <p className='line'>
                         <span className='label'>Họ và tên:</span>
-                        {userDetail.hoTen}
+                        {userProfile.hoTen}
                       </p>
                       <p className='line'>
                         <span className='label'>Email:</span>
-                        {userDetail.email}
+                        {userProfile.email}
                       </p>
                       <p className='line'>
                         <span className='label'>Số điện thoại:</span>
-                        {userDetail.soDT}
+                        {userProfile.soDT}
                       </p>
                       <p className='line'>
                         <span className='label'>Quyền truy cập:</span>{" "}
-                        {userDetail.maLoaiNguoiDung === "KhachHang" ? "Khách Hàng" : "Quản Trị"}
+                        {userProfile.maLoaiNguoiDung === "KhachHang" ? "Khách Hàng" : "Quản Trị"}
                       </p>
                     </div>
                   ) : (
@@ -101,7 +101,7 @@ export const UserInfo = () => {
                       <h3>Tên tài khoản</h3>
                       <input
                         type='text'
-                        defaultValue={userDetail.taiKhoan}
+                        defaultValue={userProfile.taiKhoan}
                         placeholder='Tên tài khoản'
                         {...register("username")}
                       />
@@ -116,7 +116,7 @@ export const UserInfo = () => {
                       <input
                         type='text'
                         placeholder='Họ và tên'
-                        defaultValue={userDetail.hoTen}
+                        defaultValue={userProfile.hoTen}
                         {...register("fullname")}
                       />
                       {errors.fullname && (
@@ -130,7 +130,7 @@ export const UserInfo = () => {
                       <input
                         type='email'
                         placeholder='Email'
-                        defaultValue={userDetail.email}
+                        defaultValue={userProfile.email}
                         {...register("email")}
                       />
                       {errors.email && (
@@ -144,7 +144,7 @@ export const UserInfo = () => {
                       <input
                         type='text'
                         placeholder='Số điện thoại'
-                        defaultValue={userDetail.soDT}
+                        defaultValue={userProfile.soDT}
                         {...register("phone")}
                       />
                       {errors.phone && (
@@ -158,7 +158,7 @@ export const UserInfo = () => {
                       <input
                         type='password'
                         placeholder='Mật khẩu'
-                        defaultValue={userDetail.matKhau}
+                        defaultValue={userProfile.matKhau}
                         {...register("password")}
                       />
                       {errors.password && (
@@ -172,7 +172,7 @@ export const UserInfo = () => {
                       <input
                         type='password'
                         placeholder='Xác nhận mật khẩu'
-                        defaultValue={userDetail.matKhau}
+                        defaultValue={userProfile.matKhau}
                         {...register("password_repeat")}
                       />
                       {errors.password_repeat && (
@@ -190,7 +190,7 @@ export const UserInfo = () => {
                 <TabPane tab='Lịch sử đặt vé' key='3'>
                   <div className='user-info-history'>
                     <h2 className='user-info-title'>Lịch sử đặt vé</h2>
-                    <MovieHistory thongTinDatVe={userDetail.thongTinDatVe} />
+                    <MovieHistory thongTinDatVe={userProfile.thongTinDatVe} />
                   </div>
                 </TabPane>
               </Tabs>
