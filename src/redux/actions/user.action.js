@@ -1,4 +1,4 @@
-import axiosClient from "apis/axiosClient";
+import { authApi } from "apis/authApi";
 import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
@@ -16,11 +16,11 @@ import {
 } from "redux/constants/user.constant";
 
 // Đăng nhập tài khoản
-export const loginUser = (dataToLogin) => async (dispatch) => {
+export const loginUser = (requestLogin) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_USER_REQUEST });
-    const response = await axiosClient.post("QuanLyNguoiDung/DangNhap", dataToLogin);
-    dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data.content });
+    const { data } = await authApi.loginUser(requestLogin);
+    dispatch({ type: LOGIN_USER_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({
       type: LOGIN_USER_FAIL,
@@ -30,11 +30,11 @@ export const loginUser = (dataToLogin) => async (dispatch) => {
 };
 
 // Đăng ký tài khoản người dùng
-export const registerUser = (dataToRegister) => async (dispatch) => {
+export const registerUser = (requestRegister) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
-    const response = await axiosClient.post("/QuanLyNguoiDung/DangKy", dataToRegister);
-    dispatch({ type: REGISTER_USER_SUCCESS, payload: response.data.content });
+    const { data } = await authApi.registerUser(requestRegister);
+    dispatch({ type: REGISTER_USER_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
@@ -51,14 +51,11 @@ export const logoutAction = () => {
 };
 
 // Cập nhật thông tin người dùng
-export const updateUserAction = (dataToUpdateUser) => async (dispatch) => {
+export const updateUserAction = (requestUpdate) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_USER_PROFILE_REQUEST });
-    const response = await axiosClient.put(
-      "QuanLyNguoiDung/CapNhatThongTinNguoiDung",
-      dataToUpdateUser
-    );
-    dispatch({ type: UPDATE_USER_PROFILE_SUCCESS, payload: response.data.content });
+    const { data } = await authApi.updateUser(requestUpdate);
+    dispatch({ type: UPDATE_USER_PROFILE_SUCCESS, payload: data.content });
     dispatch({ type: LOGOUT_USER });
   } catch (error) {
     dispatch({
@@ -72,8 +69,8 @@ export const updateUserAction = (dataToUpdateUser) => async (dispatch) => {
 export const getDetailUserAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_USER_PROFILE_REQUEST });
-    const response = await axiosClient.post("QuanLyNguoiDung/ThongTinTaiKhoan");
-    dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: response.data.content });
+    const { data } = await authApi.getUserProfile();
+    dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({
       type: GET_USER_PROFILE_FAIL,
