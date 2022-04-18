@@ -33,11 +33,7 @@ export const FilterMovie = () => {
       >
         <div className='filter-selected-option'>
           <span title={selectedMovie.tenPhim === "" ? "Chọn Phim" : selectedMovie.tenPhim}>
-            {selectedMovie.tenPhim === ""
-              ? "Chọn Phim"
-              : selectedMovie.tenPhim.length <= 20
-              ? selectedMovie.tenPhim
-              : `${selectedMovie.tenPhim.slice(0, 20)}...`}
+            {selectedMovie.tenPhim === "" ? "Chọn Phim" : selectedMovie.tenPhim}
           </span>
           <ion-icon name='caret-down-outline'></ion-icon>
         </div>

@@ -1,11 +1,14 @@
 @use "../../../../assets/scss/helpers/index.scss" as *;
 .filter {
   &-container {
-    display: flex;
-    align-items: flex-end;
-    gap: 20px;
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.2fr 1.2fr 1fr;
+    grid-gap: 20px;
+    align-items: end;
     .btn {
-      padding: 16px 30px;
+      padding: 16px 0;
+      width: 100%;
     }
   }
   &-label {
