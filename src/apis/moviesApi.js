@@ -15,4 +15,14 @@ export const moviesApi = {
     const path = `QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieCode}`;
     return axiosClient.get(path);
   },
+  //lấy thông tin phòng vé
+  getTicketRoom: (ticketRoom) => {
+    const path = `QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${ticketRoom}`;
+    return axiosClient.get(path);
+  },
+  //đặt vé
+  buyTicket: (requestBuyTicket) => {
+    const path = `QuanLyDatVe/DatVe`;
+    return axiosClient.post(path, requestBuyTicket);
+  },
 };

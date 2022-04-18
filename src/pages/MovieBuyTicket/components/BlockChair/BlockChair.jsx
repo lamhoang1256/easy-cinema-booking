@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import { selectChairAction } from "redux/actions/movieBuyTicket.action";
+import { selectSeat } from "redux/actions/movieTicketRoom.action";
 import "./blockChair.scss";
 
-export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {
+export const BlockChair = ({ danhSachGhe, listSelectingSeat }) => {
   const dispatch = useDispatch();
   const handleSelectChair = (chair) => {
-    dispatch(selectChairAction(chair));
+    dispatch(selectSeat(chair));
   };
 
   return (
@@ -23,7 +23,7 @@ export const BlockChair = ({ danhSachGhe, listGheDangChon }) => {
             chair.daDat && chair.taiKhoanNguoiDat === "nguyenlam" ? `${baseClass}--yourchoice` : "";
           //ghế đang chọn
           const selecting =
-            listGheDangChon.findIndex((c) => c.maGhe === chair.maGhe) === -1
+            listSelectingSeat.findIndex((c) => c.maGhe === chair.maGhe) === -1
               ? ""
               : `${baseClass}--selecting`;
 

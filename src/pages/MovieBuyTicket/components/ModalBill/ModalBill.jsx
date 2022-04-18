@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMovieBookingAction, resetSelectingChair } from "redux/actions/movieBuyTicket.action";
+import { getTicketRoom, resetSelectingSeat } from "redux/actions/movieTicketRoom.action";
 import "./modalBill.scss";
 
 export const ModalBill = ({ openModal, setOpenModall, totalMoney, id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { dataMovieBooking, listGheDangChon } = useSelector((state) => state.movieBooking);
+  const { dataTicketRoom, listSelectingSeat } = useSelector((state) => state.movieTicketRoom);
   const { userInfo } = useSelector((state) => state.user);
 
   const handleComebackHome = () => {
@@ -15,9 +15,9 @@ export const ModalBill = ({ openModal, setOpenModall, totalMoney, id }) => {
   };
 
   const handleContinueBuyTicket = () => {
-    dispatch(getMovieBookingAction(id));
+    dispatch(getTicketRoom(id));
     setOpenModall(!openModal);
-    dispatch(resetSelectingChair());
+    dispatch(resetSelectingSeat());
     window.scrollTo(0, 0);
   };
 
@@ -26,25 +26,25 @@ export const ModalBill = ({ openModal, setOpenModall, totalMoney, id }) => {
       <div className='modal-bill-main'>
         <div className='modal-bill-movie'>
           <div className='modal-bill-thumb'>
-            <img src={dataMovieBooking.thongTinPhim.hinhAnh} alt='modal-thumb' />
+            <img src={dataTicketRoom.thongTinPhim.hinhAnh} alt='modal-thumb' />
           </div>
           <div className='modal-bill-info'>
             <div>
-              <h2 className='modal-bill-title'>{dataMovieBooking.thongTinPhim.tenPhim}</h2>
+              <h2 className='modal-bill-title'>{dataTicketRoom.thongTinPhim.tenPhim}</h2>
             </div>
-            <div className='modal-bill-cinema'>{dataMovieBooking.thongTinPhim.tenCumRap}</div>
-            <div className='modal-bill-address'>{dataMovieBooking.thongTinPhim.diaChi}</div>
+            <div className='modal-bill-cinema'>{dataTicketRoom.thongTinPhim.tenCumRap}</div>
+            <div className='modal-bill-address'>{dataTicketRoom.thongTinPhim.diaChi}</div>
             <div className='modal-bill-openday'>
               <span className='info-label'>Suất chiếu:</span>
-              {`${dataMovieBooking.thongTinPhim.gioChieu}  ${dataMovieBooking.thongTinPhim.ngayChieu}`}
+              {`${dataTicketRoom.thongTinPhim.gioChieu}  ${dataTicketRoom.thongTinPhim.ngayChieu}`}
             </div>
             <div className='modal-bill-openday'>
               <span className='info-label'>Rạp:</span>
-              {dataMovieBooking.thongTinPhim.tenRap}
+              {dataTicketRoom.thongTinPhim.tenRap}
             </div>
             <div className='modal-bill-chairs'>
               <span className='info-label'>Ghế:</span>
-              {listGheDangChon.map((c, index) => {
+              {listSelectingSeat.map((c, index) => {
                 // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
                 const chair = index === 0 ? " " + c.tenGhe : ", " + c.tenGhe;
                 return chair;

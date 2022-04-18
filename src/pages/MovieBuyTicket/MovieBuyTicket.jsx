@@ -6,7 +6,7 @@ import { ModalBill } from "./components/ModalBill/ModalBill";
 import { BlockChair } from "./components/BlockChair/BlockChair";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
-import { getMovieBookingAction, buyTicketAction } from "redux/actions/movieBuyTicket.action";
+import { getTicketRoom, buyTicket, resetSelectingSeat } from "redux/actions/movieTicketRoom.action";
 import "./movieBuyTicket.scss";
 import { useParams } from "react-router-dom";
 import { Banner } from "components/Banner/Banner";
@@ -18,18 +18,20 @@ export const MovieBuyTicket = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
-  const { dataMovieBooking, listGheDangChon, loading } = useSelector((state) => state.movieBooking);
   const { userInfo } = useSelector((state) => state.user);
+  const { dataTicketRoom, listSelectingSeat, isLoadingTicketRoom } = useSelector(
+    (state) => state.movieTicketRoom
+  );
 
   //tính tổng tiền của các ghế
-  const totalMoney = listGheDangChon.reduce(function (prevValue, currentValue) {
+  const totalMoney = listSelectingSeat.reduce(function (prevValue, currentValue) {
     return prevValue + currentValue.giaVe;
   }, 0);
 
   const handleBuyTicket = async () => {
     const dataToBuyTicket = {
-      maLichChieu: dataMovieBooking.thongTinPhim.maLichChieu.toString(),
-      danhSachVe: listGheDangChon,
+      maLichChieu: dataTicketRoom.thongTinPhim.maLichChieu.toString(),
+      danhSachVe: listSelectingSeat,
     };
     // nếu chưa chọn 1 ghế nào cả -> hiện ra modal nhắc nhở
     if (dataToBuyTicket.danhSachVe.length === 0) {
@@ -60,20 +62,21 @@ export const MovieBuyTicket = () => {
       });
       return;
     }
-    const { isBuyTicketSuccess } = await dispatch(buyTicketAction(dataToBuyTicket));
+    const { isBuyTicketSuccess } = await dispatch(buyTicket(dataToBuyTicket));
     if (isBuyTicketSuccess) {
       setOpenModal(!openModal);
     }
   };
 
   useEffect(() => {
-    dispatch(getMovieBookingAction(id));
     window.scrollTo(0, 0);
+    dispatch(getTicketRoom(id));
+    dispatch(resetSelectingSeat());
   }, [id]);
 
   return (
     <>
-      {!loading ? (
+      {!isLoadingTicketRoom ? (
         <div className='movie-booking'>
           <Banner urlBanner={urlBanner} heading={"Trang đặt vé phim"} />
           <div className='container'>
@@ -88,8 +91,8 @@ export const MovieBuyTicket = () => {
                     <h3 className='movie-booking-title'>Chọn ghế</h3>
                     <div className='movie-booking-screen'>Màn hình</div>
                     <BlockChair
-                      listGheDangChon={listGheDangChon}
-                      danhSachGhe={dataMovieBooking.danhSachGhe}
+                      listSelectingSeat={listSelectingSeat}
+                      danhSachGhe={dataTicketRoom.danhSachGhe}
                     />
                   </div>
                 </div>
@@ -99,30 +102,29 @@ export const MovieBuyTicket = () => {
                 <div className='movie-booking-info-movie'>
                   <h2>Thông tin phim</h2>
                   <div className='movie-booking-thumb'>
-                    <img src={dataMovieBooking.thongTinPhim.hinhAnh} alt='movie-thumb' />
+                    <img src={dataTicketRoom.thongTinPhim.hinhAnh} alt='movie-thumb' />
                   </div>
                   <div>
                     <div className='movie-booking-title'>
                       <span className='label'>Tên phim:</span>
-                      {dataMovieBooking.thongTinPhim.tenPhim}
+                      {dataTicketRoom.thongTinPhim.tenPhim}
                     </div>
                     <div className='movie-booking-cinema'>
                       <span className='label'>Rạp: </span>
-                      {dataMovieBooking.thongTinPhim.tenCumRap}
+                      {dataTicketRoom.thongTinPhim.tenCumRap}
                     </div>
                     <div className='movie-booking-location'>
                       <span className='label'>Địa chỉ: </span>
-                      {dataMovieBooking.thongTinPhim.diaChi}
+                      {dataTicketRoom.thongTinPhim.diaChi}
                     </div>
                     <div className='movie-booking-openday'>
                       <span className='label'>Suất chiếu: </span>
-                      {dataMovieBooking.thongTinPhim.gioChieu}{" "}
-                      {dataMovieBooking.thongTinPhim.ngayChieu}
+                      {dataTicketRoom.thongTinPhim.gioChieu} {dataTicketRoom.thongTinPhim.ngayChieu}
                     </div>
                     <div className='movie-booking-chairs'>
                       <span className='label'>Số ghế đã chọn:</span>
-                      {listGheDangChon.length !== 0
-                        ? listGheDangChon.map((c, index) => {
+                      {listSelectingSeat.length !== 0
+                        ? listSelectingSeat.map((c, index) => {
                             // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
                             const chair = index === 0 ? c.tenGhe : ", " + c.tenGhe;
                             return chair;
