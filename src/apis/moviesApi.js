@@ -25,4 +25,9 @@ export const moviesApi = {
     const path = `QuanLyDatVe/DatVe`;
     return axiosClient.post(path, requestBuyTicket);
   },
+  //lấy thông tin cụm rạp
+  getCinema: (groupCode) => {
+    const path = `QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP${groupCode}`;
+    return axiosClient.get(path);
+  },
 };

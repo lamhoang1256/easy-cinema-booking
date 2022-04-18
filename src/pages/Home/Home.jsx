@@ -17,6 +17,7 @@ export const Home = () => {
   const isMobile = useMediaQuery("(max-width:767.98px)");
   const [comingSoonMovieList, setComingSoonMovieList] = useState(null);
   const [nowShowingMovieList, setNowShowingMovieList] = useState(null);
+  const [showtimeList, setShowtimeList] = useState(null);
 
   // lấy danh sách phim sắp chiếu
   const fetchComingSoonMovieList = async () => {
@@ -37,9 +38,20 @@ export const Home = () => {
     }
   };
 
+  // lấy dữ liệu cụm rạp (lịch chiếu phim)
+  const fetchCalendarShowtime = async () => {
+    try {
+      const { data } = await moviesApi.getCinema("03");
+      setShowtimeList(data.content);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchComingSoonMovieList();
     fetchNowShowingMovieList();
+    fetchCalendarShowtime();
   }, []);
 
   return (
@@ -54,7 +66,13 @@ export const Home = () => {
           <MovieList data={comingSoonMovieList} heading='Phim sắp chiếu' />
           <MovieList data={nowShowingMovieList} heading='Phim đang chiếu' />
           {/* Phần Lịch chiếu phim */}
-          <div id='showtime'>{isMobile ? <ShowtimeMobile /> : <Showtime />}</div>
+          <div id='showtime'>
+            {isMobile ? (
+              <ShowtimeMobile showtimeList={showtimeList} />
+            ) : (
+              <Showtime showtimeList={showtimeList} />
+            )}
+          </div>
           {/* Phần Tin tức */}
           <Article />
         </div>

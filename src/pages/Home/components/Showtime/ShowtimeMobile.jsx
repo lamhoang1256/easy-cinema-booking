@@ -1,32 +1,23 @@
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Collapse, Tabs } from "antd";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
 import { formatDateToHours } from "utilities/formatDate";
 import increaseDate from "utilities/increaseDate";
 
-export const ShowtimeMobile = () => {
-  const dispatch = useDispatch();
-  const { dataCinema } = useSelector((state) => state.movieCinema);
+export const ShowtimeMobile = ({ showtimeList }) => {
   const { Panel } = Collapse;
   const { TabPane } = Tabs;
-
-  useEffect(() => {
-    dispatch(getCinemaAction());
-  }, []);
 
   return (
     <div className='showtime-mobile'>
       <h2 className='showtime-heading text--primary'>Lịch chiếu phim</h2>
-      {dataCinema ? (
+      {showtimeList ? (
         <div className='showtime-container'>
           {/* hệ thống rạp */}
           <Tabs defaultActiveKey='0' tabPosition='top'>
-            {dataCinema.map((systemCinema, index) => (
+            {showtimeList.map((systemCinema, index) => (
               <TabPane tab={<img className='showtime-icon' src={systemCinema.logo} />} key={index}>
                 {/* cụm rạp */}
                 <Collapse defaultActiveKey={["0"]}>

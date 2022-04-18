@@ -1,4 +1,4 @@
-import axiosClient from "apis/axiosClient";
+import { moviesApi } from "apis/moviesApi";
 import {
   GET_CINEMA_REQUEST,
   GET_CINEMA_SUCCESS,
@@ -8,7 +8,7 @@ import {
 export const getCinemaAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_CINEMA_REQUEST });
-    const response = await axiosClient("QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP13");
+    const response = await moviesApi.getCinema("03");
     dispatch({ type: GET_CINEMA_SUCCESS, payload: response.data.content });
   } catch (error) {
     dispatch({ type: GET_CINEMA_FAIL });
