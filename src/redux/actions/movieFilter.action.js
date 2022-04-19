@@ -49,6 +49,6 @@ export const fetchShowtimeListToSearch = (data) => async (dispatch, useState) =>
 };
 
 // lấy mã phòng chiếu để tiến hành chuyển sang trang đặt vé
-export const getIdToBooking = (idBooking) => async (dispatch) => {
-  dispatch({ type: MOVIE_FILTER_GET_BOOKING_ID, payload: idBooking });
+export const getIdToBooking = (idTicketRoom) => async (dispatch) => {
+  dispatch({ type: MOVIE_FILTER_GET_BOOKING_ID, payload: idTicketRoom });
 };

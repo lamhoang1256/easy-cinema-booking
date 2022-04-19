@@ -9,7 +9,7 @@ import { useMediaQuery } from "hooks/useMediaQuery";
 import "./filterBooking.scss";
 
 export const FilterBooking = () => {
-  const { idBooking } = useSelector((state) => state.movieFilter);
+  const { idTicketRoom } = useSelector((state) => state.movieFilter);
   const isFilterVisible = useMediaQuery("(min-width:1200px)");
 
   return (
@@ -35,8 +35,8 @@ export const FilterBooking = () => {
               <FilterShowtime />
             </div>
             <div className='filter-boxed'>
-              {idBooking ? (
-                <Link to={`/booking/${idBooking}`}>
+              {idTicketRoom ? (
+                <Link to={`/booking/${idTicketRoom}`}>
                   <button className='btn btn--primary'>Đặt vé</button>
                 </Link>
               ) : (

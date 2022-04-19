@@ -25,8 +25,6 @@ export const MovieDetail = () => {
   const { movieDetail, isLoadingMovieDetail, togglePostComment } = useSelector(
     (state) => state.movieDetail
   );
-  const [urlTrailer, setUrlTrailer] = useState("");
-  const [isModalTrailerVisible, setIsModalTrailerVisible] = useState(false);
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
 

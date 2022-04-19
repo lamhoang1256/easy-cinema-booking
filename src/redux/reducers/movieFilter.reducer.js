@@ -14,7 +14,7 @@ const initialState = {
   cinemaList: null,
   opendayList: null,
   showtimeList: null,
-  idBooking: null,
+  idTicketRoom: null,
   error: null,
 };
 
@@ -26,7 +26,7 @@ export const movieFilter = (state = initialState, { type, payload }) => {
         cinemaList: null,
         opendayList: null,
         showtimeList: null,
-        idBooking: null,
+        idTicketRoom: null,
       };
     case MOVIE_FILTER_GET_FILM_SUCCESS:
       return { ...state, movieList: payload };
@@ -34,19 +34,19 @@ export const movieFilter = (state = initialState, { type, payload }) => {
       return { ...state, error: payload };
 
     case MOVIE_FILTER_GET_CINEMA_REQUEST:
-      return { ...state, opendayList: null, showtimeList: null, idBooking: null };
+      return { ...state, opendayList: null, showtimeList: null, idTicketRoom: null };
     case MOVIE_FILTER_GET_CINEMA_SUCCESS:
       return { ...state, cinemaList: payload };
     case MOVIE_FILTER_GET_CINEMA_FAIL:
       return { ...state, error: payload };
 
     case MOVIE_FILTER_GET_OPENDAY:
-      return { ...state, opendayList: payload, showtimeList: null, idBooking: null };
+      return { ...state, opendayList: payload, showtimeList: null, idTicketRoom: null };
 
     case MOVIE_FILTER_GET_SHOWTIME:
-      return { ...state, showtimeList: payload, idBooking: null };
+      return { ...state, showtimeList: payload, idTicketRoom: null };
     case MOVIE_FILTER_GET_BOOKING_ID:
-      return { ...state, idBooking: payload };
+      return { ...state, idTicketRoom: payload };
 
     default:
       return state;
