@@ -894,3 +894,6 @@ TokenCybersoft:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJGcm9udCBFbmQg
   "dateTime": "2022-04-12T09:07:44.4950697+07:00",
   "messageConstants": null
 }
+
+### 
+GET https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02
