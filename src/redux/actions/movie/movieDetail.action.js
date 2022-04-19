@@ -11,7 +11,7 @@ import {
   POST_COMMENT_REQUEST,
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAIL,
-} from "../constants/movieDetail.constant";
+} from "../../constants/movie/movieDetail.constant";
 import { moviesApi } from "apis/moviesApi";
 import { commentsApi } from "apis/commentsApi";
 

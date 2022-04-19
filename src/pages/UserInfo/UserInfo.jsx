@@ -1,7 +1,7 @@
 import { Tabs } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailUserAction, updateUserAction } from "redux/actions/user.action";
+import { getDetailUserAction, updateUserAction } from "redux/actions/user/user.action";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

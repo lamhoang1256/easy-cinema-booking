@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchShowtimeListToSearch } from "redux/actions/movieFilter.action";
+import { fetchShowtimeListToSearch } from "redux/actions/movie/movieFilter.action";
 import { formatISOtoLocaleDateString } from "utilities/formatDate";
 import "./filter.scss";
 

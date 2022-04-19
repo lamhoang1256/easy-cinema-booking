@@ -9,7 +9,7 @@ import {
   MOVIE_FILTER_GET_OPENDAY,
   MOVIE_FILTER_GET_SHOWTIME,
   MOVIE_FILTER_GET_BOOKING_ID,
-} from "redux/constants/movieFilter.constant";
+} from "redux/constants/movie/movieFilter.constant";
 
 // Chọn phim -> chọn rạp -> chọn ngày chiếu -> chọn suất chiếu
 // lấy danh sách các tên phim

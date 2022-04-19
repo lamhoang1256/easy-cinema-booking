@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getIdToBooking } from "redux/actions/movieFilter.action";
+import { getIdToBooking } from "redux/actions/movie/movieFilter.action";
 import { formatISOtoHours } from "utilities/formatDate";
 import "./filter.scss";
 

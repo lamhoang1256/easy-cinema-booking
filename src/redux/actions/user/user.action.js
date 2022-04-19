@@ -13,7 +13,7 @@ import {
   GET_USER_PROFILE_REQUEST,
   GET_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE_FAIL,
-} from "redux/constants/user.constant";
+} from "redux/constants/user/user.constant";
 
 // Đăng nhập tài khoản
 export const loginUser = (requestLogin) => async (dispatch) => {

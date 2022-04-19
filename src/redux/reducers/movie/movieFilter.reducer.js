@@ -8,7 +8,7 @@ import {
   MOVIE_FILTER_GET_OPENDAY,
   MOVIE_FILTER_GET_SHOWTIME,
   MOVIE_FILTER_GET_BOOKING_ID,
-} from "../constants/movieFilter.constant";
+} from "../../constants/movie/movieFilter.constant";
 const initialState = {
   movieList: null,
   cinemaList: null,

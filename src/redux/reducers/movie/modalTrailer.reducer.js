@@ -1,4 +1,4 @@
-import { OPEN_TRAILER, CLOSE_TRAILER } from "../constants/modalTrailer.constant";
+import { OPEN_TRAILER, CLOSE_TRAILER } from "../../constants/movie/modalTrailer.constant";
 
 const initialState = {
   urlTrailer: "",

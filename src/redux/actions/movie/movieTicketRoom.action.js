@@ -8,7 +8,7 @@ import {
   BUY_TICKET_REQUEST,
   BUY_TICKET_SUCCESS,
   BUY_TICKET_FAIL,
-} from "../constants/movieTicketRoom.constant";
+} from "../../constants/movie/movieTicketRoom.constant";
 
 // chọn ghế
 export const selectSeat = (infoChair) => async (dispatch, getState) => {

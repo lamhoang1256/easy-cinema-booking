@@ -2,7 +2,7 @@ import { dataFakeAvatar } from "constants/dataFakeAvatar";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { logoutAction } from "redux/actions/user.action";
+import { logoutAction } from "redux/actions/user/user.action";
 import { scroller } from "react-scroll";
 import "./header.scss";
 

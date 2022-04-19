@@ -4,7 +4,7 @@ import {
   GET_TICKET_ROOM_FAIL,
   SELECT_SEAT,
   RESET_SELETING_SEAT,
-} from "../constants/movieTicketRoom.constant";
+} from "../../constants/movie/movieTicketRoom.constant";
 
 const initialState = {
   isLoadingTicketRoom: true,

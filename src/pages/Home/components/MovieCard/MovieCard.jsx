@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { openModalTrailer } from "redux/actions/modalTrailer.action";
+import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import "./movieCard.scss";
 
 export const MovieCard = (props) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getTicketRoom, resetSelectingSeat } from "redux/actions/movieTicketRoom.action";
+import { getTicketRoom, resetSelectingSeat } from "redux/actions/movie/movieTicketRoom.action";
 import "./modalBill.scss";
 
 export const ModalBill = (props) => {

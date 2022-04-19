@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupLogin } from "constants/schemaYupLogin";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "redux/actions/user.action";
+import { loginUser } from "redux/actions/user/user.action";
 
 export const Login = () => {
   const dispatch = useDispatch();

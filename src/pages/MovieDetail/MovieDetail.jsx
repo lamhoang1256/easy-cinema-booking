@@ -15,8 +15,8 @@ import {
   getMovieDetail,
   getCommentList,
   getCalendarShowMovieDetail,
-} from "redux/actions/movieDetail.action";
-import { openModalTrailer } from "redux/actions/modalTrailer.action";
+} from "redux/actions/movie/movieDetail.action";
+import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {

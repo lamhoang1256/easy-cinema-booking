@@ -8,7 +8,11 @@ import { ModalBill } from "./components/ModalBill/ModalBill";
 import { SeatingPlan } from "./components/SeatingPlan/SeatingPlan";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 // action
-import { getTicketRoom, buyTicket, resetSelectingSeat } from "redux/actions/movieTicketRoom.action";
+import {
+  getTicketRoom,
+  buyTicket,
+  resetSelectingSeat,
+} from "redux/actions/movie/movieTicketRoom.action";
 
 import "./movieTicketRoom.scss";
 // đường dẫn ảnh banner
