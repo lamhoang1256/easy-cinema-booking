@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
 // component
 import { Carousel } from "./components/Carousel/Carousel";
-import { FilterBooking } from "./components/FilterBooking/FilterBooking";
+import { FilterFilm } from "./components/FilterFilm/FilterFilm";
 import { MovieList } from "./components/MovieList/MovieList";
 import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
@@ -60,7 +60,7 @@ export const Home = () => {
         <Carousel />
       </div>
       <div className='home-main'>
-        <FilterBooking />
+        <FilterFilm />
         <div className='container'>
           {/* Danh sách phim */}
           <MovieList data={comingSoonMovieList} heading='Phim sắp chiếu' />
