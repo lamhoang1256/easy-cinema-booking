@@ -11,15 +11,20 @@ export const formatISOtoLocaleDateString = (iso) => {
   return new Date(iso.split("T")[0]).toLocaleDateString("vi-VI");
 };
 
+// format 1:3 -> 01:03
+export const format1to2number = (num1, num2) => {
+  if (num1 < 10) {
+    num1 = "0" + num1;
+  }
+  if (num2 < 10) {
+    num2 = "0" + num2;
+  }
+  return `${num1}:${num2}`;
+};
+
 // format 2019-01-01T10:10:00 -> 10:10
 export const formatISOtoHours = (iso) => {
   let hours = new Date(iso).getHours();
   let minutes = new Date(iso).getMinutes();
-  if (hours < 10) {
-    hours = "0" + hours;
-  }
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  return `${hours}:${minutes}`;
+  return format1to2number(hours, minutes);
 };

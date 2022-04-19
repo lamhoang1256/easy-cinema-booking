@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -15,6 +15,8 @@ import {
 } from "redux/actions/movie/movieTicketRoom.action";
 
 import "./movieTicketRoom.scss";
+import { format1to2number } from "utilities/formatDate";
+import { ModalAlert } from "pages/MovieTicketRoom/components/ModalAlert/ModalAlert";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
@@ -27,6 +29,11 @@ export const MovieTicketRoom = () => {
   const { dataTicketRoom, listSelectingSeat, isLoadingTicketRoom } = useSelector(
     (state) => state.movieTicketRoom
   );
+  const [isModalAlertVisible, setIsModalAlertVisible] = useState(false);
+
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(10);
+  const idSetInterval = useRef();
 
   //tính tổng tiền của các ghế
   const totalMoney = listSelectingSeat.reduce(function (prevValue, currentValue) {
@@ -74,6 +81,30 @@ export const MovieTicketRoom = () => {
     }
   };
 
+  const countDownTimeBooking = () => {
+    idSetInterval.current = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          setIsModalAlertVisible(!isModalAlertVisible);
+          clearInterval(idSetInterval.current);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(() => 59);
+        }
+      }
+    }, 1000);
+  };
+
+  useEffect(() => {
+    countDownTimeBooking();
+    return () => {
+      clearInterval(idSetInterval.current);
+    };
+  }, [seconds]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getTicketRoom(idTicketRoom));
@@ -90,7 +121,7 @@ export const MovieTicketRoom = () => {
               <div className='movie-booking-left'>
                 <div className='movie-booking-realtime'>
                   <p>Thời gian giữ ghế</p>
-                  <p className='movie-booking-time'>05:00</p>
+                  <p className='movie-booking-time'>{format1to2number(minutes, seconds)}</p>
                 </div>
                 <div className='movie-booking-main'>
                   <div className='movie-booking-choice'>
@@ -176,6 +207,14 @@ export const MovieTicketRoom = () => {
             <ModalBill
               idTicketRoom={idTicketRoom}
               totalMoney={totalMoney}
+              isModalBillVisible={isModalBillVisible}
+              setIsModalBillVisible={setIsModalBillVisible}
+            />
+          )}
+          {/* mở modal thông báo nếu quá 5 phút giữ ghế */}
+          {isModalAlertVisible && (
+            <ModalAlert
+              idTicketRoom={idTicketRoom}
               isModalBillVisible={isModalBillVisible}
               setIsModalBillVisible={setIsModalBillVisible}
             />

@@ -7,7 +7,7 @@ import "./modalBill.scss";
 export const ModalBill = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isModalBillVisible, setIsModalBillVisible, totalMoney, idTicketRoom } = props;
+  const { isModalAlertVisible, setIsModalAlertVisible, totalMoney, idTicketRoom } = props;
   const { dataTicketRoom, listSelectingSeat } = useSelector((state) => state.movieTicketRoom);
   const { userInfo } = useSelector((state) => state.user);
 
@@ -18,7 +18,7 @@ export const ModalBill = (props) => {
   // xử lí khi nhấn Tiếp tục đặt vé
   const handleContinueBuyTicket = () => {
     dispatch(getTicketRoom(idTicketRoom));
-    setIsModalBillVisible(!isModalBillVisible);
+    setIsModalAlertVisible(!isModalAlertVisible);
     dispatch(resetSelectingSeat());
     window.scrollTo(0, 0);
   };
