@@ -20,7 +20,7 @@ export const ShowtimeMobile = ({ showtimeList }) => {
             {showtimeList.map((systemCinema, index) => (
               <TabPane tab={<img className='showtime-icon' src={systemCinema.logo} />} key={index}>
                 {/* cụm rạp */}
-                <Collapse defaultActiveKey={["0"]}>
+                <Collapse>
                   {systemCinema.lstCumRap.map((cinema, index) => (
                     <Panel header={<p className='showtime-name'>{cinema.tenCumRap}</p>} key={index}>
                       {cinema.danhSachPhim.map((movie, indexMovie) => (

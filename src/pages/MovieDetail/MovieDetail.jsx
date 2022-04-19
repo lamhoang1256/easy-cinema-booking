@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "hooks/useMediaQuery";
 // component
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import { AddComment } from "components/AddComment/AddComment";
@@ -16,7 +17,6 @@ import {
   getCalendarShowMovieDetail,
 } from "redux/actions/movieDetail.action";
 import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
-import { useMediaQuery } from "hooks/useMediaQuery";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {

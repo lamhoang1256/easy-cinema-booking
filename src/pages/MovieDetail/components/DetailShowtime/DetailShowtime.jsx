@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Tabs } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getCinemaAction } from "redux/actions/movieCinema.action";
 // utilities
 import { formatDateToHours } from "utilities/formatDate";
 import increaseDate from "utilities/increaseDate";
@@ -15,7 +14,7 @@ export const DetailShowtime = () => {
   const { TabPane } = Tabs;
 
   useEffect(() => {
-    dispatch(getCinemaAction());
+    // dispatch(getCinemaAction());
   }, []);
 
   return (

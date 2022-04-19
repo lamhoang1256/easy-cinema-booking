@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Collapse, Tabs } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { getCinemaAction } from "redux/actions/movieCinema.action";
+import { useSelector } from "react-redux";
 // utilities
 import { formatDateToHours } from "utilities/formatDate";
 import increaseDate from "utilities/increaseDate";
@@ -11,14 +9,9 @@ import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
 export const DetailShowtimeMobile = () => {
-  const dispatch = useDispatch();
   const { calendarShowList } = useSelector((state) => state.movieDetail);
   const { Panel } = Collapse;
   const { TabPane } = Tabs;
-
-  useEffect(() => {
-    dispatch(getCinemaAction());
-  }, []);
 
   return (
     <div className='detail-showtime-mobile'>
