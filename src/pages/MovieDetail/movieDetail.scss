@@ -3,12 +3,33 @@
   //phần background banner mờ
   &-top {
     height: 50vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     @include tablet {
       height: 30vh;
+    }
+    h2 {
+      position: relative;
+      z-index: 100;
+      font-size: 4rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+  }
+  &-banner {
+    inset: 0;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-position: center;
+    filter: blur(10px);
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.15);
     }
   }
   //phần thông tin phim

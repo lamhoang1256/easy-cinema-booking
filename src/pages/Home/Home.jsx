@@ -63,8 +63,8 @@ export const Home = () => {
         <FilterFilm />
         <div className='container'>
           {/* Danh sách phim */}
-          <MovieList data={comingSoonMovieList} heading='Phim sắp chiếu' />
-          <MovieList data={nowShowingMovieList} heading='Phim đang chiếu' />
+          <MovieList data={comingSoonMovieList} heading='Phim sắp chiếu' col={5} />
+          <MovieList data={nowShowingMovieList} heading='Phim đang chiếu' col={6} />
           {/* Phần Lịch chiếu phim */}
           <div id='showtime'>
             {isMobile ? (

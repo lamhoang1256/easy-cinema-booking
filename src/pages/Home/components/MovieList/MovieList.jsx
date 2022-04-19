@@ -22,7 +22,57 @@ function NextArrow(props) {
   );
 }
 
-export const MovieList = ({ data, heading }) => {
+export const MovieList = ({ data, heading, col }) => {
+  const settings = {
+    dots: true,
+    slidesToShow: col,
+    slidesToScroll: 2,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1050,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          dots: false,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          dots: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <div className='movie-list'>
       <div className='movie-list-boxed'>
@@ -47,53 +97,4 @@ export const MovieList = ({ data, heading }) => {
       </div>
     </div>
   );
-};
-const settings = {
-  dots: true,
-  slidesToShow: 6,
-  slidesToScroll: 2,
-  prevArrow: <PrevArrow />,
-  nextArrow: <NextArrow />,
-  responsive: [
-    {
-      breakpoint: 1300,
-      settings: {
-        slidesToShow: 5,
-        slidesToScroll: 2,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 1050,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 2,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 850,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 650,
-      settings: {
-        dots: false,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-      },
-    },
-    {
-      breakpoint: 400,
-      settings: {
-        dots: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
 };

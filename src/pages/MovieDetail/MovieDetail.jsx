@@ -43,10 +43,13 @@ export const MovieDetail = () => {
     <>
       {!isLoadingMovieDetail ? (
         <div className='movie-detail'>
-          <div
-            className='movie-detail-top'
-            style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
-          ></div>
+          <div className='movie-detail-top'>
+            <div
+              className='movie-detail-banner'
+              style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
+            ></div>
+            <h2>Chi tiết phim</h2>
+          </div>
           <div className='container'>
             <div className='movie-detail-main'>
               <div className='movie-detail-left'>
