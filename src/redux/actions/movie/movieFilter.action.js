@@ -16,7 +16,7 @@ import {
 export const fetchMovieListToSearch = () => async (dispatch) => {
   try {
     dispatch({ type: MOVIE_FILTER_GET_FILM_REQUEST });
-    const { data } = await moviesApi.getMovieList("02");
+    const { data } = await moviesApi.getMovieListApi("02");
     dispatch({ type: MOVIE_FILTER_GET_FILM_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({ type: MOVIE_FILTER_GET_FILM_FAIL, payload: error });
@@ -27,7 +27,7 @@ export const fetchMovieListToSearch = () => async (dispatch) => {
 export const fetchCinemaListToSearch = (movieCode) => async (dispatch) => {
   try {
     dispatch({ type: MOVIE_FILTER_GET_CINEMA_REQUEST });
-    const { data } = await moviesApi.getCalendarShow(movieCode);
+    const { data } = await moviesApi.getCalendarShowApi(movieCode);
     dispatch({ type: MOVIE_FILTER_GET_CINEMA_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({ type: MOVIE_FILTER_GET_CINEMA_FAIL, payload: error });

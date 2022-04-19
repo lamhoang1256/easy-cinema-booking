@@ -19,7 +19,7 @@ import {
 export const loginUser = (requestLogin) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_USER_REQUEST });
-    const { data } = await authApi.loginUser(requestLogin);
+    const { data } = await authApi.loginUserApi(requestLogin);
     dispatch({ type: LOGIN_USER_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({
@@ -33,7 +33,7 @@ export const loginUser = (requestLogin) => async (dispatch) => {
 export const registerUser = (requestRegister) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
-    const { data } = await authApi.registerUser(requestRegister);
+    const { data } = await authApi.registerUserApi(requestRegister);
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({
@@ -54,7 +54,7 @@ export const logoutAction = () => {
 export const updateUserAction = (requestUpdate) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_USER_PROFILE_REQUEST });
-    const { data } = await authApi.updateUser(requestUpdate);
+    const { data } = await authApi.updateUserApi(requestUpdate);
     dispatch({ type: UPDATE_USER_PROFILE_SUCCESS, payload: data.content });
     dispatch({ type: LOGOUT_USER });
   } catch (error) {
@@ -69,7 +69,7 @@ export const updateUserAction = (requestUpdate) => async (dispatch) => {
 export const getDetailUserAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_USER_PROFILE_REQUEST });
-    const { data } = await authApi.getUserProfile();
+    const { data } = await authApi.getUserProfileApi();
     dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({

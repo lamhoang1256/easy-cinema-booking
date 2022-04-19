@@ -22,7 +22,7 @@ export const Home = () => {
   // lấy danh sách phim sắp chiếu
   const fetchComingSoonMovieList = async () => {
     try {
-      const { data } = await moviesApi.getMovieList("01");
+      const { data } = await moviesApi.getMovieListApi("01");
       setComingSoonMovieList(data.content);
     } catch (err) {
       console.log(err);
@@ -31,7 +31,7 @@ export const Home = () => {
   // lấy danh sách phim đang chiếu
   const fetchNowShowingMovieList = async () => {
     try {
-      const { data } = await moviesApi.getMovieList("13");
+      const { data } = await moviesApi.getMovieListApi("13");
       setNowShowingMovieList(data.content);
     } catch (err) {
       console.log(err);
@@ -41,7 +41,7 @@ export const Home = () => {
   // lấy dữ liệu cụm rạp (lịch chiếu phim)
   const fetchCalendarShowtime = async () => {
     try {
-      const { data } = await moviesApi.getCinema("03");
+      const { data } = await moviesApi.getCinemaApi("03");
       setShowtimeList(data.content);
     } catch (error) {
       console.log(error);

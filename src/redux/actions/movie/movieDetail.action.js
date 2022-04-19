@@ -19,7 +19,7 @@ import { commentsApi } from "apis/commentsApi";
 export const getMovieDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_MOVIE_DETAIL_REQUEST });
-    const { data } = await moviesApi.getMovieDetail(id);
+    const { data } = await moviesApi.getMovieDetailApi(id);
     dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({ type: GET_MOVIE_DETAIL_FAIL, payload: error });
@@ -30,7 +30,7 @@ export const getMovieDetail = (id) => async (dispatch) => {
 export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_CALENDAR_SHOW_REQUEST });
-    const { data } = await moviesApi.getCalendarShow(id);
+    const { data } = await moviesApi.getCalendarShowApi(id);
 
     const systemCinema = data.content.heThongRapChieu;
     // tạo mảng chứa tất cả maLichChieu và thêm một số property sử dụng cho việc hiển thị dữ liệu: tenHeThongRap, tenCumRap, logo
@@ -113,7 +113,7 @@ export const getCalendarShowMovieDetail = (id) => async (dispatch) => {
 export const getCommentList = (idMovie) => async (dispatch) => {
   try {
     dispatch({ type: GET_COMMENTS_REQUEST });
-    const response = await commentsApi.getComments();
+    const response = await commentsApi.getCommentsApi();
     //lấy ra các comment có mã phim trùng với mã phim trên url của trang hiện tại
     const commentList = response.data.filter((comment) => comment.idMovie == idMovie);
     dispatch({ type: GET_COMMENTS_SUCCESS, payload: commentList });
@@ -126,7 +126,7 @@ export const getCommentList = (idMovie) => async (dispatch) => {
 export const postComment = (requestComment) => async (dispatch) => {
   try {
     dispatch({ type: POST_COMMENT_REQUEST });
-    const { data } = await commentsApi.postComments(requestComment);
+    const { data } = await commentsApi.postCommentApi(requestComment);
     dispatch({ type: POST_COMMENT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: POST_COMMENT_FAIL, payload: error });

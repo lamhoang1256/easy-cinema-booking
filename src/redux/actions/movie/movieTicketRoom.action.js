@@ -37,7 +37,7 @@ export const resetSelectingSeat = () => async (dispatch) => {
 export const getTicketRoom = (ticketRoom) => async (dispatch) => {
   try {
     dispatch({ type: GET_TICKET_ROOM_REQUEST });
-    const { data } = await moviesApi.getTicketRoom(ticketRoom);
+    const { data } = await moviesApi.getTicketRoomApi(ticketRoom);
     dispatch({ type: GET_TICKET_ROOM_SUCCESS, payload: data.content });
   } catch (error) {
     dispatch({ type: GET_TICKET_ROOM_FAIL, payload: error });
@@ -48,7 +48,7 @@ export const getTicketRoom = (ticketRoom) => async (dispatch) => {
 export const buyTicket = (requestBuyTicket) => async (dispatch) => {
   try {
     dispatch({ type: BUY_TICKET_REQUEST });
-    const response = await moviesApi.buyTicket(requestBuyTicket);
+    const response = await moviesApi.buyTicketApi(requestBuyTicket);
     dispatch({ type: BUY_TICKET_SUCCESS });
     return { isBuyTicketSuccess: true };
   } catch (error) {

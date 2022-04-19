@@ -1,19 +1,19 @@
 import axiosClient from "./axiosClient";
 
 export const authApi = {
-  loginUser: (requestLogin) => {
+  loginUserApi: (requestLogin) => {
     const path = `QuanLyNguoiDung/DangNhap`;
     return axiosClient.post(path, requestLogin);
   },
-  registerUser: (requestRegister) => {
+  registerUserApi: (requestRegister) => {
     const path = `/QuanLyNguoiDung/DangKy`;
     return axiosClient.post(path, requestRegister);
   },
-  updateUser: (requestUpdate) => {
+  updateUserApi: (requestUpdate) => {
     const path = `/QuanLyNguoiDung/CapNhatThongTinNguoiDung`;
     return axiosClient.put(path, requestUpdate);
   },
-  getUserProfile: () => {
+  getUserProfileApi: () => {
     const path = `/QuanLyNguoiDung/ThongTinTaiKhoan`;
     return axiosClient.post(path);
   },
