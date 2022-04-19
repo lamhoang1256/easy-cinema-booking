@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
+import { openModalTrailer } from "redux/actions/modalTrailer.action";
 import "./movieCard.scss";
 
 export const MovieCard = (props) => {
@@ -37,7 +37,7 @@ export const MovieCard = (props) => {
             <div className='movie-card-play'>
               <ion-icon
                 onClick={() => {
-                  dispatch(openModalTrailerAction(movie.trailer));
+                  dispatch(openModalTrailer(movie.trailer));
                 }}
                 name='play-circle-outline'
               ></ion-icon>

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import Slider from "react-slick";
 import { dataCarouselHome } from "constants/dataCarouselHome";
-import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
+import { openModalTrailer } from "redux/actions/modalTrailer.action";
 import "./carousel.scss";
 
 export const Carousel = () => {
@@ -36,7 +36,7 @@ export const Carousel = () => {
   };
   // handle when click Watch me
   const handleShowTrailer = (urlTrailer) => {
-    dispatch(openModalTrailerAction(urlTrailer));
+    dispatch(openModalTrailer(urlTrailer));
   };
 
   return (

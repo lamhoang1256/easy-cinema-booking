@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "hooks/useMediaQuery";
@@ -16,7 +16,7 @@ import {
   getCommentList,
   getCalendarShowMovieDetail,
 } from "redux/actions/movieDetail.action";
-import { openModalTrailerAction } from "redux/actions/modalTrailer.action";
+import { openModalTrailer } from "redux/actions/modalTrailer.action";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {
@@ -25,6 +25,8 @@ export const MovieDetail = () => {
   const { movieDetail, isLoadingMovieDetail, togglePostComment } = useSelector(
     (state) => state.movieDetail
   );
+  const [urlTrailer, setUrlTrailer] = useState("");
+  const [isModalTrailerVisible, setIsModalTrailerVisible] = useState(false);
   // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
 
@@ -63,7 +65,7 @@ export const MovieDetail = () => {
                     <div className='movie-card-play'>
                       <ion-icon
                         onClick={() => {
-                          dispatch(openModalTrailerAction(movieDetail.trailer));
+                          dispatch(openModalTrailer(movieDetail.trailer));
                         }}
                         name='play-circle-outline'
                       ></ion-icon>

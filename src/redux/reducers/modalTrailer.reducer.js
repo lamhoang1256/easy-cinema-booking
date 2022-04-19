@@ -2,15 +2,15 @@ import { OPEN_TRAILER, CLOSE_TRAILER } from "../constants/modalTrailer.constant"
 
 const initialState = {
   urlTrailer: "",
-  isShowTrailer: false,
+  isTrailerVisible: false,
 };
 
 export const modalTrailer = (state = initialState, { type, payload }) => {
   switch (type) {
     case OPEN_TRAILER:
-      return { ...state, urlTrailer: payload, isShowTrailer: true };
+      return { ...state, urlTrailer: payload, isTrailerVisible: true };
     case CLOSE_TRAILER:
-      return { ...state, urlTrailer: "", isShowTrailer: false };
+      return { ...state, urlTrailer: "", isTrailerVisible: false };
     default:
       return state;
   }
