@@ -1,13 +1,13 @@
 import {
-  MOVIE_FILTER_GET_FILM_REQUEST,
-  MOVIE_FILTER_GET_FILM_SUCCESS,
-  MOVIE_FILTER_GET_FILM_FAIL,
-  MOVIE_FILTER_GET_CINEMA_REQUEST,
-  MOVIE_FILTER_GET_CINEMA_SUCCESS,
-  MOVIE_FILTER_GET_CINEMA_FAIL,
-  MOVIE_FILTER_GET_OPENDAY,
-  MOVIE_FILTER_GET_SHOWTIME,
-  MOVIE_FILTER_GET_BOOKING_ID,
+  GET_FILTER_FILM_REQUEST,
+  GET_FILTER_FILM_SUCCESS,
+  GET_FILTER_FILM_FAIL,
+  GET_FILTER_CINEMA_REQUEST,
+  GET_FILTER_CINEMA_SUCCESS,
+  GET_FILTER_CINEMA_FAIL,
+  GET_FILTER_OPENDAY,
+  GET_FILTER_SHOWTIME,
+  GET_FILTER_BOOKING_ID,
 } from "../../constants/movie/movieFilter.constant";
 const initialState = {
   movieList: null,
@@ -20,7 +20,7 @@ const initialState = {
 
 export const movieFilter = (state = initialState, { type, payload }) => {
   switch (type) {
-    case MOVIE_FILTER_GET_FILM_REQUEST:
+    case GET_FILTER_FILM_REQUEST:
       return {
         ...state,
         cinemaList: null,
@@ -28,24 +28,24 @@ export const movieFilter = (state = initialState, { type, payload }) => {
         showtimeList: null,
         idTicketRoom: null,
       };
-    case MOVIE_FILTER_GET_FILM_SUCCESS:
+    case GET_FILTER_FILM_SUCCESS:
       return { ...state, movieList: payload };
-    case MOVIE_FILTER_GET_FILM_FAIL:
+    case GET_FILTER_FILM_FAIL:
       return { ...state, error: payload };
 
-    case MOVIE_FILTER_GET_CINEMA_REQUEST:
+    case GET_FILTER_CINEMA_REQUEST:
       return { ...state, opendayList: null, showtimeList: null, idTicketRoom: null };
-    case MOVIE_FILTER_GET_CINEMA_SUCCESS:
+    case GET_FILTER_CINEMA_SUCCESS:
       return { ...state, cinemaList: payload };
-    case MOVIE_FILTER_GET_CINEMA_FAIL:
+    case GET_FILTER_CINEMA_FAIL:
       return { ...state, error: payload };
 
-    case MOVIE_FILTER_GET_OPENDAY:
+    case GET_FILTER_OPENDAY:
       return { ...state, opendayList: payload, showtimeList: null, idTicketRoom: null };
 
-    case MOVIE_FILTER_GET_SHOWTIME:
+    case GET_FILTER_SHOWTIME:
       return { ...state, showtimeList: payload, idTicketRoom: null };
-    case MOVIE_FILTER_GET_BOOKING_ID:
+    case GET_FILTER_BOOKING_ID:
       return { ...state, idTicketRoom: payload };
 
     default:

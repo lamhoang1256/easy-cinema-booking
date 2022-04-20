@@ -5,8 +5,8 @@ import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import "./movieCard.scss";
 
 export const MovieCard = (props) => {
-  const { movie } = props;
   const dispatch = useDispatch();
+  const { movie } = props;
   // check điểm đánh giá từ API và tạo các ngôi sao rating
   const score = movie.danhGia;
   const createStarRating = () => {
@@ -24,7 +24,7 @@ export const MovieCard = (props) => {
     return rating;
   };
   // tạo thời lượng phim cho đẹp
-  const timeMovie = ((movie.maPhim * movie.danhGia) / 500).toFixed(0);
+  const movieDuration = ((movie.maPhim * movie.danhGia) / 500).toFixed(0);
 
   return (
     <>
@@ -56,7 +56,7 @@ export const MovieCard = (props) => {
                 <div>{movie.danhGia / 2}</div>
               </div>
               <div className='movie-card-time'>
-                {timeMovie < 100 ? +timeMovie + 100 : timeMovie} phút
+                {movieDuration < 100 ? +movieDuration + 100 : movieDuration} phút
               </div>
             </div>
           </div>

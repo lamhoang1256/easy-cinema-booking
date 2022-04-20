@@ -7,10 +7,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
 // components
+import { Banner } from "components/Banner/Banner";
 import { MovieHistory } from "./components/MovieHistory";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 import "./userInfo.scss";
-import { Banner } from "components/Banner/Banner";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
@@ -55,12 +55,12 @@ export const UserInfo = () => {
                 <div className='user-info-avatar'>
                   <img
                     src={`${process.env.PUBLIC_URL}/assets/images/avatar/avatar-boss-baby.jpg`}
-                    alt=''
+                    alt='avatar'
                   />
                 </div>
                 <div className='user-info-name'>
-                  <h2>Nguyen Hoang Lam</h2>
-                  <p>lamhoang@gmail.com</p>
+                  <h2>{userProfile.hoTen}</h2>
+                  <p>{userProfile.email}</p>
                 </div>
               </div>
               <Tabs tabPosition={"left"}>

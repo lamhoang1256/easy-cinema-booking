@@ -103,3 +103,26 @@ Quá trình làm đồ án ReactJS
 - Thêm lazy loading Movie Card thumb image
 - Tối ưu responsize cho Movie List
 - Thêm chức năng đăng nhận xét phim
+
+16/04/2022
+
+- Thêm chức năng lọc chọn vé phim
+
+17/04/2022
+
+- Tối ưu lại chức năng lọc vé
+
+18/04/2022
+
+- Thêm responsize mobile và style thêm cho FilterFilm
+- Sửa lại một số tên biến rõ nghĩa hơn
+
+19/04/2022
+
+- Tối ưu lại cách gọi API
+- Thêm animation button watch me
+
+20/04/2022
+
+- Xây dựng chức năng đếm ngược thời gian giữ ghế
+- Redirect sang login nếu chưa đăng nhập khi vào trang MovieTicketRoom

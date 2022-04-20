@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Banner } from "components/Banner/Banner";
 import { dataFakeNews } from "constants/dataFakeNews";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import "./newsDetail.scss";
-import { Banner } from "components/Banner/Banner";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;

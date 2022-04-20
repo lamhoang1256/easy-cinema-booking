@@ -6,7 +6,7 @@ import "./modalTrailer.scss";
 export const ModalTrailer = () => {
   const dispatch = useDispatch();
   const { isTrailerVisible, urlTrailer } = useSelector((state) => state.modalTrailer);
-  // xử lí đóng modal trailer youtube
+
   const handleHiddenTrailer = () => {
     dispatch(closeModalTrailer());
   };

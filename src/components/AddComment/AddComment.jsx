@@ -18,7 +18,7 @@ export const AddComment = () => {
     if (!userInfo) {
       Swal.fire({
         icon: "error",
-        title: "Thêm nhận xét thất bại!",
+        title: "Đăng nhận xét thất bại!",
         text: "Vui lòng đăng nhập để đăng nhận xét!",
         confirmButtonColor: "#d33",
       });
@@ -33,15 +33,15 @@ export const AddComment = () => {
       setError("Nhận xét nhiều nhất gồm 400 kí tự");
       return;
     }
-    const dataToPostComment = {
-      createdAt: Date.now(),
+    const requestComment = {
+      idMovie: id,
       username: userInfo.taiKhoan,
       content: newComment,
       rating: 0,
       like: 0,
-      idMovie: id,
+      createdAt: Date.now(),
     };
-    dispatch(postComment(dataToPostComment));
+    dispatch(postComment(requestComment));
     setError("");
     setNewComment("");
   };

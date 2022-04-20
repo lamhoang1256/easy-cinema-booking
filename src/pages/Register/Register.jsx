@@ -31,16 +31,10 @@ export const Register = () => {
     dispatch(registerUser(requestRegister));
   };
 
-  // useEffect(() => {
-  //   //đăng kí thành công có dữ liệu user trong redux chuyển sang trang login
-  //   if (userInfo) {
-  //     navigate("/auth/login");
-  //   }
-  // }, [userInfo]);
   useEffect(() => {
+    //nếu đã đăng nhập thì chuyển về trang trước đó
     if (userInfo) {
       navigate(-1);
-      // return;
     }
   }, [userInfo]);
 
@@ -78,7 +72,6 @@ export const Register = () => {
               <div className='auth-group'>
                 <ion-icon name='lock-closed-outline'></ion-icon>
                 <input
-                  // ref={password}
                   type='password'
                   className='auth-input auth-password'
                   placeholder='Mật khẩu *'
@@ -128,11 +121,9 @@ export const Register = () => {
           </div>
 
           {errorRegister && <p className='text--primary text-center'>{errorRegister.content}</p>}
-
           <button className='auth-submit btn btn--primary' type='submit'>
             Đăng kí
           </button>
-
           <div className='auth-switch'>
             Bạn đã chưa có tài khoản ?{" "}
             <Link to='/auth/login' className='text--primary'>
