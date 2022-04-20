@@ -1,6 +1,10 @@
-@use "../../../../assets/scss/helpers/index.scss" as *;
-.modal-bill {
+@import "../helpers/index.scss";
+.modal {
   position: relative;
+  &-heading {
+    text-align: center;
+    margin-bottom: 10px;
+  }
   &-overplay {
     background-color: rgba(0, 0, 0, 0.8);
     cursor: pointer;

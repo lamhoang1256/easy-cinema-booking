@@ -13,10 +13,10 @@ import {
   buyTicket,
   resetSelectingSeat,
 } from "redux/actions/movie/movieTicketRoom.action";
-
-import "./movieTicketRoom.scss";
-import { format1to2number } from "utilities/formatDate";
+import { formatTimeTwoDigit } from "utilities/formatDate";
 import { ModalAlert } from "pages/MovieTicketRoom/components/ModalAlert/ModalAlert";
+import "./movieTicketRoom.scss";
+
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
@@ -24,16 +24,15 @@ const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background
 export const MovieTicketRoom = () => {
   const { idTicketRoom } = useParams();
   const dispatch = useDispatch();
-  const [isModalBillVisible, setIsModalBillVisible] = useState(false);
   const { userInfo } = useSelector((state) => state.user);
   const { dataTicketRoom, listSelectingSeat, isLoadingTicketRoom } = useSelector(
     (state) => state.movieTicketRoom
   );
-  const [isModalAlertVisible, setIsModalAlertVisible] = useState(false);
 
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(10);
-  const idSetInterval = useRef();
+  const [isModalBillVisible, setIsModalBillVisible] = useState(false);
+  const [isModalAlertVisible, setIsModalAlertVisible] = useState(false);
+  const [minutes, setMinutes] = useState(5);
+  const [seconds, setSeconds] = useState(0);
 
   //tính tổng tiền của các ghế
   const totalMoney = listSelectingSeat.reduce(function (prevValue, currentValue) {
@@ -65,6 +64,7 @@ export const MovieTicketRoom = () => {
       });
       return;
     }
+    // nếu chưa đăng nhập
     if (!userInfo) {
       Swal.fire({
         icon: "error",
@@ -77,10 +77,13 @@ export const MovieTicketRoom = () => {
     const { isBuyTicketSuccess } = await dispatch(buyTicket(dataToBuyTicket));
     //nếu mua vé thành công hiện modal bill
     if (isBuyTicketSuccess) {
-      setIsModalBillVisible(!isModalBillVisible);
+      setIsModalBillVisible(true);
+      clearInterval(idSetInterval.current);
     }
   };
 
+  //đếm ngược thời gian giữ ghế
+  const idSetInterval = useRef();
   const countDownTimeBooking = () => {
     idSetInterval.current = setInterval(() => {
       if (seconds > 0) {
@@ -88,7 +91,7 @@ export const MovieTicketRoom = () => {
       }
       if (seconds === 0) {
         if (minutes === 0) {
-          setIsModalAlertVisible(!isModalAlertVisible);
+          setIsModalAlertVisible(true);
           clearInterval(idSetInterval.current);
         } else {
           setMinutes(minutes - 1);
@@ -121,7 +124,7 @@ export const MovieTicketRoom = () => {
               <div className='movie-booking-left'>
                 <div className='movie-booking-realtime'>
                   <p>Thời gian giữ ghế</p>
-                  <p className='movie-booking-time'>{format1to2number(minutes, seconds)}</p>
+                  <p className='movie-booking-time'>{formatTimeTwoDigit(minutes, seconds)}</p>
                 </div>
                 <div className='movie-booking-main'>
                   <div className='movie-booking-choice'>
@@ -203,22 +206,9 @@ export const MovieTicketRoom = () => {
             </div>
           </div>
           {/* mở modal bill khi đặt vé thành công  */}
-          {isModalBillVisible && (
-            <ModalBill
-              idTicketRoom={idTicketRoom}
-              totalMoney={totalMoney}
-              isModalBillVisible={isModalBillVisible}
-              setIsModalBillVisible={setIsModalBillVisible}
-            />
-          )}
-          {/* mở modal thông báo nếu quá 5 phút giữ ghế */}
-          {isModalAlertVisible && (
-            <ModalAlert
-              idTicketRoom={idTicketRoom}
-              isModalBillVisible={isModalBillVisible}
-              setIsModalBillVisible={setIsModalBillVisible}
-            />
-          )}
+          {isModalBillVisible && <ModalBill totalMoney={totalMoney} />}
+          {/* mở modal thông báo nếu quá 5 phút thời gian giữ ghế */}
+          {isModalAlertVisible && <ModalAlert />}
         </div>
       ) : (
         <LoadingAnimation />

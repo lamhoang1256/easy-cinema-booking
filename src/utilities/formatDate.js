@@ -12,7 +12,7 @@ export const formatISOtoLocaleDateString = (iso) => {
 };
 
 // format 1:3 -> 01:03
-export const format1to2number = (num1, num2) => {
+export const formatTimeTwoDigit = (num1, num2) => {
   if (num1 < 10) {
     num1 = "0" + num1;
   }
@@ -26,5 +26,5 @@ export const format1to2number = (num1, num2) => {
 export const formatISOtoHours = (iso) => {
   let hours = new Date(iso).getHours();
   let minutes = new Date(iso).getMinutes();
-  return format1to2number(hours, minutes);
+  return formatTimeTwoDigit(hours, minutes);
 };
