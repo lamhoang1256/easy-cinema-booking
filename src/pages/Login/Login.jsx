@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,9 +25,11 @@ export const Login = () => {
     dispatch(loginUser(requestLogin));
   };
 
+  const location = useLocation();
+  console.log(location);
   useEffect(() => {
     if (userLocalStorage) {
-      navigate("/");
+      navigate(-1);
     }
   }, [userLocalStorage]);
 

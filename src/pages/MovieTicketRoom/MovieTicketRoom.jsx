@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 // component
@@ -24,6 +24,7 @@ const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background
 export const MovieTicketRoom = () => {
   const { idTicketRoom } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.user);
   const { dataTicketRoom, listSelectingSeat, isLoadingTicketRoom } = useSelector(
     (state) => state.movieTicketRoom
@@ -109,6 +110,12 @@ export const MovieTicketRoom = () => {
   }, [seconds]);
 
   useEffect(() => {
+    //nếu chưa đăng nhập chuyển sang trang login
+    if (!userInfo) {
+      navigate("/auth/login");
+      return;
+    }
+
     window.scrollTo(0, 0);
     dispatch(getTicketRoom(idTicketRoom));
     dispatch(resetSelectingSeat());

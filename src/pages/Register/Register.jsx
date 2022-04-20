@@ -31,10 +31,16 @@ export const Register = () => {
     dispatch(registerUser(requestRegister));
   };
 
+  // useEffect(() => {
+  //   //đăng kí thành công có dữ liệu user trong redux chuyển sang trang login
+  //   if (userInfo) {
+  //     navigate("/auth/login");
+  //   }
+  // }, [userInfo]);
   useEffect(() => {
-    //đăng kí thành công có dữ liệu user trong redux chuyển sang trang login
     if (userInfo) {
-      navigate("/auth/login");
+      navigate(-1);
+      // return;
     }
   }, [userInfo]);
 
