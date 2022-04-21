@@ -1,18 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { Table, Tag, Radio, Divider } from "antd";
 import { usersApi } from "apis/usersApi";
+import Swal from "sweetalert2";
+import ModalEditUser from "./components/ModalEditUser";
 
 export const UserManagement = () => {
   const [userList, setUserList] = useState(null);
+  const [isModalEditUserVisible, setIsModalEditUserVisible] = useState(false);
+  const [usernameEdit, setUsernameEdit] = useState(null);
 
-  const handleSearchUser = (username) => {
+  const showModalEditUser = async (username) => {
+    setUsernameEdit(usernameEdit);
+    setIsModalEditUserVisible(true);
+  };
+
+  // lấy danh sách thông tin user đổ ra table
+  const fetchUserList = async () => {
+    try {
+      const { data } = await usersApi.getUserListApi();
+      const dataHasKey = data.content.map(function (item, index) {
+        return { ...item, key: index };
+      });
+      setUserList(dataHasKey);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onSearchUser = (username) => {
     if (username === "") {
-      console.log("Vui lòng nhập tên!");
+      fetchUserList();
       return;
     }
     const fetchSearchedUser = async () => {
       try {
-        const { data } = await usersApi.searchUser(username);
+        const { data } = await usersApi.searchUserApi(username);
         const dataHasKey = data.content.map(function (item, index) {
           return { ...item, key: index };
         });
@@ -24,19 +46,30 @@ export const UserManagement = () => {
     fetchSearchedUser();
   };
 
-  useEffect(() => {
-    const fetchUserList = async () => {
-      try {
-        const { data } = await usersApi.getUserListApi();
-        const dataHasKey = data.content.map(function (item, index) {
-          return { ...item, key: index };
+  const handleDeleteUser = async (username) => {
+    try {
+      const response = await usersApi.deleteUserApi(username);
+      if (response.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Xóa người dùng thành công",
+          text: `Bạn đã xóa thành công tài khoản có tên ${username}!`,
+          confirmButtonColor: "#d33",
         });
-        setUserList(dataHasKey);
-      } catch (error) {
-        console.log(error);
+        fetchUserList();
+        return;
       }
-    };
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Xóa người dùng thất bại",
+        text: error.response?.data?.content,
+        confirmButtonColor: "#d33",
+      });
+    }
+  };
 
+  useEffect(() => {
     fetchUserList();
   }, []);
 
@@ -82,7 +115,7 @@ export const UserManagement = () => {
         return (
           <ion-icon
             onClick={() => {
-              console.log(taiKhoan);
+              handleDeleteUser(taiKhoan);
             }}
             name='trash-outline'
           ></ion-icon>
@@ -91,16 +124,11 @@ export const UserManagement = () => {
     },
     {
       title: "Sửa",
-      dataIndex: "key",
+      dataIndex: "taiKhoan",
       key: "edit",
-      render: (key) => {
+      render: (taiKhoan) => {
         return (
-          <ion-icon
-            onClick={() => {
-              console.log(key);
-            }}
-            name='pencil-outline'
-          ></ion-icon>
+          <ion-icon onClick={() => showModalEditUser(taiKhoan)} name='pencil-outline'></ion-icon>
         );
       },
     },
@@ -125,10 +153,11 @@ export const UserManagement = () => {
           <ion-icon name='search-outline'></ion-icon>
         </div>
         <input
-          onKeyDown={(e) => e.key === "Enter" && handleSearchUser(e.target.value)}
+          onKeyDown={(e) => onSearchUser(e.target.value)}
+          // onKeyDown={(e) => e.key === "Enter" && onSearchUser(e.target.value)}
           className='search-top-input'
           type='text'
-          placeholder='Tìm...'
+          placeholder='Tìm tài khoản...'
         />
       </div>
       <Table
@@ -138,6 +167,11 @@ export const UserManagement = () => {
         }}
         columns={columns}
         dataSource={userList}
+      />
+      <ModalEditUser
+        usernameEdit={usernameEdit}
+        isModalEditUserVisible={isModalEditUserVisible}
+        setIsModalEditUserVisible={setIsModalEditUserVisible}
       />
     </>
   );

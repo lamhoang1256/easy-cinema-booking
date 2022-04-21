@@ -5,8 +5,16 @@ export const usersApi = {
     const path = `/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`;
     return axiosClient.get(path);
   },
-  searchUser: (username) => {
-    const path = `/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${username}`;
+  searchUserApi: (username) => {
+    const path = `/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP00&tuKhoa=${username}`;
     return axiosClient.get(path);
+  },
+  deleteUserApi: (username) => {
+    const path = `/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${username}`;
+    return axiosClient.delete(path);
+  },
+  getUserToEdit: (username) => {
+    const path = `QuanLyNguoiDung/LayThongTinNguoiDung?TaiKhoan=${username}`;
+    return axiosClient.post(path);
   },
 };
