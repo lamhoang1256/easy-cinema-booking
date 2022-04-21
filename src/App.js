@@ -16,6 +16,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import "antd/dist/antd.css";
 import "./assets/scss/app.scss";
+import { UserManagement } from "pages/UserManagement/UserManagement";
+import { MovieManagement } from "pages/MovieManagement/MovieManagement";
 
 function App() {
   return (
@@ -30,7 +32,10 @@ function App() {
           <Route path='/booking/:idTicketRoom' element={<MovieTicketRoom />} />
         </Route>
         {/* Admin Layout */}
-        <Route path='/admin' element={<AdminLayout />}></Route>
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route path='user-management' element={<UserManagement />} />
+          <Route path='movie-management' element={<MovieManagement />} />
+        </Route>
         {/* Auth Layout */}
         <Route path='/auth' element={<AuthLayout />}>
           <Route path='login' element={<Login />} />

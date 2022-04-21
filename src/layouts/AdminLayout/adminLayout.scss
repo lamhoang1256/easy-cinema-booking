@@ -1,4 +1,12 @@
 .admin-layout {
   padding: 20px;
   min-height: 100vh;
+  display: flex;
+}
+.admin-layout-main {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: yellow;
 }
