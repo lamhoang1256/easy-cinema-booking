@@ -9,7 +9,9 @@ export const AdminLayout = () => {
       {/* <h2>Admin Layout</h2> */}
       <Sidebar />
       <div className='admin-layout-main'>
-        <Outlet />
+        <div className='admin-layout-container'>
+          <Outlet />
+        </div>
       </div>
     </div>
   );

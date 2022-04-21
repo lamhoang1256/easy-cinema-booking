@@ -4,9 +4,12 @@
   display: flex;
 }
 .admin-layout-main {
-  flex: 1;
-  margin: 20px;
   padding: 20px;
-  border-radius: 10px;
+  margin: 0 20px;
   background-color: yellow;
+  border-radius: 10px;
+  flex: 1;
+}
+.admin-layout-container {
+  margin-top: 20px;
 }
