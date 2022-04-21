@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Table, Tag } from "antd";
 import { usersApi } from "apis/usersApi";
 
 export const UserManagement = () => {
@@ -8,7 +9,10 @@ export const UserManagement = () => {
     const fetchUserList = async () => {
       try {
         const { data } = await usersApi.getUserListApi();
-        setUserList(data.content);
+        const dataHasKey = data.content.map(function (item, index) {
+          return { ...item, key: index };
+        });
+        setUserList(dataHasKey);
       } catch (error) {
         console.log(error);
       }
@@ -17,66 +21,45 @@ export const UserManagement = () => {
     fetchUserList();
   }, []);
 
-  console.log(userList);
+  const columns = [
+    {
+      title: "Tài khoản",
+      dataIndex: "taiKhoan",
+      key: "taiKhoan",
+    },
+    {
+      title: "Họ và tên",
+      dataIndex: "hoTen",
+      key: "hoTen",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Số điện thoại",
+      dataIndex: "soDt",
+      key: "soDt",
+    },
+    {
+      title: "Mã loại người dùng",
+      dataIndex: "maLoaiNguoiDung",
+      key: "maLoaiNguoiDung",
+      render: (maLoaiNguoiDung) => {
+        if (maLoaiNguoiDung === "KhachHang") {
+          return <Tag color='cyan'>{maLoaiNguoiDung.toUpperCase()}</Tag>;
+        }
+        if (maLoaiNguoiDung === "QuanTri") {
+          return <Tag color='volcano'>{maLoaiNguoiDung.toUpperCase()}</Tag>;
+        }
+      },
+    },
+  ];
 
   return (
-    <div className='movie-history'>
-      <table className='movie-history-table'>
-        <thead className='movie-history-head'>
-          <tr className='movie-history-row'>
-            <th>Tên tài khoản</th>
-            <th>Họ và tên</th>
-            <th>Email</th>
-            <th>Số điện thoại</th>
-            <th>Mật khẩu</th>
-            <th>Mã loại người dùng</th>
-          </tr>
-        </thead>
-
-        {/* table body */}
-        <tbody className='movie-history-body'>
-          {userList &&
-            userList.map((user, index) => (
-              <tr className='movie-history-row' key={index}>
-                <td>{user.taiKhoan}</td>
-                <td>{user.hoTen}</td>
-                <td>{user.email}</td>
-                <td>{user.soDt}</td>
-                <td>{user.matKhau}</td>
-                <td>{user.maLoaiNguoiDung}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <Table columns={columns} dataSource={userList} />
+    </>
   );
 };
-/*
-<tbody className='movie-history-body'>
-          {userProfile &&
-            userProfile.thongTinDatVe.length !== 0 &&
-            userProfile.thongTinDatVe.map((item, index) => (
-              <tr className='movie-history-row' key={index}>
-                <td>{item.tenPhim}</td>
-                <td>
-                  <img className='movie-history-thumb' src={item.hinhAnh} />
-                </td>
-                <td>
-                  {new Date(item.ngayDat).toLocaleDateString()}{" "}
-                  {new Date(item.ngayDat).toLocaleTimeString("en-US", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </td>
-                <td>{item.danhSachGhe[0].tenHeThongRap}</td>
-                <td>
-                  <div className='movie-history-chairs'>
-                    {/* {getIdChair(item.danhSachGhe).map((seat, index) => (
-                    <span key={index}>{seat}</span>
-                  ))} 
-                  </div>
-                </td>
-                <td>{(item.giaVe * item.danhSachGhe.length).toLocaleString("en-US")} VNĐ</td>
-              </tr>
-            ))}
-                </tbody> */
