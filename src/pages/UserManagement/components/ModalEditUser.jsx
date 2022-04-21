@@ -8,7 +8,9 @@ import { useEffect, useState } from "react";
 import { usersApi } from "apis/usersApi";
 
 const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUserVisible }) => {
+  // console.log(userInfoEdit);
   const [userInfoEdit, setUserInfoEdit] = useState(null);
+  console.log(usernameEdit);
   const {
     register,
     handleSubmit,
@@ -39,20 +41,21 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
   useEffect(() => {
     const fetchUserEdit = async () => {
       try {
+        // await setUserInfoEdit(null);
         const { data } = await usersApi.getUserToEdit(usernameEdit);
         setUserInfoEdit(data.content);
-        console.log(data.content);
       } catch (error) {
-        console.log(error.response?.data?.content);
+        console.log(error?.response?.data?.content);
       }
     };
-
     fetchUserEdit();
   }, [usernameEdit]);
 
+  console.log("re-render");
+
   return (
     <Modal
-      title='Basic Modal'
+      title={`Cập nhật thông tin người dùng`}
       visible={isModalEditUserVisible}
       onOk={handleOk}
       onCancel={handleCancel}

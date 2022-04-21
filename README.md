@@ -126,3 +126,9 @@ Quá trình làm đồ án ReactJS
 
 - Xây dựng chức năng đếm ngược thời gian giữ ghế
 - Redirect sang login nếu chưa đăng nhập khi vào trang MovieTicketRoom
+
+21/04/2022
+
+- Đổ danh sách user ra giao diện
+- Xây dựng thành công chức năng xóa người dùng
+- Hiện modal sửa thông tin user

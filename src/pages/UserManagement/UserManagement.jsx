@@ -8,9 +8,11 @@ export const UserManagement = () => {
   const [userList, setUserList] = useState(null);
   const [isModalEditUserVisible, setIsModalEditUserVisible] = useState(false);
   const [usernameEdit, setUsernameEdit] = useState(null);
+  const [num, setNum] = useState(0);
 
   const showModalEditUser = async (username) => {
-    setUsernameEdit(usernameEdit);
+    setUsernameEdit(username);
+    setNum(num + 1);
     setIsModalEditUserVisible(true);
   };
 
@@ -169,6 +171,7 @@ export const UserManagement = () => {
         dataSource={userList}
       />
       <ModalEditUser
+        num={num}
         usernameEdit={usernameEdit}
         isModalEditUserVisible={isModalEditUserVisible}
         setIsModalEditUserVisible={setIsModalEditUserVisible}
