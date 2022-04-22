@@ -1,19 +1,20 @@
 import { Modal } from "antd";
+import { useEffect, useState } from "react";
+import { usersApi } from "apis/usersApi";
+import "./modalEditUser.scss";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
-import "./modalEditUser.scss";
-import { useEffect, useState } from "react";
-import { usersApi } from "apis/usersApi";
 
 const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUserVisible }) => {
-  // console.log(userInfoEdit);
+  // console.log(usernameEdit);
   const [userInfoEdit, setUserInfoEdit] = useState(null);
-  console.log(usernameEdit);
+  // const [username, setUsername] = useState(null);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
 
@@ -28,6 +29,16 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
       maLoaiNguoiDung: "KhachHang",
     };
     console.log(dataToUpdateUser);
+
+    const editUser = async (dataToUpdateUser) => {
+      try {
+        const data = await usersApi.editUserApi(dataToUpdateUser);
+        console.log(data);
+      } catch (error) {
+        console.log(error.response?.data?.content);
+      }
+    };
+    editUser(dataToUpdateUser);
   };
 
   const handleOk = () => {
@@ -38,20 +49,28 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
     setIsModalEditUserVisible(false);
   };
 
+  const fetchUserEdit = async () => {
+    try {
+      const { data } = await usersApi.getUserToEdit(usernameEdit);
+      // console.log(data.content);
+      // setUserInfoEdit(res.data.content);
+      // setUsername(data.content.taiKhoan);
+      reset({
+        username: data.content.taiKhoan,
+        fullname: data.content.hoTen,
+        phone: data.content.soDT,
+        email: data.content.email,
+        password: data.content.matKhau,
+        password_repeat: data.content.matKhau,
+      });
+    } catch (error) {
+      console.log(error?.response?.data?.content);
+    }
+  };
+
   useEffect(() => {
-    const fetchUserEdit = async () => {
-      try {
-        // await setUserInfoEdit(null);
-        const { data } = await usersApi.getUserToEdit(usernameEdit);
-        setUserInfoEdit(data.content);
-      } catch (error) {
-        console.log(error?.response?.data?.content);
-      }
-    };
     fetchUserEdit();
   }, [usernameEdit]);
-
-  console.log("re-render");
 
   return (
     <Modal
@@ -59,14 +78,15 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
       visible={isModalEditUserVisible}
       onOk={handleOk}
       onCancel={handleCancel}
+      // footer={null}
     >
+      {/* {userInfoEdit && ( */}
       <form className='user-info-edit' onSubmit={handleSubmit(handleUpdateUser)}>
-        {/* Tên tài khoản */}
         <div className='user-info-edit-group'>
-          <h3>Tên tài khoản</h3>
+          <h3>Tên tài khoản </h3>
           <input
             type='text'
-            value={userInfoEdit?.taiKhoan}
+            defaultValue={userInfoEdit?.taiKhoan}
             placeholder='Tên tài khoản'
             {...register("username")}
           />
@@ -79,7 +99,7 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
           <input
             type='text'
             placeholder='Họ và tên'
-            value={userInfoEdit?.hoTen}
+            defaultValue={userInfoEdit?.hoTen}
             {...register("fullname")}
           />
           {errors.fullname && <span className='text--primary'>{errors.fullname.message}</span>}
@@ -91,7 +111,7 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
           <input
             type='email'
             placeholder='Email'
-            value={userInfoEdit?.email}
+            defaultValue={userInfoEdit?.email}
             {...register("email")}
           />
           {errors.email && <span className='text--primary'>{errors.email.message}</span>}
@@ -103,7 +123,7 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
           <input
             type='text'
             placeholder='Số điện thoại'
-            value={userInfoEdit?.soDT}
+            defaultValue={userInfoEdit?.soDT}
             {...register("phone")}
           />
           {errors.phone && <span className='text--primary'>{errors.phone.message}</span>}
@@ -115,7 +135,7 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
           <input
             type='password'
             placeholder='Mật khẩu'
-            value={userInfoEdit?.matKhau}
+            defaultValue={userInfoEdit?.matKhau}
             {...register("password")}
           />
           {errors.password && <span className='text--primary'>{errors.password.message}</span>}
@@ -127,7 +147,7 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
           <input
             type='password'
             placeholder='Xác nhận mật khẩu'
-            value={userInfoEdit?.matKhau}
+            defaultValue={userInfoEdit?.matKhau}
             {...register("password_repeat")}
           />
           {errors.password_repeat && (
@@ -139,6 +159,7 @@ const ModalEditUser = ({ usernameEdit, setIsModalEditUserVisible, isModalEditUse
           Chỉnh sửa
         </button>
       </form>
+      {/* )} */}
     </Modal>
   );
 };
