@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Table, Tag, Radio, Divider } from "antd";
+import { Table, Tag } from "antd";
 import { usersApi } from "apis/usersApi";
 import Swal from "sweetalert2";
 import ModalEditUser from "./components/ModalEditUser";
 
 export const UserManagement = () => {
   const [userList, setUserList] = useState(null);
-  const [isModalEditUserVisible, setIsModalEditUserVisible] = useState(false);
+  const [isShowModalEdit, setIsShowModalEdit] = useState(false);
   const [usernameEdit, setUsernameEdit] = useState(null);
-  const [num, setNum] = useState(0);
 
-  const showModalEditUser = async (username) => {
+  const showModalEdit = async (username) => {
     setUsernameEdit(username);
-    setNum(num + 1);
-    setIsModalEditUserVisible(true);
+    setIsShowModalEdit(true);
   };
 
   // lấy danh sách thông tin user đổ ra table
@@ -29,7 +27,7 @@ export const UserManagement = () => {
     }
   };
 
-  const onSearchUser = (username) => {
+  const handleSearchUser = (username) => {
     if (username === "") {
       fetchUserList();
       return;
@@ -104,49 +102,32 @@ export const UserManagement = () => {
         if (maLoaiNguoiDung === "KhachHang") {
           return <Tag color='cyan'>{maLoaiNguoiDung.toUpperCase()}</Tag>;
         }
-        if (maLoaiNguoiDung === "QuanTri") {
+        if (maLoaiNguoiDung === "QuanTri")
           return <Tag color='volcano'>{maLoaiNguoiDung.toUpperCase()}</Tag>;
-        }
       },
     },
     {
       title: "Xóa",
       dataIndex: "taiKhoan",
       key: "delete",
-      render: (taiKhoan) => {
-        return (
-          <ion-icon
-            onClick={() => {
-              handleDeleteUser(taiKhoan);
-            }}
-            name='trash-outline'
-          ></ion-icon>
-        );
-      },
+      render: (taiKhoan) => (
+        <ion-icon
+          onClick={() => {
+            handleDeleteUser(taiKhoan);
+          }}
+          name='trash-outline'
+        ></ion-icon>
+      ),
     },
     {
       title: "Sửa",
       dataIndex: "taiKhoan",
       key: "edit",
-      render: (taiKhoan) => {
-        return (
-          <ion-icon onClick={() => showModalEditUser(taiKhoan)} name='pencil-outline'></ion-icon>
-        );
-      },
+      render: (taiKhoan) => (
+        <ion-icon onClick={() => showModalEdit(taiKhoan)} name='pencil-outline'></ion-icon>
+      ),
     },
   ];
-
-  const [selectionType, setSelectionType] = useState("checkbox");
-  const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
-    },
-    getCheckboxProps: (record) => ({
-      disabled: record.name === "Disabled User",
-      // Column configuration not to be checked
-      name: record.name,
-    }),
-  };
 
   return (
     <>
@@ -155,26 +136,18 @@ export const UserManagement = () => {
           <ion-icon name='search-outline'></ion-icon>
         </div>
         <input
-          onKeyDown={(e) => onSearchUser(e.target.value)}
-          // onKeyDown={(e) => e.key === "Enter" && onSearchUser(e.target.value)}
+          onKeyDown={(e) => handleSearchUser(e.target.value)}
           className='search-top-input'
           type='text'
           placeholder='Tìm tài khoản...'
         />
       </div>
-      <Table
-        rowSelection={{
-          type: selectionType,
-          ...rowSelection,
-        }}
-        columns={columns}
-        dataSource={userList}
-      />
+      <Table columns={columns} dataSource={userList} />
       <ModalEditUser
-        num={num}
         usernameEdit={usernameEdit}
-        isModalEditUserVisible={isModalEditUserVisible}
-        setIsModalEditUserVisible={setIsModalEditUserVisible}
+        isShowModalEdit={isShowModalEdit}
+        setIsShowModalEdit={setIsShowModalEdit}
+        fetchUserList={fetchUserList}
       />
     </>
   );
