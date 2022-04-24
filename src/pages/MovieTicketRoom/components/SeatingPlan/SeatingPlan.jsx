@@ -4,26 +4,27 @@ import "./seatingPlan.scss";
 
 export const SeatingPlan = ({ danhSachGhe, listSelectingSeat }) => {
   const dispatch = useDispatch();
+  const userInfo = localStorage.getItem("userInfo");
 
-  //xử lí chọn ghế
+  //xử lí chọn seat
   const handleSelectChair = (seat) => {
     dispatch(selectSeat(seat));
   };
 
   return (
     <div className='seating-plan'>
-      {/* render danh sách ghế ra giao diện */}
+      {/* render all seat */}
       <div className='seating-plan-container'>
         {danhSachGhe.map((seat, index) => {
           const baseClass = "seating-plan-seat";
-          //ghế vip
+          //seat vip
           const vip = seat.loaiGhe === "Vip" ? `${baseClass}--vip` : "";
-          //ghế đã được mua
+          //seat bought
           const selected = seat.daDat ? `${baseClass}--selected` : "";
-          //ghế được mua bởi bạn
+          //seat is bought buy you
           const yourchoice =
             seat.daDat && seat.taiKhoanNguoiDat === "nguyenlam" ? `${baseClass}--yourchoice` : "";
-          //ghế đang chọn
+          //seat is selecting
           const selecting =
             listSelectingSeat.findIndex((c) => c.maGhe === seat.maGhe) === -1
               ? ""
@@ -36,10 +37,10 @@ export const SeatingPlan = ({ danhSachGhe, listSelectingSeat }) => {
               onClick={() => handleSelectChair(seat)}
               key={index}
             >
-              {/* nếu ghế đã được mua bởi người khác sẽ hiện hình dấu X, mua bởi bạn thì hiện your choice */}
+              {/* nếu seat đã được mua bởi người khác sẽ hiện hình dấu X, mua bởi bạn thì hiện your choice */}
               {selected !== "" && seat.taiKhoanNguoiDat !== "nguyenlam" ? (
                 <img src={`${process.env.REACT_APP_PUBLIC}/assets/images/seat-notchoose.png`} />
-              ) : seat.taiKhoanNguoiDat === "nguyenlam" ? (
+              ) : seat.taiKhoanNguoiDat === userInfo.taiKhoan ? (
                 <img
                   src={`${process.env.REACT_APP_PUBLIC}/assets/images/seat-your-choice.png`}
                   className='seating-plan-yourchoice'

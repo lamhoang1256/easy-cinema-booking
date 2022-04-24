@@ -22,7 +22,7 @@ export const ModalAlert = () => {
             Trở về trang chủ
           </button>
           <button className='btn btn--primary' onClick={handleContinueBuyTicket}>
-            Tiếp tục dặt vé
+            Tiếp tục đặt vé
           </button>
         </div>
       </div>

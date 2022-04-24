@@ -132,12 +132,10 @@ export const MovieTicketRoom = () => {
               </div>
 
               <div className='movie-booking-right'>
-                {/* All information of Movie */}
                 <InfoMovie
                   infoMovie={dataTicketRoom.thongTinPhim}
                   listSelectingSeat={listSelectingSeat}
                 />
-                {/* All infomation of User is buying ticket */}
                 <InfoUser userInfo={userInfo} />
                 {/* Total money and button buy ticket */}
                 <div className='movie-booking-bill'>
@@ -161,23 +159,24 @@ export const MovieTicketRoom = () => {
   );
 };
 
-const MovieInfoField = (label, content) => (
+const InfoMovieField = (label, content) => (
   <div>
     <span className='label'>{label}:</span>
     {content}
   </div>
 );
 
+/* All information of Movie */
 const InfoMovie = ({ infoMovie, listSelectingSeat }) => (
   <div className='movie-booking-info-movie'>
     <h2>Thông tin phim</h2>
     <div className='movie-booking-thumb'>
       <img src={infoMovie.hinhAnh} alt='movie-thumb' />
     </div>
-    {MovieInfoField("Tên phim", infoMovie.tenPhim)}
-    {MovieInfoField("Rạp", infoMovie.tenCumRap)}
-    {MovieInfoField("Địa chỉ", infoMovie.diaChi)}
-    {MovieInfoField("Suất chiếu", infoMovie.gioChieu + infoMovie.ngayChieu)}
+    {InfoMovieField("Tên phim", infoMovie.tenPhim)}
+    {InfoMovieField("Rạp", infoMovie.tenCumRap)}
+    {InfoMovieField("Địa chỉ", infoMovie.diaChi)}
+    {InfoMovieField("Suất chiếu", infoMovie.gioChieu + infoMovie.ngayChieu)}
     {/* All seat are selecting */}
     <div className='movie-booking-seats'>
       <span className='label'>Số ghế đã chọn:</span>
@@ -193,11 +192,12 @@ const InfoMovie = ({ infoMovie, listSelectingSeat }) => (
   </div>
 );
 
+// All infomation of User is buying ticket
 const InfoUser = ({ userInfo }) => (
   <div className='movie-booking-info-user'>
     <h2>Thông tin khách hàng</h2>
-    {MovieInfoField("Họ tên", userInfo.hoTen)}
-    {MovieInfoField("Email", userInfo.email)}
-    {MovieInfoField("Số điện thoại", userInfo.soDT)}
+    {InfoMovieField("Họ tên", userInfo.hoTen)}
+    {InfoMovieField("Email", userInfo.email)}
+    {InfoMovieField("Số điện thoại", userInfo.soDT)}
   </div>
 );

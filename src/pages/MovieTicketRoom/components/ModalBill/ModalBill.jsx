@@ -21,12 +21,10 @@ export const ModalBill = (props) => {
   return (
     <div className='modal'>
       <div className='modal-main'>
-        {/* All information of Movie */}
         <ModalBillMovie
           movieInfo={dataTicketRoom.thongTinPhim}
           listSelectingSeat={listSelectingSeat}
         />
-        {/* All infomation of User is buying ticket */}
         <ModalBillUser userInfo={userInfo} totalMoney={totalMoney} />
         {/* button actions */}
         <div className='modal-action'>
@@ -49,6 +47,7 @@ const ModalBillField = (label, content) => (
   </div>
 );
 
+/* All information of Movie */
 const ModalBillMovie = ({ movieInfo, listSelectingSeat }) => {
   return (
     <div className='modal-movie'>
@@ -63,10 +62,10 @@ const ModalBillMovie = ({ movieInfo, listSelectingSeat }) => {
         {ModalBillField("Rạp", movieInfo.tenRap)}
         <div className='modal-chairs'>
           <span className='info-label'>Ghế:</span>
-          {listSelectingSeat.map((c, index) => {
+          {listSelectingSeat.map((seat, index) => {
             // check if select 1 seat will not display ","
             // Eg: 3 seat : 3,5,9 -> 1 seat : 3
-            const chair = index === 0 ? " " + c.tenGhe : ", " + c.tenGhe;
+            const chair = index === 0 ? " " + seat.tenGhe : ", " + seat.tenGhe;
             return chair;
           })}
         </div>
@@ -75,6 +74,7 @@ const ModalBillMovie = ({ movieInfo, listSelectingSeat }) => {
   );
 };
 
+// All infomation of User is buying ticket
 const ModalBillUser = ({ userInfo, totalMoney }) => {
   return (
     <div className='modal-user'>
