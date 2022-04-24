@@ -132,3 +132,7 @@ Quá trình làm đồ án ReactJS
 - Đổ danh sách user ra giao diện
 - Xây dựng thành công chức năng xóa người dùng
 - Hiện modal sửa thông tin user
+
+22/04/2022 +23/04/2022
+_ Xử lí logic sửa thông tin
+_ Reuse component InputText, MessageErrorValidation

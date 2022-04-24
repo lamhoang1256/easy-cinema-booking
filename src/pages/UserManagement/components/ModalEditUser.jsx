@@ -14,29 +14,25 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
+    reset,
     control,
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
 
-  const onCloseModal = () => {
-    setIsShowModalEdit(false);
-  };
-
-  const handleUpdateUser = (data) => {
-    const requestUserUpdate = {
+  const handleEditUser = (data) => {
+    const requestUserEdit = {
       taiKhoan: data.username,
       matKhau: data.password,
       email: data.email,
       soDt: data.phone,
-      maNhom: "GP00",
       hoTen: data.fullname,
       maLoaiNguoiDung: data.role,
+      maNhom: "GP00",
     };
 
-    const updateUser = async (requestUserUpdate) => {
+    const editUser = async (requestUserEdit) => {
       try {
-        const response = await usersApi.editUserApi(requestUserUpdate);
+        const response = await usersApi.editUserApi(requestUserEdit);
         if (response.status === 200) {
           Swal.fire({
             icon: "success",
@@ -56,8 +52,7 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
         });
       }
     };
-
-    updateUser(requestUserUpdate);
+    editUser(requestUserEdit);
   };
 
   const fetchUserEdit = async () => {
@@ -77,6 +72,10 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
     }
   };
 
+  const onCloseModal = () => {
+    setIsShowModalEdit(false);
+  };
+
   useEffect(() => {
     if (usernameEdit !== null) fetchUserEdit();
   }, [usernameEdit]);
@@ -88,7 +87,7 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
       onCancel={onCloseModal}
       footer={null}
     >
-      <form className='user-info-edit' onSubmit={handleSubmit(handleUpdateUser)}>
+      <form className='user-info-edit' onSubmit={handleSubmit(handleEditUser)}>
         <div className='user-info-edit-group'>
           <h3>Họ và tên</h3>
           <InputText name='fullname' control={control} type='text' placeholder='Họ và tên' />

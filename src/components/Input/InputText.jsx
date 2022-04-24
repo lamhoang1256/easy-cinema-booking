@@ -8,7 +8,7 @@ const InputText = ({ control, ...props }) => {
     name: props.name,
     defaultValue: "",
   });
-  return <input {...field} {...props}></input>;
+  return <input {...field} {...props} className='auth-input'></input>;
 };
 
 export default InputText;

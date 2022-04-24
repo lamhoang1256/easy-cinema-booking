@@ -7,6 +7,8 @@ import { schemaYupRegister } from "constants/schemaYupRegister";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "redux/actions/user/user.action";
+import InputText from "components/Input/InputText";
+import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 
 export const Register = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ export const Register = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
 
@@ -48,79 +51,73 @@ export const Register = () => {
               {/* họ và tên */}
               <div className='auth-group'>
                 <ion-icon name='person-outline'></ion-icon>
-                <input
+                <InputText
                   type='text'
-                  className='auth-input auth-username'
+                  control={control}
                   placeholder='Họ và tên *'
-                  {...register("fullname")}
+                  name='fullname'
                 />
               </div>
-              {errors.fullname && <span className='text--primary'>{errors.fullname.message}</span>}
+              <MessageErrorValidation errorMessage={errors.fullname?.message} />
 
               {/* tên tài khoản */}
               <div className='auth-group'>
                 <ion-icon name='person-outline'></ion-icon>
-                <input
+                <InputText
                   type='text'
-                  className='auth-input auth-username'
+                  control={control}
                   placeholder='Tên tài khoản *'
-                  {...register("username")}
+                  name='username'
                 />
               </div>
-              {errors.username && <span className='text--primary'>{errors.username.message}</span>}
+              <MessageErrorValidation errorMessage={errors.username?.message} />
               {/* mật khẩu */}
               <div className='auth-group'>
                 <ion-icon name='lock-closed-outline'></ion-icon>
-                <input
+                <InputText
                   type='password'
-                  className='auth-input auth-password'
+                  control={control}
                   placeholder='Mật khẩu *'
-                  {...register("password")}
+                  name='password'
                 />
               </div>
-              {errors.password && <span className='text--primary'>{errors.password.message}</span>}
+              <MessageErrorValidation errorMessage={errors.password?.message} />
             </div>
 
             <div className='auth-box'>
               {/* số điện thoại */}
               <div className='auth-group'>
                 <ion-icon name='call-outline'></ion-icon>
-                <input
+                <InputText
                   type='text'
-                  className='auth-input auth-password'
+                  control={control}
                   placeholder='Số điện thoại *'
-                  {...register("phone")}
+                  name='phone'
                 />
               </div>
-              {errors.phone && <span className='text--primary'>{errors.phone.message}</span>}
+              <MessageErrorValidation errorMessage={errors.phone?.message} />
               {/* email */}
               <div className='auth-group'>
                 <ion-icon name='mail-outline'></ion-icon>
-                <input
-                  type='email'
-                  className='auth-input auth-email'
-                  placeholder='Email *'
-                  {...register("email")}
-                />
+                <InputText type='email' control={control} placeholder='Email *' name='email' />
               </div>
-              {errors.email && <span className='text--primary'>{errors.email.message}</span>}
+              <MessageErrorValidation errorMessage={errors.email?.message} />
               {/* xác nhận mật khẩu */}
               <div className='auth-group'>
                 <ion-icon name='lock-closed-outline'></ion-icon>
-                <input
+                <InputText
                   type='password'
-                  className='auth-input auth-password'
+                  control={control}
                   placeholder='Xác nhận mật khẩu *'
-                  {...register("password_repeat")}
+                  name='password_repeat'
                 />
               </div>
-              {errors.password_repeat && (
-                <span className='text--primary'>{errors.password_repeat.message}</span>
-              )}
+              <MessageErrorValidation errorMessage={errors.password_repeat?.message} />
             </div>
           </div>
+          {/* Thông báo lỗi từ server nếu đăng kí thất bại  */}
+          <MessageErrorValidation errorMessage={errorRegister?.content} />
 
-          {errorRegister && <p className='text--primary text-center'>{errorRegister.content}</p>}
           <button className='auth-submit btn btn--primary' type='submit'>
             Đăng kí
           </button>
