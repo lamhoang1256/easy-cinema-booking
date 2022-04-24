@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
 // component
 import { Banner } from "components/Banner/Banner";
 import { ModalBill } from "./components/ModalBill/ModalBill";
@@ -17,6 +16,7 @@ import {
 } from "redux/actions/movie/movieTicketRoom.action";
 // utilities
 import { formatTimeTwoDigit } from "utilities/formatDate";
+import { sweetAlert } from "utilities/sweetAlert";
 
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
@@ -36,55 +36,40 @@ export const MovieTicketRoom = () => {
   const [minutes, setMinutes] = useState(5);
   const [seconds, setSeconds] = useState(0);
 
-  //tính tổng tiền của các ghế
+  // calculate money buy ticket
   const totalMoney = listSelectingSeat.reduce(function (prevValue, currentValue) {
     return prevValue + currentValue.giaVe;
   }, 0);
 
   const handleBuyTicket = async () => {
-    const dataToBuyTicket = {
+    const requestBuyTicket = {
       maLichChieu: dataTicketRoom.thongTinPhim.maLichChieu.toString(),
       danhSachVe: listSelectingSeat,
     };
-    // nếu chưa chọn 1 ghế nào cả -> hiện ra modal nhắc nhở
-    if (dataToBuyTicket.danhSachVe.length === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Vui lòng chọn ghế",
-        text: "Bạn chưa chọn ghế nào cả!",
-        confirmButtonColor: "#d33",
-      });
+    // if select 0 seat -> show modal notify error
+    if (requestBuyTicket.danhSachVe.length === 0) {
+      sweetAlert("error", "Vui lòng chọn ghế", "Bạn chưa chọn ghế nào cả!", "#d33");
       return;
     }
-    //không được chọn quá 10 ghế -> hiện modal nhắc nhở
-    if (dataToBuyTicket.danhSachVe.length > 10) {
-      Swal.fire({
-        icon: "error",
-        title: "Không chọn quá 10 ghế",
-        text: "Bạn không được chọn quá 10 ghế!",
-        confirmButtonColor: "#d33",
-      });
+    // if select over 10 seat -> show modal notify
+    if (requestBuyTicket.danhSachVe.length > 10) {
+      sweetAlert("error", "Không chọn quá 10 ghế", "Bạn không được chọn quá 10 ghế!", "#d33");
       return;
     }
-    // nếu chưa đăng nhập
+    // if user not login
     if (!userInfo) {
-      Swal.fire({
-        icon: "error",
-        title: "Mua vé thất bại",
-        text: "Vui lòng đăng nhập để tiếp tục mua vé!",
-        confirmButtonColor: "#d33",
-      });
+      sweetAlert("error", "Mua vé thất bại", "Vui lòng đăng nhập để tiếp tục mua vé!", "#d33");
       return;
     }
-    const { isBuyTicketSuccess } = await dispatch(buyTicket(dataToBuyTicket));
-    //nếu mua vé thành công hiện modal bill
+    const { isBuyTicketSuccess } = await dispatch(buyTicket(requestBuyTicket));
+    // if buy ticket successful open modal bill
     if (isBuyTicketSuccess) {
       setIsShowModalBill(true);
       clearInterval(idSetInterval.current);
     }
   };
 
-  //đếm ngược thời gian giữ ghế
+  // countdown time select seat (5 min -> 0 seconds)
   const idSetInterval = useRef();
   const countDownTimeBooking = () => {
     idSetInterval.current = setInterval(() => {
@@ -111,12 +96,11 @@ export const MovieTicketRoom = () => {
   }, [seconds]);
 
   useEffect(() => {
-    //nếu chưa đăng nhập chuyển sang trang login
+    // if user not login -> redirect to login
     if (!userInfo) {
       navigate("/auth/login");
       return;
     }
-
     window.scrollTo(0, 0);
     dispatch(getTicketRoom(idTicketRoom));
     dispatch(resetSelectingSeat());
@@ -124,7 +108,8 @@ export const MovieTicketRoom = () => {
 
   return (
     <>
-      {!isLoadingTicketRoom ? (
+      {isLoadingTicketRoom && <LoadingAnimation />}
+      {!isLoadingTicketRoom && (
         <div className='movie-booking'>
           <Banner urlBanner={urlBanner} heading={"Trang đặt vé phim"} />
           <div className='container'>
@@ -152,10 +137,8 @@ export const MovieTicketRoom = () => {
                   infoMovie={dataTicketRoom.thongTinPhim}
                   listSelectingSeat={listSelectingSeat}
                 />
-
                 {/* All infomation of User is buying ticket */}
                 <InfoUser userInfo={userInfo} />
-
                 {/* Total money and button buy ticket */}
                 <div className='movie-booking-bill'>
                   <h2 className='movie-booking-price'>
@@ -173,8 +156,6 @@ export const MovieTicketRoom = () => {
           {/* open modal notify if select seat over 5 minutes */}
           {isShowModalAlert && <ModalAlert />}
         </div>
-      ) : (
-        <LoadingAnimation />
       )}
     </>
   );
