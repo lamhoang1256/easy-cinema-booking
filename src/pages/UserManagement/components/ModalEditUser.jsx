@@ -78,9 +78,7 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
   };
 
   useEffect(() => {
-    if (usernameEdit !== "") {
-      fetchUserEdit();
-    }
+    if (usernameEdit !== null) fetchUserEdit();
   }, [usernameEdit]);
 
   return (
