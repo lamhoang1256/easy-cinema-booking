@@ -69,25 +69,14 @@ export const UserInfo = () => {
                   {userProfile ? (
                     <div className='user-info-basic'>
                       <h2 className='user-info-title'>Thông tin cơ bản</h2>
-                      <p className='line'>
-                        <span className='label'>Tên tài khoản:</span> {userProfile.taiKhoan}
-                      </p>
-                      <p className='line'>
-                        <span className='label'>Họ và tên:</span>
-                        {userProfile.hoTen}
-                      </p>
-                      <p className='line'>
-                        <span className='label'>Email:</span>
-                        {userProfile.email}
-                      </p>
-                      <p className='line'>
-                        <span className='label'>Số điện thoại:</span>
-                        {userProfile.soDT}
-                      </p>
-                      <p className='line'>
-                        <span className='label'>Quyền truy cập:</span>{" "}
-                        {userProfile.maLoaiNguoiDung === "KhachHang" ? "Khách Hàng" : "Quản Trị"}
-                      </p>
+                      {UserProfileField("Tên tài khoản:", userProfile.taiKhoan)}
+                      {UserProfileField("Họ và tên:", userProfile.hoTen)}
+                      {UserProfileField("Email:", userProfile.email)}
+                      {UserProfileField("Số điện thoại:", userProfile.soDT)}
+                      {UserProfileField(
+                        "Quyền truy cập",
+                        userProfile.maLoaiNguoiDung === "QuanTri" ? "Quản Trị" : "Khách Hàng"
+                      )}
                     </div>
                   ) : (
                     "Trống"
@@ -192,6 +181,12 @@ export const UserInfo = () => {
     </>
   );
 };
+
+const UserProfileField = (label, info) => (
+  <p className='line'>
+    <span className='label'>{label}</span> {info}
+  </p>
+);
 
 // "taiKhoan": "TramQuynh127",
 // "matKhau": "123456789",
