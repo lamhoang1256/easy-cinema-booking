@@ -14,7 +14,7 @@ export const UserManagement = () => {
     setIsShowModalEdit(true);
   };
 
-  // lấy danh sách thông tin user đổ ra table
+  // get all data user to render table
   const fetchUserList = async () => {
     try {
       const { data } = await usersApi.getUserListApi();
@@ -143,6 +143,7 @@ export const UserManagement = () => {
         />
       </div>
       <Table columns={columns} dataSource={userList} />
+      {/* modal edit user */}
       <ModalEditUser
         usernameEdit={usernameEdit}
         isShowModalEdit={isShowModalEdit}

@@ -7,6 +7,9 @@ import { schemaYupLogin } from "constants/schemaYupLogin";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "redux/actions/user/user.action";
+// components
+import InputText from "components/Input/InputText";
+import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -14,19 +17,18 @@ export const Login = () => {
   const { errorLogin, userInfo } = useSelector((state) => state.user);
   const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
   const {
-    register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupLogin) });
 
-  // xử lí login user
   const handleLogin = (data) => {
     const requestLogin = { taiKhoan: data.username, matKhau: data.password };
     dispatch(loginUser(requestLogin));
   };
 
   useEffect(() => {
-    // nếu login thành công trở về trang trước đó
+    // if login successful will redirect previous page
     if (userLocalStorage) {
       navigate(-1);
     }
@@ -38,40 +40,30 @@ export const Login = () => {
         <div className='auth-main'>
           <h2 className='auth-heading'>Đăng nhập</h2>
           <form className='auth-content' onSubmit={handleSubmit(handleLogin)}>
-            {/* tên tài khoản */}
             <div className='auth-group'>
               <ion-icon name='person-outline'></ion-icon>
-              <input
+              <InputText
+                name='username'
                 type='text'
-                className='auth-input auth-username'
                 placeholder='Tên tài khoản *'
-                {...register("username")}
+                control={control}
               />
             </div>
-            {errors.username && <span className='text--primary'>{errors.username.message}</span>}
+            <MessageErrorValidation errorMessage={errors.username?.message} />
 
-            {/* mật khẩu */}
             <div className='auth-group'>
               <ion-icon name='lock-closed-outline'></ion-icon>
-              <input
+              <InputText
+                name='password'
                 type='password'
-                className='auth-input auth-password'
                 placeholder='Mật khẩu *'
-                {...register("password")}
+                control={control}
               />
             </div>
-            {errors.password && errors.password.type === "required" && (
-              <span className='text--primary'>Mật khẩu không được để trống !</span>
-            )}
-            {errors.password && errors.password.type === "min" && (
-              <span className='text--primary'>Mật khẩu ít nhất bao gồm 6 kí tự !</span>
-            )}
-            {errors.password && errors.password.type === "max" && (
-              <span className='text--primary'>Mật khẩu nhiều nhất bao gồm 15 kí tự !</span>
-            )}
-            {errorLogin && <p className='text--primary'>{errorLogin.content}</p>}
-
-            {/* nút submit */}
+            <MessageErrorValidation errorMessage={errors.password?.message} />
+            {/* log error form API */}
+            <MessageErrorValidation errorMessage={errorLogin?.content} />
+            {/* button submit */}
             <button className='auth-submit btn btn--primary' type='submit'>
               Đăng nhập
             </button>

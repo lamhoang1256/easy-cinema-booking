@@ -6,18 +6,38 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
+// components
 import InputText from "components/Input/InputText";
 import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 import "./modalEditUser.scss";
 
-const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetchUserList }) => {
+const ModalEditUser = (props) => {
+  const { usernameEdit, setIsShowModalEdit, isShowModalEdit, fetchUserList } = props;
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
     control,
+    formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
+
+  // get information user need edit
+  const getUserEdit = async () => {
+    try {
+      const { data } = await usersApi.getUserToEdit(usernameEdit);
+      reset({
+        username: data.content.taiKhoan,
+        fullname: data.content.hoTen,
+        phone: data.content.soDT,
+        role: data.content.maLoaiNguoiDung,
+        email: data.content.email,
+        password: data.content.matKhau,
+        password_repeat: data.content.matKhau,
+      });
+    } catch (error) {
+      console.log(error?.response?.data?.content);
+    }
+  };
 
   const handleEditUser = (data) => {
     const requestUserEdit = {
@@ -29,7 +49,7 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
       maLoaiNguoiDung: data.role,
       maNhom: "GP00",
     };
-
+    // get edited data and post to server to update
     const editUser = async (requestUserEdit) => {
       try {
         const response = await usersApi.editUserApi(requestUserEdit);
@@ -55,29 +75,12 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
     editUser(requestUserEdit);
   };
 
-  const fetchUserEdit = async () => {
-    try {
-      const { data } = await usersApi.getUserToEdit(usernameEdit);
-      reset({
-        username: data.content.taiKhoan,
-        fullname: data.content.hoTen,
-        phone: data.content.soDT,
-        role: data.content.maLoaiNguoiDung,
-        email: data.content.email,
-        password: data.content.matKhau,
-        password_repeat: data.content.matKhau,
-      });
-    } catch (error) {
-      console.log(error?.response?.data?.content);
-    }
-  };
-
   const onCloseModal = () => {
     setIsShowModalEdit(false);
   };
 
   useEffect(() => {
-    if (usernameEdit !== null) fetchUserEdit();
+    if (usernameEdit !== null) getUserEdit();
   }, [usernameEdit]);
 
   return (
