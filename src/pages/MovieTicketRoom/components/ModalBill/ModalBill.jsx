@@ -12,7 +12,7 @@ export const ModalBill = (props) => {
     navigate("/");
   };
 
-  // xử lí khi nhấn Tiếp tục đặt vé
+  // handle when click button continue buy ticket
   const handleContinueBuyTicket = () => {
     window.location.reload();
     window.scrollTo(0, 0);
@@ -21,56 +21,13 @@ export const ModalBill = (props) => {
   return (
     <div className='modal'>
       <div className='modal-main'>
-        <div className='modal-movie'>
-          <div className='modal-thumb'>
-            <img src={dataTicketRoom.thongTinPhim.hinhAnh} alt='modal-thumb' />
-          </div>
-          <div className='modal-info'>
-            <div>
-              <h2 className='modal-title'>{dataTicketRoom.thongTinPhim.tenPhim}</h2>
-            </div>
-            <div className='modal-cinema'>{dataTicketRoom.thongTinPhim.tenCumRap}</div>
-            <div className='modal-address'>{dataTicketRoom.thongTinPhim.diaChi}</div>
-            <div className='modal-openday'>
-              <span className='info-label'>Suất chiếu:</span>
-              {`${dataTicketRoom.thongTinPhim.gioChieu}  ${dataTicketRoom.thongTinPhim.ngayChieu}`}
-            </div>
-            <div className='modal-openday'>
-              <span className='info-label'>Rạp:</span>
-              {dataTicketRoom.thongTinPhim.tenRap}
-            </div>
-            <div className='modal-chairs'>
-              <span className='info-label'>Ghế:</span>
-              {listSelectingSeat.map((c, index) => {
-                // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
-                const chair = index === 0 ? " " + c.tenGhe : ", " + c.tenGhe;
-                return chair;
-              })}
-            </div>
-          </div>
-        </div>
-        {/* thông tin người dùng */}
-        <div className='modal-user'>
-          <h2>Thông tin đặt vé</h2>
-          <p>
-            <span className='user-label'>Họ tên: </span> {userInfo.hoTen}
-          </p>
-          <p>
-            <span className='user-label'>Điện thoại: </span> {userInfo.soDT}
-          </p>
-          <p>
-            <span className='user-label'>Email : </span> {userInfo.email}
-          </p>
-          <p>
-            <span className='user-label'>Trạng thái : </span>
-            <span className='success'>Đặt vé thành công</span>
-          </p>
-          <p>
-            <span className='user-label'>Tổng tiền : </span> {totalMoney.toLocaleString("en-US")}{" "}
-            VNĐ
-          </p>
-          <p>Kiểm tra lại thông tin vé đã đặt trong phần thông tin tài khoản của bạn !</p>
-        </div>
+        {/* All information of Movie */}
+        <ModalBillMovie
+          movieInfo={dataTicketRoom.thongTinPhim}
+          listSelectingSeat={listSelectingSeat}
+        />
+        {/* All infomation of User is buying ticket */}
+        <ModalBillUser userInfo={userInfo} totalMoney={totalMoney} />
         {/* button actions */}
         <div className='modal-action'>
           <button className='btn' onClick={handleComebackHome}>
@@ -82,6 +39,51 @@ export const ModalBill = (props) => {
         </div>
       </div>
       <div className='modal-overplay'></div>
+    </div>
+  );
+};
+
+const ModalBillField = (label, content) => (
+  <div>
+    <span className='user-label'>{label}: </span> {content}
+  </div>
+);
+
+const ModalBillMovie = ({ movieInfo, listSelectingSeat }) => {
+  return (
+    <div className='modal-movie'>
+      <div className='modal-thumb'>
+        <img src={movieInfo.hinhAnh} alt='modal-thumb' />
+      </div>
+      <div className='modal-info'>
+        <h2 className='modal-title'>{movieInfo.tenPhim}</h2>
+        <div>{movieInfo.tenCumRap}</div>
+        <div>{movieInfo.diaChi}</div>
+        {ModalBillField("Suất chiếu", `${movieInfo.gioChieu} - ${movieInfo.ngayChieu}`)}
+        {ModalBillField("Rạp", movieInfo.tenRap)}
+        <div className='modal-chairs'>
+          <span className='info-label'>Ghế:</span>
+          {listSelectingSeat.map((c, index) => {
+            // check if select 1 seat will not display ","
+            // Eg: 3 seat : 3,5,9 -> 1 seat : 3
+            const chair = index === 0 ? " " + c.tenGhe : ", " + c.tenGhe;
+            return chair;
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ModalBillUser = ({ userInfo, totalMoney }) => {
+  return (
+    <div className='modal-user'>
+      <h2>Thông tin đặt vé</h2>
+      {ModalBillField("Họ tên", userInfo.hoTen)}
+      {ModalBillField("Email", userInfo.email)}
+      {ModalBillField("Trạng thái", <span className='success'>Đặt vé thành công</span>)}
+      {ModalBillField("Tổng tiền", totalMoney.toLocaleString("en-US") + "VNĐ")}
+      <p>Kiểm tra lại thông tin vé đã đặt trong phần thông tin tài khoản của bạn !</p>
     </div>
   );
 };

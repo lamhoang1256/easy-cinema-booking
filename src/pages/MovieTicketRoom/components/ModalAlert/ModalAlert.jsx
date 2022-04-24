@@ -6,7 +6,7 @@ export const ModalAlert = () => {
   const handleComebackHome = () => {
     navigate("/");
   };
-  // xử lí khi nhấn Tiếp tục đặt vé
+  // handle when click button continue buy ticket
   const handleContinueBuyTicket = () => {
     window.location.reload();
   };
