@@ -7,6 +7,7 @@ import { schemaYupRegister } from "constants/schemaYupRegister";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "redux/actions/user/user.action";
+// components
 import InputText from "components/Input/InputText";
 import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 
@@ -15,7 +16,6 @@ export const Register = () => {
   const navigate = useNavigate();
   const { errorRegister, userInfo } = useSelector((state) => state.user);
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors },

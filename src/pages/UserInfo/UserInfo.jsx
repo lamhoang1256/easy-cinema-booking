@@ -20,7 +20,7 @@ const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.
 export const UserInfo = () => {
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
-  const { userProfile } = useSelector((state) => state.user);
+  const { isLoadingUserProfile, userProfile } = useSelector((state) => state.user);
   const {
     handleSubmit,
     control,
@@ -47,7 +47,8 @@ export const UserInfo = () => {
 
   return (
     <>
-      {userProfile ? (
+      {isLoadingUserProfile && <LoadingAnimation />}
+      {!isLoadingUserProfile && (
         <div className='user-info'>
           <Banner urlBanner={urlBanner} heading={"Thông tin tài khoản"} />
           <div className='user-info-wrapper'>
@@ -79,7 +80,7 @@ export const UserInfo = () => {
                       )}
                     </div>
                   ) : (
-                    "Trống"
+                    "Thông tin tài khoản hiện đang trống"
                   )}
                 </TabPane>
 
@@ -175,8 +176,6 @@ export const UserInfo = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <LoadingAnimation />
       )}
     </>
   );

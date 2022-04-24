@@ -17,6 +17,7 @@ import {
 const initialState = {
   userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
   userProfile: null,
+  isLoadingUserProfile: true,
   errorLogin: null,
   errorRegister: null,
   errorUpdate: null,
@@ -43,11 +44,11 @@ export const user = (state = initialState, { type, payload }) => {
 
     // get profile user
     case GET_USER_PROFILE_REQUEST:
-      return { ...state };
+      return { ...state, isLoadingUserProfile: true };
     case GET_USER_PROFILE_SUCCESS:
-      return { ...state, userProfile: payload };
+      return { ...state, isLoadingUserProfile: false, userProfile: payload };
     case GET_USER_PROFILE_FAIL:
-      return { ...state, errorUpdate: payload };
+      return { ...state, isLoadingUserProfile: false, errorUpdate: payload };
 
     //update profile user
     case UPDATE_USER_PROFILE_REQUEST:
