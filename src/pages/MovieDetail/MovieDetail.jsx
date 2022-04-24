@@ -17,18 +17,19 @@ import {
   getCalendarShowMovieDetail,
 } from "redux/actions/movie/movieDetail.action";
 import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
+import { formatLocaleDateString } from "utilities/formatDate";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {
-  const { idDetail } = useParams(); // lấy idDetail từ thanh url
+  const { idDetail } = useParams(); // get idDetail from url
   const dispatch = useDispatch();
   const { movieDetail, isLoadingMovieDetail, togglePostComment } = useSelector(
     (state) => state.movieDetail
   );
-  // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
+  // check breakpoint user to load UI Showtime
   const isMobile = useMediaQuery("(max-width:767.98px)");
 
-  // get data detail movie from API thông qua idDetail
+  // get data detail movie from API with idDetail
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getMovieDetail(idDetail));
@@ -41,7 +42,8 @@ export const MovieDetail = () => {
 
   return (
     <>
-      {!isLoadingMovieDetail ? (
+      {isLoadingMovieDetail && <LoadingAnimation />}
+      {!isLoadingMovieDetail && (
         <div className='movie-detail'>
           <div className='movie-detail-top'>
             <div
@@ -54,7 +56,7 @@ export const MovieDetail = () => {
             <div className='movie-detail-main'>
               <div className='movie-detail-left'>
                 <div className='movie-detail-info'>
-                  {/* Thumbnail phim */}
+                  {/* Thumbnail movie */}
                   <div className='movie-card-thumb'>
                     <img
                       src={movieDetail.hinhAnh}
@@ -72,47 +74,38 @@ export const MovieDetail = () => {
                       ></ion-icon>
                     </div>
                   </div>
-                  {/* Chi tiết phim */}
+                  {/* Info movie */}
                   <div className='movie-detail-detail'>
                     <h3>Chi tiết phim</h3>
-                    <p>
-                      <span className='label'>Tên phim:</span>
-                      <span className='movie-detail-title'>{movieDetail.tenPhim}</span>
-                    </p>
-                    <p>
-                      <span className='label'>Ngày công chiếu:</span>
-                      <span>{new Date(movieDetail.ngayKhoiChieu).toLocaleDateString("vi-VI")}</span>
-                    </p>
-                    <p>
-                      <span className='label'>Điểm đánh giá:</span>
-                      <span>{movieDetail.danhGia / 2} / 5</span>
-                    </p>
-                    <p>
-                      <span className='label'>Đạo diễn:</span>
-                      <span>Adam Wingard</span>
-                    </p>
-                    <p>
-                      <span className='label'>Diễn viên:</span>
-                      <span>Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown</span>
-                    </p>
+                    {MovieDetailField("Tên phim", movieDetail.tenPhim, "movie-detail-title")}
+                    {MovieDetailField(
+                      "Ngày công chiếu",
+                      formatLocaleDateString(movieDetail.ngayKhoiChieu)
+                    )}
+                    {MovieDetailField("Điểm đánh giá", movieDetail.danhGia / 2 + "/ 5")}
+                    {MovieDetailField("Đạo diễn", "Adam Wingard")}
+                    {MovieDetailField(
+                      "Diễn viên",
+                      "Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown"
+                    )}
                   </div>
                 </div>
-                {/* Tóm tắt phim */}
+                {/* Summary movie */}
                 <div>
                   <h3 className='text--primary'>Tóm tắt phim</h3>
                   <p className='movie-detail-desc'>{movieDetail.moTa}</p>
                 </div>
-                {/* Lịch chiếu phim */}
+                {/* Showtime */}
                 {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
-                {/* Nhận xét phim (comment) */}
+                {/* Comment */}
                 <div className='comment'>
                   <h3 className='text--primary'>Đánh giá</h3>
                   <Comment />
                 </div>
-                {/* Thêm nhận xét phim */}
+                {/* Add Comment */}
                 <AddComment />
               </div>
-              {/* Phần tin tức bên phải */}
+
               <div className='movie-detail-right'>
                 <RightSideNews />
               </div>
@@ -120,12 +113,17 @@ export const MovieDetail = () => {
           </div>
           <ModalTrailer />
         </div>
-      ) : (
-        <LoadingAnimation />
       )}
     </>
   );
 };
+
+const MovieDetailField = (label, content, className) => (
+  <p>
+    <span className='label'>{label}:</span>
+    <span className={className}>{content}</span>
+  </p>
+);
 
 // DỮ LIỆU MẪU TRẢ VỀ CỦA MOVIE DETAIL TỪ API
 // {

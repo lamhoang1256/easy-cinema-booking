@@ -28,3 +28,5 @@ export const formatISOtoHours = (iso) => {
   let minutes = new Date(iso).getMinutes();
   return formatTimeTwoDigit(hours, minutes);
 };
+
+export const formatLocaleDateString = (time) => new Date(time).toLocaleDateString("vi-VI");
