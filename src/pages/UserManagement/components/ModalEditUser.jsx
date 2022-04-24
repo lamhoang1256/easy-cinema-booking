@@ -1,21 +1,27 @@
-import { Modal } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usersApi } from "apis/usersApi";
+import { Modal } from "antd";
 import Swal from "sweetalert2";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
+import InputText from "components/Input/InputText";
+import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 import "./modalEditUser.scss";
 
 const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetchUserList }) => {
-  const [userInfoEdit, setUserInfoEdit] = useState(null);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    control,
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
+
+  const onCloseModal = () => {
+    setIsShowModalEdit(false);
+  };
 
   const handleUpdateUser = (data) => {
     const requestUserUpdate = {
@@ -25,7 +31,7 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
       soDt: data.phone,
       maNhom: "GP00",
       hoTen: data.fullname,
-      maLoaiNguoiDung: "KhachHang",
+      maLoaiNguoiDung: data.role,
     };
 
     const updateUser = async (requestUserUpdate) => {
@@ -54,10 +60,6 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
     updateUser(requestUserUpdate);
   };
 
-  const onCloseModal = () => {
-    setIsShowModalEdit(false);
-  };
-
   const fetchUserEdit = async () => {
     try {
       const { data } = await usersApi.getUserToEdit(usernameEdit);
@@ -65,6 +67,7 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
         username: data.content.taiKhoan,
         fullname: data.content.hoTen,
         phone: data.content.soDT,
+        role: data.content.maLoaiNguoiDung,
         email: data.content.email,
         password: data.content.matKhau,
         password_repeat: data.content.matKhau,
@@ -75,7 +78,9 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
   };
 
   useEffect(() => {
-    fetchUserEdit();
+    if (usernameEdit !== "") {
+      fetchUserEdit();
+    }
   }, [usernameEdit]);
 
   return (
@@ -85,86 +90,54 @@ const ModalEditUser = ({ usernameEdit, setIsShowModalEdit, isShowModalEdit, fetc
       onCancel={onCloseModal}
       footer={null}
     >
-      {/* {userInfoEdit && ( */}
       <form className='user-info-edit' onSubmit={handleSubmit(handleUpdateUser)}>
         <div className='user-info-edit-group'>
-          <h3>Tên tài khoản </h3>
-          <input
-            type='text'
-            // defaultValue={null?.taiKhoan}
-            placeholder='Tên tài khoản'
-            {...register("username")}
-          />
-          {errors.username && <span className='text--primary'>{errors.username.message}</span>}
-        </div>
-
-        {/* Họ và tên */}
-        <div className='user-info-edit-group'>
           <h3>Họ và tên</h3>
-          <input
-            type='text'
-            placeholder='Họ và tên'
-            // defaultValue={null?.hoTen}
-            {...register("fullname")}
-          />
-          {errors.fullname && <span className='text--primary'>{errors.fullname.message}</span>}
+          <InputText name='fullname' control={control} type='text' placeholder='Họ và tên' />
+          <MessageErrorValidation errorMessage={errors.fullname?.message} />
         </div>
 
-        {/* Email */}
         <div className='user-info-edit-group'>
           <h3>Email</h3>
-          <input
-            type='email'
-            placeholder='Email'
-            // defaultValue={null?.email}
-            {...register("email")}
-          />
-          {errors.email && <span className='text--primary'>{errors.email.message}</span>}
+          <InputText name='email' control={control} type='email' placeholder='Email' />
+          <MessageErrorValidation errorMessage={errors.email?.message} />
         </div>
 
-        {/* Số điện thoại */}
         <div className='user-info-edit-group'>
           <h3>Số điện thoại</h3>
-          <input
-            type='text'
-            placeholder='Số điện thoại'
-            // defaultValue={null?.soDT}
-            {...register("phone")}
-          />
-          {errors.phone && <span className='text--primary'>{errors.phone.message}</span>}
+          <InputText name='phone' control={control} type='text' placeholder='Số điện thoại' />
+          <MessageErrorValidation errorMessage={errors.phone?.message} />
         </div>
 
-        {/* Mật khẩu */}
         <div className='user-info-edit-group'>
           <h3>Mật khẩu</h3>
-          <input
-            type='password'
-            placeholder='Mật khẩu'
-            // defaultValue={null?.matKhau}
-            {...register("password")}
-          />
-          {errors.password && <span className='text--primary'>{errors.password.message}</span>}
+          <InputText name='password' control={control} type='password' placeholder='Mật khẩu' />
+          <MessageErrorValidation errorMessage={errors.password?.message} />
         </div>
 
-        {/* Xác nhận mật khẩu */}
         <div className='user-info-edit-group'>
           <h3>Xác nhận mật khẩu</h3>
-          <input
+          <InputText
+            name='password_repeat'
+            control={control}
             type='password'
             placeholder='Xác nhận mật khẩu'
-            // defaultValue={null?.matKhau}
-            {...register("password_repeat")}
           />
-          {errors.password_repeat && (
-            <span className='text--primary'>{errors.password_repeat.message}</span>
-          )}
+          <MessageErrorValidation errorMessage={errors.password_repeat?.message} />
+        </div>
+
+        <div className='user-info-edit-group'>
+          <h3>Quyền quản trị</h3>
+          <select name='role' className='user-info-edit-role' {...register("role")}>
+            <option value='KhachHang'>Khách Hàng</option>
+            <option value='QuanTri'>Quản Trị</option>
+          </select>
         </div>
         {/* SUBMIT */}
         <button type='submit' className='user-info-edit-submit btn btn--primary'>
           Chỉnh sửa
         </button>
       </form>
-      {/* )} */}
     </Modal>
   );
 };
