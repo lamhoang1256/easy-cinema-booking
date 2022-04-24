@@ -13,7 +13,6 @@ import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 import InputText from "components/Input/InputText";
 import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 import "./userInfo.scss";
-// đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
 
@@ -83,7 +82,7 @@ export const UserInfo = () => {
                     "Thông tin tài khoản hiện đang trống"
                   )}
                 </TabPane>
-
+                {/* TAB 2 - CHỈNH SỬA THÔNG TIN */}
                 <TabPane tab='Chỉnh sửa thông tin' key='2'>
                   <h2 className='user-info-title'>Chỉnh sửa thông tin</h2>
                   <form className='user-info-edit' onSubmit={handleSubmit(handleUpdateProfile)}>
@@ -98,7 +97,6 @@ export const UserInfo = () => {
                       />
                       <MessageErrorValidation errorMessage={errors.username?.message} />
                     </div>
-
                     <div className='user-info-edit-group'>
                       <InputText
                         label='Họ và tên'
@@ -110,7 +108,6 @@ export const UserInfo = () => {
                       />
                       <MessageErrorValidation errorMessage={errors.fullname?.message} />
                     </div>
-
                     <div className='user-info-edit-group'>
                       <InputText
                         label='Email'
@@ -122,7 +119,6 @@ export const UserInfo = () => {
                       />
                       <MessageErrorValidation errorMessage={errors.email?.message} />
                     </div>
-
                     <div className='user-info-edit-group'>
                       <InputText
                         label='Số điện thoại'
@@ -134,7 +130,6 @@ export const UserInfo = () => {
                       />
                       <MessageErrorValidation errorMessage={errors.phone?.message} />
                     </div>
-
                     <div className='user-info-edit-group'>
                       <InputText
                         label='Mật khẩu'
@@ -146,7 +141,6 @@ export const UserInfo = () => {
                       />
                       <MessageErrorValidation errorMessage={errors.password?.message} />
                     </div>
-
                     <div className='user-info-edit-group'>
                       <InputText
                         label='Xác nhận mật khẩu'
@@ -158,14 +152,12 @@ export const UserInfo = () => {
                       />
                       <MessageErrorValidation errorMessage={errors.password_repeat?.message} />
                     </div>
-
-                    {/* SUBMIT */}
                     <button type='submit' className='user-info-edit-submit btn btn--primary'>
                       Chỉnh sửa
                     </button>
                   </form>
                 </TabPane>
-
+                {/* TAB 3 - LỊCH SỬ ĐẶT VÉ */}
                 <TabPane tab='Lịch sử đặt vé' key='3'>
                   <div className='user-info-history'>
                     <h2 className='user-info-title'>Lịch sử đặt vé</h2>

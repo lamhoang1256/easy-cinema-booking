@@ -23,8 +23,8 @@ export const Header = () => {
     dispatch(logoutAction());
   };
 
-  // xử lí khi nhấn các link trong navbar header
-  const handleClickLink = async (id) => {
+  // handle when click link on header navbar
+  const onClickLink = async (id) => {
     if (location.pathname === "/") {
       scroller.scrollTo(id, {
         duration: 800,
@@ -41,7 +41,6 @@ export const Header = () => {
     }
   };
 
-  // xử lí toggle menu
   const [isShowMenu, setIsShowMenu] = useState(false);
   const handleToggleMenu = () => {
     setIsShowMenu(!isShowMenu);
@@ -75,7 +74,7 @@ export const Header = () => {
               <ul className='navbar'>
                 {headerNav.map((item, index) => (
                   <li className='navbar-item' key={index}>
-                    <span className='navbar-link' onClick={() => handleClickLink(item.path)}>
+                    <span className='navbar-link' onClick={() => onClickLink(item.path)}>
                       {item.display}
                     </span>
                   </li>
@@ -117,7 +116,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
-      {/* overplay */}
+      {/* overplay when open menu in table + mobile */}
       {isShowMenu && <div className='header-overplay' onClick={handleToggleMenu}></div>}
     </header>
   );

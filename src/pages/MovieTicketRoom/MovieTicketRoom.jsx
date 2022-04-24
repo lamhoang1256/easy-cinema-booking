@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
@@ -167,8 +167,9 @@ const InfoMovieField = (label, content) => (
 );
 
 /* All information of Movie */
-const InfoMovie = ({ infoMovie, listSelectingSeat }) => (
+const InfoMovie = memo(({ infoMovie, listSelectingSeat }) => (
   <div className='movie-booking-info-movie'>
+    {console.log("re-render Info Movie")}
     <h2>Thông tin phim</h2>
     <div className='movie-booking-thumb'>
       <img src={infoMovie.hinhAnh} alt='movie-thumb' />
@@ -190,14 +191,15 @@ const InfoMovie = ({ infoMovie, listSelectingSeat }) => (
         : "Chưa chọn ghế"}
     </div>
   </div>
-);
+));
 
 // All infomation of User is buying ticket
-const InfoUser = ({ userInfo }) => (
+const InfoUser = memo(({ userInfo }) => (
   <div className='movie-booking-info-user'>
+    {console.log("re-render Info User")}
     <h2>Thông tin khách hàng</h2>
     {InfoMovieField("Họ tên", userInfo.hoTen)}
     {InfoMovieField("Email", userInfo.email)}
     {InfoMovieField("Số điện thoại", userInfo.soDT)}
   </div>
-);
+));

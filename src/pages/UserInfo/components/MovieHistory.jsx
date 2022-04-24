@@ -2,7 +2,7 @@ import React from "react";
 import "./movieHistory.scss";
 
 export const MovieHistory = ({ thongTinDatVe }) => {
-  // tạo mảng danh sách stt ghế đã đặt và lọc theo stt nhỏ đến lớn
+  // create array list seat bought and sort form small to big (1-> 999...)
   const getIdChair = (allChair) => {
     const filterIdChair = allChair.map((row) => row.tenGhe);
     return filterIdChair.sort((a, b) => a - b);
@@ -23,7 +23,6 @@ export const MovieHistory = ({ thongTinDatVe }) => {
                 <th>Tổng tiền</th>
               </tr>
             </thead>
-
             {/* table body */}
             <tbody className='movie-history-body'>
               {thongTinDatVe.map((item, index) => (
@@ -54,7 +53,7 @@ export const MovieHistory = ({ thongTinDatVe }) => {
           </table>
         </div>
       ) : (
-        "Trống"
+        "Lịch sử đặt vé hiện đang trống"
       )}
     </>
   );

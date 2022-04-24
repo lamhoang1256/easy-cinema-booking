@@ -21,7 +21,6 @@ export const Register = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
 
-  // xử lí register user
   const handleRegister = (data) => {
     const requestRegister = {
       taiKhoan: data.username,
@@ -35,7 +34,7 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    //nếu đã đăng nhập thì chuyển về trang trước đó
+    // if user has login will redirect previous page
     if (userInfo) {
       navigate(-1);
     }
@@ -48,7 +47,6 @@ export const Register = () => {
         <form className='auth-content' onSubmit={handleSubmit(handleRegister)}>
           <div className='auth-wrapper'>
             <div className='auth-box'>
-              {/* họ và tên */}
               <div className='auth-group'>
                 <ion-icon name='person-outline'></ion-icon>
                 <InputText
@@ -59,8 +57,6 @@ export const Register = () => {
                 />
               </div>
               <MessageErrorValidation errorMessage={errors.fullname?.message} />
-
-              {/* tên tài khoản */}
               <div className='auth-group'>
                 <ion-icon name='person-outline'></ion-icon>
                 <InputText
@@ -71,7 +67,6 @@ export const Register = () => {
                 />
               </div>
               <MessageErrorValidation errorMessage={errors.username?.message} />
-              {/* mật khẩu */}
               <div className='auth-group'>
                 <ion-icon name='lock-closed-outline'></ion-icon>
                 <InputText
@@ -85,7 +80,6 @@ export const Register = () => {
             </div>
 
             <div className='auth-box'>
-              {/* số điện thoại */}
               <div className='auth-group'>
                 <ion-icon name='call-outline'></ion-icon>
                 <InputText
@@ -96,13 +90,11 @@ export const Register = () => {
                 />
               </div>
               <MessageErrorValidation errorMessage={errors.phone?.message} />
-              {/* email */}
               <div className='auth-group'>
                 <ion-icon name='mail-outline'></ion-icon>
                 <InputText type='email' control={control} placeholder='Email *' name='email' />
               </div>
               <MessageErrorValidation errorMessage={errors.email?.message} />
-              {/* xác nhận mật khẩu */}
               <div className='auth-group'>
                 <ion-icon name='lock-closed-outline'></ion-icon>
                 <InputText
@@ -115,7 +107,7 @@ export const Register = () => {
               <MessageErrorValidation errorMessage={errors.password_repeat?.message} />
             </div>
           </div>
-          {/* Thông báo lỗi từ server nếu đăng kí thất bại  */}
+          {/* Log error messenge when register form API */}
           <MessageErrorValidation errorMessage={errorRegister?.content} />
 
           <button className='auth-submit btn btn--primary' type='submit'>
