@@ -2,13 +2,18 @@ import React from "react";
 import { useController } from "react-hook-form";
 import "./input.scss";
 
-const InputText = ({ control, ...props }) => {
+const InputText = ({ control, label, defaultValue, ...props }) => {
   const { field } = useController({
-    control,
     name: props.name,
-    defaultValue: "",
+    control,
+    defaultValue,
   });
-  return <input {...field} {...props} className='auth-input'></input>;
+  return (
+    <>
+      {label && <h3>{label}</h3>}
+      <input {...field} {...props} className='auth-input'></input>
+    </>
+  );
 };
 
 export default InputText;

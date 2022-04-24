@@ -10,6 +10,8 @@ import { schemaYupRegister } from "constants/schemaYupRegister";
 import { Banner } from "components/Banner/Banner";
 import { MovieHistory } from "./components/MovieHistory";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
+import InputText from "components/Input/InputText";
+import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 import "./userInfo.scss";
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
@@ -19,24 +21,23 @@ export const UserInfo = () => {
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
   const { userProfile } = useSelector((state) => state.user);
-
   const {
-    register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupRegister) });
 
-  const handleUpdateProfile = (data) => {
-    const dataToUpdateUser = {
-      taiKhoan: data.username,
-      matKhau: data.password,
-      email: data.email,
-      soDt: data.phone,
+  const handleUpdateProfile = (dataForm) => {
+    const requestRegister = {
+      taiKhoan: dataForm.username,
+      matKhau: dataForm.password,
+      email: dataForm.email,
+      soDt: dataForm.phone,
       maNhom: "GP00",
-      hoTen: data.fullname,
+      hoTen: dataForm.fullname,
       maLoaiNguoiDung: "KhachHang",
     };
-    dispatch(updateUserAction(dataToUpdateUser));
+    dispatch(updateUserAction(requestRegister));
   };
 
   useEffect(() => {
@@ -96,88 +97,76 @@ export const UserInfo = () => {
                 <TabPane tab='Chỉnh sửa thông tin' key='2'>
                   <h2 className='user-info-title'>Chỉnh sửa thông tin</h2>
                   <form className='user-info-edit' onSubmit={handleSubmit(handleUpdateProfile)}>
-                    {/* Tên tài khoản */}
                     <div className='user-info-edit-group'>
-                      <h3>Tên tài khoản</h3>
-                      <input
+                      <InputText
+                        label='Tên tài khoản'
+                        name='username'
+                        control={control}
                         type='text'
                         defaultValue={userProfile.taiKhoan}
                         placeholder='Tên tài khoản'
-                        {...register("username")}
                       />
-                      {errors.username && (
-                        <span className='text--primary'>{errors.username.message}</span>
-                      )}
+                      <MessageErrorValidation errorMessage={errors.username?.message} />
                     </div>
 
-                    {/* Họ và tên */}
                     <div className='user-info-edit-group'>
-                      <h3>Họ và tên</h3>
-                      <input
+                      <InputText
+                        label='Họ và tên'
+                        name='fullname'
+                        control={control}
                         type='text'
                         placeholder='Họ và tên'
                         defaultValue={userProfile.hoTen}
-                        {...register("fullname")}
                       />
-                      {errors.fullname && (
-                        <span className='text--primary'>{errors.fullname.message}</span>
-                      )}
+                      <MessageErrorValidation errorMessage={errors.fullname?.message} />
                     </div>
 
-                    {/* Email */}
                     <div className='user-info-edit-group'>
-                      <h3>Email</h3>
-                      <input
+                      <InputText
+                        label='Email'
+                        name='email'
+                        control={control}
                         type='email'
                         placeholder='Email'
                         defaultValue={userProfile.email}
-                        {...register("email")}
                       />
-                      {errors.email && (
-                        <span className='text--primary'>{errors.email.message}</span>
-                      )}
+                      <MessageErrorValidation errorMessage={errors.email?.message} />
                     </div>
 
-                    {/* Số điện thoại */}
                     <div className='user-info-edit-group'>
-                      <h3>Số điện thoại</h3>
-                      <input
+                      <InputText
+                        label='Số điện thoại'
+                        name='phone'
+                        control={control}
                         type='text'
                         placeholder='Số điện thoại'
                         defaultValue={userProfile.soDT}
-                        {...register("phone")}
                       />
-                      {errors.phone && (
-                        <span className='text--primary'>{errors.phone.message}</span>
-                      )}
+                      <MessageErrorValidation errorMessage={errors.phone?.message} />
                     </div>
 
-                    {/* Mật khẩu */}
                     <div className='user-info-edit-group'>
-                      <h3>Mật khẩu</h3>
-                      <input
+                      <InputText
+                        label='Mật khẩu'
+                        name='password'
+                        control={control}
                         type='password'
                         placeholder='Mật khẩu'
                         defaultValue={userProfile.matKhau}
-                        {...register("password")}
                       />
-                      {errors.password && (
-                        <span className='text--primary'>{errors.password.message}</span>
-                      )}
+                      <MessageErrorValidation errorMessage={errors.password?.message} />
                     </div>
 
-                    {/* Xác nhận mật khẩu */}
                     <div className='user-info-edit-group'>
-                      <h3>Xác nhận mật khẩu</h3>
-                      <input
+                      <InputText
+                        label='Xác nhận mật khẩu'
+                        name='password_repeat'
+                        control={control}
                         type='password'
                         placeholder='Xác nhận mật khẩu'
                         defaultValue={userProfile.matKhau}
-                        {...register("password_repeat")}
                       />
-                      {errors.password_repeat && (
-                        <span className='text--primary'>{errors.password_repeat.message}</span>
-                      )}
+                      <MessageErrorValidation errorMessage={errors.password_repeat?.message} />
                     </div>
 
                     {/* SUBMIT */}

@@ -92,32 +92,52 @@ const ModalEditUser = (props) => {
     >
       <form className='user-info-edit' onSubmit={handleSubmit(handleEditUser)}>
         <div className='user-info-edit-group'>
-          <h3>Họ và tên</h3>
-          <InputText name='fullname' control={control} type='text' placeholder='Họ và tên' />
+          <InputText
+            label='Họ và tên'
+            name='fullname'
+            control={control}
+            type='text'
+            placeholder='Họ và tên'
+          />
           <MessageErrorValidation errorMessage={errors.fullname?.message} />
         </div>
 
         <div className='user-info-edit-group'>
-          <h3>Email</h3>
-          <InputText name='email' control={control} type='email' placeholder='Email' />
+          <InputText
+            label='Email'
+            name='email'
+            control={control}
+            type='email'
+            placeholder='Email'
+          />
           <MessageErrorValidation errorMessage={errors.email?.message} />
         </div>
 
         <div className='user-info-edit-group'>
-          <h3>Số điện thoại</h3>
-          <InputText name='phone' control={control} type='text' placeholder='Số điện thoại' />
+          <InputText
+            label='Số điện thoại'
+            name='phone'
+            control={control}
+            type='text'
+            placeholder='Số điện thoại'
+          />
           <MessageErrorValidation errorMessage={errors.phone?.message} />
         </div>
 
         <div className='user-info-edit-group'>
-          <h3>Mật khẩu</h3>
-          <InputText name='password' control={control} type='password' placeholder='Mật khẩu' />
+          <InputText
+            label='Mật khẩu'
+            name='password'
+            control={control}
+            type='password'
+            placeholder='Mật khẩu'
+          />
           <MessageErrorValidation errorMessage={errors.password?.message} />
         </div>
 
         <div className='user-info-edit-group'>
-          <h3>Xác nhận mật khẩu</h3>
           <InputText
+            label='Xác nhận mật khẩu'
             name='password_repeat'
             control={control}
             type='password'
