@@ -7,15 +7,16 @@ import { Banner } from "components/Banner/Banner";
 import { ModalBill } from "./components/ModalBill/ModalBill";
 import { SeatingPlan } from "./components/SeatingPlan/SeatingPlan";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
+import { ModalAlert } from "pages/MovieTicketRoom/components/ModalAlert/ModalAlert";
+import "./movieTicketRoom.scss";
 // action
 import {
   getTicketRoom,
   buyTicket,
   resetSelectingSeat,
 } from "redux/actions/movie/movieTicketRoom.action";
+// utilities
 import { formatTimeTwoDigit } from "utilities/formatDate";
-import { ModalAlert } from "pages/MovieTicketRoom/components/ModalAlert/ModalAlert";
-import "./movieTicketRoom.scss";
 
 // đường dẫn ảnh banner
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
@@ -30,8 +31,8 @@ export const MovieTicketRoom = () => {
     (state) => state.movieTicketRoom
   );
 
-  const [isModalBillVisible, setIsModalBillVisible] = useState(false);
-  const [isModalAlertVisible, setIsModalAlertVisible] = useState(false);
+  const [isShowModalBill, setIsShowModalBill] = useState(false);
+  const [isShowModalAlert, setIsShowModalAlert] = useState(false);
   const [minutes, setMinutes] = useState(5);
   const [seconds, setSeconds] = useState(0);
 
@@ -78,7 +79,7 @@ export const MovieTicketRoom = () => {
     const { isBuyTicketSuccess } = await dispatch(buyTicket(dataToBuyTicket));
     //nếu mua vé thành công hiện modal bill
     if (isBuyTicketSuccess) {
-      setIsModalBillVisible(true);
+      setIsShowModalBill(true);
       clearInterval(idSetInterval.current);
     }
   };
@@ -92,7 +93,7 @@ export const MovieTicketRoom = () => {
       }
       if (seconds === 0) {
         if (minutes === 0) {
-          setIsModalAlertVisible(true);
+          setIsShowModalAlert(true);
           clearInterval(idSetInterval.current);
         } else {
           setMinutes(minutes - 1);
@@ -144,63 +145,18 @@ export const MovieTicketRoom = () => {
                   </div>
                 </div>
               </div>
-              {/* Thông tin phim */}
+
               <div className='movie-booking-right'>
-                <div className='movie-booking-info-movie'>
-                  <h2>Thông tin phim</h2>
-                  <div className='movie-booking-thumb'>
-                    <img src={dataTicketRoom.thongTinPhim.hinhAnh} alt='movie-thumb' />
-                  </div>
-                  <div>
-                    <div className='movie-booking-title'>
-                      <span className='label'>Tên phim:</span>
-                      {dataTicketRoom.thongTinPhim.tenPhim}
-                    </div>
-                    <div className='movie-booking-cinema'>
-                      <span className='label'>Rạp: </span>
-                      {dataTicketRoom.thongTinPhim.tenCumRap}
-                    </div>
-                    <div className='movie-booking-location'>
-                      <span className='label'>Địa chỉ: </span>
-                      {dataTicketRoom.thongTinPhim.diaChi}
-                    </div>
-                    <div className='movie-booking-openday'>
-                      <span className='label'>Suất chiếu: </span>
-                      {dataTicketRoom.thongTinPhim.gioChieu} {dataTicketRoom.thongTinPhim.ngayChieu}
-                    </div>
-                    <div className='movie-booking-seats'>
-                      <span className='label'>Số ghế đã chọn:</span>
-                      {listSelectingSeat.length !== 0
-                        ? listSelectingSeat.map((c, index) => {
-                            // check nếu chọn 1 ghế thì không xuất hiện dấu VD: 3,5 ; 3
-                            const seat = index === 0 ? c.tenGhe : ", " + c.tenGhe;
-                            return seat;
-                          })
-                        : "Chưa chọn ghế"}
-                    </div>
-                  </div>
-                </div>
-                <div className='movie-booking-info-user'>
-                  <h2>Thông tin khách hàng</h2>
-                  {userInfo ? (
-                    <>
-                      <div className='movie-booking-openday'>
-                        <span className='label'>Họ tên: </span>
-                        {userInfo.hoTen}
-                      </div>
-                      <div className='movie-booking-email'>
-                        <span className='label'>Email: </span>
-                        {userInfo.email}
-                      </div>
-                      <div className='movie-booking-phone'>
-                        <span className='label'>Số điện thoại: </span>
-                        {userInfo.soDT}
-                      </div>
-                    </>
-                  ) : (
-                    "Đăng nhập để xem thông tin của bạn"
-                  )}
-                </div>
+                {/* All information of Movie */}
+                <InfoMovie
+                  infoMovie={dataTicketRoom.thongTinPhim}
+                  listSelectingSeat={listSelectingSeat}
+                />
+
+                {/* All infomation of User is buying ticket */}
+                <InfoUser userInfo={userInfo} />
+
+                {/* Total money and button buy ticket */}
                 <div className='movie-booking-bill'>
                   <h2 className='movie-booking-price'>
                     Tổng tiền: {totalMoney.toLocaleString("en-US")} VNĐ
@@ -212,10 +168,10 @@ export const MovieTicketRoom = () => {
               </div>
             </div>
           </div>
-          {/* mở modal bill khi đặt vé thành công  */}
-          {isModalBillVisible && <ModalBill totalMoney={totalMoney} />}
-          {/* mở modal thông báo nếu quá 5 phút thời gian giữ ghế */}
-          {isModalAlertVisible && <ModalAlert />}
+          {/* open modal bill when buy ticket successful  */}
+          {isShowModalBill && <ModalBill totalMoney={totalMoney} />}
+          {/* open modal notify if select seat over 5 minutes */}
+          {isShowModalAlert && <ModalAlert />}
         </div>
       ) : (
         <LoadingAnimation />
@@ -223,3 +179,44 @@ export const MovieTicketRoom = () => {
     </>
   );
 };
+
+const MovieInfoField = (label, content) => (
+  <div>
+    <span className='label'>{label}:</span>
+    {content}
+  </div>
+);
+
+const InfoMovie = ({ infoMovie, listSelectingSeat }) => (
+  <div className='movie-booking-info-movie'>
+    <h2>Thông tin phim</h2>
+    <div className='movie-booking-thumb'>
+      <img src={infoMovie.hinhAnh} alt='movie-thumb' />
+    </div>
+    {MovieInfoField("Tên phim", infoMovie.tenPhim)}
+    {MovieInfoField("Rạp", infoMovie.tenCumRap)}
+    {MovieInfoField("Địa chỉ", infoMovie.diaChi)}
+    {MovieInfoField("Suất chiếu", infoMovie.gioChieu + infoMovie.ngayChieu)}
+    {/* All seat are selecting */}
+    <div className='movie-booking-seats'>
+      <span className='label'>Số ghế đã chọn:</span>
+      {listSelectingSeat.length !== 0
+        ? listSelectingSeat.map((c, index) => {
+            // check if select 1 seat will not display ","
+            // Eg: 3 seat : 3,5,9 -> 1 seat : 3
+            const seat = index === 0 ? c.tenGhe : ", " + c.tenGhe;
+            return seat;
+          })
+        : "Chưa chọn ghế"}
+    </div>
+  </div>
+);
+
+const InfoUser = ({ userInfo }) => (
+  <div className='movie-booking-info-user'>
+    <h2>Thông tin khách hàng</h2>
+    {MovieInfoField("Họ tên", userInfo.hoTen)}
+    {MovieInfoField("Email", userInfo.email)}
+    {MovieInfoField("Số điện thoại", userInfo.soDT)}
+  </div>
+);
