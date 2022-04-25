@@ -1,5 +1,5 @@
 .admin-layout {
-  padding: 20px;
+  padding: 20px 0;
   min-height: 100vh;
   display: flex;
 }
@@ -9,6 +9,7 @@
   background-color: yellow;
   border-radius: 10px;
   flex: 1;
+  overflow-x: auto;
 }
 .admin-layout-container {
   margin-top: 20px;

@@ -11,7 +11,7 @@ const InputText = ({ control, label, defaultValue, ...props }) => {
   return (
     <>
       {label && <h3>{label}</h3>}
-      <input {...field} {...props} className='auth-input'></input>
+      <input {...field} {...props}></input>
     </>
   );
 };

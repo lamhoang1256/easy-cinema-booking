@@ -1,0 +1,25 @@
+.edit-film {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  &-group {
+    width: 45%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    textarea {
+      flex: 1;
+    }
+  }
+  &-label {
+    display: block;
+    width: 100px;
+  }
+  &-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+  }
+}

@@ -17,7 +17,8 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "antd/dist/antd.css";
 import "./assets/scss/app.scss";
 import { UserManagement } from "pages/UserManagement/UserManagement";
-import { MovieManagement } from "pages/MovieManagement/MovieManagement";
+import MovieManagement from "pages/MovieManagement/MovieManagement";
+import EditFilm from "pages/MovieManagement/components/EditFilm/EditFilm";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/admin' element={<AdminLayout />}>
           <Route path='user-management' element={<UserManagement />} />
           <Route path='movie-management' element={<MovieManagement />} />
+          <Route path='edit-film' element={<EditFilm />} />
         </Route>
         {/* Auth Layout */}
         <Route path='/auth' element={<AuthLayout />}>
