@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from "react";
+import { Controller } from "react-hook-form";
 import InputText from "components/Input/InputText";
-import React, { useEffect, useState, useRef } from "react";
-use;
 import { Input } from "antd";
 import { Switch } from "antd";
 import { moviesApi } from "apis/moviesApi";
@@ -12,24 +12,9 @@ import { useForm } from "react-hook-form";
 const EditFilm = () => {
   const { TextArea } = Input;
 
-  const [showingMovie, setIsShowingMovie] = useState(null);
-  const [comingSoonMovie, setComingSoonMovie] = useState(null);
-  const [hotMovie, setHotMovie] = useState(null);
-
-  const onChangeIsShowingMovie = (checked) => {
-    setIsShowingMovie(checked);
-  };
-  const onChangeComingSoonMovie = (checked) => {
-    setComingSoonMovie(checked);
-  };
-  const onChangeIsHotMovie = (checked) => {
-    setHotMovie(checked);
-  };
-  // console.log(showingMovie, comingSoonMovie, hotMovie);
-
   const [movieEdit, setMovieEdit] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  // console.log(movieEdit);
+
   const {
     register,
     handleSubmit,
@@ -42,9 +27,6 @@ const EditFilm = () => {
     try {
       const { data } = await moviesApi.getMovieDetailApi("8188");
       setMovieEdit(data.content);
-      setComingSoonMovie(data.content.sapChieu);
-      setIsShowingMovie(data.content.dangChieu);
-      setHotMovie(data.content.hot);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -60,12 +42,13 @@ const EditFilm = () => {
       moTa: data.movieDesc,
       maNhom: "GP00",
       ngayKhoiChieu: "10/10/2020",
-      SapChieu: comingSoonMovie,
-      DangChieu: showingMovie,
-      Hot: hotMovie,
+      SapChieu: data.comingSoonMovie,
+      DangChieu: data.showingMovie,
+      Hot: data.hotMovie,
       danhGia: data.movieRating,
       hinhAnh: null,
     };
+    console.log(data);
   };
 
   useEffect(() => {
@@ -89,10 +72,13 @@ const EditFilm = () => {
             </EditFilmGroup>
 
             <EditFilmGroup label='Đang chiếu'>
-              <Switch
+              <Controller
                 control={control}
-                defaultChecked={movieEdit.dangChieu}
-                onChange={onChangeIsShowingMovie}
+                name='showingMovie'
+                defaultValue={movieEdit.dangChieu}
+                render={({ field: { onChange, value } }) => (
+                  <Switch defaultChecked={movieEdit.dangChieu} onChange={onChange} />
+                )}
               />
             </EditFilmGroup>
 
@@ -107,10 +93,13 @@ const EditFilm = () => {
             </EditFilmGroup>
 
             <EditFilmGroup label='Sắp chiếu'>
-              <Switch
+              <Controller
                 control={control}
-                defaultChecked={movieEdit.sapChieu}
-                onChange={onChangeComingSoonMovie}
+                name='comingSoonMovie'
+                defaultValue={movieEdit.sapChieu}
+                render={({ field: { onChange, value } }) => (
+                  <Switch defaultChecked={movieEdit.sapChieu} onChange={onChange} />
+                )}
               />
             </EditFilmGroup>
 
@@ -125,15 +114,29 @@ const EditFilm = () => {
             </EditFilmGroup>
 
             <EditFilmGroup label='Đang hot'>
-              <Switch defaultChecked={movieEdit.hot} onChange={onChangeIsHotMovie} />
+              <Controller
+                control={control}
+                name='hotMovie'
+                defaultValue={movieEdit.hot}
+                render={({ field: { onChange, value } }) => (
+                  <Switch defaultChecked={movieEdit.hot} onChange={onChange} />
+                )}
+              />
             </EditFilmGroup>
 
             <EditFilmGroup label='Mô tả'>
-              <textarea
-                width={300}
-                rows={5}
+              <Controller
+                control={control}
+                name='descMovie'
                 defaultValue={movieEdit.moTa}
-                {...register("movieDesc")}
+                render={({ field: { onChange, value } }) => (
+                  <TextArea
+                    width={300}
+                    rows={7}
+                    defaultValue={movieEdit.moTa}
+                    onChange={onChange}
+                  />
+                )}
               />
             </EditFilmGroup>
 
