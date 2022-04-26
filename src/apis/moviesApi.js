@@ -35,4 +35,9 @@ export const moviesApi = {
     const path = `/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP${groupCode}`;
     return axiosClient.get(path);
   },
+
+  editMovieApi: (requestMovieEdit) => {
+    const path = `/QuanLyPhim/CapNhatPhimUpload`;
+    return axiosClient.post(path, requestMovieEdit);
+  },
 };

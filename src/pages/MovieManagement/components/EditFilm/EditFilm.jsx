@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
+import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
-import InputText from "components/Input/InputText";
+// components
 import { Input } from "antd";
 import { Switch } from "antd";
+import { DatePicker } from "antd";
+import { Upload, message } from "antd";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import InputText from "components/Input/InputText";
 import { moviesApi } from "apis/moviesApi";
-import ImageUpload from "components/ImageUpload/ImageUpload";
 import "./editFilm.scss";
 // validation
-import { useForm } from "react-hook-form";
+
+const { RangePicker } = DatePicker;
 
 const EditFilm = () => {
   const { TextArea } = Input;
 
   const [movieEdit, setMovieEdit] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [imgThumbnail, setImgThumbnail] = useState(null);
 
   const {
-    register,
     handleSubmit,
     control,
     // formState: { errors },
@@ -25,7 +31,7 @@ const EditFilm = () => {
   const fetchMovieEdit = async () => {
     setIsLoading(true);
     try {
-      const { data } = await moviesApi.getMovieDetailApi("8188");
+      const { data } = await moviesApi.getMovieDetailApi("5397");
       setMovieEdit(data.content);
       setIsLoading(false);
     } catch (error) {
@@ -36,24 +42,82 @@ const EditFilm = () => {
 
   const handleEditMovie = (data) => {
     const requestEditMovie = {
-      maPhim: "8188",
+      maPhim: "5397",
       tenPhim: data.movieName,
       trailer: data.movieUrlTrailer,
       moTa: data.movieDesc,
       maNhom: "GP00",
-      ngayKhoiChieu: "10/10/2020",
-      SapChieu: data.comingSoonMovie,
-      DangChieu: data.showingMovie,
-      Hot: data.hotMovie,
+      ngayKhoiChieu: "21/01/2020",
+      sapChieu: data.comingSoonMovie,
+      dangChieu: data.showingMovie,
+      hot: data.hotMovie,
       danhGia: data.movieRating,
-      hinhAnh: null,
+      hinhAnh: imageURL,
     };
-    console.log(data);
+    let formData = new FormData();
+    for (var key in requestEditMovie) {
+      formData.append(key, requestEditMovie[key]);
+    }
+    // console.log(formData);
+    const editMovie = async (formData) => {
+      try {
+        const res = await moviesApi.editMovieApi(formData);
+        console.log(res);
+      } catch (error) {
+        console.log(error?.response?.data?.content);
+      }
+    };
+
+    // editMovie(formData);
   };
 
   useEffect(() => {
     fetchMovieEdit();
   }, []);
+
+  // Upload Image thumbnail
+
+  function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+
+  function beforeUpload(file) {
+    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+    if (!isJpgOrPng) {
+      message.error("You can only upload JPG/PNG file!");
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error("Image must smaller than 2MB!");
+    }
+    return isJpgOrPng && isLt2M;
+  }
+  const [loadingImg, setLoadingImg] = useState(false);
+  const [imageURL, setImageURL] = useState(null);
+  // console.log(imageURL);
+
+  const handleChange = (info) => {
+    if (info.file.status === "uploading") {
+      setLoadingImg(true);
+      return;
+    }
+    if (info.file.status === "done") {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (imageURL) => {
+        setImageURL(imageURL);
+        setLoadingImg(false);
+      });
+    }
+  };
+
+  const uploadButton = (
+    <div>
+      {loadingImg ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
 
   return (
     <>
@@ -127,7 +191,7 @@ const EditFilm = () => {
             <EditFilmGroup label='Mô tả'>
               <Controller
                 control={control}
-                name='descMovie'
+                name='movieDesc'
                 defaultValue={movieEdit.moTa}
                 render={({ field: { onChange, value } }) => (
                   <TextArea
@@ -141,8 +205,34 @@ const EditFilm = () => {
             </EditFilmGroup>
 
             <EditFilmGroup label='Thumbnail'>
-              <ImageUpload {...register("movieThumbnail")} />
+              <Upload
+                name='thumbnailMovie'
+                listType='picture-card'
+                className='avatar-uploader'
+                showUploadList={false}
+                action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+              >
+                {imageURL ? (
+                  <img src={imageURL} alt='avatar' style={{ width: "100%" }} />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
             </EditFilmGroup>
+
+            <EditFilmGroup label='Ngày khởi chiếu'>
+              <DatePicker
+                defaultValue={moment(
+                  new Date(movieEdit.ngayKhoiChieu).toLocaleDateString("vi-VI"),
+
+                  "DD/MM/YYYY"
+                )}
+                format='DD/MM/YYYY'
+              />
+            </EditFilmGroup>
+
             <button className='btn btn--primary' type='submit'>
               Sửa
             </button>

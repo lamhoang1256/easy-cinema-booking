@@ -51,7 +51,7 @@ class ImageUpload extends React.Component {
     );
     return (
       <Upload
-        name='avatar'
+        name='thumbnailMovie'
         listType='picture-card'
         className='avatar-uploader'
         showUploadList={false}
