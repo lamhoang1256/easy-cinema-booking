@@ -16,13 +16,9 @@ const EditFilm = () => {
   const [movieEdit, setMovieEdit] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [movieThumbnail, setMovieThumbnail] = useState(null);
+  const [movieThumbPreviewUrl, setMovieThumbPreviewUrl] = useState(null);
   const [movieOpenday, setMovieOpenday] = useState(null);
-
-  const {
-    handleSubmit,
-    control,
-    // formState: { errors },
-  } = useForm();
+  const { handleSubmit, control } = useForm();
 
   const fetchMovieEdit = async () => {
     setIsLoading(true);
@@ -37,7 +33,14 @@ const EditFilm = () => {
   };
 
   const onUploadThumbnail = (e) => {
-    setMovieThumbnail(e.target.files[0]);
+    let file = e.target.files[0];
+    setMovieThumbnail(file);
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setMovieThumbPreviewUrl(() => reader.result);
+    };
   };
 
   const onChangeDatePicker = (value) => {
@@ -45,14 +48,13 @@ const EditFilm = () => {
   };
 
   const handleEditMovie = (data) => {
-    console.log(movieOpenday);
     const requestEditMovie = {
       maPhim: "5397",
       tenPhim: data.movieName,
       trailer: data.movieUrlTrailer,
       moTa: data.movieDesc,
       maNhom: "GP00",
-      ngayKhoiChieu: movieOpenday || movieEdit.ngayKhoiChieu,
+      ngayKhoiChieu: movieOpenday || moment(movieEdit.ngayKhoiChieu).format("DD/MM/YYYY"),
       sapChieu: data.comingSoonMovie,
       dangChieu: data.showingMovie,
       hot: data.hotMovie,
@@ -60,13 +62,14 @@ const EditFilm = () => {
       hinhAnh: movieThumbnail,
     };
 
+    console.log(requestEditMovie.ngayKhoiChieu);
     let formData = new FormData();
     for (var key in requestEditMovie) {
       if (key !== "hinhAnh") {
         formData.append(key, requestEditMovie[key]);
       } else {
         if (requestEditMovie.hinhAnh !== null) {
-          formData.append("File", requestEditMovie.hinhAnh, requestEditMovie.hinhAnh.name);
+          formData.append("File", requestEditMovie.hinhAnh, requestEditMovie.hinhAnh?.name);
         }
       }
     }
@@ -94,6 +97,22 @@ const EditFilm = () => {
       {!isLoading && (
         <div>
           <form className='edit-film' onSubmit={handleSubmit(handleEditMovie)}>
+            <EditFilmGroup label='Mã phim'>
+              <p>{movieEdit.maPhim}</p>
+            </EditFilmGroup>
+
+            <EditFilmGroup label='Ngày khởi chiếu'>
+              <DatePicker
+                defaultValue={moment(
+                  new Date(movieEdit.ngayKhoiChieu).toLocaleDateString("vi-VI"),
+                  "DD/MM/YYYY"
+                )}
+                control={control}
+                onChange={onChangeDatePicker}
+                format='DD/MM/YYYY'
+              />
+            </EditFilmGroup>
+
             <EditFilmGroup label='Tên Phim'>
               <InputText
                 name='movieName'
@@ -165,7 +184,7 @@ const EditFilm = () => {
                 render={({ field: { onChange, value } }) => (
                   <TextArea
                     width={300}
-                    rows={7}
+                    rows={10}
                     defaultValue={movieEdit.moTa}
                     onChange={onChange}
                   />
@@ -174,20 +193,12 @@ const EditFilm = () => {
             </EditFilmGroup>
 
             <EditFilmGroup label='Thumbnail'>
-              <input type='file' onChange={onUploadThumbnail} />
-            </EditFilmGroup>
-
-            <EditFilmGroup label='Ngày khởi chiếu'>
-              <DatePicker
-                defaultValue={moment(
-                  new Date(movieEdit.ngayKhoiChieu).toLocaleDateString("vi-VI"),
-                  "DD/MM/YYYY"
-                )}
-                control={control}
-                name='movieOpenday'
-                onChange={onChangeDatePicker}
-                format='DD/MM/YYYY'
-              />
+              <input type='file' accept='image/*' onChange={onUploadThumbnail} />
+              {movieThumbPreviewUrl ? (
+                <img className='edit-film-thumbnail' src={movieThumbPreviewUrl} />
+              ) : (
+                <img className='edit-film-thumbnail' src={movieEdit?.hinhAnh} />
+              )}
             </EditFilmGroup>
 
             <button className='btn btn--primary' type='submit'>

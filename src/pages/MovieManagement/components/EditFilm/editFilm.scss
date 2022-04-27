@@ -3,23 +3,29 @@
   flex-wrap: wrap;
   gap: 50px;
   &-group {
+    flex-wrap: wrap;
     width: 45%;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     textarea {
       flex: 1;
     }
   }
   &-label {
     display: block;
-    width: 100px;
+    width: 130px;
   }
   &-input {
     flex: 1;
     padding: 10px;
     border-radius: 4px;
     border: none;
+  }
+  &-thumbnail {
+    border-radius: 8px;
+    width: 140px;
+    height: 200px;
   }
 }

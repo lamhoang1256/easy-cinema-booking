@@ -136,3 +136,8 @@ Quá trình làm đồ án ReactJS
 22/04/2022 +23/04/2022
 _ Xử lí logic sửa thông tin
 _ Reuse component InputText, MessageErrorValidation
+
+25/04/2022 + 26/04/2022
+
+- Fix lỗi không upload được ảnh thumbnail phim
+- Hoàn thành call API sửa thông tin phim
