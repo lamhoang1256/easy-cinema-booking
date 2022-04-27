@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Table, Switch } from "antd";
+import { Table } from "antd";
 import "./movieManagement.scss";
 import { moviesApi } from "apis/moviesApi";
 import { formatLocaleDateString } from "utilities/formatDate";
-import ModalEditFilm from "./components/ModalEditFilm";
+import { Link } from "react-router-dom";
 
 // biDanh: "the-walking-dead-1"
 // dangChieu: true
@@ -21,11 +21,6 @@ import ModalEditFilm from "./components/ModalEditFilm";
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isShowModalEdit, setIsShowModalEdit] = useState(true);
-
-  const showModalEdit = () => {
-    setIsShowModalEdit(true);
-  };
 
   const fetchMovieList = async () => {
     setIsLoading(true);
@@ -104,7 +99,9 @@ const MovieManagement = () => {
       fixed: "right",
       render: (id) => (
         <>
-          <button onClick={() => showModalEdit(id)}>Sửa {id}</button>
+          <Link to={`/admin/edit-film/${id}`}>
+            <button>Sửa</button>
+          </Link>
           <button>Xóa</button>
           <button>Lịch chiếu</button>
         </>
@@ -118,10 +115,6 @@ const MovieManagement = () => {
       {!isLoading && (
         <>
           <Table columns={columns} dataSource={movieList} scroll={{ x: 1300 }} sticky />
-          <ModalEditFilm
-            isShowModalEdit={isShowModalEdit}
-            setIsShowModalEdit={setIsShowModalEdit}
-          />
         </>
       )}
     </div>

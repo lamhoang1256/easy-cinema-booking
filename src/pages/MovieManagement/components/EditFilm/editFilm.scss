@@ -23,7 +23,8 @@
   &-thumbnail {
     margin-top: 10px;
     border-radius: 8px;
-    width: 130px;
+    width: 140px;
     height: 190px;
+    object-fit: cover;
   }
 }

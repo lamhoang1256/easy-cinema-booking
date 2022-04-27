@@ -13,10 +13,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupFilm } from "constants/schemaYupFilm";
 import "./editFilm.scss";
 import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import { useParams } from "react-router-dom";
 
 const EditFilm = () => {
+  const { idMovieEdit } = useParams();
   const { TextArea } = Input;
-
   const [movieEdit, setMovieEdit] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [movieThumbnail, setMovieThumbnail] = useState(null);
@@ -31,7 +32,7 @@ const EditFilm = () => {
   const fetchMovieEdit = async () => {
     setIsLoading(true);
     try {
-      const { data } = await moviesApi.getMovieDetailApi("5397");
+      const { data } = await moviesApi.getMovieDetailApi(idMovieEdit);
       setMovieEdit(data.content);
       setIsLoading(false);
     } catch (error) {
@@ -57,7 +58,7 @@ const EditFilm = () => {
 
   const handleEditMovie = (data) => {
     const requestEditMovie = {
-      maPhim: "5397",
+      maPhim: idMovieEdit,
       tenPhim: data.movieName,
       trailer: data.movieUrlTrailer,
       moTa: data.movieDesc,

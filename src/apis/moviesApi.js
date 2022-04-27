@@ -36,8 +36,15 @@ export const moviesApi = {
     return axiosClient.get(path);
   },
 
+  // chỉnh sửa thông tin phim
   editMovieApi: (requestMovieEdit) => {
     const path = `/QuanLyPhim/CapNhatPhimUpload`;
     return axiosClient.post(path, requestMovieEdit);
+  },
+
+  // thêm phim mới
+  addNewMovieApi: (requestNewMovie) => {
+    const path = `/QuanLyPhim/ThemPhimUploadHinh`;
+    return axiosClient.post(path, requestNewMovie);
   },
 };

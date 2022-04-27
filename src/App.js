@@ -19,6 +19,7 @@ import "./assets/scss/app.scss";
 import { UserManagement } from "pages/UserManagement/UserManagement";
 import MovieManagement from "pages/MovieManagement/MovieManagement";
 import EditFilm from "pages/MovieManagement/components/EditFilm/EditFilm";
+import AddFilm from "pages/MovieManagement/components/AddFilm/AddFilm";
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
         <Route path='/admin' element={<AdminLayout />}>
           <Route path='user-management' element={<UserManagement />} />
           <Route path='movie-management' element={<MovieManagement />} />
-          <Route path='edit-film' element={<EditFilm />} />
+          <Route path='edit-film/:idMovieEdit' element={<EditFilm />} />
+          <Route path='add-film' element={<AddFilm />} />
         </Route>
         {/* Auth Layout */}
         <Route path='/auth' element={<AuthLayout />}>
