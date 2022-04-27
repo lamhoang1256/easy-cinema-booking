@@ -7,7 +7,7 @@ import "./addComment.scss";
 
 export const AddComment = () => {
   const dispatch = useDispatch();
-  const { id } = useParams(); // lấy id phim từ thanh url
+  const { idDetail } = useParams(); // lấy idDetail phim từ thanh url
   const { userInfo } = useSelector((state) => state.user);
 
   // xử lí thêm mới nhận xét
@@ -34,7 +34,7 @@ export const AddComment = () => {
       return;
     }
     const requestComment = {
-      idMovie: id,
+      idMovie: idDetail,
       username: userInfo.taiKhoan,
       content: newComment,
       rating: 0,

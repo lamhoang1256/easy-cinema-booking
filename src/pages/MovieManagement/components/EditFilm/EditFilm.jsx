@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
 // components
 import { Input } from "antd";
@@ -8,7 +7,12 @@ import { Switch } from "antd";
 import { DatePicker } from "antd";
 import InputText from "components/Input/InputText";
 import { moviesApi } from "apis/moviesApi";
+// validation
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaYupFilm } from "constants/schemaYupFilm";
 import "./editFilm.scss";
+import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 
 const EditFilm = () => {
   const { TextArea } = Input;
@@ -18,7 +22,11 @@ const EditFilm = () => {
   const [movieThumbnail, setMovieThumbnail] = useState(null);
   const [movieThumbPreviewUrl, setMovieThumbPreviewUrl] = useState(null);
   const [movieOpenday, setMovieOpenday] = useState(null);
-  const { handleSubmit, control } = useForm();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schemaYupFilm) });
 
   const fetchMovieEdit = async () => {
     setIsLoading(true);
@@ -58,7 +66,7 @@ const EditFilm = () => {
       sapChieu: data.comingSoonMovie,
       dangChieu: data.showingMovie,
       hot: data.hotMovie,
-      danhGia: 10,
+      danhGia: data.movieRating * 2,
       hinhAnh: movieThumbnail,
     };
 
@@ -96,6 +104,7 @@ const EditFilm = () => {
       {isLoading && "Loading"}
       {!isLoading && (
         <div>
+          <h2>Chỉnh sửa thông tin phim</h2>
           <form className='edit-film' onSubmit={handleSubmit(handleEditMovie)}>
             <EditFilmGroup label='Mã phim'>
               <p>{movieEdit.maPhim}</p>
@@ -121,6 +130,7 @@ const EditFilm = () => {
                 className='edit-film-input'
                 defaultValue={movieEdit.tenPhim}
               />
+              <MessageErrorValidation errorMessage={errors.movieName?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Đang chiếu'>
@@ -128,7 +138,7 @@ const EditFilm = () => {
                 control={control}
                 name='showingMovie'
                 defaultValue={movieEdit.dangChieu}
-                render={({ field: { onChange, value } }) => (
+                render={({ field: { onChange } }) => (
                   <Switch defaultChecked={movieEdit.dangChieu} onChange={onChange} />
                 )}
               />
@@ -142,6 +152,7 @@ const EditFilm = () => {
                 defaultValue={movieEdit.trailer}
                 name='movieUrlTrailer'
               />
+              <MessageErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Sắp chiếu'>
@@ -149,7 +160,7 @@ const EditFilm = () => {
                 control={control}
                 name='comingSoonMovie'
                 defaultValue={movieEdit.sapChieu}
-                render={({ field: { onChange, value } }) => (
+                render={({ field: { onChange } }) => (
                   <Switch defaultChecked={movieEdit.sapChieu} onChange={onChange} />
                 )}
               />
@@ -157,12 +168,15 @@ const EditFilm = () => {
 
             <EditFilmGroup label='Đánh giá'>
               <InputText
-                type='text'
+                type='number'
                 control={control}
                 className='edit-film-input'
                 defaultValue={movieEdit.danhGia / 2}
                 name='movieRating'
+                min={1}
+                max={5}
               />
+              <MessageErrorValidation errorMessage={errors.movieRating?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Đang hot'>
@@ -170,7 +184,7 @@ const EditFilm = () => {
                 control={control}
                 name='hotMovie'
                 defaultValue={movieEdit.hot}
-                render={({ field: { onChange, value } }) => (
+                render={({ field: { onChange } }) => (
                   <Switch defaultChecked={movieEdit.hot} onChange={onChange} />
                 )}
               />
@@ -181,7 +195,7 @@ const EditFilm = () => {
                 control={control}
                 name='movieDesc'
                 defaultValue={movieEdit.moTa}
-                render={({ field: { onChange, value } }) => (
+                render={({ field: { onChange } }) => (
                   <TextArea
                     width={300}
                     rows={10}
@@ -190,6 +204,7 @@ const EditFilm = () => {
                   />
                 )}
               />
+              <MessageErrorValidation errorMessage={errors.movieDesc?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Thumbnail'>
