@@ -36,6 +36,12 @@ export const moviesApi = {
     return axiosClient.get(path);
   },
 
+  // lấy các cụm rạp theo hệ thống mã rạp VD: lấy các cụm rạp có mã là Galaxy
+  getCinemaGroupApi: (cinemaSystemCode) => {
+    const path = `/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${cinemaSystemCode}`;
+    return axiosClient.get(path);
+  },
+
   // chỉnh sửa thông tin phim
   editMovieApi: (requestMovieEdit) => {
     const path = `/QuanLyPhim/CapNhatPhimUpload`;

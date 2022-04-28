@@ -20,6 +20,8 @@ import { UserManagement } from "pages/UserManagement/UserManagement";
 import MovieManagement from "pages/MovieManagement/MovieManagement";
 import EditFilm from "pages/MovieManagement/components/EditFilm/EditFilm";
 import AddFilm from "pages/MovieManagement/components/AddFilm/AddFilm";
+import CinemaList from "pages/MovieManagement/components/CinemaList/CinemaList";
+import CinemaGroup from "pages/MovieManagement/components/CinemaGroup/CinemaGroup";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
           <Route path='movie-management' element={<MovieManagement />} />
           <Route path='edit-film/:idMovieEdit' element={<EditFilm />} />
           <Route path='add-film' element={<AddFilm />} />
+          <Route path='list-cinema' element={<CinemaList />} />
+          <Route path='cinema-group/:cinemaSystemId' element={<CinemaGroup />} />
         </Route>
         {/* Auth Layout */}
         <Route path='/auth' element={<AuthLayout />}>
