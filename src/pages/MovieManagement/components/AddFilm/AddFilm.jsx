@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupFilm } from "constants/schemaYupFilm";
 import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import { sweetAlert } from "utilities/sweetAlert";
 
 const AddFilm = () => {
   const { TextArea } = Input;
@@ -66,6 +67,9 @@ const AddFilm = () => {
     const addNewMovie = async (formData) => {
       try {
         const res = await moviesApi.addNewMovieApi(formData);
+        if (res.status === 200) {
+          sweetAlert("success", "Thêm mới phim thành công", "Bạn đã thêm mới phim thành công!");
+        }
         console.log(res);
       } catch (error) {
         console.log(error);

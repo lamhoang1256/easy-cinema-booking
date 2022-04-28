@@ -14,7 +14,7 @@ const MovieManagement = () => {
   const fetchMovieList = async () => {
     setIsLoading(true);
     try {
-      const { data } = await moviesApi.getMovieListApi("01");
+      const { data } = await moviesApi.getMovieListApi("00");
       const dataHasKey = data.content.map((item, index) => {
         return { ...item, key: index };
       });

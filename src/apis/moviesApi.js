@@ -50,7 +50,7 @@ export const moviesApi = {
 
   // xóa phim
   deleteMovieApi: (movieCode) => {
-    const path = `/QuanLyPhim/XP?MaPhim=${movieCode}`;
+    const path = `/QuanLyPhim/XoaPhim?MaPhim=${movieCode}`;
     return axiosClient.delete(path);
   },
 };
