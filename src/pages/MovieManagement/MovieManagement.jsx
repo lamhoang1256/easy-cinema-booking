@@ -4,19 +4,8 @@ import "./movieManagement.scss";
 import { moviesApi } from "apis/moviesApi";
 import { formatLocaleDateString } from "utilities/formatDate";
 import { Link } from "react-router-dom";
-
-// biDanh: "the-walking-dead-1"
-// dangChieu: true
-// danhGia: 5
-// hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/the-walking-dead-1_gp00.jpg"
-// hot: false
-// maNhom: "GP00"
-// maPhim: 1293
-// moTa: "Sheriff's Deputy Rick Grimes leads a group of survivors in a world overrun by zombies."
-// ngayKhoiChieu: "2021-09-06T00:00:00"
-// sapChieu: false
-// tenPhim: "The Walking Dead 1"
-// trailer: "https://www.youtube.com/embed/R1v0uFms68U"
+import { sweetAlert } from "utilities/sweetAlert";
+import Swal from "sweetalert2";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
@@ -25,8 +14,11 @@ const MovieManagement = () => {
   const fetchMovieList = async () => {
     setIsLoading(true);
     try {
-      const { data } = await moviesApi.getMovieListApi("00");
-      setMovieList(data.content);
+      const { data } = await moviesApi.getMovieListApi("01");
+      const dataHasKey = data.content.map((item, index) => {
+        return { ...item, key: index };
+      });
+      setMovieList(dataHasKey);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -37,6 +29,35 @@ const MovieManagement = () => {
   useEffect(() => {
     fetchMovieList();
   }, []);
+
+  const handleDeleteMovie = (idMovie) => {
+    console.log(idMovie);
+    Swal.fire({
+      title: "Xóa phim?",
+      text: "Bạn có chắc chắc muốn xóa phim này!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const deleteMovie = async (idMovie) => {
+          try {
+            // const { data } = await moviesApi.deleteMovieApi(idMovie);
+            const { data } = await moviesApi.deleteMovieApi(idMovie);
+            console.log(data);
+            Swal.fire("Xóa thành công!", "Phim bạn chọn đã được xóa.", "success");
+            fetchMovieList();
+          } catch (error) {
+            Swal.fire("Xóa thất bại!", error?.response?.data?.content, "error");
+            console.log(error?.response?.data?.content);
+          }
+        };
+        deleteMovie(idMovie);
+      }
+    });
+  };
 
   const columns = [
     {
@@ -102,7 +123,7 @@ const MovieManagement = () => {
           <Link to={`/admin/edit-film/${id}`}>
             <button>Sửa</button>
           </Link>
-          <button>Xóa</button>
+          <button onClick={() => handleDeleteMovie(id)}>Xóa</button>
           <button>Lịch chiếu</button>
         </>
       ),

@@ -14,6 +14,7 @@ import { schemaYupFilm } from "constants/schemaYupFilm";
 import "./editFilm.scss";
 import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 import { useParams } from "react-router-dom";
+import { sweetAlert } from "utilities/sweetAlert";
 
 const EditFilm = () => {
   const { idMovieEdit } = useParams();
@@ -86,7 +87,13 @@ const EditFilm = () => {
     const editMovie = async (formData) => {
       try {
         const res = await moviesApi.editMovieApi(formData);
-        console.log(res);
+        if (res.status === 200) {
+          sweetAlert(
+            "success",
+            "Cập nhật phim thành công",
+            "Bạn đã sửa thành công thông tin phim!"
+          );
+        }
       } catch (error) {
         console.log(error);
         console.log(error?.response?.data?.content);

@@ -4,13 +4,13 @@ export const schemaYupFilm = yup.object().shape({
   movieName: yup
     .string()
     .required("Tên không được để trống !")
-    .min(6, "Tên ít nhất bao gồm 10 kí tự !")
-    .max(600, "Tên nhiều nhất bao gồm 100 kí tự !"),
+    .min(6, "Tên ít nhất bao gồm 6 kí tự !")
+    .max(200, "Tên nhiều nhất bao gồm 200 kí tự !"),
   movieDesc: yup
     .string()
     .required("Mô tả không được để trống !")
-    .min(6, "Mô tả ít nhất bao gồm 10 kí tự !")
-    .max(600, "Mô tả nhiều nhất bao gồm 500 kí tự !"),
+    .min(6, "Mô tả ít nhất bao gồm 6 kí tự !")
+    .max(2000, "Mô tả nhiều nhất bao gồm 2000 kí tự !"),
   movieRating: yup.string().required("Đánh giá không được để trống !"),
   movieUrlTrailer: yup
     .string()

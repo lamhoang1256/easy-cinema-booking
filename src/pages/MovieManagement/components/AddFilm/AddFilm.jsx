@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { Controller } from "react-hook-form";
 // components
@@ -11,13 +11,10 @@ import { moviesApi } from "apis/moviesApi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupFilm } from "constants/schemaYupFilm";
-// import "./editFilm.scss";
 import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 
 const AddFilm = () => {
-  // const { "5397" } = useParams();
   const { TextArea } = Input;
-
   const [movieThumbnail, setMovieThumbnail] = useState(null);
   const [movieThumbPreviewUrl, setMovieThumbPreviewUrl] = useState(null);
   const [movieOpenday, setMovieOpenday] = useState(null);
@@ -75,14 +72,13 @@ const AddFilm = () => {
         console.log(error?.response?.data?.content);
       }
     };
-
     addNewMovie(formData);
   };
 
   return (
     <>
       <div>
-        <h2>Chỉnh sửa thông tin phim</h2>
+        <h2>Thêm phim mới</h2>
         <form className='edit-film' onSubmit={handleSubmit(handleAddMovie)}>
           <AddFilmGroup label='Mã phim'>
             <p>123</p>

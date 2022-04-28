@@ -47,4 +47,10 @@ export const moviesApi = {
     const path = `/QuanLyPhim/ThemPhimUploadHinh`;
     return axiosClient.post(path, requestNewMovie);
   },
+
+  // xóa phim
+  deleteMovieApi: (movieCode) => {
+    const path = `/QuanLyPhim/XP?MaPhim=${movieCode}`;
+    return axiosClient.delete(path);
+  },
 };
