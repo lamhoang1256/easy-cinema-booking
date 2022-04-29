@@ -41,7 +41,7 @@ export const Home = () => {
   // lấy dữ liệu cụm rạp (lịch chiếu phim)
   const fetchCalendarShowtime = async () => {
     try {
-      const { data } = await moviesApi.getCinemaApi("01");
+      const { data } = await moviesApi.getCinemaApi("05");
       setShowtimeList(data.content);
     } catch (error) {
       console.log(error);

@@ -1,0 +1,19 @@
+.cinema-group {
+  &-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  &-field {
+    .ant-picker {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+  &-price {
+    padding: 12px 10px;
+    width: 100%;
+    border: 1px solid #dbdbdb;
+  }
+}

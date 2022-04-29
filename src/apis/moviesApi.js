@@ -42,6 +42,11 @@ export const moviesApi = {
     return axiosClient.get(path);
   },
 
+  createShowtime: (requestAddShowtime) => {
+    const path = `/QuanLyDatVe/TaoLichChieu`;
+    return axiosClient.post(path, requestAddShowtime);
+  },
+
   // chỉnh sửa thông tin phim
   editMovieApi: (requestMovieEdit) => {
     const path = `/QuanLyPhim/CapNhatPhimUpload`;
