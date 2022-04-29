@@ -1,47 +1,35 @@
-import { moviesApi } from "apis/moviesApi";
-import moment from "moment";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { DatePicker } from "antd";
-import { Modal, Button } from "antd";
-import { Table } from "antd";
-import "./cinemaGroup.scss";
+import moment from "moment";
+import { DatePicker, Modal, Table } from "antd";
 import { sweetAlert } from "utilities/sweetAlert";
-
-// {
-//   "maPhim": 0,
-//   "ngayChieuGioChieu": "string",
-//   "maRap": "string",
-//   "giaVe": 0
-// }
+import { moviesApi } from "apis/moviesApi";
+import { createKeyForObj } from "utilities/createKeyForObject";
+import "./cinemaGroup.scss";
 
 const CinemaGroup = () => {
-  const { cinemaSystemId } = useParams();
-  const cinemaSystemIdArray = cinemaSystemId?.split("-");
-  const cinemaName = cinemaSystemIdArray.join("-");
-  const cinemaSystemID = cinemaSystemIdArray.shift();
-
+  const { cinemaSystem, cinemaName } = useParams(); // cgv/cgv-hoang-van-thu
   const [isLoading, setIsLoading] = useState(true);
-  const [cinemaGroup, setCinemaGroup] = useState();
-  const [cinemaInfo, setCinemaInfo] = useState();
-  const [movieList, setMovieList] = useState(null);
 
+  const [movieList, setMovieList] = useState([]);
+  const [cinemaGroup, setCinemaGroup] = useState([]);
+  const [idCinema, setIdCinema] = useState("");
+  const [cinemaInfo, setCinemaInfo] = useState({});
+
+  // dropdown select film
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [visibility, setVisibility] = useState(false);
   const [selectedFilm, setSelectedFilm] = useState({ tenPhim: "" });
-  const [filmOpenday, setFilmOpenday] = useState();
-  const [filmOpendayTime, setFilmOpendayTime] = useState();
-  const [idCinema, setIdCinema] = useState();
-  const [priceTicket, setPriceTicket] = useState();
 
-  const showModal = (idCinema) => {
+  const [filmOpenday, setFilmOpenday] = useState("");
+  const [filmOpendayTime, setFilmOpendayTime] = useState("");
+  const [priceTicket, setPriceTicket] = useState("");
+
+  const onShowModal = (idCinema) => {
     setIdCinema(idCinema);
     setIsModalVisible(true);
   };
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-  const handleCancel = () => {
+  const onCancelModal = () => {
     setIsModalVisible(false);
   };
 
@@ -56,7 +44,6 @@ const CinemaGroup = () => {
     }
     setFilmOpenday(moment(date).format("DD/MM/YYYY"));
   };
-
   const onChangeTimePicker = (time) => {
     if (!time) {
       setFilmOpendayTime("");
@@ -64,20 +51,6 @@ const CinemaGroup = () => {
     }
     setFilmOpendayTime(moment(time).format("hh:mm:ss"));
   };
-
-  // giaVe: "130000"
-  // gioChieu: "2022-04-29T06:13:13.792Z"
-  // maCumRap: "megags-cao-thang"
-  // maPhim: 1855
-  // maRap: 903
-  // ngayChieu: "2022-04-13T08:15:53.320Z"
-  // ngayChieuGioChieu: "13/04/2022 01:13:13"
-  // tenRap: "Rạp 3"
-
-  // maPhim	integer($int32)
-  // ngayChieuGioChieu	string
-  // maRap	string
-  // giaVe	number($double)
 
   const handleAddShowtime = () => {
     if (!selectedFilm.maPhim || !filmOpenday || !filmOpendayTime || !priceTicket) {
@@ -87,16 +60,13 @@ const CinemaGroup = () => {
     const requestAddShowtime = {
       maPhim: selectedFilm.maPhim,
       ngayChieuGioChieu: `${filmOpenday} ${filmOpendayTime}`,
-      maRap: cinemaSystemId,
+      maRap: cinemaName,
       giaVe: priceTicket,
     };
-    console.log(requestAddShowtime);
-
-    const addShowtime = async () => {
+    (async () => {
       try {
-        const res = await moviesApi.createShowtime(requestAddShowtime);
-        console.log(res);
-        if (res.status === 200) {
+        const response = await moviesApi.createShowtime(requestAddShowtime);
+        if (response) {
           sweetAlert(
             "success",
             "Thêm lịch chiếu thành công!",
@@ -104,13 +74,9 @@ const CinemaGroup = () => {
           );
         }
       } catch (error) {
-        console.log(error);
-        console.log(error?.response?.data?.content);
         sweetAlert("error", "Thêm lịch chiếu thất bại!", error?.response?.data?.content);
       }
-    };
-
-    addShowtime();
+    })();
   };
 
   const columns = [
@@ -128,7 +94,7 @@ const CinemaGroup = () => {
       title: "Action",
       dataIndex: "maRap",
       key: "action",
-      render: (maRap) => <button onClick={() => showModal(maRap)}>Thêm lịch chiếu</button>,
+      render: (maRap) => <button onClick={() => onShowModal(maRap)}>Thêm lịch chiếu</button>,
     },
   ];
 
@@ -136,23 +102,17 @@ const CinemaGroup = () => {
     const fetchCinemaGroup = async () => {
       setIsLoading(true);
       try {
-        const { data } = await moviesApi.getCinemaGroupApi(cinemaSystemID);
-        let dataHasKey = data.content.map((item, index) => {
-          return {
-            ...item,
-            key: index,
-          };
-        });
-        const cinema = dataHasKey.filter((cinemaList) => cinemaList.maCumRap == cinemaName);
+        // Eg: get all cinema cgv -> cgv-vincom-thu-duc, cgv-vivocity, ...
+        const { data } = await moviesApi.getCinemaGroupApi(cinemaSystem);
+        const cinemaList = createKeyForObj(data.content);
+        // get cinema has name same cinemaName in url
+        const cinema = cinemaList.filter((cinema) => cinema.maCumRap == cinemaName);
         const { danhSachRap, ...infoCinema } = cinema[0];
         setCinemaInfo(infoCinema);
-        const cinemaHasKey = danhSachRap.map((item, index) => {
-          return { ...item, key: index };
-        });
+        const cinemaHasKey = createKeyForObj(danhSachRap);
         setCinemaGroup(cinemaHasKey);
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
         setIsLoading(false);
       }
     };
@@ -186,8 +146,8 @@ const CinemaGroup = () => {
           <Modal
             title='Basic Modal'
             visible={isModalVisible}
-            onOk={handleOk}
-            onCancel={handleCancel}
+            onCancel={onCancelModal}
+            footer={null}
           >
             <h3>Chọn phim:</h3>
             <div className='filter-menu'>
@@ -206,10 +166,10 @@ const CinemaGroup = () => {
                   </span>
                   <ion-icon name='caret-down-outline'></ion-icon>
                 </div>
-                {/* Danh sách RẠP đang chiếu PHIM vừa chọn */}
+
                 {visibility && (
                   <div className='filter-options'>
-                    {movieList ? (
+                    {movieList.length > 0 ? (
                       <ul>
                         {movieList.map((cinema, id) => (
                           <li
@@ -231,6 +191,7 @@ const CinemaGroup = () => {
                 )}
               </div>
             </div>
+
             <div className='cinema-group-list'>
               <CinemaGroupField label='Chọn ngày'>
                 <DatePicker onChange={onChangeDatePicker} format='DD/MM/YYYY' />
@@ -262,7 +223,6 @@ const CinemaGroup = () => {
     </>
   );
 };
-// getCinemaGroupApi
 export default CinemaGroup;
 
 const CinemaGroupField = ({ label, children }) => (

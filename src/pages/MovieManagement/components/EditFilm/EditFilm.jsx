@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import moment from "moment";
 import { Controller } from "react-hook-form";
 // components
@@ -7,13 +8,12 @@ import { Switch } from "antd";
 import { DatePicker } from "antd";
 import InputText from "components/Input/InputText";
 import { moviesApi } from "apis/moviesApi";
+import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupFilm } from "constants/schemaYupFilm";
 import "./editFilm.scss";
-import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
-import { useParams } from "react-router-dom";
 import { sweetAlert } from "utilities/sweetAlert";
 
 const EditFilm = () => {
@@ -45,7 +45,6 @@ const EditFilm = () => {
   const onUploadThumbnail = (e) => {
     let file = e.target.files[0];
     setMovieThumbnail(file);
-
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
@@ -71,8 +70,6 @@ const EditFilm = () => {
       danhGia: data.movieRating * 2,
       hinhAnh: movieThumbnail,
     };
-
-    console.log(requestEditMovie.ngayKhoiChieu);
     let formData = new FormData();
     for (var key in requestEditMovie) {
       if (key !== "hinhAnh") {
@@ -83,24 +80,20 @@ const EditFilm = () => {
         }
       }
     }
-
-    const editMovie = async (formData) => {
+    (async () => {
       try {
-        const res = await moviesApi.editMovieApi(formData);
-        if (res.status === 200) {
+        const response = await moviesApi.editMovieApi(formData);
+        if (response) {
           sweetAlert(
             "success",
-            "Cập nhật phim thành công",
+            "Cập nhật phim thành công!",
             "Bạn đã sửa thành công thông tin phim!"
           );
         }
       } catch (error) {
-        console.log(error);
-        console.log(error?.response?.data?.content);
+        sweetAlert("error", "Cập nhật phim thất bại!", error?.response?.data?.content);
       }
-    };
-
-    editMovie(formData);
+    })();
   };
 
   useEffect(() => {

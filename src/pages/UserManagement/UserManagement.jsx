@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Table, Tag } from "antd";
-import { usersApi } from "apis/usersApi";
-import Swal from "sweetalert2";
 import ModalEditUser from "./components/ModalEditUser";
+import { usersApi } from "apis/usersApi";
+import { sweetAlert } from "utilities/sweetAlert";
+import { createKeyForObj } from "utilities/createKeyForObject";
 
 export const UserManagement = () => {
   const [userList, setUserList] = useState(null);
   const [isShowModalEdit, setIsShowModalEdit] = useState(false);
   const [usernameEdit, setUsernameEdit] = useState(null);
 
-  const showModalEdit = async (username) => {
+  const showModalEdit = (username) => {
     setUsernameEdit(username);
     setIsShowModalEdit(true);
   };
@@ -18,10 +19,8 @@ export const UserManagement = () => {
   const fetchUserList = async () => {
     try {
       const { data } = await usersApi.getUserListApi();
-      const dataHasKey = data.content.map(function (item, index) {
-        return { ...item, key: index };
-      });
-      setUserList(dataHasKey);
+      const userListHasKey = createKeyForObj(data.content);
+      setUserList(userListHasKey);
     } catch (error) {
       console.log(error);
     }
@@ -35,10 +34,8 @@ export const UserManagement = () => {
     const fetchSearchedUser = async () => {
       try {
         const { data } = await usersApi.searchUserApi(username);
-        const dataHasKey = data.content.map(function (item, index) {
-          return { ...item, key: index };
-        });
-        setUserList(dataHasKey);
+        const userListSearch = createKeyForObj(data.content);
+        setUserList(userListSearch);
       } catch (error) {
         console.log(error);
       }
@@ -49,23 +46,16 @@ export const UserManagement = () => {
   const handleDeleteUser = async (username) => {
     try {
       const response = await usersApi.deleteUserApi(username);
-      if (response.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Xóa người dùng thành công",
-          text: `Bạn đã xóa thành công tài khoản có tên ${username}!`,
-          confirmButtonColor: "#d33",
-        });
+      if (response) {
+        sweetAlert(
+          "success",
+          "Xóa người dùng thành công!",
+          `Bạn đã xóa thành công tài khoản có tên ${username}!`
+        );
         fetchUserList();
-        return;
       }
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Xóa người dùng thất bại",
-        text: error.response?.data?.content,
-        confirmButtonColor: "#d33",
-      });
+      sweetAlert("error", "Xóa người dùng thất bại!", error.response?.data?.content);
     }
   };
 
@@ -143,7 +133,7 @@ export const UserManagement = () => {
         />
       </div>
       <Table columns={columns} dataSource={userList} />
-      {/* modal edit user */}
+
       <ModalEditUser
         usernameEdit={usernameEdit}
         isShowModalEdit={isShowModalEdit}

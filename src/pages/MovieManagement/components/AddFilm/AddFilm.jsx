@@ -6,19 +6,19 @@ import { Input } from "antd";
 import { Switch } from "antd";
 import { DatePicker } from "antd";
 import InputText from "components/Input/InputText";
-import { moviesApi } from "apis/moviesApi";
+import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupFilm } from "constants/schemaYupFilm";
-import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import { moviesApi } from "apis/moviesApi";
 import { sweetAlert } from "utilities/sweetAlert";
 
 const AddFilm = () => {
   const { TextArea } = Input;
-  const [movieThumbnail, setMovieThumbnail] = useState(null);
-  const [movieThumbPreviewUrl, setMovieThumbPreviewUrl] = useState(null);
-  const [movieOpenday, setMovieOpenday] = useState(null);
+  const [movieThumbnail, setMovieThumbnail] = useState("");
+  const [movieThumbPreviewUrl, setMovieThumbPreviewUrl] = useState("");
+  const [movieOpenday, setMovieOpenday] = useState("");
   const {
     handleSubmit,
     control,
@@ -64,19 +64,17 @@ const AddFilm = () => {
       }
     }
 
-    const addNewMovie = async (formData) => {
+    (async () => {
       try {
         const res = await moviesApi.addNewMovieApi(formData);
         if (res.status === 200) {
-          sweetAlert("success", "Thêm mới phim thành công", "Bạn đã thêm mới phim thành công!");
+          sweetAlert("success", "Thêm mới phim thành công!", "Bạn đã thêm mới phim thành công!");
         }
         console.log(res);
       } catch (error) {
-        console.log(error);
-        console.log(error?.response?.data?.content);
+        sweetAlert("error", "Thêm mới phim thất bại!", error?.response?.data?.content);
       }
-    };
-    addNewMovie(formData);
+    })();
   };
 
   return (
@@ -191,6 +189,7 @@ const AddFilm = () => {
     </>
   );
 };
+export default AddFilm;
 
 const AddFilmGroup = ({ label, children }) => (
   <div className='edit-film-group'>
@@ -198,8 +197,6 @@ const AddFilmGroup = ({ label, children }) => (
     {children}
   </div>
 );
-
-export default AddFilm;
 
 // biDanh: "wanted-2"
 // dangChieu: true

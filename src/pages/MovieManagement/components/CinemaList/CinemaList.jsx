@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { moviesApi } from "apis/moviesApi";
 import "./cinemaList.scss";
 import { Link } from "react-router-dom";
+import { createKeyForObj } from "utilities/createKeyForObject";
 
 const menu = <Menu items={[{ label: "Action 1" }, { label: "Action 2" }]} />;
 // logo: "https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
@@ -14,15 +15,14 @@ const menu = <Menu items={[{ label: "Action 1" }, { label: "Action 2" }]} />;
 const CinemaList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [cinemaList, setCinemaList] = useState();
+
   useEffect(() => {
     const fetchCinemaList = async () => {
       setIsLoading(true);
       try {
         const { data } = await moviesApi.getCinemaApi("00");
-        const dataHasKey = data.content.map((cinema, index) => {
-          return { ...cinema, key: index };
-        });
-        setCinemaList(dataHasKey);
+        const cinemaListHasKey = createKeyForObj(data.content);
+        setCinemaList(cinemaListHasKey);
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -34,9 +34,9 @@ const CinemaList = () => {
   }, []);
 
   const expandedRowRender = (row) => {
-    console.log(row.lstCumRap);
+    // console.log(row);
     const cinemaHasKey = row.lstCumRap.map((cinema, index) => {
-      return { ...cinema, key: index };
+      return { ...cinema, key: index, maHeThongRap: row.maHeThongRap };
     });
 
     // danhSachPhim: (11) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
@@ -52,11 +52,14 @@ const CinemaList = () => {
         title: "Action",
         dataIndex: "maCumRap",
         key: "maCumRap",
-        render: (maCumRap) => (
-          <Link to={`/admin/cinema-group/${maCumRap}`}>
-            <button>Thêm lịch chiếu</button> ,
-          </Link>
-        ),
+        render: (maCumRap, getRow) => {
+          // console.log(maCumRap, tenCumRap);
+          return (
+            <Link to={`/admin/cinema-group/${getRow.maHeThongRap}/${maCumRap}`}>
+              <button>Thêm lịch chiếu</button> ,
+            </Link>
+          );
+        },
       },
     ];
 
@@ -84,19 +87,6 @@ const CinemaList = () => {
     { title: "Mã nhóm", dataIndex: "mahom", key: "codeGroup" },
     { title: "Trạng thái rạp", key: "operation", render: () => <p>Đang mở</p> },
   ];
-
-  const data = [];
-  for (let i = 0; i < 3; ++i) {
-    data.push({
-      key: i,
-      name: "Screem",
-      platform: "iOS",
-      version: "10.3.4.5654",
-      upgradeNum: 500,
-      creator: "Jack",
-      createdAt: "2014-12-24 23:12:00",
-    });
-  }
 
   return (
     <>

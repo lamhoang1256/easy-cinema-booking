@@ -42,7 +42,7 @@ function App() {
           <Route path='edit-film/:idMovieEdit' element={<EditFilm />} />
           <Route path='add-film' element={<AddFilm />} />
           <Route path='list-cinema' element={<CinemaList />} />
-          <Route path='cinema-group/:cinemaSystemId' element={<CinemaGroup />} />
+          <Route path='cinema-group/:cinemaSystem/:cinemaName' element={<CinemaGroup />} />
         </Route>
         {/* Auth Layout */}
         <Route path='/auth' element={<AuthLayout />}>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Table } from "antd";
-import "./movieManagement.scss";
-import { moviesApi } from "apis/moviesApi";
-import { formatLocaleDateString } from "utilities/formatDate";
 import { Link } from "react-router-dom";
-import { sweetAlert } from "utilities/sweetAlert";
+import { Table } from "antd";
 import Swal from "sweetalert2";
+import { moviesApi } from "apis/moviesApi";
+import { createKeyForObj } from "utilities/createKeyForObject";
+import { formatLocaleDateString } from "utilities/formatDate";
+import "./movieManagement.scss";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
@@ -15,14 +15,11 @@ const MovieManagement = () => {
     setIsLoading(true);
     try {
       const { data } = await moviesApi.getMovieListApi("00");
-      const dataHasKey = data.content.map((item, index) => {
-        return { ...item, key: index };
-      });
-      setMovieList(dataHasKey);
+      const movieListHasKey = createKeyForObj(data.content);
+      setMovieList(movieListHasKey);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
     }
   };
 
@@ -31,7 +28,6 @@ const MovieManagement = () => {
   }, []);
 
   const handleDeleteMovie = (idMovie) => {
-    console.log(idMovie);
     Swal.fire({
       title: "Xóa phim?",
       text: "Bạn có chắc chắc muốn xóa phim này!",
@@ -44,14 +40,13 @@ const MovieManagement = () => {
       if (result.isConfirmed) {
         const deleteMovie = async (idMovie) => {
           try {
-            // const { data } = await moviesApi.deleteMovieApi(idMovie);
-            const { data } = await moviesApi.deleteMovieApi(idMovie);
-            console.log(data);
-            Swal.fire("Xóa thành công!", "Phim bạn chọn đã được xóa.", "success");
-            fetchMovieList();
+            const response = await moviesApi.deleteMovieApi(idMovie);
+            if (response) {
+              Swal.fire("Xóa thành công!", "Phim bạn chọn đã được xóa.", "success");
+              fetchMovieList();
+            }
           } catch (error) {
             Swal.fire("Xóa thất bại!", error?.response?.data?.content, "error");
-            console.log(error?.response?.data?.content);
           }
         };
         deleteMovie(idMovie);
