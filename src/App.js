@@ -16,12 +16,12 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import "antd/dist/antd.css";
 import "./assets/scss/app.scss";
-import { UserManagement } from "pages/UserManagement/UserManagement";
-import MovieManagement from "pages/MovieManagement/MovieManagement";
-import EditFilm from "pages/MovieManagement/components/EditFilm/EditFilm";
-import AddFilm from "pages/MovieManagement/components/AddFilm/AddFilm";
-import CinemaList from "pages/MovieManagement/components/CinemaList/CinemaList";
-import CinemaGroup from "pages/MovieManagement/components/CinemaGroup/CinemaGroup";
+import UserManage from "pages/UserManage/UserManage";
+import MovieManage from "pages/MovieManage/MovieManage";
+import EditFilm from "pages/MovieManage/components/EditFilm/EditFilm";
+import AddFilm from "pages/MovieManage/components/AddFilm/AddFilm";
+import CinemaList from "pages/MovieManage/components/CinemaList/CinemaList";
+import CinemaGroup from "pages/MovieManage/components/CinemaGroup/CinemaGroup";
 
 function App() {
   return (
@@ -37,12 +37,17 @@ function App() {
         </Route>
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}>
-          <Route path='user-management' element={<UserManagement />} />
-          <Route path='movie-management' element={<MovieManagement />} />
-          <Route path='edit-film/:idMovieEdit' element={<EditFilm />} />
-          <Route path='add-film' element={<AddFilm />} />
-          <Route path='list-cinema' element={<CinemaList />} />
-          <Route path='cinema-group/:cinemaSystem/:cinemaName' element={<CinemaGroup />} />
+          <Route path='user-manage' element={<UserManage />} />
+          <Route path='movie-manage'>
+            <Route index element={<MovieManage />} />
+            <Route path='edit-film/:idMovieEdit' element={<EditFilm />} />
+            <Route path='add-film' element={<AddFilm />} />
+          </Route>
+
+          <Route path='cinema-manage'>
+            <Route index element={<CinemaList />} />
+            <Route path=':cinemaSystem/:cinemaName' element={<CinemaGroup />} />
+          </Route>
         </Route>
         {/* Auth Layout */}
         <Route path='/auth' element={<AuthLayout />}>

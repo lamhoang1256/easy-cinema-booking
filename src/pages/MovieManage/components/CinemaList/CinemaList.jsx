@@ -1,17 +1,10 @@
-import { Table, Badge, Menu, Dropdown, Space } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { moviesApi } from "apis/moviesApi";
-import "./cinemaList.scss";
 import { Link } from "react-router-dom";
+import { Table } from "antd";
+import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
+import "./cinemaList.scss";
 
-const menu = <Menu items={[{ label: "Action 1" }, { label: "Action 2" }]} />;
-// logo: "https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
-// lstCumRap: (5) [{…}, {…}, {…}, {…}, {…}]
-// maHeThongRap: "BHDStar"
-// mahom: "GP00"
-// tenHeThongRap: "BHD Star Cineplex"
 const CinemaList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [cinemaList, setCinemaList] = useState();
@@ -34,16 +27,10 @@ const CinemaList = () => {
   }, []);
 
   const expandedRowRender = (row) => {
-    // console.log(row);
     const cinemaHasKey = row.lstCumRap.map((cinema, index) => {
       return { ...cinema, key: index, maHeThongRap: row.maHeThongRap };
     });
 
-    // danhSachPhim: (11) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-    // diaChi: "L5-Vincom 3/2, 3C Đường 3/2, Q.10"
-    // hinhAnh: "https://s3img.vcdn.vn/123phim/2021/01/bhd-star-bitexco-16105952137769.png"
-    // maCumRap: "bhd-star-cineplex-3-2"
-    // tenCumRap: "BHD Star Cineplex - 3/2"
     const columns = [
       { title: "Mã rạp ", dataIndex: "maCumRap", key: "maCumRap" },
       { title: "Tên rạp", dataIndex: "tenCumRap", key: "tenCumRap" },
@@ -53,24 +40,17 @@ const CinemaList = () => {
         dataIndex: "maCumRap",
         key: "maCumRap",
         render: (maCumRap, getRow) => {
-          // console.log(maCumRap, tenCumRap);
           return (
-            <Link to={`/admin/cinema-group/${getRow.maHeThongRap}/${maCumRap}`}>
+            <Link to={`/admin/cinema-manage/${getRow.maHeThongRap.toLowerCase()}/${maCumRap}`}>
               <button>Thêm lịch chiếu</button> ,
             </Link>
           );
         },
       },
     ];
-
-    // console.log(cinemaList.lstCumRap);
     return <Table columns={columns} dataSource={cinemaHasKey} pagination={false} />;
   };
-  // logo: "https://movienew.cybersoft.edu.vn/hinhanh/bhd-star-cineplex.png"
-  // lstCumRap: (5) [{…}, {…}, {…}, {…}, {…}]
-  // maHeThongRap: "BHDStar"
-  // mahom: "GP00"
-  // tenHeThongRap: "BHD Star Cineplex"
+
   const columns = [
     {
       title: "Mã hệ thống rạp",

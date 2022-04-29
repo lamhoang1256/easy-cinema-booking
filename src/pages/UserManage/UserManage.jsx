@@ -5,7 +5,7 @@ import { usersApi } from "apis/usersApi";
 import { sweetAlert } from "utilities/sweetAlert";
 import { createKeyForObj } from "utilities/createKeyForObject";
 
-export const UserManagement = () => {
+const UserManage = () => {
   const [userList, setUserList] = useState(null);
   const [isShowModalEdit, setIsShowModalEdit] = useState(false);
   const [usernameEdit, setUsernameEdit] = useState(null);
@@ -143,3 +143,5 @@ export const UserManagement = () => {
     </>
   );
 };
+
+export default UserManage;

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
 import { formatLocaleDateString } from "utilities/formatDate";
-import "./movieManagement.scss";
+import "./movieManage.scss";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
@@ -115,7 +115,7 @@ const MovieManagement = () => {
       fixed: "right",
       render: (id) => (
         <>
-          <Link to={`/admin/edit-film/${id}`}>
+          <Link to={`/admin/movie-manage/edit-film/${id}`}>
             <button>Sửa</button>
           </Link>
           <button onClick={() => handleDeleteMovie(id)}>Xóa</button>

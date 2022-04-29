@@ -1,29 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Collapse } from "antd";
 import "./sidebar.scss";
 
-import { Collapse } from "antd";
-import { Link } from "react-router-dom";
-
 const { Panel } = Collapse;
-
-function callback(key) {
-  console.log(key);
-}
-
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
 export const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebar-container'>
-        <Collapse defaultActiveKey={["1"]} onChange={callback}>
+        <Collapse defaultActiveKey={["1"]}>
           <Panel header='Quản lí người dùng' key='1'>
             <ul className='sidebar-list'>
-              <Link to='/admin/user-management'>
+              <Link to='/admin/user-manage'>
                 <li className='sidebar-item'>
                   <ion-icon name='film-outline'></ion-icon>Danh sách người dùng
                 </li>
@@ -32,7 +20,7 @@ export const Sidebar = () => {
           </Panel>
           <Panel header='Quản lí phim' key='2'>
             <ul className='sidebar-list'>
-              <Link to='/admin/movie-management'>
+              <Link to='/admin/movie-manage'>
                 <li className='sidebar-item'>
                   <ion-icon name='film-outline'></ion-icon>Danh sách phim
                 </li>
@@ -48,9 +36,11 @@ export const Sidebar = () => {
           </Panel>
           <Panel header='Quản lí rạp' key='4'>
             <ul className='sidebar-list'>
-              <li className='sidebar-item'>
-                <ion-icon name='film-outline'></ion-icon>Thông tin cụm rạp
-              </li>
+              <Link to='/admin/cinema-manage'>
+                <li className='sidebar-item'>
+                  <ion-icon name='film-outline'></ion-icon>Tất cả cụm rạp
+                </li>
+              </Link>
               <li className='sidebar-item'>
                 <ion-icon name='people-outline'></ion-icon>Thông tin lịch chiếu
               </li>
@@ -61,23 +51,3 @@ export const Sidebar = () => {
     </div>
   );
 };
-// export const Sidebar = () => {
-//   return (
-//     <div className='sidebar'>
-//       <div className='sidebar-container'>
-//         <div className='sidebar-logo'>CINEPLEX</div>
-// <ul className='sidebar-list'>
-//   <li className='sidebar-item'>
-//     <ion-icon name='film-outline'></ion-icon>Quản lí phim
-//   </li>
-//   <li className='sidebar-item'>
-//     <ion-icon name='people-outline'></ion-icon>Quản lí người dùng
-//   </li>
-//   <li className='sidebar-item'>
-//     <ion-icon name='videocam-outline'></ion-icon>Quản lí rạp
-//   </li>
-// </ul>
-//       </div>
-//     </div>
-//   );
-// };

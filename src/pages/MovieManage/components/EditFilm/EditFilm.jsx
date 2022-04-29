@@ -13,8 +13,8 @@ import MessageErrorValidation from "components/MessageErrorValidation/MessageErr
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupFilm } from "constants/schemaYupFilm";
-import "./editFilm.scss";
 import { sweetAlert } from "utilities/sweetAlert";
+import "./editFilm.scss";
 
 const EditFilm = () => {
   const { idMovieEdit } = useParams();
