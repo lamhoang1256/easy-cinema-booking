@@ -1,0 +1,33 @@
+@use "assets/scss/helpers/index.scss" as *;
+.home {
+  &-tab {
+    padding: 50px 0;
+    // custom for tab antd
+    .ant-tabs-content-holder {
+      margin: 0 auto;
+    }
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .ant-tabs-tab {
+      font-size: 2rem;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn,
+    .ant-tabs-tab:hover {
+      color: $primary-color;
+    }
+    .ant-tabs-ink-bar {
+      background-color: $primary-color;
+    }
+    @include mobile {
+      .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
+        justify-content: unset;
+        overflow: scroll;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+  }
+}

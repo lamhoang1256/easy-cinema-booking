@@ -1,0 +1,82 @@
+@use "assets/scss/helpers/index.scss" as *;
+$bg-color: #f2f6f9;
+$active-color: #25be64;
+$inactive-color: #dadde4;
+$new-color: #febf02;
+$text-color: #141a4e;
+$table-bg-color: #fefefe;
+$table-head-bg-color: #e1e8f2;
+$table-border-color: #edeef2;
+$hover-bg-color: #fb4f83;
+$hover-text-color: #ffffff;
+
+.movie-history {
+  margin-top: 30px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid $table-border-color;
+}
+.movie-history-table {
+  border-radius: 10px;
+  background-color: $table-bg-color;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.02);
+  width: 100%;
+}
+
+.movie-history-head .movie-history-row {
+  background-color: $table-head-bg-color;
+  font-weight: 500;
+}
+.movie-history-row {
+  display: grid;
+  border-bottom: 1px solid $table-border-color;
+  padding: 0 1.5rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr 1fr 1.5fr;
+
+  th,
+  td {
+    padding: 1rem;
+    @include flexbox(center, center);
+    min-width: 150px;
+  }
+}
+
+.movie-history-thumb {
+  @include size(80px);
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.movie-history-body {
+  .movie-history-row {
+    transition: 0.1s linear;
+    transition-property: color, background;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      color: $hover-text-color;
+      background-color: $hover-bg-color;
+    }
+  }
+}
+
+.movie-history-chairs {
+  overflow-x: auto;
+  span {
+    padding: 0 5px;
+  }
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: 100px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #edeef2;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #66cec4;
+  }
+}

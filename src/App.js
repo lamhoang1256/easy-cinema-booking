@@ -2,26 +2,26 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AdminLayout } from "./layouts/AdminLayout/AdminLayout";
 import { AuthLayout } from "./layouts/AuthLayout/AuthLayout";
 import { MainLayout } from "./layouts/MainLayout/MainLayout";
-import { Home } from "./pages/Home/Home";
-import { MovieDetail } from "./pages/MovieDetail/MovieDetail";
-import { UserInfo } from "./pages/UserInfo/UserInfo";
-import { NewsDetail } from "./pages/NewsDetail/NewsDetail";
-import { MovieTicketRoom } from "./pages/MovieTicketRoom/MovieTicketRoom";
-import { Login } from "./pages/Login/Login";
-import { Register } from "pages/Register/Register";
-import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
+import { Home } from "./pages/Public/Home/Home";
+import { MovieDetail } from "./pages/Public/MovieDetail/MovieDetail";
+import { UserInfo } from "./pages/Public/UserInfo/UserInfo";
+import { NewsDetail } from "./pages/Public/NewsDetail/NewsDetail";
+import { MovieTicketRoom } from "./pages/Public/MovieTicketRoom/MovieTicketRoom";
+import { Login } from "./pages/Public/Login/Login";
+import { Register } from "pages/Public/Register/Register";
+import { PageNotFound } from "./pages/Public/PageNotFound/PageNotFound";
+import UserManage from "pages/Admin/UserManage/UserManage";
+import MovieManage from "pages/Admin/MovieManage/MovieManage";
+import EditFilm from "pages/Admin/MovieManage/components/EditFilm/EditFilm";
+import AddFilm from "pages/Admin/MovieManage/components/AddFilm/AddFilm";
+import CinemaManage from "pages/Admin/CinemaManage/CinemaManage";
+import CinemaGroup from "pages/Admin/CinemaManage/components/CinemaGroup/CinemaGroup";
 // style css
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import "antd/dist/antd.css";
 import "./assets/scss/app.scss";
-import UserManage from "pages/UserManage/UserManage";
-import MovieManage from "pages/MovieManage/MovieManage";
-import EditFilm from "pages/MovieManage/components/EditFilm/EditFilm";
-import AddFilm from "pages/MovieManage/components/AddFilm/AddFilm";
-import CinemaList from "pages/MovieManage/components/CinemaList/CinemaList";
-import CinemaGroup from "pages/MovieManage/components/CinemaGroup/CinemaGroup";
 
 function App() {
   return (
@@ -45,7 +45,7 @@ function App() {
           </Route>
 
           <Route path='cinema-manage'>
-            <Route index element={<CinemaList />} />
+            <Route index element={<CinemaManage />} />
             <Route path=':cinemaSystem/:cinemaName' element={<CinemaGroup />} />
           </Route>
         </Route>
