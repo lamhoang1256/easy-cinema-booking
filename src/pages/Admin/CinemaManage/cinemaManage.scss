@@ -1,3 +1,4 @@
+@use "assets/scss/helpers/index.scss" as *;
 .cinema-list-logo {
   width: 40px;
   height: 40px;
@@ -6,4 +7,22 @@
   width: 30px;
   height: 30px;
   border-radius: 100rem;
+}
+.cinema-manage {
+  &-address {
+    width: 350px;
+    @include textClamp(1);
+  }
+  .ant-table-tbody > tr > td > .ant-table-wrapper:only-child .ant-table,
+  .ant-table-tbody
+    > tr
+    > td
+    > .ant-table-expanded-row-fixed
+    > .ant-table-wrapper:only-child
+    .ant-table {
+    margin: 0;
+  }
+  .ant-table-expanded-row.ant-table-expanded-row-level-1 th.ant-table-cell {
+    background-color: #fb4f83;
+  }
 }

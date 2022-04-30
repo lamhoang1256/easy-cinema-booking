@@ -12,6 +12,14 @@
     background-color: $primary-color;
     color: #fff;
   }
+  &--warning {
+    background-color: #ffc107;
+    color: #fff;
+  }
+  &--info {
+    background-color: #0069d9;
+    color: #fff;
+  }
   &:hover {
     opacity: 0.9;
   }

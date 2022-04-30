@@ -34,7 +34,12 @@ const CinemaManage = () => {
     const columns = [
       { title: "Mã rạp ", dataIndex: "maCumRap", key: "maCumRap" },
       { title: "Tên rạp", dataIndex: "tenCumRap", key: "tenCumRap" },
-      { title: "Địa chỉ rạp", dataIndex: "diaChi", key: "diaChi" },
+      {
+        title: "Địa chỉ rạp",
+        dataIndex: "diaChi",
+        key: "diaChi",
+        render: (diaChi) => <p className='cinema-manage-address'>{diaChi}</p>,
+      },
       {
         title: "Action",
         dataIndex: "maCumRap",
@@ -42,7 +47,7 @@ const CinemaManage = () => {
         render: (maCumRap, getRow) => {
           return (
             <Link to={`/admin/cinema-manage/${getRow.maHeThongRap.toLowerCase()}/${maCumRap}`}>
-              <button>Thêm lịch chiếu</button> ,
+              <button className='btn btn--info'>Thêm lịch chiếu</button>
             </Link>
           );
         },
@@ -69,7 +74,7 @@ const CinemaManage = () => {
   ];
 
   return (
-    <>
+    <div className='cinema-manage'>
       {isLoading && "Loading"}
       {!isLoading && (
         <Table
@@ -79,7 +84,7 @@ const CinemaManage = () => {
           dataSource={cinemaList}
         />
       )}
-    </>
+    </div>
   );
 };
 

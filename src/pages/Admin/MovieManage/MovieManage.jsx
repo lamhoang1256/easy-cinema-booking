@@ -73,21 +73,21 @@ const MovieManagement = () => {
       title: "Mô tả",
       dataIndex: "moTa",
       key: "desc",
-      width: 300,
-      render: (desc) => <p className='movie-management-desc'>{desc}</p>,
+      width: 340,
+      render: (desc) => <p className='movie-manage-desc'>{desc}</p>,
     },
     {
       title: "Hình ảnh",
       dataIndex: "hinhAnh",
       key: "img",
       width: 140,
-      render: (img) => <img className='movie-management-thumb' src={img} />,
+      render: (img) => <img className='movie-manage-thumb' src={img} />,
     },
     {
       title: "Trailer",
       dataIndex: "trailer",
       key: "trailer",
-      width: 130,
+      width: 150,
       render: (urlTrailer) => (
         <a className='text-center' href={urlTrailer}>
           {urlTrailer}
@@ -114,22 +114,29 @@ const MovieManagement = () => {
       key: "operation",
       fixed: "right",
       render: (id) => (
-        <>
+        <div className='movie-manage-action'>
           <Link to={`/admin/movie-manage/edit-film/${id}`}>
-            <button>Sửa</button>
+            <button className='btn btn--warning'>Sửa</button>
           </Link>
-          <button onClick={() => handleDeleteMovie(id)}>Xóa</button>
-          <button>Lịch chiếu</button>
-        </>
+          <button className='btn btn--primary' onClick={() => handleDeleteMovie(id)}>
+            Xóa
+          </button>
+          <button className='btn btn--info'>Lịch chiếu</button>
+        </div>
       ),
     },
   ];
 
   return (
-    <div className='movie-management'>
+    <div className='movie-manage'>
       {isLoading && "Loading"}
       {!isLoading && (
         <>
+          <Link to='/admin/movie-manage/add-film'>
+            <button className='btn btn--info btn-add-film'>
+              <ion-icon name='add-outline'></ion-icon> Thêm phim mới
+            </button>
+          </Link>
           <Table columns={columns} dataSource={movieList} scroll={{ x: 1300 }} sticky />
         </>
       )}

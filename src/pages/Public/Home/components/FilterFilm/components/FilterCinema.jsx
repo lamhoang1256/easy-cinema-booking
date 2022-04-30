@@ -1,3 +1,4 @@
+import { Filter } from "components/Filter/Filter";
 import React, { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOpendayListToSearch } from "redux/actions/movie/movieFilter.action";
@@ -6,7 +7,7 @@ import "./filter.scss";
 export const FilterCinema = () => {
   const dispatch = useDispatch();
   const { cinemaList } = useSelector((state) => state.movieFilter);
-  const [visibility, setVisibility] = useState(false);
+  // const [visibility, setVisibility] = useState(false);
   const [selectedCinema, setSelectedCinema] = useState({ tenCumRap: "" });
 
   //lấy toàn bộ các ngày có chiếu phim ở rạp đang chọn
@@ -20,49 +21,76 @@ export const FilterCinema = () => {
   }, [cinemaList]);
 
   return (
-    <div className='filter-menu'>
-      <div
-        className='filter-select'
-        onClick={(e) => {
-          setVisibility(!visibility);
-          e.currentTarget.children[0].children[1].innerHTML = visibility
-            ? "arrow_drop_down"
-            : "arrow_drop_up";
-        }}
-      >
-        <div className='filter-selected-option'>
-          <span title={selectedCinema.tenCumRap === "" ? "Chọn Rạp" : selectedCinema.tenCumRap}>
-            {selectedCinema.tenCumRap === "" ? "Chọn Rạp" : selectedCinema.tenCumRap}
-          </span>
-          <ion-icon name='caret-down-outline'></ion-icon>
-        </div>
-        {/* Danh sách RẠP đang chiếu PHIM vừa chọn */}
-        {visibility && (
-          <div className='filter-options'>
-            {cinemaList ? (
-              <ul>
-                {cinemaList.heThongRapChieu.map((cinemaGroup, index) => (
-                  <Fragment key={index}>
-                    {cinemaGroup.cumRapChieu.map((cinema, id) => (
-                      <li
-                        key={id}
-                        className={selectedCinema === cinema ? "active-option" : null}
-                        onClick={() => handleGetOpendayList(cinema)}
-                      >
-                        {cinema.tenCumRap}
-                      </li>
-                    ))}
-                  </Fragment>
-                ))}
-              </ul>
-            ) : (
-              <ul>
-                <li>Vui lòng chọn phim</li>
-              </ul>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
+    <Filter
+      onChange={handleGetOpendayList}
+      labelNotSelectItem='Chọn Rạp'
+      selectedItem={selectedCinema.tenCumRap}
+    >
+      {cinemaList ? (
+        <ul>
+          {cinemaList.heThongRapChieu.map((cinemaGroup, index) => (
+            <Fragment key={index}>
+              {cinemaGroup.cumRapChieu.map((cinema, id) => (
+                <li
+                  key={id}
+                  className={selectedCinema === cinema ? "active-option" : null}
+                  onClick={() => handleGetOpendayList(cinema)}
+                >
+                  {cinema.tenCumRap}
+                </li>
+              ))}
+            </Fragment>
+          ))}
+        </ul>
+      ) : (
+        <ul>
+          <li>Vui lòng chọn phim</li>
+        </ul>
+      )}
+    </Filter>
+    // <div className='filter-menu'>
+    //   <div
+    //     className='filter-select'
+    //     onClick={(e) => {
+    //       setVisibility(!visibility);
+    //       e.currentTarget.children[0].children[1].innerHTML = visibility
+    //         ? "arrow_drop_down"
+    //         : "arrow_drop_up";
+    //     }}
+    //   >
+    //     <div className='filter-selected-option'>
+    //       <span title={selectedCinema.tenCumRap === "" ? "Chọn Rạp" : selectedCinema.tenCumRap}>
+    //         {selectedCinema.tenCumRap === "" ? "Chọn Rạp" : selectedCinema.tenCumRap}
+    //       </span>
+    //       <ion-icon name='caret-down-outline'></ion-icon>
+    //     </div>
+    //     {/* Danh sách RẠP đang chiếu PHIM vừa chọn */}
+    //     {visibility && (
+    //       <div className='filter-options'>
+    //     {cinemaList ? (
+    //       <ul>
+    //         {cinemaList.heThongRapChieu.map((cinemaGroup, index) => (
+    //           <Fragment key={index}>
+    //             {cinemaGroup.cumRapChieu.map((cinema, id) => (
+    //               <li
+    //                 key={id}
+    //                 className={selectedCinema === cinema ? "active-option" : null}
+    //                 onClick={() => handleGetOpendayList(cinema)}
+    //               >
+    //                 {cinema.tenCumRap}
+    //               </li>
+    //             ))}
+    //           </Fragment>
+    //         ))}
+    //       </ul>
+    //     ) : (
+    //       <ul>
+    //         <li>Vui lòng chọn phim</li>
+    //       </ul>
+    //     )}
+    //   </div>
+    // )}
+    //   </div>
+    // </div>
   );
 };

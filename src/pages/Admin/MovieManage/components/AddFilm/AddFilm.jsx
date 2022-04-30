@@ -83,7 +83,7 @@ const AddFilm = () => {
         <h2>Thêm phim mới</h2>
         <form className='edit-film' onSubmit={handleSubmit(handleAddMovie)}>
           <AddFilmGroup label='Mã phim'>
-            <p>123</p>
+            <p>Tự động thêm mới</p>
           </AddFilmGroup>
 
           <AddFilmGroup label='Ngày khởi chiếu'>

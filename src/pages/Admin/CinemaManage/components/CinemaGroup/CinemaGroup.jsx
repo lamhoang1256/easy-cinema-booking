@@ -94,7 +94,11 @@ const CinemaGroup = () => {
       title: "Action",
       dataIndex: "maRap",
       key: "action",
-      render: (maRap) => <button onClick={() => onShowModal(maRap)}>Thêm lịch chiếu</button>,
+      render: (maRap) => (
+        <button className='btn btn--info' onClick={() => onShowModal(maRap)}>
+          Thêm lịch chiếu
+        </button>
+      ),
     },
   ];
 
@@ -136,15 +140,15 @@ const CinemaGroup = () => {
   }, [movieList]);
 
   return (
-    <>
+    <div className='cinema-group'>
       {isLoading && "Loading"}
       {!isLoading && (
         <>
-          <h2>{cinemaInfo?.tenCumRap}</h2>
-          <p>{cinemaInfo?.diaChi}</p>
-          <Table columns={columns} dataSource={cinemaGroup} />
+          <h2>Cụm rạp: {cinemaInfo?.tenCumRap}</h2>
+          <p>Địa chỉ: {cinemaInfo?.diaChi}</p>
+          <Table columns={columns} dataSource={cinemaGroup} style={{ marginTop: "20px" }} />
           <Modal
-            title='Basic Modal'
+            title='Thêm lịch chiếu mới'
             visible={isModalVisible}
             onCancel={onCancelModal}
             footer={null}
@@ -214,13 +218,17 @@ const CinemaGroup = () => {
                 <p>{idCinema}</p>
               </CinemaGroupField>
             </div>
-            <button className='btn btn--primary' onClick={handleAddShowtime}>
+            <button
+              className='btn btn--primary'
+              onClick={handleAddShowtime}
+              style={{ marginTop: "20px", padding: "14px 20px" }}
+            >
               Thêm lịch chiếu
             </button>
           </Modal>
         </>
       )}
-    </>
+    </div>
   );
 };
 export default CinemaGroup;

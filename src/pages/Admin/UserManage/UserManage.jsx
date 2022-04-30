@@ -4,6 +4,7 @@ import ModalEditUser from "./components/ModalEditUser";
 import { usersApi } from "apis/usersApi";
 import { sweetAlert } from "utilities/sweetAlert";
 import { createKeyForObj } from "utilities/createKeyForObject";
+import "./userManage.scss";
 
 const UserManage = () => {
   const [userList, setUserList] = useState(null);
@@ -85,7 +86,7 @@ const UserManage = () => {
       key: "soDt",
     },
     {
-      title: "Mã loại người dùng",
+      title: "Phân quyền",
       dataIndex: "maLoaiNguoiDung",
       key: "maLoaiNguoiDung",
       render: (maLoaiNguoiDung) => {
@@ -101,12 +102,14 @@ const UserManage = () => {
       dataIndex: "taiKhoan",
       key: "delete",
       render: (taiKhoan) => (
-        <ion-icon
+        <div
+          className='user-manage-delete'
           onClick={() => {
             handleDeleteUser(taiKhoan);
           }}
-          name='trash-outline'
-        ></ion-icon>
+        >
+          <ion-icon name='trash-outline'></ion-icon>
+        </div>
       ),
     },
     {
@@ -114,13 +117,15 @@ const UserManage = () => {
       dataIndex: "taiKhoan",
       key: "edit",
       render: (taiKhoan) => (
-        <ion-icon onClick={() => showModalEdit(taiKhoan)} name='pencil-outline'></ion-icon>
+        <div className='user-manage-edit' onClick={() => showModalEdit(taiKhoan)}>
+          <ion-icon name='create-outline'></ion-icon>
+        </div>
       ),
     },
   ];
 
   return (
-    <>
+    <div className='user-manage'>
       <div className='search-top'>
         <div className='search-top-icon'>
           <ion-icon name='search-outline'></ion-icon>
@@ -140,7 +145,7 @@ const UserManage = () => {
         setIsShowModalEdit={setIsShowModalEdit}
         fetchUserList={fetchUserList}
       />
-    </>
+    </div>
   );
 };
 

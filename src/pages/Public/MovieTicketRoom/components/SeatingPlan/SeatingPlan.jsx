@@ -5,6 +5,7 @@ import "./seatingPlan.scss";
 export const SeatingPlan = ({ danhSachGhe, listSelectingSeat }) => {
   const dispatch = useDispatch();
   const userInfo = localStorage.getItem("userInfo");
+  console.log(userInfo);
 
   //xử lí chọn seat
   const handleSelectChair = (seat) => {
@@ -23,7 +24,9 @@ export const SeatingPlan = ({ danhSachGhe, listSelectingSeat }) => {
           const selected = seat.daDat ? `${baseClass}--selected` : "";
           //seat is bought buy you
           const yourchoice =
-            seat.daDat && seat.taiKhoanNguoiDat === "nguyenlam" ? `${baseClass}--yourchoice` : "";
+            seat.daDat && seat.taiKhoanNguoiDat === userInfo?.taiKhoan
+              ? `${baseClass}--yourchoice`
+              : "";
           //seat is selecting
           const selecting =
             listSelectingSeat.findIndex((c) => c.maGhe === seat.maGhe) === -1

@@ -1,5 +1,5 @@
 @use "assets/scss/helpers/index.scss" as *;
-.movie-management {
+.movie-manage {
   overflow-y: auto;
   &-desc {
     @include textClamp(5);
@@ -9,5 +9,12 @@
     height: 120px;
     object-fit: cover;
     border-radius: 8px;
+  }
+  button.btn {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+  button.btn--primary {
+    background-color: #fb4f83;
   }
 }
