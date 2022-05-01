@@ -6,28 +6,32 @@
   }
   &-chart {
     background-color: #fff;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border-radius: 20px;
   }
   &-sale {
     flex: 1;
     background-color: #fff;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border-radius: 20px;
   }
   &-list {
     margin-top: 30px;
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 150px));
+    grid-gap: 10px;
   }
   &-item {
-    width: 130px;
+    max-width: 140px;
   }
   &-thumb {
     border-radius: 10px;
     height: 180px;
+    width: 100%;
+    max-width: 135px;
   }
-  &-title {
+  &-title,
+  &-label {
     margin-top: 10px;
   }
   &-type {
@@ -47,11 +51,10 @@
     margin: 20px 0;
   }
   &-rate {
-    color: yellow;
+    color: #ffff00;
   }
   &-title {
-    width: 220px;
-    @include textClamp(2);
+    width: 200px;
   }
   &-feature {
     padding: 6px 0;

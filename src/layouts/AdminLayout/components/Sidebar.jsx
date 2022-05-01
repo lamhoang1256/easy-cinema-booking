@@ -10,7 +10,7 @@ export const Sidebar = () => {
       <div className='sidebar-container'>
         <ul>
           <li className='sidebar-item'>
-            <NavLink to='/admin'>
+            <NavLink end to='/admin'>
               <ion-icon name='people-outline'></ion-icon>
               Trang tổng quan
             </NavLink>
