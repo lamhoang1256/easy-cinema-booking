@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "./filter.scss";
+import "./filter.scss";
 
 export const Filter = ({ selectedItem, selectedTitle, labelNotSelectItem, children }) => {
   const [visibility, setVisibility] = useState(false);

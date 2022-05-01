@@ -5,7 +5,6 @@ import {
   fetchCinemaListToSearch,
   fetchMovieListToSearch,
 } from "redux/actions/movie/movieFilter.action";
-import "./filter.scss";
 
 export const FilterMovie = () => {
   const dispatch = useDispatch();
@@ -24,58 +23,22 @@ export const FilterMovie = () => {
   }, []);
 
   return (
-    <>
-      <Filter
-        onChange={handleGetCinemaList}
-        labelNotSelectItem='Chọn Phim'
-        selectedItem={selectedMovie.tenPhim}
-      >
-        <ul>
-          {movieList?.map((movie, index) => (
-            <li
-              key={index}
-              className={selectedMovie === movie ? "active-option" : null}
-              onClick={() => handleGetCinemaList(movie)}
-            >
-              {movie.tenPhim}
-            </li>
-          ))}
-        </ul>
-      </Filter>
-    </>
-    // <div className='filter-menu'>
-    //   <div
-    //     className='filter-select'
-    //     onClick={(e) => {
-    //       setVisibility(!visibility);
-    //       e.currentTarget.children[0].children[1].innerHTML = visibility
-    //         ? "arrow_drop_down"
-    //         : "arrow_drop_up";
-    //     }}
-    //   >
-    //     <div className='filter-selected-option'>
-    //       <span title={selectedMovie.tenPhim === "" ? "Chọn Phim" : selectedMovie.tenPhim}>
-    //         {selectedMovie.tenPhim === "" ? "Chọn Phim" : selectedMovie.tenPhim}
-    //       </span>
-    //       <ion-icon name='caret-down-outline'></ion-icon>
-    //     </div>
-    //     {/* Danh sách tên PHIM */}
-    //     {visibility && (
-    //       <div className='filter-options'>
-    //         <ul>
-    //           {movieList?.map((movie, index) => (
-    //             <li
-    //               key={index}
-    //               className={selectedMovie === movie ? "active-option" : null}
-    //               onClick={() => handleGetCinemaList(movie)}
-    //             >
-    //               {movie.tenPhim}
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       </div>
-    //     )}
-    //   </div>
-    // </div>
+    <Filter
+      onChange={handleGetCinemaList}
+      labelNotSelectItem='Chọn Phim'
+      selectedItem={selectedMovie.tenPhim}
+    >
+      <ul>
+        {movieList?.map((movie, index) => (
+          <li
+            key={index}
+            className={selectedMovie === movie ? "active-option" : null}
+            onClick={() => handleGetCinemaList(movie)}
+          >
+            {movie.tenPhim}
+          </li>
+        ))}
+      </ul>
+    </Filter>
   );
 };

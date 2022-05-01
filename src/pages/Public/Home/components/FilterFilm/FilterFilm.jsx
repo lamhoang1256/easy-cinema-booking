@@ -41,7 +41,7 @@ export const FilterFilm = () => {
                   <button className='btn btn--primary'>Đặt vé</button>
                 </Link>
               ) : (
-                <button className='btn'>Đặt vé</button>
+                <button className='btn btn--gray'>Đặt vé</button>
               )}
             </div>
           </div>

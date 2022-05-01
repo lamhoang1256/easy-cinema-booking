@@ -22,6 +22,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import "antd/dist/antd.css";
 import "./assets/scss/app.scss";
+import MainManage from "pages/Admin/MainManage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         </Route>
         {/* Admin Layout */}
         <Route path='/admin' element={<AdminLayout />}>
+          <Route index element={<MainManage />} />
           <Route path='user-manage' element={<UserManage />} />
           <Route path='movie-manage'>
             <Route index element={<MovieManage />} />

@@ -10,6 +10,12 @@ export const Sidebar = () => {
       <div className='sidebar-container'>
         <ul>
           <li className='sidebar-item'>
+            <NavLink to='/admin'>
+              <ion-icon name='people-outline'></ion-icon>
+              Trang tổng quan
+            </NavLink>
+          </li>
+          <li className='sidebar-item'>
             <NavLink to='/admin/user-manage'>
               <ion-icon name='people-outline'></ion-icon>
               Quản lí người dùng

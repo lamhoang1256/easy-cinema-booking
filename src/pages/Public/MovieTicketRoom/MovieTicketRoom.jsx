@@ -177,7 +177,7 @@ const InfoMovie = memo(({ infoMovie, listSelectingSeat }) => (
     {InfoMovieField("Tên phim", infoMovie.tenPhim)}
     {InfoMovieField("Rạp", infoMovie.tenCumRap)}
     {InfoMovieField("Địa chỉ", infoMovie.diaChi)}
-    {InfoMovieField("Suất chiếu", infoMovie.gioChieu + infoMovie.ngayChieu)}
+    {InfoMovieField("Suất chiếu", `${infoMovie.gioChieu} ${infoMovie.ngayChieu}`)}
     {/* All seat are selecting */}
     <div className='movie-booking-seats'>
       <span className='label'>Số ghế đã chọn:</span>

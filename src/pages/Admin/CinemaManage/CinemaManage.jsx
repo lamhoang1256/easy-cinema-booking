@@ -14,6 +14,8 @@ const CinemaManage = () => {
       setIsLoading(true);
       try {
         const { data } = await moviesApi.getCinemaApi("00");
+        console.log(data.content);
+
         const cinemaListHasKey = createKeyForObj(data.content);
         setCinemaManage(cinemaListHasKey);
         setIsLoading(false);
@@ -22,7 +24,6 @@ const CinemaManage = () => {
         setIsLoading(false);
       }
     };
-    console.log(cinemaList);
     fetchCinemaManage();
   }, []);
 
