@@ -7,17 +7,15 @@ import "./cinemaManage.scss";
 
 const CinemaManage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [cinemaList, setCinemaManage] = useState();
+  const [cinemaList, setCinemaList] = useState();
 
   useEffect(() => {
     const fetchCinemaManage = async () => {
       setIsLoading(true);
       try {
         const { data } = await moviesApi.getCinemaApi("00");
-        console.log(data.content);
-
         const cinemaListHasKey = createKeyForObj(data.content);
-        setCinemaManage(cinemaListHasKey);
+        setCinemaList(cinemaListHasKey);
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -78,12 +76,15 @@ const CinemaManage = () => {
     <div className='cinema-manage'>
       {isLoading && "Loading"}
       {!isLoading && (
-        <Table
-          className='components-table-demo-nested'
-          columns={columns}
-          expandable={{ expandedRowRender }}
-          dataSource={cinemaList}
-        />
+        <>
+          <h2 className='cinema-manage-heading'>Quản lí người dùng</h2>
+          <Table
+            className='components-table-demo-nested'
+            columns={columns}
+            expandable={{ expandedRowRender }}
+            dataSource={cinemaList}
+          />
+        </>
       )}
     </div>
   );

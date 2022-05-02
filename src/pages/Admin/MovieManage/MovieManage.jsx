@@ -121,7 +121,7 @@ const MovieManagement = () => {
           <button className='btn btn--primary' onClick={() => handleDeleteMovie(id)}>
             Xóa
           </button>
-          <button className='btn btn--info'>Lịch chiếu</button>
+          <button className='btn btn--success'>Lịch chiếu</button>
         </div>
       ),
     },
@@ -132,11 +132,14 @@ const MovieManagement = () => {
       {isLoading && "Loading"}
       {!isLoading && (
         <>
-          <Link to='/admin/movie-manage/add-film'>
-            <button className='btn btn--info btn-add-film'>
-              <ion-icon name='add-outline'></ion-icon> Thêm phim mới
-            </button>
-          </Link>
+          <div className='movie-manage-top'>
+            <h2>Quản lí phim</h2>
+            <Link to='/admin/movie-manage/add-film'>
+              <button className='btn btn--info btn-add-film'>
+                <ion-icon name='add-outline'></ion-icon> Thêm phim mới
+              </button>
+            </Link>
+          </div>
           <Table columns={columns} dataSource={movieList} scroll={{ x: 1300 }} sticky />
         </>
       )}

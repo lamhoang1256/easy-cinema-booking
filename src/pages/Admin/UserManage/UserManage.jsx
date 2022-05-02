@@ -126,16 +126,19 @@ const UserManage = () => {
 
   return (
     <div className='user-manage'>
-      <div className='search-top'>
-        <div className='search-top-icon'>
-          <ion-icon name='search-outline'></ion-icon>
+      <div className='user-manage-top'>
+        <h2>Quản lí người dùng</h2>
+        <div className='search-top'>
+          <div className='search-top-icon'>
+            <ion-icon name='search-outline'></ion-icon>
+          </div>
+          <input
+            onKeyDown={(e) => handleSearchUser(e.target.value)}
+            className='search-top-input'
+            type='text'
+            placeholder='Tìm tài khoản...'
+          />
         </div>
-        <input
-          onKeyDown={(e) => handleSearchUser(e.target.value)}
-          className='search-top-input'
-          type='text'
-          placeholder='Tìm tài khoản...'
-        />
       </div>
       <Table columns={columns} dataSource={userList} />
 

@@ -1,6 +1,11 @@
 @use "assets/scss/helpers/index.scss" as *;
 .movie-manage {
   overflow-y: auto;
+  &-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
   &-desc {
     @include textClamp(5);
   }

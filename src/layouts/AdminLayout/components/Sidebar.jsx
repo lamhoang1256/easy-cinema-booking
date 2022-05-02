@@ -1,13 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Collapse } from "antd";
+import { Link, NavLink } from "react-router-dom";
 import "./sidebar.scss";
 
-const { Panel } = Collapse;
 export const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebar-container'>
+        <Link to='/admin'>
+          <h2 className='sidebar-heading'>Cineplex Admin</h2>
+        </Link>
         <ul>
           <li className='sidebar-item'>
             <NavLink end to='/admin'>
