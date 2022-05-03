@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-gap: 10px;
-    padding: 30px 0;
+    padding: 20px 0;
     @include mobile {
       grid-template-columns: repeat(10, 1fr);
       grid-gap: 4px;
@@ -35,14 +35,14 @@
   &-seat--selecting {
     background-color: #2fdd92;
   }
-  &-seat--selected {
+  &-seat--bought {
     background-color: red;
     cursor: not-allowed;
   }
-  &-seat--yourchoice {
+  &-seat--youBought {
     background-color: #bfbfbf;
   }
-  &-yourchoice {
+  &-youBought {
     border: 2px solid #bfbfbf;
     border-radius: 8px;
   }
@@ -61,7 +61,7 @@
   &-square--selecting {
     @extend .seating-plan-seat--selecting;
   }
-  &-square--selected {
-    @extend .seating-plan-seat--selected;
+  &-square--bought {
+    @extend .seating-plan-seat--bought;
   }
 }

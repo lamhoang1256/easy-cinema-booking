@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // component
 import { Banner } from "components/Banner/Banner";
 import { ModalBill } from "./components/ModalBill/ModalBill";
-import { SeatingPlan } from "./components/SeatingPlan/SeatingPlan";
+import SeatingPlan from "./components/SeatingPlan/SeatingPlan";
 import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
 import { ModalAlert } from "pages/Public/MovieTicketRoom/components/ModalAlert/ModalAlert";
 import "./movieTicketRoom.scss";

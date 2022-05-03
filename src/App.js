@@ -24,6 +24,7 @@ import "antd/dist/antd.css";
 import "./assets/scss/app.scss";
 import MainManage from "pages/Admin/MainManage";
 import ScheduleFilm from "pages/Admin/MovieManage/components/ScheduleFilm/ScheduleFilm";
+import SeatMap from "pages/Admin/MovieManage/components/SeatMap/SeatMap";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Route index element={<MovieManage />} />
             <Route path='edit-film/:idMovieEdit' element={<EditFilm />} />
             <Route path='add-film' element={<AddFilm />} />
+            <Route path='seat-map/:idTicketRoom' element={<SeatMap />} />
             <Route path='schedule/:idSchedule' element={<ScheduleFilm />} />
           </Route>
 
