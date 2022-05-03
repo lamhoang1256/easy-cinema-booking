@@ -159,47 +159,41 @@ export const MovieTicketRoom = () => {
   );
 };
 
-const InfoMovieField = (label, content) => (
+const InfoMovieField = ({ label, children }) => (
   <div>
     <span className='label'>{label}:</span>
-    {content}
+    {children}
   </div>
 );
 
 /* All information of Movie */
 const InfoMovie = memo(({ infoMovie, listSelectingSeat }) => (
   <div className='movie-booking-info-movie'>
-    {console.log("re-render Info Movie")}
     <h2>Thông tin phim</h2>
     <div className='movie-booking-thumb'>
       <img src={infoMovie.hinhAnh} alt='movie-thumb' />
     </div>
-    {InfoMovieField("Tên phim", infoMovie.tenPhim)}
-    {InfoMovieField("Rạp", infoMovie.tenCumRap)}
-    {InfoMovieField("Địa chỉ", infoMovie.diaChi)}
-    {InfoMovieField("Suất chiếu", `${infoMovie.gioChieu} ${infoMovie.ngayChieu}`)}
-    {/* All seat are selecting */}
-    <div className='movie-booking-seats'>
-      <span className='label'>Số ghế đã chọn:</span>
+    <InfoMovieField label='Tên phim'>{infoMovie.tenPhim}</InfoMovieField>
+    <InfoMovieField label='Rạp'>{infoMovie.tenCumRap}</InfoMovieField>
+    <InfoMovieField label='Địa chỉ'>{infoMovie.diaChi}</InfoMovieField>
+    <InfoMovieField label='Suất chiếu'>{`${infoMovie.gioChieu} ${infoMovie.ngayChieu}`}</InfoMovieField>
+    <InfoMovieField label='Số ghế đã chọn'>
       {listSelectingSeat.length !== 0
-        ? listSelectingSeat.map((c, index) => {
-            // check if select 1 seat will not display ","
-            // Eg: 3 seat : 3,5,9 -> 1 seat : 3
-            const seat = index === 0 ? c.tenGhe : ", " + c.tenGhe;
-            return seat;
+        ? listSelectingSeat.map((seat, index) => {
+            // check if select 1 seat will not display ","  Eg: 3 seat : 3,5,9 -> 1 seat : 3
+            return index === 0 ? seat.tenGhe : `, ${seat.tenGhe}`;
           })
         : "Chưa chọn ghế"}
-    </div>
+    </InfoMovieField>
   </div>
 ));
 
 // All infomation of User is buying ticket
 const InfoUser = memo(({ userInfo }) => (
   <div className='movie-booking-info-user'>
-    {console.log("re-render Info User")}
     <h2>Thông tin khách hàng</h2>
-    {InfoMovieField("Họ tên", userInfo.hoTen)}
-    {InfoMovieField("Email", userInfo.email)}
-    {InfoMovieField("Số điện thoại", userInfo.soDT)}
+    <InfoMovieField label='Họ tên'>{userInfo.hoTen}</InfoMovieField>
+    <InfoMovieField label='Email'>{userInfo.email}</InfoMovieField>
+    <InfoMovieField label='Số điện thoại'>{userInfo.soDT}</InfoMovieField>
   </div>
 ));

@@ -70,7 +70,6 @@ export const Header = () => {
               />
             </Link>
             <div className={`header-action ${isShowMenu ? "is-show" : ""}`}>
-              {/* navbar link */}
               <ul className='navbar'>
                 {headerNav.map((item, index) => (
                   <li className='navbar-item' key={index}>
@@ -80,7 +79,7 @@ export const Header = () => {
                   </li>
                 ))}
               </ul>
-              {/* navbar register, login */}
+
               {userInfo ? (
                 <div className='header-avatar'>
                   <img

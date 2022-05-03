@@ -81,7 +81,7 @@ const AddFilm = () => {
     <>
       <div>
         <h2>Thêm phim mới</h2>
-        <form className='edit-film' onSubmit={handleSubmit(handleAddMovie)}>
+        <form className='form-film' onSubmit={handleSubmit(handleAddMovie)}>
           <AddFilmGroup label='Mã phim'>
             <p>Tự động thêm mới</p>
           </AddFilmGroup>
@@ -101,7 +101,7 @@ const AddFilm = () => {
               name='movieName'
               type='text'
               control={control}
-              className='edit-film-input'
+              className='form-film-input'
             />
             <MessageErrorValidation errorMessage={errors.movieName?.message} />
           </AddFilmGroup>
@@ -120,7 +120,7 @@ const AddFilm = () => {
               defaultValue=''
               type='text'
               control={control}
-              className='edit-film-input'
+              className='form-film-input'
               name='movieUrlTrailer'
             />
             <MessageErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
@@ -140,7 +140,7 @@ const AddFilm = () => {
               defaultValue=''
               type='number'
               control={control}
-              className='edit-film-input'
+              className='form-film-input'
               name='movieRating'
               min={1}
               max={5}
@@ -172,10 +172,10 @@ const AddFilm = () => {
           <AddFilmGroup label='Thumbnail'>
             <input type='file' accept='image/*' onChange={onUploadThumbnail} />
             {movieThumbPreviewUrl ? (
-              <img className='edit-film-thumbnail' src={movieThumbPreviewUrl} />
+              <img className='form-film-thumbnail' src={movieThumbPreviewUrl} />
             ) : (
               <img
-                className='edit-film-thumbnail'
+                className='form-film-thumbnail'
                 src='https://as1.ftcdn.net/v2/jpg/03/95/54/28/1000_F_395542843_yEu4THq7LoI4EWl19sm3A8ApbKSUxTVl.jpg'
               />
             )}
@@ -192,8 +192,8 @@ const AddFilm = () => {
 export default AddFilm;
 
 const AddFilmGroup = ({ label, children }) => (
-  <div className='edit-film-group'>
-    <span className='edit-film-label'>{label}: </span>
+  <div className='form-film-group'>
+    <span className='form-film-label'>{label}: </span>
     {children}
   </div>
 );

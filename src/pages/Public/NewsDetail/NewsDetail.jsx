@@ -4,13 +4,12 @@ import { Banner } from "components/Banner/Banner";
 import { dataFakeNews } from "constants/dataFakeNews";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import "./newsDetail.scss";
-// đường dẫn ảnh banner
+
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
 
 export const NewsDetail = () => {
   const { idNewsDetail } = useParams();
-  // lọc lấy tin cần đọc theo idNewsDetail trên url
   const dataPost = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
 
   useEffect(() => {
@@ -39,7 +38,7 @@ export const NewsDetail = () => {
                   </div>
                 )}
               </div>
-              {/* Phần tin tức bên phải */}
+
               <div className='new-detail-right'>
                 <RightSideNews />
               </div>

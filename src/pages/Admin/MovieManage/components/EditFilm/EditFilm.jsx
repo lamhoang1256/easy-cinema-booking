@@ -14,7 +14,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupFilm } from "constants/schemaYupFilm";
 import { sweetAlert } from "utilities/sweetAlert";
-import "./editFilm.scss";
 
 const EditFilm = () => {
   const { idMovieEdit } = useParams();
@@ -106,7 +105,7 @@ const EditFilm = () => {
       {!isLoading && (
         <div>
           <h2>Chỉnh sửa thông tin phim</h2>
-          <form className='edit-film' onSubmit={handleSubmit(handleEditMovie)}>
+          <form className='form-film' onSubmit={handleSubmit(handleEditMovie)}>
             <EditFilmGroup label='Mã phim'>
               <p>{movieEdit.maPhim}</p>
             </EditFilmGroup>
@@ -128,7 +127,7 @@ const EditFilm = () => {
                 name='movieName'
                 type='text'
                 control={control}
-                className='edit-film-input'
+                className='form-film-input'
                 defaultValue={movieEdit.tenPhim}
               />
               <MessageErrorValidation errorMessage={errors.movieName?.message} />
@@ -149,7 +148,7 @@ const EditFilm = () => {
               <InputText
                 type='text'
                 control={control}
-                className='edit-film-input'
+                className='form-film-input'
                 defaultValue={movieEdit.trailer}
                 name='movieUrlTrailer'
               />
@@ -171,7 +170,7 @@ const EditFilm = () => {
               <InputText
                 type='number'
                 control={control}
-                className='edit-film-input'
+                className='form-film-input'
                 defaultValue={movieEdit.danhGia / 2}
                 name='movieRating'
                 min={1}
@@ -211,9 +210,9 @@ const EditFilm = () => {
             <EditFilmGroup label='Thumbnail'>
               <input type='file' accept='image/*' onChange={onUploadThumbnail} />
               {movieThumbPreviewUrl ? (
-                <img className='edit-film-thumbnail' src={movieThumbPreviewUrl} />
+                <img className='form-film-thumbnail' src={movieThumbPreviewUrl} />
               ) : (
-                <img className='edit-film-thumbnail' src={movieEdit?.hinhAnh} />
+                <img className='form-film-thumbnail' src={movieEdit?.hinhAnh} />
               )}
             </EditFilmGroup>
 
@@ -228,8 +227,8 @@ const EditFilm = () => {
 };
 
 const EditFilmGroup = ({ label, children }) => (
-  <div className='edit-film-group'>
-    <span className='edit-film-label'>{label}: </span>
+  <div className='form-film-group'>
+    <span className='form-film-label'>{label}: </span>
     {children}
   </div>
 );

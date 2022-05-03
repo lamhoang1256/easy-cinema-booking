@@ -6,7 +6,6 @@ import "./adminLayout.scss";
 export const AdminLayout = () => {
   return (
     <div className='admin-layout'>
-      {/* <h2>Admin Layout</h2> */}
       <Sidebar />
       <div className='admin-layout-main'>
         <div className='admin-layout-container'>

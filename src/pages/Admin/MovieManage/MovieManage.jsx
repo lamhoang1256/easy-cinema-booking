@@ -121,7 +121,9 @@ const MovieManagement = () => {
           <button className='btn btn--primary' onClick={() => handleDeleteMovie(id)}>
             Xóa
           </button>
-          <button className='btn btn--success'>Lịch chiếu</button>
+          <Link to={`/admin/movie-manage/schedule/${id}`}>
+            <button className='btn btn--success'>Lịch chiếu</button>
+          </Link>
         </div>
       ),
     },

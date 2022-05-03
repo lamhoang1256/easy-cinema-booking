@@ -1,33 +1,28 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Table } from "antd";
 import { moviesApi } from "apis/moviesApi";
 import moment from "moment";
 import { createKeyForObj } from "utilities/createKeyForObject";
-// import "./cinemaManage.scss";
 
 const ScheduleFilm = () => {
+  const { idSchedule } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const [infoMovie, setInfoMovie] = useState({});
   const [scheduleList, setScheduleList] = useState([]);
 
   useEffect(() => {
     const fetchCinemaManage = async () => {
       setIsLoading(true);
       try {
-        const { data } = await moviesApi.getCalendarShowApi("1435");
-        const { heThongRapChieu, ...movie } = data.content;
-        const scheduleListHasKey = createKeyForObj(heThongRapChieu);
-        // console.log(scheduleListHasKey);
+        const { data } = await moviesApi.getCalendarShowApi(idSchedule);
+        const { heThongRapChieu } = data.content;
+        const systemCinemaList = createKeyForObj(heThongRapChieu);
         let cinemaList = [];
-        scheduleListHasKey.forEach((element) => {
-          element.cumRapChieu.forEach((item) => cinemaList.push(item));
+        systemCinemaList.forEach((cinemaGroup) => {
+          cinemaGroup.cumRapChieu.forEach((cinema) => cinemaList.push(cinema));
         });
         cinemaList = createKeyForObj(cinemaList);
-        // console.log(scheduleListHasKey);
-        console.log(cinemaList);
         setScheduleList(cinemaList);
-        setInfoMovie(movie);
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -38,15 +33,8 @@ const ScheduleFilm = () => {
   }, []);
 
   const expandedRowRender = (row) => {
-    // giaVe: 75000;
-    // maLichChieu: "22634";
-    // maRap: "588";
-    // ngayChieuGioChieu: "2019-01-01T12:10:00";
-    // tenRap: "Rạp 8";
-    // thoiLuong: 120;
-    const cinemaHasKey = createKeyForObj(row.lichChieuPhim);
-    console.log(cinemaHasKey);
-    const columnsCinema = [
+    const scheduleFilms = createKeyForObj(row.lichChieuPhim);
+    const columSchedule = [
       {
         title: " Mã rạp",
         dataIndex: "maRap",
@@ -79,8 +67,8 @@ const ScheduleFilm = () => {
     return (
       <>
         <Table
-          columns={columnsCinema}
-          dataSource={cinemaHasKey}
+          columns={columSchedule}
+          dataSource={scheduleFilms}
           pagination={false}
           expandable={expandedRowRender}
         />

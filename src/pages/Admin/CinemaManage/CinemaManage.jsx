@@ -44,8 +44,9 @@ const CinemaManage = () => {
         dataIndex: "maCumRap",
         key: "maCumRap",
         render: (maCumRap, getRow) => {
+          const url = `/admin/cinema-manage/${getRow.maHeThongRap.toLowerCase()}/${maCumRap}`;
           return (
-            <Link to={`/admin/cinema-manage/${getRow.maHeThongRap.toLowerCase()}/${maCumRap}`}>
+            <Link to={url}>
               <button className='btn btn--info'>Thêm lịch chiếu</button>
             </Link>
           );

@@ -7,14 +7,12 @@ import "./addComment.scss";
 
 export const AddComment = () => {
   const dispatch = useDispatch();
-  const { idDetail } = useParams(); // lấy idDetail phim từ thanh url
+  const { idDetail } = useParams();
   const { userInfo } = useSelector((state) => state.user);
 
-  // xử lí thêm mới nhận xét
   const [newComment, setNewComment] = useState("");
   const [error, setError] = useState("");
   const handleAddNewComment = () => {
-    //nếu chưa đăng nhập đưa ra thông báo
     if (!userInfo) {
       Swal.fire({
         icon: "error",
@@ -24,7 +22,7 @@ export const AddComment = () => {
       });
       return;
     }
-    // nếu nhận xét ít hơn 40 hoặc nhiều hơn 400 kí tự đưa ra lỗi
+
     if (newComment.length < 40) {
       setError("Nhận xét ít nhất gồm 40 kí tự");
       return;

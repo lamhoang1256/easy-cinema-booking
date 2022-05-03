@@ -13,7 +13,7 @@ const SeatMap = () => {
   const fetchTicketRoom = async () => {
     setIsLoading(true);
     try {
-      const { data } = await moviesApi.getTicketRoomApi(`${idTicketRoom}`);
+      const { data } = await moviesApi.getTicketRoomApi(idTicketRoom);
       setInfoMovie(data.content.thongTinPhim);
       setSeats(data.content.danhSachGhe);
       setIsLoading(false);

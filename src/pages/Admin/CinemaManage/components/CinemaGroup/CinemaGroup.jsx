@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import moment from "moment";
 import { DatePicker, Modal, Table } from "antd";
 import { sweetAlert } from "utilities/sweetAlert";
 import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
+import moment from "moment";
 import "./cinemaGroup.scss";
+import { Filter } from "components/Filter/Filter";
 
 const CinemaGroup = () => {
   const { cinemaSystem, cinemaName } = useParams(); // cgv/cgv-hoang-van-thu
@@ -18,7 +19,6 @@ const CinemaGroup = () => {
 
   // dropdown select film
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [visibility, setVisibility] = useState(false);
   const [selectedFilm, setSelectedFilm] = useState({ tenPhim: "" });
 
   const [filmOpenday, setFilmOpenday] = useState("");
@@ -154,47 +154,30 @@ const CinemaGroup = () => {
             footer={null}
           >
             <h3>Chọn phim:</h3>
-            <div className='filter-menu'>
-              <div
-                className='filter-select'
-                onClick={(e) => {
-                  setVisibility(!visibility);
-                  e.currentTarget.children[0].children[1].innerHTML = visibility
-                    ? "arrow_drop_down"
-                    : "arrow_drop_up";
-                }}
-              >
-                <div className='filter-selected-option'>
-                  <span title={selectedFilm.tenPhim === "" ? "Chọn Phim" : selectedFilm.tenPhim}>
-                    {selectedFilm.tenPhim === "" ? "Chọn Phim" : selectedFilm.tenPhim}
-                  </span>
-                  <ion-icon name='caret-down-outline'></ion-icon>
-                </div>
-
-                {visibility && (
-                  <div className='filter-options'>
-                    {movieList.length > 0 ? (
-                      <ul>
-                        {movieList.map((cinema, id) => (
-                          <li
-                            key={id}
-                            className={selectedFilm === cinema ? "active-option" : null}
-                            onClick={() => handleGetFilm(cinema)}
-                          >
-                            <img src={cinema.hinhAnh} className='cinema-group-thumb' alt='' />
-                            <p>{cinema.tenPhim}</p>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <ul>
-                        <li>Vui lòng chọn phim</li>
-                      </ul>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
+            <Filter
+              onChange={handleGetFilm}
+              labelNotSelectItem='Chọn Phim'
+              selectedItem={selectedFilm.tenPhim}
+            >
+              {movieList.length > 0 ? (
+                <ul>
+                  {movieList.map((cinema, id) => (
+                    <li
+                      key={id}
+                      className={selectedFilm === cinema ? "active-option" : null}
+                      onClick={() => handleGetFilm(cinema)}
+                    >
+                      <img src={cinema.hinhAnh} className='cinema-group-thumb' alt='' />
+                      <p>{cinema.tenPhim}</p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul>
+                  <li>Vui lòng chọn phim</li>
+                </ul>
+              )}
+            </Filter>
 
             <div className='cinema-group-list'>
               <CinemaGroupField label='Chọn ngày'>
