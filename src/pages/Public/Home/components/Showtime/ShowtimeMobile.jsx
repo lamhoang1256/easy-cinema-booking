@@ -4,7 +4,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 // utilities
 import { formatDateToHours } from "utilities/formatDate";
-import increaseDate from "utilities/increaseDate";
+import increaseTime from "utilities/increaseTime";
 
 export const ShowtimeMobile = ({ showtimeList }) => {
   const { Panel } = Collapse;
@@ -42,7 +42,7 @@ export const ShowtimeMobile = ({ showtimeList }) => {
                                     {formatDateToHours(time.ngayChieuGioChieu)}
                                   </span>
                                   <span> ~ </span>
-                                  {formatDateToHours(increaseDate(time.ngayChieuGioChieu, 7200000))}
+                                  {formatDateToHours(increaseTime(time.ngayChieuGioChieu, 7200000))}
                                 </Link>
                               ))}
                             </div>

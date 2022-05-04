@@ -4,7 +4,7 @@ import { Tabs } from "antd";
 import { useSelector } from "react-redux";
 // utilities
 import { formatDateToHours } from "utilities/formatDate";
-import increaseDate from "utilities/increaseDate";
+import increaseTime from "utilities/increaseTime";
 import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
@@ -55,7 +55,7 @@ export const DetailShowtime = () => {
                                   </span>
                                   <span> ~ </span>
                                   {formatDateToHours(
-                                    increaseDate(showtime.ngayChieuGioChieu, 7200000)
+                                    increaseTime(showtime.ngayChieuGioChieu, 7200000)
                                   )}
                                 </Link>
                               ))}

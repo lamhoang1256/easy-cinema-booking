@@ -46,8 +46,7 @@
     border: 2px solid #bfbfbf;
     border-radius: 8px;
   }
-  // Phần thông tin ghế mẫu
-  &-info {
+  &-sample {
     @include flexbox($justify-content: center);
     gap: 20px;
   }

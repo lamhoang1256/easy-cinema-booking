@@ -1,12 +1,11 @@
 import { memo } from "react";
 import { useDispatch } from "react-redux";
-import { selectSeat } from "redux/actions/movie/movieTicketRoom.action";
+import { selectSeat } from "redux/actions/movie/ticketRoom.action";
 import "./seatingPlan.scss";
 
 const imgMultiply = `${process.env.REACT_APP_PUBLIC}/assets/images/seat-multiply.png`;
 const imgYourChoice = `${process.env.REACT_APP_PUBLIC}/assets/images/seat-your-choice.png`;
-
-const SeatingPlan = ({ danhSachGhe, listSelectingSeat }) => {
+const SeatingPlan = ({ danhSachGhe, selectingSeatList }) => {
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const handleSelectChair = (seat) => {
@@ -21,7 +20,7 @@ const SeatingPlan = ({ danhSachGhe, listSelectingSeat }) => {
           const isVip = seat.loaiGhe === "Vip";
           const isBought = seat.daDat;
           const isYouBought = seat.taiKhoanNguoiDat === userInfo?.taiKhoan;
-          const isSelecting = listSelectingSeat?.findIndex((c) => c.maGhe === seat.maGhe);
+          const isSelecting = selectingSeatList?.findIndex((c) => c.maGhe === seat.maGhe);
 
           const vip = isVip ? `${baseSeat}--vip` : "";
           const bought = isBought ? `${baseSeat}--bought` : "";
@@ -35,40 +34,35 @@ const SeatingPlan = ({ danhSachGhe, listSelectingSeat }) => {
               onClick={() => handleSelectChair(seat)}
               key={index}
             >
-              {/* if seat is bought orther people display X */}
               {bought !== "" && !isYouBought && <img src={imgMultiply} alt='multiply' />}
-              {/* if seat is bought by you display your choice  */}
               {bought && isYouBought && (
                 <img src={imgYourChoice} alt='youBought' className='seating-plan-youBought' />
               )}
-              {/* if seat isn't bought display number seat */}
               {!bought && seat.stt}
             </button>
           );
         })}
       </div>
-      <div className='seating-plan-info'>
-        <div className='seating-plan-box'>
-          <div className='seating-plan-square'></div>
-          Ghế thường
-        </div>
-        <div className='seating-plan-box'>
-          <div className='seating-plan-square seating-plan-square--vip'></div>
-          Ghế vip
-        </div>
-        <div className='seating-plan-box'>
-          <div className='seating-plan-square seating-plan-square--selecting'></div>
-          Ghế đang chọn
-        </div>
-        <div className='seating-plan-box'>
-          <div className='seating-plan-square seating-plan-square--bought'>
-            <img src={imgMultiply} alt='multiply' />
-          </div>
+
+      <div className='seating-plan-sample'>
+        <SeatingPlanSampleSeat>Ghế thường</SeatingPlanSampleSeat>
+        <SeatingPlanSampleSeat type='vip'>Ghế vip</SeatingPlanSampleSeat>
+        <SeatingPlanSampleSeat type='selecting'>Ghế đang chọn</SeatingPlanSampleSeat>
+        <SeatingPlanSampleSeat type='bought' img={imgMultiply}>
           Ghế đã được mua
-        </div>
+        </SeatingPlanSampleSeat>
       </div>
     </div>
   );
 };
 
 export default memo(SeatingPlan);
+
+const SeatingPlanSampleSeat = ({ type, children, img }) => (
+  <div className='seating-plan-box'>
+    <div className={`seating-plan-square seating-plan-square--${type}`}>
+      {img && <img src={img} alt='seat' />}
+    </div>
+    {children}
+  </div>
+);

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const ModalBill = (props) => {
   const navigate = useNavigate();
-  const { dataTicketRoom, listSelectingSeat } = useSelector((state) => state.movieTicketRoom);
+  const { dataTicketRoom, selectingSeatList } = useSelector((state) => state.TicketRoom);
   const { userInfo } = useSelector((state) => state.user);
   const { totalMoney } = props;
 
@@ -23,7 +23,7 @@ export const ModalBill = (props) => {
       <div className='modal-main'>
         <ModalBillMovie
           movieInfo={dataTicketRoom.thongTinPhim}
-          listSelectingSeat={listSelectingSeat}
+          selectingSeatList={selectingSeatList}
         />
         <ModalBillUser userInfo={userInfo} totalMoney={totalMoney} />
         {/* button actions */}
@@ -48,7 +48,7 @@ const ModalBillField = (label, content) => (
 );
 
 /* All information of Movie */
-const ModalBillMovie = ({ movieInfo, listSelectingSeat }) => {
+const ModalBillMovie = ({ movieInfo, selectingSeatList }) => {
   return (
     <div className='modal-movie'>
       <div className='modal-thumb'>
@@ -62,7 +62,7 @@ const ModalBillMovie = ({ movieInfo, listSelectingSeat }) => {
         {ModalBillField("Rạp", movieInfo.tenRap)}
         <div className='modal-chairs'>
           <span className='info-label'>Ghế:</span>
-          {listSelectingSeat.map((seat, index) => {
+          {selectingSeatList.map((seat, index) => {
             // check if select 1 seat will not display ","
             // Eg: 3 seat : 3,5,9 -> 1 seat : 3
             const chair = index === 0 ? " " + seat.tenGhe : ", " + seat.tenGhe;

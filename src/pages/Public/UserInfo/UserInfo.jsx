@@ -19,7 +19,7 @@ const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.
 export const UserInfo = () => {
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
-  const { isLoadingUserProfile, userProfile } = useSelector((state) => state.user);
+  const { isLoading, userProfile } = useSelector((state) => state.user);
   const {
     handleSubmit,
     control,
@@ -46,8 +46,8 @@ export const UserInfo = () => {
 
   return (
     <>
-      {isLoadingUserProfile && <LoadingAnimation />}
-      {!isLoadingUserProfile && (
+      {isLoading && <LoadingAnimation />}
+      {!isLoading && (
         <div className='user-info'>
           <Banner urlBanner={urlBanner} heading={"Thông tin tài khoản"} />
           <div className='user-info-wrapper'>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { moviesApi } from "apis/moviesApi";
-import SeatingPlan from "pages/Public/MovieTicketRoom/components/SeatingPlan/SeatingPlan";
+import SeatingPlan from "pages/Public/TicketRoom/components/SeatingPlan/SeatingPlan";
 import "./seatMap.scss";
 
 const SeatMap = () => {
@@ -36,7 +36,7 @@ const SeatMap = () => {
             <h3>
               Danh sách ghế: {infoMovie.tenCumRap} - {infoMovie.tenRap}
             </h3>
-            <SeatingPlan danhSachGhe={seats} listSelectingSeat={[]} />
+            <SeatingPlan danhSachGhe={seats} selectingSeatList={[]} />
           </div>
           <div className='seat-map-movie'>
             <h3>Thông tin phim</h3>

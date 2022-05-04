@@ -125,7 +125,7 @@ Quá trình làm đồ án ReactJS
 20/04/2022
 
 - Xây dựng chức năng đếm ngược thời gian giữ ghế
-- Redirect sang login nếu chưa đăng nhập khi vào trang MovieTicketRoom
+- Redirect sang login nếu chưa đăng nhập khi vào trang TicketRoom
 
 21/04/2022
 

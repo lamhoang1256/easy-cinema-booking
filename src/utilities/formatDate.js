@@ -29,4 +29,5 @@ export const formatISOtoHours = (iso) => {
   return formatTimeTwoDigit(hours, minutes);
 };
 
+// new Date() -> Wed May 04 2022 09:11:52 GMT+0700 (Giờ Đông Dương) -> format -> 4/5/2022
 export const formatLocaleDateString = (time) => new Date(time).toLocaleDateString("vi-VI");

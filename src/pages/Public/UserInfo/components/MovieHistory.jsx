@@ -3,8 +3,8 @@ import "./movieHistory.scss";
 
 export const MovieHistory = ({ thongTinDatVe }) => {
   // create array list seat bought and sort form small to big (1-> 999...)
-  const getIdChair = (allChair) => {
-    const filterIdChair = allChair.map((row) => row.tenGhe);
+  const getIdChair = (seats) => {
+    const filterIdChair = seats.map((seat) => seat.tenGhe);
     return filterIdChair.sort((a, b) => a - b);
   };
 
@@ -23,7 +23,7 @@ export const MovieHistory = ({ thongTinDatVe }) => {
                 <th>Tổng tiền</th>
               </tr>
             </thead>
-            {/* table body */}
+
             <tbody className='movie-history-body'>
               {thongTinDatVe.map((item, index) => (
                 <tr className='movie-history-row' key={index}>

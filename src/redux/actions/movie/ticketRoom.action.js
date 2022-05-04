@@ -8,15 +8,15 @@ import {
   BUY_TICKET_REQUEST,
   BUY_TICKET_SUCCESS,
   BUY_TICKET_FAIL,
-} from "../../constants/movie/movieTicketRoom.constant";
+} from "../../constants/movie/ticketRoom.constant";
 
 // chọn ghế
 export const selectSeat = (infoChair) => async (dispatch, getState) => {
-  const { listSelectingSeat } = getState().movieTicketRoom;
+  const { selectingSeatList } = getState().TicketRoom;
   //kiểm tra xem ghế đang chọn có được chọn trước không VD: chọn ghế số 4 nếu nhấn chọn ghế số 4 một lần nữa sẽ bỏ chọn ghế số 4
   const selectChair = infoChair;
-  let newListGheDangChon = [...listSelectingSeat];
-  const index = listSelectingSeat.findIndex((c) => c.maGhe === selectChair.maGhe); // trả về -1 nếu ko tồn tại trong mảng
+  let newListGheDangChon = [...selectingSeatList];
+  const index = selectingSeatList.findIndex((c) => c.maGhe === selectChair.maGhe); // trả về -1 nếu ko tồn tại trong mảng
   if (index === -1) {
     // ghế chưa được chọn
     newListGheDangChon = [...newListGheDangChon, infoChair];
