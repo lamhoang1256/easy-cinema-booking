@@ -40,12 +40,13 @@ export const Sidebar = () => {
               <ion-icon name='storefront-outline'></ion-icon>Quản lí rạp
             </NavLink>
           </li>
-          <li>
-            <button className='btn btn--info sidebar-logout' onClick={handleLogout}>
-              Đăng xuất
-            </button>
-          </li>
         </ul>
+        <NavLink to='/'>
+          <button className='btn btn--success sidebar-btn'>Về trang chủ</button>
+        </NavLink>
+        <button className='btn btn--info sidebar-btn' onClick={handleLogout}>
+          Đăng xuất
+        </button>
       </div>
     </div>
   );

@@ -51,6 +51,7 @@ const ScheduleFilm = () => {
         title: "Giá vé",
         dataIndex: "giaVe",
         key: "giaVe",
+        render: (giaVe) => <span>{giaVe.toLocaleString("en-US")} VNĐ</span>,
       },
       {
         title: "Lịch chiếu",

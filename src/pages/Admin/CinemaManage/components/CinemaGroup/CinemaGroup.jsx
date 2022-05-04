@@ -167,7 +167,7 @@ const CinemaGroup = () => {
                       className={selectedFilm === cinema ? "active-option" : null}
                       onClick={() => handleGetFilm(cinema)}
                     >
-                      <img src={cinema.hinhAnh} className='cinema-group-thumb' alt='' />
+                      <img src={cinema.hinhAnh} className='cinema-group-thumb' alt='cinema-logo' />
                       <p>{cinema.tenPhim}</p>
                     </li>
                   ))}
