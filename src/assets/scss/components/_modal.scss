@@ -12,38 +12,58 @@
   }
   &-main {
     background-color: #fff;
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
-    @include position(fixed, 50%, 50%, $z-index: 50);
+    @include position(fixed, 50%, 50%, $z-index: 100);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transform: translate(50%, -50%);
-    max-width: 500px;
+    // min-width: 400px;
+    width: 90%;
+    max-width: 540px;
   }
   &-movie {
     display: flex;
-    gap: 20px;
-    .info-label {
-      margin-right: 10px;
+    gap: 10px;
+  }
+  &-thumb {
+    margin-top: 5px;
+    img {
+      width: 150px;
+      border-radius: 15px;
+    }
+    @include mobile {
+      display: none;
     }
   }
-  &-thumb img {
+  &-barcode {
     width: 120px;
-    border-radius: 10px;
+    text-align: center;
+    color: $gray61;
+    @include mobile {
+      display: none;
+    }
   }
   &-title {
     color: $primary-color;
   }
-  // thông tin người dùng
+  .text-money {
+    font-weight: 500;
+    font-size: 2rem;
+  }
   &-user {
-    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
     .success {
       font-weight: 500;
       color: #28a745;
     }
-    .user-label {
-      font-weight: 600;
-    }
   }
-  // modal button actions
+  .label {
+    font-weight: 600;
+    margin: 3px 0;
+    display: inline-block;
+  }
   &-action {
     margin-top: 20px;
     @include flexbox(center, space-between);

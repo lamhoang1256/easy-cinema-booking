@@ -34,7 +34,6 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    // if user has login will redirect previous page
     if (userInfo) {
       navigate(-1);
     }

@@ -5,10 +5,11 @@ import "./seatingPlan.scss";
 
 const imgMultiply = `${process.env.REACT_APP_PUBLIC}/assets/images/seat-multiply.png`;
 const imgYourChoice = `${process.env.REACT_APP_PUBLIC}/assets/images/seat-your-choice.png`;
+
 const SeatingPlan = ({ danhSachGhe, selectingSeatList }) => {
   const dispatch = useDispatch();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const handleSelectChair = (seat) => {
+  const handleSelectSeat = (seat) => {
     dispatch(selectSeat(seat));
   };
 
@@ -31,7 +32,7 @@ const SeatingPlan = ({ danhSachGhe, selectingSeatList }) => {
             <button
               disabled={bought !== "" ? true : false}
               className={`${baseSeat} ${bought} ${vip} ${selecting} ${youBought}`}
-              onClick={() => handleSelectChair(seat)}
+              onClick={() => handleSelectSeat(seat)}
               key={index}
             >
               {bought !== "" && !isYouBought && <img src={imgMultiply} alt='multiply' />}

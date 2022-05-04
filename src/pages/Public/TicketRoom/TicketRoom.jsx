@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
@@ -15,14 +15,13 @@ import {
   resetSelectingSeat,
 } from "redux/actions/movie/ticketRoom.action";
 // utilities
+import { useCountDownBooking } from "hooks/useCountDownBooking";
 import { formatTimeTwoDigit } from "utilities/formatDate";
 import { sweetAlert } from "utilities/sweetAlert";
 import { calculateSum } from "utilities/calculateSum";
-import { useCountDownTimeBooking } from "hooks/useCountDownTimeBooking";
 
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
-
 export const TicketRoom = () => {
   const { idTicketRoom } = useParams();
   const dispatch = useDispatch();
@@ -59,7 +58,7 @@ export const TicketRoom = () => {
   };
 
   // countdown time select seat (5 min -> 0 seconds)
-  const { idSetInterval, minutes, seconds } = useCountDownTimeBooking(setIsShowModalAlert);
+  const { idSetInterval, minutes, seconds } = useCountDownBooking(setIsShowModalAlert);
 
   useEffect(() => {
     if (!userInfo) {
@@ -85,14 +84,12 @@ export const TicketRoom = () => {
                   <p className='movie-booking-time'>{formatTimeTwoDigit(minutes, seconds)}</p>
                 </div>
                 <div className='movie-booking-main'>
-                  <div className='movie-booking-choice'>
-                    <h3 className='movie-booking-title'>Chọn ghế</h3>
-                    <div className='movie-booking-screen'>Màn hình</div>
-                    <SeatingPlan
-                      selectingSeatList={selectingSeatList}
-                      danhSachGhe={dataTicketRoom.danhSachGhe}
-                    />
-                  </div>
+                  <h3 className='movie-booking-title'>Chọn ghế</h3>
+                  <div className='movie-booking-screen'>Màn hình</div>
+                  <SeatingPlan
+                    selectingSeatList={selectingSeatList}
+                    danhSachGhe={dataTicketRoom.danhSachGhe}
+                  />
                 </div>
               </div>
 

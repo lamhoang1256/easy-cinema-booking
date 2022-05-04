@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 
-export const useCountDownTimeBooking = (setIsShowModalAlert) => {
-  const ONE_SECONDS = 1000;
+export const useCountDownBooking = (setIsShowModalAlert) => {
   const idSetInterval = useRef();
+  const ONE_SECONDS = 1000;
   const [minutes, setMinutes] = useState(5);
   const [seconds, setSeconds] = useState(0);
 

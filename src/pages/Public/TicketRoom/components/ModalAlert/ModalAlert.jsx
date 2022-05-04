@@ -6,7 +6,6 @@ export const ModalAlert = () => {
   const handleComebackHome = () => {
     navigate("/");
   };
-  // handle when click button continue buy ticket
   const handleContinueBuyTicket = () => {
     window.location.reload();
   };
@@ -16,7 +15,6 @@ export const ModalAlert = () => {
       <div className='modal-main'>
         <h2 className='modal-heading'>Hết thời gian giữ ghế!!</h2>
         <p>Quá 5 phút thời gian giữ ghế vui lòng đặt lại hoặc quay về trang chủ</p>
-        {/* button actions */}
         <div className='modal-action'>
           <button className='btn' onClick={handleComebackHome}>
             Trở về trang chủ
