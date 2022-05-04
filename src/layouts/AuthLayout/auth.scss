@@ -66,15 +66,15 @@
       @include position(absolute, 50%, $left: 20px);
       transform: translateY(-50%);
     }
-  }
-  &-input {
-    background-color: #f2f3f5;
-    border: none;
-    outline: none;
-    padding: 20px;
-    padding-left: 50px;
-    border-radius: 15px;
-    width: 100%;
+    input {
+      background-color: #f2f3f5;
+      border: none;
+      outline: none;
+      padding: 20px;
+      padding-left: 50px;
+      border-radius: 15px;
+      width: 100%;
+    }
   }
   &-submit.btn {
     width: 100%;
