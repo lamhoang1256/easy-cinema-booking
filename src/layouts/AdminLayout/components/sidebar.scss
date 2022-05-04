@@ -20,8 +20,13 @@
   &-container {
     padding: 20px;
   }
+  &-logout.btn {
+    padding: 12px 0;
+    width: 100%;
+  }
   &-item {
     a {
+      margin: 10px 0;
       padding: 14px;
       display: flex;
       align-items: center;

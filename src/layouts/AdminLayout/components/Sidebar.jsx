@@ -1,8 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { logoutAction } from "redux/actions/user/user.action";
 import "./sidebar.scss";
 
 export const Sidebar = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutAction());
+    window.location.reload();
+  };
+
   return (
     <div className='sidebar'>
       <div className='sidebar-container'>
@@ -31,6 +39,11 @@ export const Sidebar = () => {
             <NavLink to='/admin/cinema-manage'>
               <ion-icon name='storefront-outline'></ion-icon>Quản lí rạp
             </NavLink>
+          </li>
+          <li>
+            <button className='btn btn--info sidebar-logout' onClick={handleLogout}>
+              Đăng xuất
+            </button>
           </li>
         </ul>
       </div>

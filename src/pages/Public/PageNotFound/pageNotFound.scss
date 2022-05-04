@@ -1,4 +1,4 @@
-.notfound {
+.page-error {
   &-container {
     height: 100vh;
     display: flex;
@@ -18,7 +18,7 @@
     background-image: linear-gradient(to right, #bc4e9c, #f80759);
   }
   &-heading {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 600;
   }
 }
