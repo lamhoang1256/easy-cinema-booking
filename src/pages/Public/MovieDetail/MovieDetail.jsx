@@ -9,7 +9,7 @@ import { Comment } from "./components/Comment/Comment";
 import { DetailShowtime } from "./components/DetailShowtime/DetailShowtime";
 import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtimeMobile";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
-import { LoadingAnimation } from "components/LoadingAnimation/LoadingAnimation";
+import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 // action
 import {
   getMovieDetail,
@@ -21,29 +21,24 @@ import { formatLocaleDateString } from "utilities/formatDate";
 import "./movieDetail.scss";
 
 export const MovieDetail = () => {
-  const { idDetail } = useParams(); // get idDetail from url
+  const { idDetail } = useParams();
   const dispatch = useDispatch();
-  const { movieDetail, isLoadingMovieDetail, togglePostComment } = useSelector(
-    (state) => state.movieDetail
-  );
-  // check breakpoint user to load UI Showtime
+  const { isLoading, movieDetail, togglePostComment } = useSelector((state) => state.movieDetail);
   const isMobile = useMediaQuery("(max-width:767.98px)");
 
-  // get data detail movie from API with idDetail
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getMovieDetail(idDetail));
     dispatch(getCalendarShowMovieDetail(idDetail));
   }, []);
-
   useEffect(() => {
     dispatch(getCommentList(idDetail));
   }, [togglePostComment]);
 
   return (
     <>
-      {isLoadingMovieDetail && <LoadingAnimation />}
-      {!isLoadingMovieDetail && (
+      {isLoading && <LoadingAnimation />}
+      {!isLoading && (
         <div className='movie-detail'>
           <div className='movie-detail-top'>
             <div
@@ -56,7 +51,6 @@ export const MovieDetail = () => {
             <div className='movie-detail-main'>
               <div className='movie-detail-left'>
                 <div className='movie-detail-info'>
-                  {/* Thumbnail movie */}
                   <div className='movie-card-thumb'>
                     <img
                       src={movieDetail.hinhAnh}
@@ -74,38 +68,35 @@ export const MovieDetail = () => {
                       ></ion-icon>
                     </div>
                   </div>
-                  {/* Info movie */}
+
                   <div className='movie-detail-detail'>
                     <h3>Chi tiết phim</h3>
-                    {MovieDetailField("Tên phim", movieDetail.tenPhim, "movie-detail-title")}
-                    {MovieDetailField(
-                      "Ngày công chiếu",
-                      formatLocaleDateString(movieDetail.ngayKhoiChieu)
-                    )}
-                    {MovieDetailField("Điểm đánh giá", movieDetail.danhGia / 2 + "/ 5")}
-                    {MovieDetailField("Đạo diễn", "Adam Wingard")}
-                    {MovieDetailField(
-                      "Diễn viên",
-                      "Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown"
-                    )}
+                    <MovieDetailItem label='Tên phim'>
+                      <span className='movie-detail-title'>{movieDetail.tenPhim}</span>
+                    </MovieDetailItem>
+                    <MovieDetailItem label='Ngày công chiếu'>
+                      {formatLocaleDateString(movieDetail.ngayKhoiChieu)}
+                    </MovieDetailItem>
+                    <MovieDetailItem label='Điểm đánh giá'>
+                      {movieDetail.danhGia / 2 + "/ 5"}
+                    </MovieDetailItem>
+                    <MovieDetailItem label='Đạo diễn'>Adam Wingard</MovieDetailItem>
+                    <MovieDetailItem label='Diễn viên'>
+                      Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown
+                    </MovieDetailItem>
                   </div>
                 </div>
-                {/* Summary movie */}
                 <div>
                   <h3 className='text--primary'>Tóm tắt phim</h3>
                   <p className='movie-detail-desc'>{movieDetail.moTa}</p>
                 </div>
-                {/* Showtime */}
                 {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
-                {/* Comment */}
                 <div className='comment'>
                   <h3 className='text--primary'>Đánh giá</h3>
                   <Comment />
                 </div>
-                {/* Add Comment */}
                 <AddComment />
               </div>
-
               <div className='movie-detail-right'>
                 <RightSideNews />
               </div>
@@ -118,10 +109,10 @@ export const MovieDetail = () => {
   );
 };
 
-const MovieDetailField = (label, content, className) => (
+const MovieDetailItem = ({ label, children }) => (
   <p>
     <span className='label'>{label}:</span>
-    <span className={className}>{content}</span>
+    {children}
   </p>
 );
 

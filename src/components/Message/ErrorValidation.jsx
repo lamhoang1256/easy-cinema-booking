@@ -1,7 +1,7 @@
 import React from "react";
 
-const MessageErrorValidation = ({ errorMessage }) => {
+const ErrorValidation = ({ errorMessage }) => {
   return <>{<span className='text--primary'>{errorMessage}</span>}</>;
 };
 
-export default MessageErrorValidation;
+export default ErrorValidation;

@@ -8,7 +8,7 @@ import { Switch } from "antd";
 import { DatePicker } from "antd";
 import InputText from "components/InputText/InputText";
 import { moviesApi } from "apis/moviesApi";
-import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import ErrorValidation from "components/Message/ErrorValidation";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -130,7 +130,7 @@ const EditFilm = () => {
                 className='form-film-input'
                 defaultValue={movieEdit.tenPhim}
               />
-              <MessageErrorValidation errorMessage={errors.movieName?.message} />
+              <ErrorValidation errorMessage={errors.movieName?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Đang chiếu'>
@@ -152,7 +152,7 @@ const EditFilm = () => {
                 defaultValue={movieEdit.trailer}
                 name='movieUrlTrailer'
               />
-              <MessageErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
+              <ErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Sắp chiếu'>
@@ -176,7 +176,7 @@ const EditFilm = () => {
                 min={1}
                 max={5}
               />
-              <MessageErrorValidation errorMessage={errors.movieRating?.message} />
+              <ErrorValidation errorMessage={errors.movieRating?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Đang hot'>
@@ -204,7 +204,7 @@ const EditFilm = () => {
                   />
                 )}
               />
-              <MessageErrorValidation errorMessage={errors.movieDesc?.message} />
+              <ErrorValidation errorMessage={errors.movieDesc?.message} />
             </EditFilmGroup>
 
             <EditFilmGroup label='Thumbnail'>

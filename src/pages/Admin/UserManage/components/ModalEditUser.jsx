@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
 // components
 import InputText from "components/InputText/InputText";
-import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import ErrorValidation from "components/Message/ErrorValidation";
 import "./modalEditUser.scss";
 
 const ModalEditUser = (props) => {
@@ -99,7 +99,7 @@ const ModalEditUser = (props) => {
             type='text'
             placeholder='Họ và tên'
           />
-          <MessageErrorValidation errorMessage={errors.fullname?.message} />
+          <ErrorValidation errorMessage={errors.fullname?.message} />
         </div>
 
         <div className='user-info-edit-group'>
@@ -110,7 +110,7 @@ const ModalEditUser = (props) => {
             type='email'
             placeholder='Email'
           />
-          <MessageErrorValidation errorMessage={errors.email?.message} />
+          <ErrorValidation errorMessage={errors.email?.message} />
         </div>
 
         <div className='user-info-edit-group'>
@@ -121,7 +121,7 @@ const ModalEditUser = (props) => {
             type='text'
             placeholder='Số điện thoại'
           />
-          <MessageErrorValidation errorMessage={errors.phone?.message} />
+          <ErrorValidation errorMessage={errors.phone?.message} />
         </div>
 
         <div className='user-info-edit-group'>
@@ -132,7 +132,7 @@ const ModalEditUser = (props) => {
             type='password'
             placeholder='Mật khẩu'
           />
-          <MessageErrorValidation errorMessage={errors.password?.message} />
+          <ErrorValidation errorMessage={errors.password?.message} />
         </div>
 
         <div className='user-info-edit-group'>
@@ -143,7 +143,7 @@ const ModalEditUser = (props) => {
             type='password'
             placeholder='Xác nhận mật khẩu'
           />
-          <MessageErrorValidation errorMessage={errors.password_repeat?.message} />
+          <ErrorValidation errorMessage={errors.password_repeat?.message} />
         </div>
 
         <div className='user-info-edit-group'>

@@ -6,7 +6,7 @@ import { Input } from "antd";
 import { Switch } from "antd";
 import { DatePicker } from "antd";
 import InputText from "components/InputText/InputText";
-import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import ErrorValidation from "components/Message/ErrorValidation";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -103,7 +103,7 @@ const AddFilm = () => {
               control={control}
               className='form-film-input'
             />
-            <MessageErrorValidation errorMessage={errors.movieName?.message} />
+            <ErrorValidation errorMessage={errors.movieName?.message} />
           </AddFilmGroup>
 
           <AddFilmGroup label='Đang chiếu'>
@@ -123,7 +123,7 @@ const AddFilm = () => {
               className='form-film-input'
               name='movieUrlTrailer'
             />
-            <MessageErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
+            <ErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
           </AddFilmGroup>
 
           <AddFilmGroup label='Sắp chiếu'>
@@ -145,7 +145,7 @@ const AddFilm = () => {
               min={1}
               max={5}
             />
-            <MessageErrorValidation errorMessage={errors.movieRating?.message} />
+            <ErrorValidation errorMessage={errors.movieRating?.message} />
           </AddFilmGroup>
 
           <AddFilmGroup label='Đang hot'>
@@ -166,7 +166,7 @@ const AddFilm = () => {
                 <TextArea width={300} rows={10} onChange={onChange} />
               )}
             />
-            <MessageErrorValidation errorMessage={errors.movieDesc?.message} />
+            <ErrorValidation errorMessage={errors.movieDesc?.message} />
           </AddFilmGroup>
 
           <AddFilmGroup label='Thumbnail'>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./movieHistory.scss";
 
-export const MovieHistory = ({ thongTinDatVe }) => {
+const MovieHistory = ({ thongTinDatVe }) => {
   // create array list seat bought and sort form small to big (1-> 999...)
   const getIdChair = (seats) => {
     const filterIdChair = seats.map((seat) => seat.tenGhe);
@@ -58,3 +58,5 @@ export const MovieHistory = ({ thongTinDatVe }) => {
     </>
   );
 };
+
+export default MovieHistory;

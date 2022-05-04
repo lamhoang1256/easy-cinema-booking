@@ -135,7 +135,7 @@ Quá trình làm đồ án ReactJS
 
 22/04/2022 +23/04/2022
 _ Xử lí logic sửa thông tin
-_ Reuse component InputText, MessageErrorValidation
+_ Reuse component InputText, ErrorValidation
 
 25/04/2022 + 26/04/2022
 

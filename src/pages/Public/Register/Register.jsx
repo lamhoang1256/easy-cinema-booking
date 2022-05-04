@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "redux/actions/user/user.action";
 // components
 import InputText from "components/InputText/InputText";
-import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import ErrorValidation from "components/Message/ErrorValidation";
 
 export const Register = () => {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ export const Register = () => {
                   name='fullname'
                 />
               </div>
-              <MessageErrorValidation errorMessage={errors.fullname?.message} />
+              <ErrorValidation errorMessage={errors.fullname?.message} />
               <div className='auth-group'>
                 <ion-icon name='person-outline'></ion-icon>
                 <InputText
@@ -65,7 +65,7 @@ export const Register = () => {
                   name='username'
                 />
               </div>
-              <MessageErrorValidation errorMessage={errors.username?.message} />
+              <ErrorValidation errorMessage={errors.username?.message} />
               <div className='auth-group'>
                 <ion-icon name='lock-closed-outline'></ion-icon>
                 <InputText
@@ -75,7 +75,7 @@ export const Register = () => {
                   name='password'
                 />
               </div>
-              <MessageErrorValidation errorMessage={errors.password?.message} />
+              <ErrorValidation errorMessage={errors.password?.message} />
             </div>
 
             <div className='auth-box'>
@@ -88,12 +88,12 @@ export const Register = () => {
                   name='phone'
                 />
               </div>
-              <MessageErrorValidation errorMessage={errors.phone?.message} />
+              <ErrorValidation errorMessage={errors.phone?.message} />
               <div className='auth-group'>
                 <ion-icon name='mail-outline'></ion-icon>
                 <InputText type='email' control={control} placeholder='Email *' name='email' />
               </div>
-              <MessageErrorValidation errorMessage={errors.email?.message} />
+              <ErrorValidation errorMessage={errors.email?.message} />
               <div className='auth-group'>
                 <ion-icon name='lock-closed-outline'></ion-icon>
                 <InputText
@@ -103,11 +103,11 @@ export const Register = () => {
                   name='password_repeat'
                 />
               </div>
-              <MessageErrorValidation errorMessage={errors.password_repeat?.message} />
+              <ErrorValidation errorMessage={errors.password_repeat?.message} />
             </div>
           </div>
           {/* Log error messenge when register form API */}
-          <MessageErrorValidation errorMessage={errorRegister?.content} />
+          <ErrorValidation errorMessage={errorRegister?.content} />
 
           <button className='auth-submit btn btn--primary' type='submit'>
             Đăng kí

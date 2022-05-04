@@ -1,39 +1,37 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Banner } from "components/Banner/Banner";
+import Banner from "components/Banner/Banner";
 import { dataFakeNews } from "constants/dataFakeNews";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import "./newsDetail.scss";
 
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
-
 export const NewsDetail = () => {
   const { idNewsDetail } = useParams();
-  const dataPost = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
-
+  const news = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      {dataPost ? (
+      {news ? (
         <div className='new-detail'>
           <Banner urlBanner={urlBanner} heading={"Trang tin chi tiết"} />
           <div className='container'>
             <div className='new-detail-main'>
               <div className='new-detail-left'>
-                {dataPost && (
+                {news && (
                   <div className='new-detail-post'>
-                    <p dangerouslySetInnerHTML={{ __html: dataPost.createdAt }}></p>
+                    <p dangerouslySetInnerHTML={{ __html: news.createdAt }}></p>
                     <h2
                       className='new-detail-title'
-                      dangerouslySetInnerHTML={{ __html: dataPost.title }}
+                      dangerouslySetInnerHTML={{ __html: news.title }}
                     ></h2>
                     <div
                       className='new-detail-content'
-                      dangerouslySetInnerHTML={{ __html: dataPost.content }}
+                      dangerouslySetInnerHTML={{ __html: news.content }}
                     ></div>
                   </div>
                 )}

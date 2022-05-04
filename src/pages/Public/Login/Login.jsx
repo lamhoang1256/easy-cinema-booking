@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "redux/actions/user/user.action";
 // components
 import InputText from "components/InputText/InputText";
-import MessageErrorValidation from "components/MessageErrorValidation/MessageErrorValidation";
+import ErrorValidation from "components/Message/ErrorValidation";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ export const Login = () => {
                 control={control}
               />
             </div>
-            <MessageErrorValidation errorMessage={errors.username?.message} />
+            <ErrorValidation errorMessage={errors.username?.message} />
 
             <div className='auth-group'>
               <ion-icon name='lock-closed-outline'></ion-icon>
@@ -60,9 +60,9 @@ export const Login = () => {
                 control={control}
               />
             </div>
-            <MessageErrorValidation errorMessage={errors.password?.message} />
+            <ErrorValidation errorMessage={errors.password?.message} />
             {/* log error form API */}
-            <MessageErrorValidation errorMessage={errorLogin?.content} />
+            <ErrorValidation errorMessage={errorLogin?.content} />
             {/* button submit */}
             <button className='auth-submit btn btn--primary' type='submit'>
               Đăng nhập

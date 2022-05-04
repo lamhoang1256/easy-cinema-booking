@@ -14,7 +14,7 @@ import {
 } from "../../constants/movie/movieDetail.constant";
 
 const initialState = {
-  isLoadingMovieDetail: true,
+  isLoading: true,
   movieDetail: null,
   calendarShowList: null,
   commentList: null,
@@ -25,11 +25,11 @@ const initialState = {
 export const movieDetail = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_MOVIE_DETAIL_REQUEST:
-      return { ...state, isLoadingMovieDetail: true };
+      return { ...state, isLoading: true };
     case GET_MOVIE_DETAIL_SUCCESS:
-      return { ...state, isLoadingMovieDetail: false, movieDetail: payload };
+      return { ...state, isLoading: false, movieDetail: payload };
     case GET_MOVIE_DETAIL_FAIL:
-      return { ...state, isLoadingMovieDetail: false, error: payload };
+      return { ...state, isLoading: false, error: payload };
 
     // get danh sách lịch chiếu phim
     case GET_CALENDAR_SHOW_REQUEST:
