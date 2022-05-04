@@ -8,7 +8,6 @@ import increaseTime from "utilities/increaseTime";
 
 export const Showtime = ({ showtimeList }) => {
   const { TabPane } = Tabs;
-
   return (
     <div className='showtime'>
       <h2 className='showtime-heading text--primary'>Lịch chiếu phim</h2>

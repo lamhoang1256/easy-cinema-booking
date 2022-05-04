@@ -26,7 +26,6 @@ export const Login = () => {
     const requestLogin = { taiKhoan: data.username, matKhau: data.password };
     dispatch(loginUser(requestLogin));
   };
-
   useEffect(() => {
     // if login successful will redirect previous page
     if (userLocalStorage) {
@@ -63,7 +62,6 @@ export const Login = () => {
             <ErrorValidation errorMessage={errors.password?.message} />
             {/* log error form API */}
             <ErrorValidation errorMessage={errorLogin?.content} />
-            {/* button submit */}
             <button className='auth-submit btn btn--primary' type='submit'>
               Đăng nhập
             </button>

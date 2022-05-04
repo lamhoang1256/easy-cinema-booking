@@ -86,11 +86,13 @@ export const MovieList = ({ data, heading, col }) => {
             </Slider>
           ) : (
             <Slider {...settings}>
-              {[1, 2, 3, 4, 5, 6].map((item) => (
-                <div className='skeleton-card' key={item}>
-                  <Skeleton height={340} borderRadius={10} />
-                </div>
-              ))}
+              {Array(6)
+                .fill(0)
+                .map((item, index) => (
+                  <div className='skeleton-card' key={index}>
+                    <Skeleton height={340} borderRadius={10} />
+                  </div>
+                ))}
             </Slider>
           )}
         </div>

@@ -8,12 +8,10 @@ import { Article } from "./components/Article/Article";
 import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
 import { Showtime } from "./components/Showtime/Showtime";
 import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
-
 import { moviesApi } from "apis/moviesApi";
 import "./home.scss";
 
 export const Home = () => {
-  // kiểm tra xem người dùng đang ở điện thoại hay không để load giao diện cinema
   const isMobile = useMediaQuery("(max-width:767.98px)");
   const [comingSoonMovieList, setComingSoonMovieList] = useState(null);
   const [nowShowingMovieList, setNowShowingMovieList] = useState(null);
@@ -37,7 +35,6 @@ export const Home = () => {
       console.log(err);
     }
   };
-
   // lấy dữ liệu cụm rạp (lịch chiếu phim)
   const fetchCalendarShowtime = async () => {
     try {
@@ -49,7 +46,6 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    // window.scrollTo(0, 0);
     fetchComingSoonMovieList();
     fetchNowShowingMovieList();
     fetchCalendarShowtime();
@@ -63,10 +59,8 @@ export const Home = () => {
       <div className='home-main'>
         <FilterFilm />
         <div className='container'>
-          {/* Danh sách phim */}
           <MovieList data={comingSoonMovieList} heading='Phim sắp chiếu' col={5} />
           <MovieList data={nowShowingMovieList} heading='Phim đang chiếu' col={6} />
-          {/* Phần Lịch chiếu phim */}
           <div id='showtime'>
             {isMobile ? (
               <ShowtimeMobile showtimeList={showtimeList} />
@@ -74,7 +68,6 @@ export const Home = () => {
               <Showtime showtimeList={showtimeList} />
             )}
           </div>
-          {/* Phần Tin tức */}
           <Article />
         </div>
       </div>

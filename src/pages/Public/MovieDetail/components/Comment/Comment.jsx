@@ -6,13 +6,13 @@ import "./comment.scss";
 export const Comment = () => {
   const { commentList } = useSelector((state) => state.movieDetail);
   const { userInfo } = useSelector((state) => state.user);
-
-  // tạo avatar giả cho user comment
   const fakeAvatarUser = () => {
     const length = dataFakeAvatar.length;
     const random = Math.floor(Math.random() * length);
     return dataFakeAvatar[random].url;
   };
+  const fakeAvatar = `${process.env.REACT_APP_PUBLIC}/assets/images/${fakeAvatarUser()}`;
+  const meAvatar = `${process.env.REACT_APP_PUBLIC}/assets/images/${yourAvatar.url}`;
 
   return (
     <>
@@ -22,15 +22,14 @@ export const Comment = () => {
             commentList.map((comment) => (
               <div className='comment-item' key={comment.id}>
                 <div className='comment-info'>
-                  {/* {commentList.username === userInfo.taiKhoan ? : } */}
                   <img
                     className='comment-avatar'
-                    src={`${process.env.REACT_APP_PUBLIC}/assets/images/${fakeAvatarUser()}`}
+                    src={comment.username === userInfo.taiKhoan ? meAvatar : fakeAvatar}
                     alt='comment-avatar'
                   />
                   <div className='comment-profile'>
                     <h3>{comment.username}</h3>
-                    <span>{moment(comment.createdAt).fromNow()}</span> {/* tạo timeago */}
+                    <span>{moment(comment.createdAt).fromNow()}</span>
                   </div>
                 </div>
                 <div className='comment-desc'>{comment.content}</div>
