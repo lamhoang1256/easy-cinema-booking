@@ -7,9 +7,9 @@ import MovieDetail from "pages/Public/MovieDetail/MovieDetail";
 import UserInfo from "pages/Public/UserInfo/UserInfo";
 import NewsDetail from "pages/Public/NewsDetail/NewsDetail";
 import TicketRoom from "pages/Public/TicketRoom/TicketRoom";
-import Login from "pages/Public/Login/Login";
 import Register from "pages/Public/Register/Register";
 import PageNotFound from "pages/Public/PageNotFound/PageNotFound";
+import Login from "pages/Public/Login/Login";
 import UserManage from "pages/Admin/UserManage/UserManage";
 import MovieManage from "pages/Admin/MovieManage/MovieManage";
 import EditFilm from "pages/Admin/MovieManage/components/EditFilm/EditFilm";
@@ -20,7 +20,7 @@ import MainManage from "pages/Admin/MainManage";
 import ScheduleFilm from "pages/Admin/MovieManage/components/ScheduleFilm/ScheduleFilm";
 import SeatMap from "pages/Admin/MovieManage/components/SeatMap/SeatMap";
 
-function Routes() {
+const RoutesComponent = () => {
   return (
     <Router>
       <Routes>
@@ -43,7 +43,6 @@ function Routes() {
             <Route path='seat-map/:idTicketRoom' element={<SeatMap />} />
             <Route path='schedule/:idSchedule' element={<ScheduleFilm />} />
           </Route>
-
           <Route path='cinema-manage'>
             <Route index element={<CinemaManage />} />
             <Route path=':cinemaSystem/:cinemaName' element={<CinemaGroup />} />
@@ -59,6 +58,6 @@ function Routes() {
       </Routes>
     </Router>
   );
-}
+};
 
-export default Routes;
+export default RoutesComponent;

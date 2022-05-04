@@ -86,6 +86,11 @@ export const Header = () => {
                     src={`${process.env.REACT_APP_PUBLIC}/assets/images/${dataFakeAvatar[0].url}`}
                   />
                   <div className='header-user'>
+                    {userInfo.maLoaiNguoiDung === "QuanTri" && (
+                      <Link to='/admin' className='header-user-item'>
+                        Trang quản trị
+                      </Link>
+                    )}
                     <Link to='/user' className='header-user-item'>
                       Thông tin tài khoản
                     </Link>
