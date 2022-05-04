@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
 // component
-import { Carousel } from "./components/Carousel/Carousel";
-import { FilterFilm } from "./components/FilterFilm/FilterFilm";
-import { MovieList } from "./components/MovieList/MovieList";
-import { Article } from "./components/Article/Article";
-import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
-import { Showtime } from "./components/Showtime/Showtime";
-import { ShowtimeMobile } from "./components/Showtime/ShowtimeMobile";
+import Carousel from "./components/Carousel/Carousel";
+import FilterFilm from "./components/FilterFilm/FilterFilm";
+import MovieList from "./components/MovieList/MovieList";
+import Article from "./components/Article/Article";
+import ModalTrailer from "components/ModalTrailer/ModalTrailer";
+import Showtime from "./components/Showtime/Showtime";
+import ShowtimeMobile from "./components/Showtime/ShowtimeMobile";
 import { moviesApi } from "apis/moviesApi";
 import "./home.scss";
 
-export const Home = () => {
+const Home = () => {
   const isMobile = useMediaQuery("(max-width:767.98px)");
   const [comingSoonMovieList, setComingSoonMovieList] = useState(null);
   const [nowShowingMovieList, setNowShowingMovieList] = useState(null);
@@ -76,6 +76,7 @@ export const Home = () => {
   );
 };
 
+export default Home;
 // DỮ LIỆU MẪU TRẢ VỀ CỦA LIST MOVIE TỪ API
 // {
 //   "statusCode": 200,

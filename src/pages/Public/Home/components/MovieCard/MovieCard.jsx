@@ -2,28 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
+import { createStarRating } from "utilities/createStarRating";
 import "./movieCard.scss";
 
-export const MovieCard = (props) => {
+const MovieCard = (props) => {
   const dispatch = useDispatch();
   const { movie } = props;
-  // check điểm đánh giá từ API và tạo các ngôi sao rating
-  const score = movie.danhGia;
-  const createStarRating = () => {
-    let rating = "";
-    if (score % 2 === 0) {
-      for (let i = 0; i < score / 2; i++) {
-        rating += "<ion-icon name='star'></ion-icon>";
-      }
-    } else {
-      for (let i = 0; i < Math.floor(score / 2); i++) {
-        rating += "<ion-icon name='star'></ion-icon>";
-      }
-      rating += "<ion-icon name='star-half'></ion-icon>";
-    }
-    return rating;
-  };
-  // tạo thời lượng phim cho đẹp
   const movieDuration = ((movie.maPhim * movie.danhGia) / 500).toFixed(0);
 
   return (
@@ -51,7 +35,7 @@ export const MovieCard = (props) => {
               <div className='movie-card-rate'>
                 <div
                   className='movie-card-stars'
-                  dangerouslySetInnerHTML={{ __html: createStarRating() }}
+                  dangerouslySetInnerHTML={{ __html: createStarRating(movie.danhGia) }}
                 ></div>
                 <div>{movie.danhGia / 2}</div>
               </div>
@@ -67,6 +51,8 @@ export const MovieCard = (props) => {
     </>
   );
 };
+
+export default MovieCard;
 
 // DATA MẪU
 // {

@@ -22,7 +22,6 @@ export const AddComment = () => {
       });
       return;
     }
-
     if (newComment.length < 40) {
       setError("Nhận xét ít nhất gồm 40 kí tự");
       return;

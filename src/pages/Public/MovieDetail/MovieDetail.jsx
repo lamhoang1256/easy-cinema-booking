@@ -8,7 +8,7 @@ import { AddComment } from "components/AddComment/AddComment";
 import { Comment } from "./components/Comment/Comment";
 import { DetailShowtime } from "./components/DetailShowtime/DetailShowtime";
 import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtimeMobile";
-import { ModalTrailer } from "components/ModalTrailer/ModalTrailer";
+import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 // action
 import {
@@ -20,7 +20,7 @@ import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import { formatLocaleDateString } from "utilities/formatDate";
 import "./movieDetail.scss";
 
-export const MovieDetail = () => {
+const MovieDetail = () => {
   const { idDetail } = useParams();
   const dispatch = useDispatch();
   const { isLoading, movieDetail, togglePostComment } = useSelector((state) => state.movieDetail);
@@ -137,3 +137,5 @@ const MovieDetailItem = ({ label, children }) => (
 //   "dateTime": "2022-03-31T17:33:55.2292515+07:00",
 //   "messageConstants": null
 // }
+
+export default MovieDetail;

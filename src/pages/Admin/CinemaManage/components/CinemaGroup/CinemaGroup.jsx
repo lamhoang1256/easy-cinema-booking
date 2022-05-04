@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
 import { useParams } from "react-router-dom";
 import { DatePicker, Modal, Table } from "antd";
-import { sweetAlert } from "utilities/sweetAlert";
+import Filter from "components/Filter/Filter";
 import { moviesApi } from "apis/moviesApi";
+import { sweetAlert } from "utilities/sweetAlert";
 import { createKeyForObj } from "utilities/createKeyForObject";
-import moment from "moment";
 import "./cinemaGroup.scss";
-import { Filter } from "components/Filter/Filter";
 
 const CinemaGroup = () => {
   const { cinemaSystem, cinemaName } = useParams(); // cgv/cgv-hoang-van-thu
@@ -214,7 +214,6 @@ const CinemaGroup = () => {
     </div>
   );
 };
-export default CinemaGroup;
 
 const CinemaGroupField = ({ label, children }) => (
   <div className='cinema-group-field'>
@@ -222,3 +221,5 @@ const CinemaGroupField = ({ label, children }) => (
     {children}
   </div>
 );
+
+export default CinemaGroup;

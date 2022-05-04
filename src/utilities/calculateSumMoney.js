@@ -1,4 +1,4 @@
-export const calculateSum = (array, keyObj) => {
+export const calculateSumMoney = (array, keyObj) => {
   const total = array.reduce(function (prevValue, currentValue) {
     return prevValue + currentValue[keyObj];
   }, 0);

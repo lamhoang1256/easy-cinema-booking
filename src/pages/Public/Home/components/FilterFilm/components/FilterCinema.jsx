@@ -1,9 +1,9 @@
-import { Filter } from "components/Filter/Filter";
-import React, { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
+import Filter from "components/Filter/Filter";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOpendayListToSearch } from "redux/actions/movie/movieFilter.action";
 
-export const FilterCinema = () => {
+const FilterCinema = () => {
   const dispatch = useDispatch();
   const { cinemaList } = useSelector((state) => state.movieFilter);
   const [selectedCinema, setSelectedCinema] = useState({ tenCumRap: "" });
@@ -48,3 +48,5 @@ export const FilterCinema = () => {
     </Filter>
   );
 };
+
+export default FilterCinema;

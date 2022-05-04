@@ -18,11 +18,11 @@ import {
 import { useCountDownBooking } from "hooks/useCountDownBooking";
 import { formatTimeTwoDigit } from "utilities/formatDate";
 import { sweetAlert } from "utilities/sweetAlert";
-import { calculateSum } from "utilities/calculateSum";
+import { calculateSumMoney } from "utilities/calculateSumMoney";
 
 const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
 )`;
-export const TicketRoom = () => {
+const TicketRoom = () => {
   const { idTicketRoom } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export const TicketRoom = () => {
 
   const [isShowModalBill, setIsShowModalBill] = useState(false);
   const [isShowModalAlert, setIsShowModalAlert] = useState(false);
-  const totalMoney = calculateSum(selectingSeatList, "giaVe");
+  const totalMoney = calculateSumMoney(selectingSeatList, "giaVe");
 
   const handleBuyTicket = async () => {
     const requestBuyTicket = {
@@ -158,3 +158,5 @@ const InfoItem = ({ label, children }) => (
     {children}
   </div>
 );
+
+export default TicketRoom;

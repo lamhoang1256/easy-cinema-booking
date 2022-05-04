@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./auth.scss";
 
-export const AuthLayout = () => {
+const AuthLayout = () => {
   return (
     <div className='auth-layout'>
       <Outlet />
@@ -12,3 +12,5 @@ export const AuthLayout = () => {
     </div>
   );
 };
+
+export default AuthLayout;

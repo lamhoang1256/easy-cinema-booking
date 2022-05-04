@@ -1,10 +1,10 @@
-import { Filter } from "components/Filter/Filter";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Filter from "components/Filter/Filter";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShowtimeListToSearch } from "redux/actions/movie/movieFilter.action";
 import { formatISOtoLocaleDateString, formatLocaleDateString } from "utilities/formatDate";
 
-export const FilterOpenday = () => {
+const FilterOpenday = () => {
   const dispatch = useDispatch();
   const { opendayList } = useSelector((state) => state.movieFilter);
   const [visibility, setVisibility] = useState(false);
@@ -61,3 +61,5 @@ export const FilterOpenday = () => {
     </Filter>
   );
 };
+
+export default FilterOpenday;

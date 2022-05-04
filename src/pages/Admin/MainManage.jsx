@@ -1,6 +1,6 @@
-import { dataFakeAdminRate, dataFakeAdminSale } from "constants/dataFakeAdminMain";
-import React from "react";
 import Chart from "react-apexcharts";
+import { dataFakeAdminRate, dataFakeAdminSale } from "constants/dataFakeAdminMain";
+import { createStarRating } from "utilities/createStarRating";
 import "./mainManage.scss";
 
 const MainManage = () => {
@@ -50,6 +50,7 @@ const MainManage = () => {
             progress={boxed.progress}
             duration={boxed.duration}
             love={boxed.love}
+            rate={boxed.rate}
           ></MainManageBoxed>
         ))}
       </div>
@@ -65,18 +66,15 @@ const MainManageCard = ({ thumb, title }) => (
 );
 
 const MainManageBoxed = (props) => {
-  const { thumb, title, feature, color, openday, progress, duration, love } = props;
+  const { thumb, title, feature, color, openday, progress, duration, love, rate } = props;
   return (
     <div className='main-manage-boxed'>
       <img src={thumb} className='main-manage-thumb-square' alt='movie-thumb' />
       <h3 className='main-manage-title'>{title}</h3>
-      <div className='main-manage-rate'>
-        <ion-icon name='star'></ion-icon>
-        <ion-icon name='star'></ion-icon>
-        <ion-icon name='star'></ion-icon>
-        <ion-icon name='star'></ion-icon>
-        <ion-icon name='star-half'></ion-icon>
-      </div>
+      <div
+        className='main-manage-rate'
+        dangerouslySetInnerHTML={{ __html: createStarRating(rate) }}
+      ></div>
       <div className='main-manage-feature' style={{ color: color }}>
         {feature}
       </div>

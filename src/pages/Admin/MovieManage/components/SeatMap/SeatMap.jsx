@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { moviesApi } from "apis/moviesApi";
 import SeatingPlan from "pages/Public/TicketRoom/components/SeatingPlan/SeatingPlan";

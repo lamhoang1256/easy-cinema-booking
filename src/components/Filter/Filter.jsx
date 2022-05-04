@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./filter.scss";
 
-export const Filter = ({ selectedItem, selectedTitle, labelNotSelectItem, children }) => {
+const Filter = ({ selectedItem, selectedTitle, labelNotSelectItem, children }) => {
   const [visibility, setVisibility] = useState(false);
 
   return (
@@ -24,3 +24,5 @@ export const Filter = ({ selectedItem, selectedTitle, labelNotSelectItem, childr
     </div>
   );
 };
+
+export default Filter;

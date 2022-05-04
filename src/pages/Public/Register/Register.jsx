@@ -11,7 +11,7 @@ import { registerUser } from "redux/actions/user/user.action";
 import InputText from "components/InputText/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 
-export const Register = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { errorRegister, userInfo } = useSelector((state) => state.user);
@@ -123,3 +123,5 @@ export const Register = () => {
     </div>
   );
 };
+
+export default Register;

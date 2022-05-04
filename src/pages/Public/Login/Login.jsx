@@ -11,7 +11,7 @@ import { loginUser } from "redux/actions/user/user.action";
 import InputText from "components/InputText/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 
-export const Login = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { errorLogin, userInfo } = useSelector((state) => state.user);
@@ -79,3 +79,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

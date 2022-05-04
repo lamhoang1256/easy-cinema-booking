@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import { Tabs } from "antd";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-// utilities
 import { formatDateToHours } from "utilities/formatDate";
-import increaseTime from "utilities/increaseTime";
+import { increaseTime } from "utilities/increaseTime";
 
 export const Showtime = ({ showtimeList }) => {
   const { TabPane } = Tabs;
@@ -72,3 +70,5 @@ export const Showtime = ({ showtimeList }) => {
     </div>
   );
 };
+
+export default Showtime;

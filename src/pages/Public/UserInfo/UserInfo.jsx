@@ -16,7 +16,7 @@ import "./userInfo.scss";
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
 
-export const UserInfo = () => {
+const UserInfo = () => {
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
   const { isLoading, userProfile } = useSelector((state) => state.user);
@@ -176,6 +176,8 @@ const UserProfileItem = ({ label, children }) => (
     <span className='label'>{label}</span> {children}
   </p>
 );
+
+export default UserInfo;
 
 // "taiKhoan": "TramQuynh127",
 // "matKhau": "123456789",

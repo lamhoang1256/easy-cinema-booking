@@ -7,7 +7,7 @@ import "./newsDetail.scss";
 
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
 )`;
-export const NewsDetail = () => {
+const NewsDetail = () => {
   const { idNewsDetail } = useParams();
   const news = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
   useEffect(() => {
@@ -49,3 +49,4 @@ export const NewsDetail = () => {
     </>
   );
 };
+export default NewsDetail;

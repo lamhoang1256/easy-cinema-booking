@@ -1,4 +1,4 @@
-import { Filter } from "components/Filter/Filter";
+import Filter from "components/Filter/Filter";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,7 +6,7 @@ import {
   fetchMovieListToSearch,
 } from "redux/actions/movie/movieFilter.action";
 
-export const FilterMovie = () => {
+const FilterMovie = () => {
   const dispatch = useDispatch();
   const { movieList } = useSelector((state) => state.movieFilter);
   const [selectedMovie, setSelectedMovie] = useState({ tenPhim: "" });
@@ -42,3 +42,5 @@ export const FilterMovie = () => {
     </Filter>
   );
 };
+
+export default FilterMovie;

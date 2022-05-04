@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import "./modalTrailer.scss";
 
-export const ModalTrailer = () => {
+const ModalTrailer = () => {
   const dispatch = useDispatch();
   const { isTrailerVisible, urlTrailer } = useSelector((state) => state.modalTrailer);
-
   const handleHiddenTrailer = () => {
     dispatch(closeModalTrailer());
   };
@@ -27,3 +26,5 @@ export const ModalTrailer = () => {
     </>
   );
 };
+
+export default ModalTrailer;

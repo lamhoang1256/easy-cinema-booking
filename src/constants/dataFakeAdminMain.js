@@ -27,6 +27,7 @@ export const dataFakeAdminRate = [
     progress: "70%",
     duration: "2:09:10",
     love: true,
+    rate: 8,
   },
   {
     thumb: "https://movienew.cybersoft.edu.vn/hinhanh/the-scary-stories_gp07.jpg",
@@ -37,6 +38,7 @@ export const dataFakeAdminRate = [
     progress: "87%",
     duration: "2:23:20",
     love: false,
+    rate: 10,
   },
   {
     thumb: "https://movienew.cybersoft.edu.vn/hinhanh/the-batman_gp01.jpg",
@@ -47,5 +49,6 @@ export const dataFakeAdminRate = [
     progress: "70%",
     duration: "2:30:00",
     love: true,
+    rate: 9,
   },
 ];

@@ -19,14 +19,8 @@ import CinemaGroup from "pages/Admin/CinemaManage/components/CinemaGroup/CinemaG
 import MainManage from "pages/Admin/MainManage";
 import ScheduleFilm from "pages/Admin/MovieManage/components/ScheduleFilm/ScheduleFilm";
 import SeatMap from "pages/Admin/MovieManage/components/SeatMap/SeatMap";
-// style css
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "react-loading-skeleton/dist/skeleton.css";
-import "antd/dist/antd.css";
-import "assets/scss/app.scss";
 
-function App() {
+function Routes() {
   return (
     <Router>
       <Routes>
@@ -67,4 +61,4 @@ function App() {
   );
 }
 
-export default App;
+export default Routes;

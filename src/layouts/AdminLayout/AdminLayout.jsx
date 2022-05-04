@@ -1,9 +1,17 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 import "./adminLayout.scss";
 
-export const AdminLayout = () => {
+const AdminLayout = () => {
+  const navigate = useNavigate();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/auth/login");
+    }
+  }, [userInfo]);
+
   return (
     <div className='admin-layout'>
       <Sidebar />
@@ -15,3 +23,5 @@ export const AdminLayout = () => {
     </div>
   );
 };
+
+export default AdminLayout;

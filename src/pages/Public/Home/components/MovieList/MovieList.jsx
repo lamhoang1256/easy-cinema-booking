@@ -1,8 +1,7 @@
-import { MovieCard } from "../MovieCard/MovieCard";
 import Slider from "react-slick";
-import "./movieList.scss";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import MovieCard from "../MovieCard/MovieCard";
+import "./movieList.scss";
 
 // custom button next, prev carousel
 function PrevArrow(props) {
@@ -22,7 +21,7 @@ function NextArrow(props) {
   );
 }
 
-export const MovieList = ({ data, heading, col }) => {
+const MovieList = ({ data, heading, col }) => {
   const settings = {
     dots: true,
     slidesToShow: col,
@@ -100,3 +99,5 @@ export const MovieList = ({ data, heading, col }) => {
     </div>
   );
 };
+
+export default MovieList;

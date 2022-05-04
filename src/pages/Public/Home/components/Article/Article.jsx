@@ -5,7 +5,7 @@ import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import { dataFakeNews } from "constants/dataFakeNews";
 import "./article.scss";
 
-export const Article = () => {
+const Article = () => {
   return (
     <div className='article' id='article'>
       <h2 className='article-heading text--primary'>Tin tức</h2>
@@ -49,3 +49,5 @@ export const Article = () => {
     </div>
   );
 };
+
+export default Article;

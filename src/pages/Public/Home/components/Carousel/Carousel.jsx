@@ -5,10 +5,9 @@ import { dataCarouselHome } from "constants/dataCarouselHome";
 import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import "./carousel.scss";
 
-export const Carousel = () => {
+const Carousel = () => {
   const dispatch = useDispatch();
 
-  // custom button next, prev carousel
   function PrevArrow(props) {
     const { onClick } = props;
     return (
@@ -87,3 +86,5 @@ export const Carousel = () => {
     </div>
   );
 };
+
+export default Carousel;

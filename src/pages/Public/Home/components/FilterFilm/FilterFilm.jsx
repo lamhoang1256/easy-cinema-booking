@@ -1,15 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useMediaQuery } from "hooks/useMediaQuery";
 //components
-import { FilterMovie } from "./components/FilterMovie";
-import { FilterCinema } from "./components/FilterCinema";
-import { FilterOpenday } from "./components/FilterOpenday";
-import { FilterShowtime } from "./components/FilterShowtime";
+import FilterMovie from "./components/FilterMovie";
+import FilterCinema from "./components/FilterCinema";
+import FilterOpenday from "./components/FilterOpenday";
+import FilterShowtime from "./components/FilterShowtime";
 import "./filterFilm.scss";
 
-export const FilterFilm = () => {
+const FilterFilm = () => {
   const { idTicketRoom } = useSelector((state) => state.movieFilter);
   const isFilterVisible = useMediaQuery("(min-width:1200px)");
 
@@ -50,3 +49,5 @@ export const FilterFilm = () => {
     </div>
   );
 };
+
+export default FilterFilm;

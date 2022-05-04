@@ -1,22 +1,19 @@
-import { Filter } from "components/Filter/Filter";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Filter from "components/Filter/Filter";
 import { getIdToBooking } from "redux/actions/movie/movieFilter.action";
 import { formatISOtoHours } from "utilities/formatDate";
 
-export const FilterShowtime = () => {
+const FilterShowtime = () => {
   const dispatch = useDispatch();
   const [selectedShowtime, setSelectedShowtime] = useState({ ngayChieuGioChieu: "" });
   const { showtimeList } = useSelector((state) => state.movieFilter);
 
   // lấy id phòng chiếu để chuyển sang đặt vé
   const handleGetIdBooking = (showtimeSelected) => {
-    // showtimeSelected.ngayChieuGioChieu = formatISOtoHours(showtimeSelected.ngayChieuGioChieu);
-    console.log(showtimeSelected);
     setSelectedShowtime(showtimeSelected);
     dispatch(getIdToBooking(showtimeSelected.maLichChieu));
   };
-
   useEffect(() => {
     setSelectedShowtime({ ngayChieuGioChieu: "" });
   }, [showtimeList]);
@@ -48,3 +45,5 @@ export const FilterShowtime = () => {
     </Filter>
   );
 };
+
+export default FilterShowtime;
