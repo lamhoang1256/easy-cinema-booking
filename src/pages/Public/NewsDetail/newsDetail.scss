@@ -1,6 +1,5 @@
 @use "assets/scss/helpers/index.scss" as *;
 .new-detail {
-  //phần background banner mờ
   &-top {
     position: relative;
     height: 30vh;
@@ -28,7 +27,6 @@
     }
   }
 
-  //phần thông tin phim
   &-main {
     display: flex;
     gap: 30px;

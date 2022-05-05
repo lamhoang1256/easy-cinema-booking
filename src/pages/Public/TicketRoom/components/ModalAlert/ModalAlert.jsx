@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export const ModalAlert = () => {
+const ModalAlert = () => {
   const navigate = useNavigate();
   const handleComebackHome = () => {
     navigate("/");
@@ -27,3 +27,5 @@ export const ModalAlert = () => {
     </div>
   );
 };
+
+export default ModalAlert;

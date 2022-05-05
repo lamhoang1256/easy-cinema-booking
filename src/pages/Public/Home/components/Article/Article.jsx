@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import { RightSideNews } from "components/RightSideNews/RightSideNews";
+import RightSideNews from "components/RightSideNews/RightSideNews";
 import { dataFakeNews } from "constants/dataFakeNews";
 import "./article.scss";
 

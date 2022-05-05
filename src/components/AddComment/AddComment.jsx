@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { postComment } from "redux/actions/movie/movieDetail.action";
 import Swal from "sweetalert2";
 import "./addComment.scss";
 
-export const AddComment = () => {
+const AddComment = () => {
   const dispatch = useDispatch();
   const { idDetail } = useParams();
   const { userInfo } = useSelector((state) => state.user);
-
   const [newComment, setNewComment] = useState("");
   const [error, setError] = useState("");
+
   const handleAddNewComment = () => {
     if (!userInfo) {
       Swal.fire({
@@ -60,3 +60,5 @@ export const AddComment = () => {
     </div>
   );
 };
+
+export default AddComment;

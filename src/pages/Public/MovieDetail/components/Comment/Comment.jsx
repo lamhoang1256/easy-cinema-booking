@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { dataFakeAvatar, yourAvatar } from "constants/dataFakeAvatar";
 import "./comment.scss";
 
-export const Comment = () => {
+const Comment = () => {
   const { commentList } = useSelector((state) => state.movieDetail);
   const { userInfo } = useSelector((state) => state.user);
   const fakeAvatarUser = () => {
@@ -65,3 +65,5 @@ export const Comment = () => {
 //     "id": "2"
 //   }
 // ]
+
+export default Comment;

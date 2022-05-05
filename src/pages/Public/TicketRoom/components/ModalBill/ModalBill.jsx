@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export const ModalBill = (props) => {
+const ModalBill = (props) => {
   const navigate = useNavigate();
   const { dataTicketRoom, selectingSeatList } = useSelector((state) => state.TicketRoom);
   const { userInfo } = useSelector((state) => state.user);
@@ -83,7 +83,7 @@ const ModalBillUser = memo(({ userInfo, totalMoney }) => {
         </ModalBillField>
       </div>
       <div className='modal-barcode'>
-        <img src={`${process.env.REACT_APP_PUBLIC}/assets/images/qrcode.png`} alt='qrcode' />
+        <img src={`${process.env.REACT_APP_PUBLIC}/assets/images/chore/qrcode.png`} alt='qrcode' />
         <span>#{generateRandomString()}</span>
       </div>
     </div>
@@ -95,3 +95,5 @@ const ModalBillField = ({ label, children }) => (
     <span className='label'>{label}: </span> {children}
   </div>
 );
+
+export default ModalBill;

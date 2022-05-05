@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Sidebar } from "./components/Sidebar";
-import "./adminLayout.scss";
+import { Outlet, useNavigate } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
 import ErrorPage from "components/ErrorPage/ErrorPage";
+import "./adminLayout.scss";
 
 const AdminLayout = () => {
   const navigate = useNavigate();

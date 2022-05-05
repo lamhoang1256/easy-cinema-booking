@@ -2,7 +2,7 @@
 .header {
   width: 100%;
   transition: all 0.3s linear;
-  @include position(fixed, 0, 0, $z-index: 100);
+  @include position(fixed, 0, 0, $z-index: 200);
   &-top {
     gap: 0 50px;
     @include flexbox($justify-content: space-between);

@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { logoutAction } from "redux/actions/user/user.action";
 import "./sidebar.scss";
 
-export const Sidebar = () => {
+const Sidebar = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutAction());
@@ -50,3 +50,5 @@ export const Sidebar = () => {
     </div>
   );
 };
+
+export default Sidebar;

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "hooks/useMediaQuery";
 // component
-import { RightSideNews } from "components/RightSideNews/RightSideNews";
-import { AddComment } from "components/AddComment/AddComment";
-import { Comment } from "./components/Comment/Comment";
-import { DetailShowtime } from "./components/DetailShowtime/DetailShowtime";
-import { DetailShowtimeMobile } from "./components/DetailShowtime/DetailShowtimeMobile";
+import RightSideNews from "components/RightSideNews/RightSideNews";
+import AddComment from "components/AddComment/AddComment";
+import Comment from "./components/Comment/Comment";
+import DetailShowtime from "./components/DetailShowtime/DetailShowtime";
+import DetailShowtimeMobile from "./components/DetailShowtime/DetailShowtimeMobile";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
-// action
 import {
   getMovieDetail,
   getCommentList,

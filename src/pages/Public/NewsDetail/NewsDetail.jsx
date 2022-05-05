@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Banner from "components/Banner/Banner";
+import RightSideNews from "components/RightSideNews/RightSideNews";
 import { dataFakeNews } from "constants/dataFakeNews";
-import { RightSideNews } from "components/RightSideNews/RightSideNews";
 import "./newsDetail.scss";
 
-const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background-news.png"
-)`;
+const urlBanner = `${process.env.PUBLIC_URL}/assets/images/background/news.png`;
 const NewsDetail = () => {
   const { idNewsDetail } = useParams();
   const news = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
@@ -18,7 +17,7 @@ const NewsDetail = () => {
     <>
       {news ? (
         <div className='new-detail'>
-          <Banner urlBanner={urlBanner} heading={"Trang tin chi tiết"} />
+          <Banner urlBanner={`url(${urlBanner})`} heading={"Trang tin chi tiết"} />
           <div className='container'>
             <div className='new-detail-main'>
               <div className='new-detail-left'>

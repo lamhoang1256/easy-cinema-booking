@@ -65,7 +65,7 @@ const Header = () => {
           <div className='header-top'>
             <Link to='/' className='header-logo'>
               <img
-                src={`${process.env.REACT_APP_PUBLIC}/assets/images/logo-star-cineplex.png`}
+                src={`${process.env.REACT_APP_PUBLIC}/assets/images/chore/logo-star-cineplex.png`}
                 alt='header-logo'
               />
             </Link>

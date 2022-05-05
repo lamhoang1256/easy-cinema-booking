@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { dataFakeNews } from "constants/dataFakeNews";
 import "./rightSideNews.scss";
 
-export const RightSideNews = () => {
+const RightSideNews = () => {
   const dataSideNews = dataFakeNews.filter((news) => news.id !== 1);
 
   return (
@@ -28,3 +28,5 @@ export const RightSideNews = () => {
     </div>
   );
 };
+
+export default RightSideNews;

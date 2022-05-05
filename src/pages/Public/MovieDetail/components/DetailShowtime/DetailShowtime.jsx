@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom";
 import { Tabs } from "antd";
 import { useSelector } from "react-redux";
-// utilities
 import { formatDateToHours } from "utilities/formatDate";
 import { increaseTime } from "utilities/increaseTime";
 import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
-export const DetailShowtime = () => {
+const DetailShowtime = () => {
   const { calendarShowList } = useSelector((state) => state.movieDetail);
   const { TabPane } = Tabs;
   return (
     <div className='showtime-detail detail-showtime'>
       <h3 className='showtime-heading text--primary'>Lịch chiếu phim</h3>
       <div className='showtime-wrapper'>
-        {calendarShowList.length > 0 ? (
+        {calendarShowList?.length > 0 ? (
           <Tabs defaultActiveKey='0'>
             {calendarShowList.map((calendar, index) => (
               <TabPane tab={<DetailShowtimeHeader calendar={calendar} />} key={index}>
@@ -69,3 +68,5 @@ const DetailShowtimeHeader = ({ calendar }) => (
     <p>{new Date(calendar.date).toLocaleDateString("vi-VI")}</p>
   </div>
 );
+
+export default DetailShowtime;

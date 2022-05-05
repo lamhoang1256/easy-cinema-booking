@@ -3,12 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
 import Banner from "components/Banner/Banner";
-import { ModalBill } from "./components/ModalBill/ModalBill";
+import ModalBill from "./components/ModalBill/ModalBill";
 import SeatingPlan from "./components/SeatingPlan/SeatingPlan";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
-import { ModalAlert } from "pages/Public/TicketRoom/components/ModalAlert/ModalAlert";
-import "./ticketRoom.scss";
-// action
+import ModalAlert from "pages/Public/TicketRoom/components/ModalAlert/ModalAlert";
 import {
   getTicketRoom,
   buyTicket,
@@ -19,9 +17,9 @@ import { useCountDownBooking } from "hooks/useCountDownBooking";
 import { formatTimeTwoDigit } from "utilities/formatDate";
 import { sweetAlert } from "utilities/sweetAlert";
 import { calculateSumMoney } from "utilities/calculateSumMoney";
+import "./ticketRoom.scss";
 
-const urlBanner = `url("${process.env.REACT_APP_PUBLIC}/assets/images/background-booking.jpg"
-)`;
+const urlBanner = `${process.env.REACT_APP_PUBLIC}/assets/images/background/booking.jpg`;
 const TicketRoom = () => {
   const { idTicketRoom } = useParams();
   const dispatch = useDispatch();
@@ -75,7 +73,7 @@ const TicketRoom = () => {
       {isLoading && <LoadingAnimation />}
       {!isLoading && (
         <div className='movie-booking'>
-          <Banner urlBanner={urlBanner} heading={"Trang đặt vé phim"} />
+          <Banner urlBanner={`url(${urlBanner})`} heading={"Trang đặt vé phim"} />
           <div className='container'>
             <div className='movie-booking-container'>
               <div className='movie-booking-left'>

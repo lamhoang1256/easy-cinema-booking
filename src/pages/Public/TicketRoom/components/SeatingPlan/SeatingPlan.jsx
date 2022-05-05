@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { selectSeat } from "redux/actions/movie/ticketRoom.action";
 import "./seatingPlan.scss";
 
-const imgMultiply = `${process.env.REACT_APP_PUBLIC}/assets/images/seat-multiply.png`;
+const imgMultiply = `${process.env.REACT_APP_PUBLIC}/assets/images/chore/seat-multiply.png`;
 const imgYourChoice = `${process.env.REACT_APP_PUBLIC}/assets/images/seat-your-choice.png`;
 
 const SeatingPlan = ({ danhSachGhe, selectingSeatList }) => {
