@@ -16,7 +16,6 @@ const UserManage = () => {
     setIsShowModalEdit(true);
   };
 
-  // get all data user to render table
   const fetchUserList = async () => {
     try {
       const { data } = await usersApi.getUserListApi();

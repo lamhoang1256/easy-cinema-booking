@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { RightSideNews } from "components/RightSideNews/RightSideNews";

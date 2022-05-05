@@ -78,118 +78,115 @@ const AddFilm = () => {
   };
 
   return (
-    <>
-      <div>
-        <h2>Thêm phim mới</h2>
-        <form className='form-film' onSubmit={handleSubmit(handleAddMovie)}>
-          <AddFilmGroup label='Mã phim'>
-            <p>Tự động thêm mới</p>
-          </AddFilmGroup>
+    <div>
+      <h2>Thêm phim mới</h2>
+      <form className='form-film' onSubmit={handleSubmit(handleAddMovie)}>
+        <AddFilmGroup label='Mã phim'>
+          <p>Tự động thêm mới</p>
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Ngày khởi chiếu'>
-            <DatePicker
-              defaultValue={moment(new Date(), "DD/MM/YYYY")}
-              control={control}
-              onChange={onChangeDatePicker}
-              format='DD/MM/YYYY'
-            />
-          </AddFilmGroup>
+        <AddFilmGroup label='Ngày khởi chiếu'>
+          <DatePicker
+            defaultValue={moment(new Date(), "DD/MM/YYYY")}
+            control={control}
+            onChange={onChangeDatePicker}
+            format='DD/MM/YYYY'
+          />
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Tên Phim'>
-            <InputText
-              defaultValue=''
-              name='movieName'
-              type='text'
-              control={control}
-              className='form-film-input'
-            />
-            <ErrorValidation errorMessage={errors.movieName?.message} />
-          </AddFilmGroup>
+        <AddFilmGroup label='Tên Phim'>
+          <InputText
+            defaultValue=''
+            name='movieName'
+            type='text'
+            control={control}
+            className='form-film-input'
+          />
+          <ErrorValidation errorMessage={errors.movieName?.message} />
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Đang chiếu'>
-            <Controller
-              control={control}
-              name='showingMovie'
-              defaultValue={false}
-              render={({ field: { onChange } }) => <Switch onChange={onChange} />}
-            />
-          </AddFilmGroup>
+        <AddFilmGroup label='Đang chiếu'>
+          <Controller
+            control={control}
+            name='showingMovie'
+            defaultValue={false}
+            render={({ field: { onChange } }) => <Switch onChange={onChange} />}
+          />
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Trailer'>
-            <InputText
-              defaultValue=''
-              type='text'
-              control={control}
-              className='form-film-input'
-              name='movieUrlTrailer'
-            />
-            <ErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
-          </AddFilmGroup>
+        <AddFilmGroup label='Trailer'>
+          <InputText
+            defaultValue=''
+            type='text'
+            control={control}
+            className='form-film-input'
+            name='movieUrlTrailer'
+          />
+          <ErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Sắp chiếu'>
-            <Controller
-              control={control}
-              name='comingSoonMovie'
-              defaultValue={false}
-              render={({ field: { onChange } }) => <Switch onChange={onChange} />}
-            />
-          </AddFilmGroup>
+        <AddFilmGroup label='Sắp chiếu'>
+          <Controller
+            control={control}
+            name='comingSoonMovie'
+            defaultValue={false}
+            render={({ field: { onChange } }) => <Switch onChange={onChange} />}
+          />
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Đánh giá'>
-            <InputText
-              defaultValue=''
-              type='number'
-              control={control}
-              className='form-film-input'
-              name='movieRating'
-              min={1}
-              max={5}
-            />
-            <ErrorValidation errorMessage={errors.movieRating?.message} />
-          </AddFilmGroup>
+        <AddFilmGroup label='Đánh giá'>
+          <InputText
+            defaultValue=''
+            type='number'
+            control={control}
+            className='form-film-input'
+            name='movieRating'
+            min={1}
+            max={5}
+          />
+          <ErrorValidation errorMessage={errors.movieRating?.message} />
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Đang hot'>
-            <Controller
-              control={control}
-              name='hotMovie'
-              defaultValue={false}
-              render={({ field: { onChange } }) => <Switch onChange={onChange} />}
-            />
-          </AddFilmGroup>
+        <AddFilmGroup label='Đang hot'>
+          <Controller
+            control={control}
+            name='hotMovie'
+            defaultValue={false}
+            render={({ field: { onChange } }) => <Switch onChange={onChange} />}
+          />
+        </AddFilmGroup>
 
-          <AddFilmGroup label='Mô tả'>
-            <Controller
-              control={control}
-              name='movieDesc'
-              defaultValue=''
-              render={({ field: { onChange } }) => (
-                <TextArea width={300} rows={10} onChange={onChange} />
-              )}
-            />
-            <ErrorValidation errorMessage={errors.movieDesc?.message} />
-          </AddFilmGroup>
-
-          <AddFilmGroup label='Thumbnail'>
-            <input type='file' accept='image/*' onChange={onUploadThumbnail} />
-            {movieThumbPreviewUrl ? (
-              <img className='form-film-thumbnail' src={movieThumbPreviewUrl} />
-            ) : (
-              <img
-                className='form-film-thumbnail'
-                src='https://as1.ftcdn.net/v2/jpg/03/95/54/28/1000_F_395542843_yEu4THq7LoI4EWl19sm3A8ApbKSUxTVl.jpg'
-              />
+        <AddFilmGroup label='Mô tả'>
+          <Controller
+            control={control}
+            name='movieDesc'
+            defaultValue=''
+            render={({ field: { onChange } }) => (
+              <TextArea width={300} rows={10} onChange={onChange} />
             )}
-          </AddFilmGroup>
+          />
+          <ErrorValidation errorMessage={errors.movieDesc?.message} />
+        </AddFilmGroup>
 
-          <button className='btn btn--primary' type='submit'>
-            Sửa
-          </button>
-        </form>
-      </div>
-    </>
+        <AddFilmGroup label='Thumbnail'>
+          <input type='file' accept='image/*' onChange={onUploadThumbnail} />
+          {movieThumbPreviewUrl ? (
+            <img className='form-film-thumbnail' src={movieThumbPreviewUrl} />
+          ) : (
+            <img
+              className='form-film-thumbnail'
+              src='https://as1.ftcdn.net/v2/jpg/03/95/54/28/1000_F_395542843_yEu4THq7LoI4EWl19sm3A8ApbKSUxTVl.jpg'
+            />
+          )}
+        </AddFilmGroup>
+
+        <button className='btn btn--primary' type='submit'>
+          Sửa
+        </button>
+      </form>
+    </div>
   );
 };
-export default AddFilm;
 
 const AddFilmGroup = ({ label, children }) => (
   <div className='form-film-group'>
@@ -197,6 +194,8 @@ const AddFilmGroup = ({ label, children }) => (
     {children}
   </div>
 );
+
+export default AddFilm;
 
 // biDanh: "wanted-2"
 // dangChieu: true

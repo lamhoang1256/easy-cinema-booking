@@ -1,4 +1,3 @@
-import React from "react";
 import "./banner.scss";
 
 const Banner = ({ urlBanner, heading }) => {

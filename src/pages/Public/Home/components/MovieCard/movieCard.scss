@@ -1,6 +1,5 @@
 @use "assets/scss/helpers/index.scss" as *;
 .movie-card {
-  // phần thông tin bên dưới thumb
   margin: 0 10px 20px;
   &-info {
     & > div {
@@ -13,7 +12,6 @@
     font-size: 1.8rem;
     cursor: pointer;
     height: 5.7rem;
-    // check nếu title phim dài quá 2 dòng sẽ xuất hiện ...
     @include textClamp(2);
     @include mobile {
       height: unset;

@@ -1,4 +1,3 @@
-import React from "react";
 import "./loadingAnimation.scss";
 
 const LoadingAnimation = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import Slider from "react-slick";
 import { dataCarouselHome } from "constants/dataCarouselHome";

@@ -1,21 +1,30 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import { createStarRating } from "utilities/createStarRating";
 import "./movieCard.scss";
 
+const imageLoadError = `${process.env.PUBLIC_URL}/assets/images/utilities/error-load-image.png`;
 const MovieCard = (props) => {
   const dispatch = useDispatch();
   const { movie } = props;
   const movieDuration = ((movie.maPhim * movie.danhGia) / 500).toFixed(0);
+  const [srcImg, setSrcImg] = useState(props.movie.hinhAnh);
 
   return (
     <>
       {movie ? (
         <div className='movie-card'>
           <div className='movie-card-thumb'>
-            <img src={movie.hinhAnh} className='movie-card-image' alt='movie-card-thumb' />
+            <img
+              src={srcImg}
+              className='movie-card-image'
+              alt='movie-card-thumb'
+              onError={() => {
+                setSrcImg(imageLoadError);
+              }}
+            />
             <div className='movie-card-score'>{movie.danhGia / 2}</div>
             <div className='movie-card-overplay'></div>
             <div className='movie-card-play'>

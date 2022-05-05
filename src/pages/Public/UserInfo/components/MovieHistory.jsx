@@ -1,4 +1,3 @@
-import React from "react";
 import "./movieHistory.scss";
 
 const MovieHistory = ({ thongTinDatVe }) => {

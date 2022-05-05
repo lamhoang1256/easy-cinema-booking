@@ -77,6 +77,7 @@ const Home = () => {
 };
 
 export default Home;
+
 // DỮ LIỆU MẪU TRẢ VỀ CỦA LIST MOVIE TỪ API
 // {
 //   "statusCode": 200,

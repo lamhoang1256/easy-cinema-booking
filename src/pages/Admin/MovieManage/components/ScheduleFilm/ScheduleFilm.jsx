@@ -10,25 +10,26 @@ const ScheduleFilm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [scheduleList, setScheduleList] = useState([]);
 
+  const fetchCinemaManage = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await moviesApi.getCalendarShowApi(idSchedule);
+      const { heThongRapChieu } = data.content;
+      const systemCinemaList = createKeyForObj(heThongRapChieu);
+      let cinemaList = [];
+      systemCinemaList.forEach((cinemaGroup) => {
+        cinemaGroup.cumRapChieu.forEach((cinema) => cinemaList.push(cinema));
+      });
+      cinemaList = createKeyForObj(cinemaList);
+      setScheduleList(cinemaList);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchCinemaManage = async () => {
-      setIsLoading(true);
-      try {
-        const { data } = await moviesApi.getCalendarShowApi(idSchedule);
-        const { heThongRapChieu } = data.content;
-        const systemCinemaList = createKeyForObj(heThongRapChieu);
-        let cinemaList = [];
-        systemCinemaList.forEach((cinemaGroup) => {
-          cinemaGroup.cumRapChieu.forEach((cinema) => cinemaList.push(cinema));
-        });
-        cinemaList = createKeyForObj(cinemaList);
-        setScheduleList(cinemaList);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-        setIsLoading(false);
-      }
-    };
     fetchCinemaManage();
   }, []);
 
@@ -66,14 +67,12 @@ const ScheduleFilm = () => {
     ];
 
     return (
-      <>
-        <Table
-          columns={columSchedule}
-          dataSource={scheduleFilms}
-          pagination={false}
-          expandable={expandedRowRender}
-        />
-      </>
+      <Table
+        columns={columSchedule}
+        dataSource={scheduleFilms}
+        pagination={false}
+        expandable={expandedRowRender}
+      />
     );
   };
 
