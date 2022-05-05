@@ -6,7 +6,7 @@
   &-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 30px;
+    grid-gap: 10px 30px;
     @include tablet {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -26,10 +26,14 @@
       }
       p {
         padding: 0;
+        line-height: 2;
       }
     }
     p {
       padding: 6px 0;
+      @include mobile {
+        font-size: 1.4rem;
+      }
     }
   }
   &-bottom {
@@ -37,6 +41,10 @@
     align-items: center;
     justify-content: space-between;
     padding-top: 40px;
+    gap: 30px;
+    @include mobile {
+      flex-direction: column;
+    }
   }
   &-social {
     display: flex;

@@ -6,14 +6,14 @@ export const RightSideNews = () => {
   const dataSideNews = dataFakeNews.filter((news) => news.id !== 1);
 
   return (
-    <div className='sidenews'>
+    <div className='rightside-news'>
       {dataSideNews &&
         dataSideNews.map((news, index) => (
-          <Link to={`/news/${news.id}`} className='sidenews-item' key={index}>
-            <div className='sidenews-image'>
+          <Link to={`/news/${news.id}`} className='rightside-news-item' key={index}>
+            <div className='rightside-news-image'>
               <img src={news.thumbnail} alt='' />
             </div>
-            <div className='sidenews-content'>
+            <div className='rightside-news-content'>
               <p className='article-time'>
                 <ion-icon name='time-outline'></ion-icon> {news.createdAt}
               </p>

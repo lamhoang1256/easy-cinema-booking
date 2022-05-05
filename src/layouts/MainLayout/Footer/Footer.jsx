@@ -8,7 +8,6 @@ const footerNav = [
       "Hướng đến mục tiêu mang lại sự nhanh chóng, trực quan không cần ra mua vé trực tiếp tại rạp. Tiết kiệm thời gian và tiện lợi.",
     ],
   },
-
   {
     title: "Chăm sóc khách hàng",
     path: [
