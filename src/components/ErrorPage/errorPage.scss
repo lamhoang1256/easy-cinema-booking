@@ -1,12 +1,13 @@
-.page-error {
+.error-page {
   &-container {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
+    text-align: justify;
     gap: 30px;
+    padding: 30px;
   }
   &-gradient {
     color: transparent;
@@ -20,5 +21,8 @@
   &-heading {
     font-size: 3rem;
     font-weight: 600;
+  }
+  &-desc {
+    font-size: 2rem;
   }
 }
