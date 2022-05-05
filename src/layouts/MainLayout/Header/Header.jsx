@@ -13,7 +13,7 @@ const headerNav = [
   { display: "Ứng dụng", path: "/" },
 ];
 
-export const Header = () => {
+const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -125,3 +125,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;
