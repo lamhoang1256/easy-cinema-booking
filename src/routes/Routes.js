@@ -4,7 +4,7 @@ import AuthLayout from "layouts/AuthLayout/AuthLayout";
 import MainLayout from "layouts/MainLayout/MainLayout";
 import Home from "pages/Public/Home";
 import MovieDetail from "pages/Public/MovieDetail";
-import UserInfo from "pages/Public/UserInfo/UserInfo";
+import Profile from "pages/Public/Profile";
 import NewsDetail from "pages/Public/NewsDetail/NewsDetail";
 import TicketRoom from "pages/Public/TicketRoom/TicketRoom";
 import Register from "pages/Public/Register/Register";
@@ -28,7 +28,7 @@ const RoutesComponent = () => {
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path='/detail/:idDetail' element={<MovieDetail />} />
-          <Route path='/user' element={<UserInfo />} />
+          <Route path='/user' element={<Profile />} />
           <Route path='/news/:idNewsDetail' element={<NewsDetail />} />
           <Route path='/booking/:idTicketRoom' element={<TicketRoom />} />
         </Route>

@@ -1,6 +1,4 @@
-import "./movieHistory.scss";
-
-const MovieHistory = ({ thongTinDatVe }) => {
+const History = ({ thongTinDatVe }) => {
   // create array list seat bought and sort form small to big (1-> 999...)
   const getIdChair = (seats) => {
     const filterIdChair = seats.map((seat) => seat.tenGhe);
@@ -58,4 +56,4 @@ const MovieHistory = ({ thongTinDatVe }) => {
   );
 };
 
-export default MovieHistory;
+export default History;

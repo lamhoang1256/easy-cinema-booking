@@ -1,5 +1,5 @@
 import { Tabs } from "antd";
-import { Children, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailUserAction, updateUserAction } from "redux/actions/user/user.action";
 // validation
@@ -8,14 +8,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
 // components
 import Banner from "components/Banner/Banner";
-import MovieHistory from "./components/MovieHistory";
+import History from "module/Profile/History";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import InputText from "components/InputText/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background/news.png"
 )`;
 
-const UserInfo = () => {
+const Profile = () => {
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
   const { isLoading, userProfile } = useSelector((state) => state.user);
@@ -159,7 +159,7 @@ const UserInfo = () => {
               <TabPane tab='Lịch sử đặt vé' key='3'>
                 <div className='user-info-history'>
                   <h2 className='user-info-title'>Lịch sử đặt vé</h2>
-                  <MovieHistory thongTinDatVe={userProfile.thongTinDatVe} />
+                  <History thongTinDatVe={userProfile.thongTinDatVe} />
                 </div>
               </TabPane>
             </Tabs>
@@ -176,7 +176,7 @@ const UserProfileItem = ({ label, children }) => (
   </p>
 );
 
-export default UserInfo;
+export default Profile;
 
 // "taiKhoan": "TramQuynh127",
 // "matKhau": "123456789",
