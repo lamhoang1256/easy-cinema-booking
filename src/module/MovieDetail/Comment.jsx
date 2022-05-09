@@ -1,7 +1,6 @@
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { dataFakeAvatar, yourAvatar } from "constants/dataFakeAvatar";
-import "./comment.scss";
 
 const Comment = () => {
   const { commentList } = useSelector((state) => state.movieDetail);

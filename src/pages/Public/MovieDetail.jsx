@@ -5,9 +5,9 @@ import { useMediaQuery } from "hooks/useMediaQuery";
 // component
 import RightSideNews from "components/RightSideNews/RightSideNews";
 import AddComment from "components/AddComment/AddComment";
-import Comment from "./components/Comment/Comment";
-import DetailShowtime from "./components/DetailShowtime/DetailShowtime";
-import DetailShowtimeMobile from "./components/DetailShowtime/DetailShowtimeMobile";
+import Comment from "module/MovieDetail/Comment";
+import DetailShowtime from "module/MovieDetail/DetailShowtime";
+import DetailShowtimeMobile from "module/MovieDetail/DetailShowtimeMobile";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import {

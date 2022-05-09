@@ -3,7 +3,6 @@ import { Collapse, Tabs } from "antd";
 import { useSelector } from "react-redux";
 import { formatDateToHours } from "utilities/formatDate";
 import { increaseTime } from "utilities/increaseTime";
-import "./detailShowtime.scss";
 const arrDate = ["Chủ Nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 
 const DetailShowtimeMobile = () => {
