@@ -3,10 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // component
 import Banner from "components/Banner/Banner";
-import ModalBill from "./components/ModalBill/ModalBill";
-import SeatingPlan from "./components/SeatingPlan/SeatingPlan";
+import ModalBill from "module/TicketRoom/ModalBill";
+import SeatingPlan from "module/TicketRoom/SeatingPlan";
+import ModalAlert from "module/TicketRoom/ModalAlert";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
-import ModalAlert from "pages/Public/TicketRoom/components/ModalAlert/ModalAlert";
 import {
   getTicketRoom,
   buyTicket,

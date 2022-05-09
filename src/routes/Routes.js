@@ -6,7 +6,7 @@ import Home from "pages/Public/Home";
 import MovieDetail from "pages/Public/MovieDetail";
 import Profile from "pages/Public/Profile";
 import NewsDetail from "pages/Public/NewsDetail/NewsDetail";
-import TicketRoom from "pages/Public/TicketRoom/TicketRoom";
+import TicketRoom from "pages/Public/TicketRoom";
 import Register from "pages/Public/Register/Register";
 import PageNotFound from "pages/Public/PageNotFound/PageNotFound";
 import Login from "pages/Public/Login/Login";
