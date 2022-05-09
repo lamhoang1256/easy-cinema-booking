@@ -1,4 +1,4 @@
-@use "assets/scss/helpers/index.scss" as *;
+@use "assets/scss/abstracts/global.scss" as *;
 .user-info {
   &-top {
     transform: translateY(-20%);

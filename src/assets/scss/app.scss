@@ -1,10 +1,2 @@
-@import "./reset";
-@import "./base";
-@import "./typography";
-
-@import "./components/button";
-@import "./components/movieCard";
-@import "./components/showTime";
-@import "./components/modal";
-@import "./components/searchTop";
-@import "./components/formFilm";
+@import "base/global";
+@import "components/global";
