@@ -11,7 +11,7 @@ import {
   POST_COMMENT_REQUEST,
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAIL,
-} from "../../constants/movie/movieDetail.constant";
+} from "redux/constants/movieDetail.constant";
 
 const initialState = {
   isLoading: true,

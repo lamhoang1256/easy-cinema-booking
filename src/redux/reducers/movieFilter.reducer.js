@@ -8,7 +8,7 @@ import {
   GET_FILTER_OPENDAY,
   GET_FILTER_SHOWTIME,
   GET_FILTER_BOOKING_ID,
-} from "../../constants/movie/movieFilter.constant";
+} from "redux/constants/movieFilter.constant";
 const initialState = {
   movieList: null,
   cinemaList: null,

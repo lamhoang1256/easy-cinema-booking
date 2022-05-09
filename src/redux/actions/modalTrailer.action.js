@@ -1,4 +1,4 @@
-import { OPEN_TRAILER, CLOSE_TRAILER } from "../../constants/movie/modalTrailer.constant";
+import { OPEN_TRAILER, CLOSE_TRAILER } from "redux/constants/modalTrailer.constant";
 
 // mở trailer phim
 export const openModalTrailer = (urlTrailer) => {
