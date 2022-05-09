@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { logoutAction } from "redux/actions/user/user.action";
+import { logoutAction } from "redux/actions/user.action";
 import "./sidebar.scss";
 
 const Sidebar = () => {

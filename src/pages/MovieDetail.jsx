@@ -14,8 +14,8 @@ import {
   getMovieDetail,
   getCommentList,
   getCalendarShowMovieDetail,
-} from "redux/actions/movie/movieDetail.action";
-import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
+} from "redux/actions/movieDetail.action";
+import { openModalTrailer } from "redux/actions/modalTrailer.action";
 import { formatLocaleDateString } from "utilities/formatDate";
 
 const MovieDetail = () => {

@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import Filter from "components/Filter/Filter";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOpendayListToSearch } from "redux/actions/movie/movieFilter.action";
+import { fetchOpendayListToSearch } from "redux/actions/movieFilter.action";
 
 const FilterCinema = () => {
   const dispatch = useDispatch();

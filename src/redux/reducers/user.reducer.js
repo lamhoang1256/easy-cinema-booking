@@ -12,7 +12,7 @@ import {
   GET_USER_PROFILE_REQUEST,
   GET_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE_FAIL,
-} from "redux/constants/user/user.constant";
+} from "redux/constants/user.constant";
 
 const initialState = {
   userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,

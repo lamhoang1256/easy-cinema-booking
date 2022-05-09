@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
+import Filter from "components/Filter/Filter";
 import { useParams } from "react-router-dom";
 import { DatePicker, Modal, Table } from "antd";
-import Filter from "components/Filter/Filter";
 import { moviesApi } from "apis/moviesApi";
 import { sweetAlert } from "utilities/sweetAlert";
 import { createKeyForObj } from "utilities/createKeyForObject";
-import "./cinemaGroup.scss";
 
 const CinemaGroup = () => {
   const { cinemaSystem, cinemaName } = useParams(); // cgv/cgv-hoang-van-thu
@@ -17,7 +16,6 @@ const CinemaGroup = () => {
   const [idCinema, setIdCinema] = useState("");
   const [cinemaInfo, setCinemaInfo] = useState({});
 
-  // dropdown select film
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedFilm, setSelectedFilm] = useState({ tenPhim: "" });
 

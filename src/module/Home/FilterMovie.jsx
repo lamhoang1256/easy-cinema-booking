@@ -1,10 +1,7 @@
 import Filter from "components/Filter/Filter";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCinemaListToSearch,
-  fetchMovieListToSearch,
-} from "redux/actions/movie/movieFilter.action";
+import { fetchCinemaListToSearch, fetchMovieListToSearch } from "redux/actions/movieFilter.action";
 
 const FilterMovie = () => {
   const dispatch = useDispatch();

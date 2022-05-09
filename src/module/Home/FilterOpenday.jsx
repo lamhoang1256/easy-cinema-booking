@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Filter from "components/Filter/Filter";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchShowtimeListToSearch } from "redux/actions/movie/movieFilter.action";
+import { fetchShowtimeListToSearch } from "redux/actions/movieFilter.action";
 import { formatISOtoLocaleDateString, formatLocaleDateString } from "utilities/formatDate";
 
 const FilterOpenday = () => {

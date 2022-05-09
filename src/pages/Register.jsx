@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "redux/actions/user/user.action";
+import { registerUser } from "redux/actions/user.action";
 // components
 import InputText from "components/InputText/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";

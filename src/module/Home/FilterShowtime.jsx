@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Filter from "components/Filter/Filter";
-import { getIdToBooking } from "redux/actions/movie/movieFilter.action";
+import { getIdToBooking } from "redux/actions/movieFilter.action";
 import { formatISOtoHours } from "utilities/formatDate";
 
 const FilterShowtime = () => {

@@ -1,6 +1,6 @@
 import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModalTrailer } from "redux/actions/movie/modalTrailer.action";
+import { closeModalTrailer } from "redux/actions/modalTrailer.action";
 import "./modalTrailer.scss";
 
 const ModalTrailer = () => {

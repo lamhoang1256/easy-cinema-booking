@@ -7,11 +7,7 @@ import ModalBill from "module/TicketRoom/ModalBill";
 import SeatingPlan from "module/TicketRoom/SeatingPlan";
 import ModalAlert from "module/TicketRoom/ModalAlert";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
-import {
-  getTicketRoom,
-  buyTicket,
-  resetSelectingSeat,
-} from "redux/actions/movie/ticketRoom.action";
+import { getTicketRoom, buyTicket, resetSelectingSeat } from "redux/actions/ticketRoom.action";
 // utilities
 import { useCountDownBooking } from "hooks/useCountDownBooking";
 import { formatTimeTwoDigit } from "utilities/formatDate";

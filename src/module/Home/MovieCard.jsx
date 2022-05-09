@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
+import { openModalTrailer } from "redux/actions/modalTrailer.action";
 import { createStarRating } from "utilities/createStarRating";
 
 const imageLoadError = `${process.env.PUBLIC_URL}/assets/images/chore/error-load-image.png`;

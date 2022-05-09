@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { postComment } from "redux/actions/movie/movieDetail.action";
+import { postComment } from "redux/actions/movieDetail.action";
 import Swal from "sweetalert2";
 import "./addComment.scss";
 
