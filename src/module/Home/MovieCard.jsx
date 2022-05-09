@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import { createStarRating } from "utilities/createStarRating";
-import "./movieCard.scss";
 
 const imageLoadError = `${process.env.PUBLIC_URL}/assets/images/chore/error-load-image.png`;
 const MovieCard = (props) => {

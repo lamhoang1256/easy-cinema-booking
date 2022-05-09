@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "hooks/useMediaQuery";
 //components
-import FilterMovie from "./components/FilterMovie";
-import FilterCinema from "./components/FilterCinema";
-import FilterOpenday from "./components/FilterOpenday";
-import FilterShowtime from "./components/FilterShowtime";
-import "./filterFilm.scss";
+import FilterMovie from "./FilterMovie";
+import FilterCinema from "./FilterCinema";
+import FilterOpenday from "./FilterOpenday";
+import FilterShowtime from "./FilterShowtime";
 
 const FilterFilm = () => {
   const { idTicketRoom } = useSelector((state) => state.movieFilter);

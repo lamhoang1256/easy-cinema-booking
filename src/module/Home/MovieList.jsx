@@ -1,7 +1,6 @@
 import Slider from "react-slick";
 import Skeleton from "react-loading-skeleton";
-import MovieCard from "../MovieCard/MovieCard";
-import "./movieList.scss";
+import MovieCard from "./MovieCard";
 
 // custom button next, prev carousel
 function PrevArrow(props) {

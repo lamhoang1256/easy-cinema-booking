@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
 // component
-import Carousel from "./components/Carousel/Carousel";
-import FilterFilm from "./components/FilterFilm/FilterFilm";
-import MovieList from "./components/MovieList/MovieList";
-import Article from "./components/Article/Article";
+import Carousel from "module/Home/Carousel";
+import FilterFilm from "module/Home/FilterFilm";
+import MovieList from "module/Home/MovieList";
+import Article from "module/Home/Article";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
-import Showtime from "./components/Showtime/Showtime";
-import ShowtimeMobile from "./components/Showtime/ShowtimeMobile";
+import Showtime from "module/Home/Showtime";
+import ShowtimeMobile from "module/Home/ShowtimeMobile";
 import { moviesApi } from "apis/moviesApi";
 
 const Home = () => {

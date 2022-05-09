@@ -1,16 +1,13 @@
-@use "assets/scss/abstracts/global.scss" as *;
 .carousel {
   background-color: #000;
   overflow: hidden;
   &-boxed {
     position: relative;
   }
-  // ảnh background home
   &-banner {
     width: 100%;
     object-fit: cover;
   }
-  // custom css for content in carousel banner
   &-main {
     background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
