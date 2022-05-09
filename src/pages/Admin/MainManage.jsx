@@ -1,7 +1,6 @@
 import Chart from "react-apexcharts";
 import { dataFakeAdminRate, dataFakeAdminSale } from "constants/dataFakeAdminMain";
 import { createStarRating } from "utilities/createStarRating";
-import "./mainManage.scss";
 
 const MainManage = () => {
   const options = {

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Banner from "components/Banner/Banner";
 import RightSideNews from "components/RightSideNews/RightSideNews";
 import { dataFakeNews } from "constants/dataFakeNews";
-import "./newsDetail.scss";
 
 const urlBanner = `${process.env.PUBLIC_URL}/assets/images/background/news.png`;
 const NewsDetail = () => {

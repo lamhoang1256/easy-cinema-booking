@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
 import { formatLocaleDateString } from "utilities/formatDate";
-import "./movieManage.scss";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);

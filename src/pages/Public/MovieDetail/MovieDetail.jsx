@@ -17,7 +17,6 @@ import {
 } from "redux/actions/movie/movieDetail.action";
 import { openModalTrailer } from "redux/actions/movie/modalTrailer.action";
 import { formatLocaleDateString } from "utilities/formatDate";
-import "./movieDetail.scss";
 
 const MovieDetail = () => {
   const { idDetail } = useParams();

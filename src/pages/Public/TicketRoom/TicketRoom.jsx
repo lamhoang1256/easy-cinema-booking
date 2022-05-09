@@ -17,7 +17,6 @@ import { useCountDownBooking } from "hooks/useCountDownBooking";
 import { formatTimeTwoDigit } from "utilities/formatDate";
 import { sweetAlert } from "utilities/sweetAlert";
 import { calculateSumMoney } from "utilities/calculateSumMoney";
-import "./ticketRoom.scss";
 
 const urlBanner = `${process.env.REACT_APP_PUBLIC}/assets/images/background/booking.jpg`;
 const TicketRoom = () => {

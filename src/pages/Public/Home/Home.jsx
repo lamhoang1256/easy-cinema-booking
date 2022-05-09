@@ -9,7 +9,6 @@ import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import Showtime from "./components/Showtime/Showtime";
 import ShowtimeMobile from "./components/Showtime/ShowtimeMobile";
 import { moviesApi } from "apis/moviesApi";
-import "./home.scss";
 
 const Home = () => {
   const isMobile = useMediaQuery("(max-width:767.98px)");

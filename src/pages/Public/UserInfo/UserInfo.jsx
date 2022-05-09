@@ -12,7 +12,6 @@ import MovieHistory from "./components/MovieHistory";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import InputText from "components/InputText/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
-import "./userInfo.scss";
 const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background/news.png"
 )`;
 

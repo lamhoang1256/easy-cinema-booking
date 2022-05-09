@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Table } from "antd";
 import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
-import "./cinemaManage.scss";
 
 const CinemaManage = () => {
   const [isLoading, setIsLoading] = useState(true);
