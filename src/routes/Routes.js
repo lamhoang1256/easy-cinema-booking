@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AdminLayout from "layouts/AdminLayout/AdminLayout";
-import AuthLayout from "layouts/AuthLayout/AuthLayout";
-import MainLayout from "layouts/MainLayout/MainLayout";
+import AdminLayout from "layouts/AdminLayout";
+import AuthLayout from "layouts/AuthLayout";
+import MainLayout from "layouts/MainLayout";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Profile from "pages/Profile";
