@@ -85,6 +85,9 @@ const Header = () => {
                   <img
                     src={`${process.env.REACT_APP_PUBLIC}/assets/images/${dataFakeAvatar[0].url}`}
                   />
+                  <div className='header-reorder'>
+                    <ion-icon name='reorder-four-outline'></ion-icon>
+                  </div>
                   <div className='header-user'>
                     {userInfo.maLoaiNguoiDung === "QuanTri" && (
                       <Link to='/admin' className='header-user-item'>
