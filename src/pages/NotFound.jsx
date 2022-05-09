@@ -1,6 +1,6 @@
 import ErrorPage from "components/ErrorPage/ErrorPage";
 
-const PageNotFound = () => {
+const NotFound = () => {
   return (
     <ErrorPage code='404' heading='Không tìm thấy nội dung'>
       <p>URL của nội dung này đã bị thay đổi hoặc không còn tồn tại.</p>
@@ -9,4 +9,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default NotFound;

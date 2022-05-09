@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Table, Tag } from "antd";
-import ModalEditUser from "./components/ModalEditUser";
+import ModalEdit from "module/UserManage/ModalEdit";
 import { usersApi } from "apis/usersApi";
 import { sweetAlert } from "utilities/sweetAlert";
 import { createKeyForObj } from "utilities/createKeyForObject";
-import "./userManage.scss";
 
 const UserManage = () => {
   const [userList, setUserList] = useState(null);
@@ -141,7 +140,7 @@ const UserManage = () => {
       </div>
       <Table columns={columns} dataSource={userList} />
 
-      <ModalEditUser
+      <ModalEdit
         usernameEdit={usernameEdit}
         isShowModalEdit={isShowModalEdit}
         setIsShowModalEdit={setIsShowModalEdit}

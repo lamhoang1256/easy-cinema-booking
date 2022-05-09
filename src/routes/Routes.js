@@ -2,23 +2,23 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLayout from "layouts/AdminLayout/AdminLayout";
 import AuthLayout from "layouts/AuthLayout/AuthLayout";
 import MainLayout from "layouts/MainLayout/MainLayout";
-import Home from "pages/Public/Home";
-import MovieDetail from "pages/Public/MovieDetail";
-import Profile from "pages/Public/Profile";
-import NewsDetail from "pages/Public/NewsDetail";
-import TicketRoom from "pages/Public/TicketRoom";
-import Register from "pages/Public/Register";
-import PageNotFound from "pages/Public/PageNotFound";
-import Login from "pages/Public/Login";
-import UserManage from "pages/Admin/UserManage/UserManage";
-import MovieManage from "pages/Admin/MovieManage/MovieManage";
-import EditFilm from "pages/Admin/MovieManage/components/EditFilm/EditFilm";
-import AddFilm from "pages/Admin/MovieManage/components/AddFilm/AddFilm";
-import CinemaManage from "pages/Admin/CinemaManage/CinemaManage";
-import CinemaGroup from "pages/Admin/CinemaManage/components/CinemaGroup/CinemaGroup";
-import MainManage from "pages/Admin/MainManage";
-import ScheduleFilm from "pages/Admin/MovieManage/components/ScheduleFilm/ScheduleFilm";
-import SeatMap from "pages/Admin/MovieManage/components/SeatMap/SeatMap";
+import Home from "pages/Home";
+import Login from "pages/Login";
+import Profile from "pages/Profile";
+import MovieDetail from "pages/MovieDetail";
+import NewsDetail from "pages/NewsDetail";
+import TicketRoom from "pages/TicketRoom";
+import Register from "pages/Register";
+import NotFound from "pages/NotFound";
+import UserManage from "pages/UserManage";
+import MovieManage from "pages/MovieManage";
+import CinemaManage from "pages/CinemaManage";
+import MainManage from "pages/MainManage";
+import EditFilm from "module/MovieManage/EditFilm";
+import AddFilm from "module/MovieManage/AddFilm";
+import CinemaGroup from "module/CinemaManage/CinemaGroup";
+import ScheduleFilm from "module/MovieManage/ScheduleFilm";
+import SeatMap from "module/MovieManage/SeatMap";
 
 const RoutesComponent = () => {
   return (
@@ -54,7 +54,7 @@ const RoutesComponent = () => {
           <Route path='register' element={<Register />} />
         </Route>
         {/* Not Found 404 */}
-        <Route path='*' element={<PageNotFound />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>
   );

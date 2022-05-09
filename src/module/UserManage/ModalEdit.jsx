@@ -9,9 +9,8 @@ import { schemaYupRegister } from "constants/schemaYupRegister";
 // components
 import InputText from "components/InputText/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
-import "./modalEditUser.scss";
 
-const ModalEditUser = (props) => {
+const ModalEdit = (props) => {
   const { usernameEdit, setIsShowModalEdit, isShowModalEdit, fetchUserList } = props;
   const {
     register,
@@ -162,4 +161,4 @@ const ModalEditUser = (props) => {
   );
 };
 
-export default ModalEditUser;
+export default ModalEdit;
