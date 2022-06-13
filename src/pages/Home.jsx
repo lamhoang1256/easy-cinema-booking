@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
 import HomeBanner from "module/Home/HomeBanner";
-//fix
-import FilterFilm from "module/Home/FilterFilm";
+import HomeFilter from "module/Home/HomeFilter/";
+// fix
 import MovieList from "module/Home/MovieList";
 import Article from "module/Home/Article";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
@@ -57,7 +57,7 @@ const Home = () => {
         <HomeBanner />
       </div>
       <div className="home-main">
-        <FilterFilm />
+        <HomeFilter />
         <div className="container">
           <MovieList data={comingSoonMovieList} heading="Phim sắp chiếu" col={5} />
           <MovieList data={nowShowingMovieList} heading="Phim đang chiếu" col={6} />
