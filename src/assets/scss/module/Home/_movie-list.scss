@@ -4,7 +4,7 @@
   }
   &-group {
     position: relative;
-    @media screen and (max-width: $container) {
+    @media screen and (max-width: $width-container) {
       margin: 0;
     }
   }

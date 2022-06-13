@@ -1,7 +1,7 @@
 export const dataCarouselHome = [
   {
     id: 1,
-    img: "assets/images/background/lady.jpg",
+    img: "https://images.weserv.nl/?url=https%3A%2F%2Fimg.netpop.app%2Fcover%2F20220611%2F1654879493064_d38468bee685f8bd0487d374a568da2b%E4%BB%8A%E5%A4%A9%E5%BC%80%E5%A7%8B%E5%A5%91%E7%BA%A6%E6%81%8B%E7%88%B1%20.png%3FimageMogr2%2Fformat%2Fwebp%2Fformat%2Fwebp&w=1400&h=&fit=outside",
     name: "Suicide Squad",
     desc: "Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.",
     features: ["Adventure", "Thriller", "Comedy"],
@@ -11,7 +11,7 @@ export const dataCarouselHome = [
   },
   {
     id: 2,
-    img: "assets/images/background/joker.jpg",
+    img: "https://images.weserv.nl/?url=https%3A%2F%2Fimg.netpop.app%2Fcover%2F20220602%2F1654175940243_13d7774ab590266b3b2b42a598b02135%E6%88%91%E7%9A%84%E5%87%BA%E8%B5%B0%E6%97%A5%E8%AE%B0%20.png%3FimageMogr2%2Fformat%2Fwebp%2Fformat%2Fwebp&w=1400&h=&fit=outside",
     name: "Joker",
     desc: "“Joker” is an original, standalone story. Arthur Fleck (Joaquin Phoenix), a man disregarded by society, is not only a gritty character study, but also a broader cautionary tale.",
     features: ["Crime", "Thriller", "Drama"],
@@ -21,7 +21,7 @@ export const dataCarouselHome = [
   },
   {
     id: 3,
-    img: "assets/images/background/aladin.jpg",
+    img: "https://images.weserv.nl/?url=https%3A%2F%2Fimg.netpop.app%2Fcover%2F20220516%2F1652671560300_d3ddd2bcdb77444ae3b3caa3676998f6%E6%80%AA%E5%A5%87%E7%89%A9%E8%AF%AD.png%3FimageMogr2%2Fformat%2Fwebp%2Fformat%2Fwebp&w=1400&h=&fit=outside",
     name: "Aladin",
     desc: "A kind-hearted street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make their deepest wishes come true.",
     features: ["Adventure", "Comedy", "Family"],

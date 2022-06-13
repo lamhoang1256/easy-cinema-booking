@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
-// component
-import Carousel from "module/Home/Carousel";
+import HomeBanner from "module/Home/HomeBanner";
+//fix
 import FilterFilm from "module/Home/FilterFilm";
 import MovieList from "module/Home/MovieList";
 import Article from "module/Home/Article";
@@ -51,16 +51,17 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='home'>
-      <div className='home-top'>
-        <Carousel />
+    <div className="home">
+      <div className="home-top">
+        {/* <Carousel /> */}
+        <HomeBanner />
       </div>
-      <div className='home-main'>
+      <div className="home-main">
         <FilterFilm />
-        <div className='container'>
-          <MovieList data={comingSoonMovieList} heading='Phim sắp chiếu' col={5} />
-          <MovieList data={nowShowingMovieList} heading='Phim đang chiếu' col={6} />
-          <div id='showtime'>
+        <div className="container">
+          <MovieList data={comingSoonMovieList} heading="Phim sắp chiếu" col={5} />
+          <MovieList data={nowShowingMovieList} heading="Phim đang chiếu" col={6} />
+          <div id="showtime">
             {isMobile ? (
               <ShowtimeMobile showtimeList={showtimeList} />
             ) : (
