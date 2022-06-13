@@ -10,9 +10,9 @@ const COLOR = {
     color: var(--white);
     background-color: #9f9e9e;
   `,
-  sea: css`
+  purple: css`
     color: var(--white);
-    background-color: var(--blue-color);
+    background-color: #6f5cf1;
   `,
 };
 
@@ -29,6 +29,8 @@ const StyledButton = styled.button`
   padding: 0 25px;
   height: ${(props) => `${props.height}px`};
   border-radius: 8px;
+  border: 0;
+  outline: 0;
   ${(props) => props.kind && COLOR[props.kind]}
   ${(props) => props.disabled && DISABLED}
   &:disabled {
@@ -41,7 +43,7 @@ const Button = ({
   to,
   type = "button",
   children,
-  height = "50",
+  height = "44",
   kind = "normal",
   onClick,
   ...props

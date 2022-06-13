@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { dataCarouselHome } from "constants/dataCarouselHome";
-import { SliderArrow } from "components/temp/SliderArrow";
+import { SliderArrow } from "components/button/SliderArrow";
 import styles from "./homeBanner.module.scss";
 import classNames from "classnames/bind";
 const styled = classNames.bind(styles);

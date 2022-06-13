@@ -5,7 +5,7 @@ import FilterMovie from "./FilterMovie";
 import FilterCinema from "./FilterCinema";
 import FilterOpenday from "./FilterOpenday";
 import FilterShowtime from "./FilterShowtime";
-import Button from "components/temp/Button";
+import Button from "components/button/Button";
 
 const StyledHomeFilter = styled.div`
   .filter-content {

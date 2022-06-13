@@ -3,7 +3,7 @@ import { useMediaQuery } from "hooks/useMediaQuery";
 import HomeBanner from "module/Home/HomeBanner";
 import HomeFilter from "module/Home/HomeFilter/";
 // fix
-import MovieList from "module/Home/MovieList";
+import MovieList from "components/movie/MovieList";
 import Article from "module/Home/Article";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import Showtime from "module/Home/Showtime";
@@ -59,8 +59,8 @@ const Home = () => {
       <div className="home-main">
         <HomeFilter />
         <div className="container">
-          <MovieList data={comingSoonMovieList} heading="Phim sắp chiếu" col={5} />
-          <MovieList data={nowShowingMovieList} heading="Phim đang chiếu" col={6} />
+          <MovieList data={comingSoonMovieList} heading="Phim sắp chiếu" />
+          <MovieList data={nowShowingMovieList} heading="Phim đang chiếu" />
           <div id="showtime">
             {isMobile ? (
               <ShowtimeMobile showtimeList={showtimeList} />
