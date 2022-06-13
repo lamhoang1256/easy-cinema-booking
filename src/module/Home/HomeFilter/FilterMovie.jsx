@@ -20,22 +20,15 @@ const FilterMovie = () => {
   }, []);
 
   return (
-    <Filter
-      onChange={handleGetCinemaList}
-      labelNotSelectItem='Chọn Phim'
-      selectedItem={selectedMovie.tenPhim}
-    >
-      <ul>
-        {movieList?.map((movie, index) => (
-          <li
-            key={index}
-            className={selectedMovie === movie ? "active-option" : null}
-            onClick={() => handleGetCinemaList(movie)}
-          >
+    <Filter onChange={handleGetCinemaList} labelNotSelect="Chọn Phim" title={selectedMovie.tenPhim}>
+      {movieList?.map((movie, index) => {
+        const isActive = selectedMovie === movie ? "active-option" : null;
+        return (
+          <li key={index} className={isActive} onClick={() => handleGetCinemaList(movie)}>
             {movie.tenPhim}
           </li>
-        ))}
-      </ul>
+        );
+      })}
     </Filter>
   );
 };

@@ -21,30 +21,21 @@ const FilterCinema = () => {
   return (
     <Filter
       onChange={handleGetOpendayList}
-      labelNotSelectItem='Chọn Rạp'
-      selectedItem={selectedCinema.tenCumRap}
+      labelNotSelect="Chọn Rạp"
+      title={selectedCinema.tenCumRap}
     >
-      {cinemaList ? (
-        <ul>
-          {cinemaList.heThongRapChieu.map((cinemaGroup, index) => (
-            <Fragment key={index}>
-              {cinemaGroup.cumRapChieu.map((cinema, id) => (
-                <li
-                  key={id}
-                  className={selectedCinema === cinema ? "active-option" : null}
-                  onClick={() => handleGetOpendayList(cinema)}
-                >
-                  {cinema.tenCumRap}
-                </li>
-              ))}
-            </Fragment>
-          ))}
-        </ul>
-      ) : (
-        <ul>
-          <li>Vui lòng chọn phim</li>
-        </ul>
-      )}
+      {cinemaList?.heThongRapChieu.map((cinemaGroup, index) => (
+        <Fragment key={index}>
+          {cinemaGroup.cumRapChieu.map((cinema, id) => {
+            const isActive = selectedCinema === cinema ? "active-option" : null;
+            return (
+              <li key={id} className={isActive} onClick={() => handleGetOpendayList(cinema)}>
+                {cinema.tenCumRap}
+              </li>
+            );
+          })}
+        </Fragment>
+      ))}
     </Filter>
   );
 };

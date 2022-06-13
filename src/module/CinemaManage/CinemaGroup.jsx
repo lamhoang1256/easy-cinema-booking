@@ -93,7 +93,7 @@ const CinemaGroup = () => {
       dataIndex: "maRap",
       key: "action",
       render: (maRap) => (
-        <button className='btn btn--info' onClick={() => onShowModal(maRap)}>
+        <button className="btn btn--info" onClick={() => onShowModal(maRap)}>
           Thêm lịch chiếu
         </button>
       ),
@@ -138,7 +138,7 @@ const CinemaGroup = () => {
   }, [movieList]);
 
   return (
-    <div className='cinema-group'>
+    <div className="cinema-group">
       {isLoading && "Loading"}
       {!isLoading && (
         <>
@@ -146,7 +146,7 @@ const CinemaGroup = () => {
           <p>Địa chỉ: {cinemaInfo?.diaChi}</p>
           <Table columns={columns} dataSource={cinemaGroup} style={{ marginTop: "20px" }} />
           <Modal
-            title='Thêm lịch chiếu mới'
+            title="Thêm lịch chiếu mới"
             visible={isModalVisible}
             onCancel={onCancelModal}
             footer={null}
@@ -154,8 +154,8 @@ const CinemaGroup = () => {
             <h3>Chọn phim:</h3>
             <Filter
               onChange={handleGetFilm}
-              labelNotSelectItem='Chọn Phim'
-              selectedItem={selectedFilm.tenPhim}
+              labelNotSelect="Chọn Phim"
+              title={selectedFilm.tenPhim}
             >
               {movieList.length > 0 ? (
                 <ul>
@@ -165,7 +165,7 @@ const CinemaGroup = () => {
                       className={selectedFilm === cinema ? "active-option" : null}
                       onClick={() => handleGetFilm(cinema)}
                     >
-                      <img src={cinema.hinhAnh} className='cinema-group-thumb' alt='cinema-logo' />
+                      <img src={cinema.hinhAnh} className="cinema-group-thumb" alt="cinema-logo" />
                       <p>{cinema.tenPhim}</p>
                     </li>
                   ))}
@@ -177,30 +177,30 @@ const CinemaGroup = () => {
               )}
             </Filter>
 
-            <div className='cinema-group-list'>
-              <CinemaGroupField label='Chọn ngày'>
-                <DatePicker onChange={onChangeDatePicker} format='DD/MM/YYYY' />
+            <div className="cinema-group-list">
+              <CinemaGroupField label="Chọn ngày">
+                <DatePicker onChange={onChangeDatePicker} format="DD/MM/YYYY" />
               </CinemaGroupField>
 
-              <CinemaGroupField label='Chọn giờ khởi chiếu'>
-                <DatePicker picker='time' onChange={onChangeTimePicker} />
+              <CinemaGroupField label="Chọn giờ khởi chiếu">
+                <DatePicker picker="time" onChange={onChangeTimePicker} />
               </CinemaGroupField>
 
-              <CinemaGroupField label='Giá vé'>
+              <CinemaGroupField label="Giá vé">
                 <input
-                  type='number'
-                  placeholder='Nhập giá vé'
-                  className='cinema-group-price'
+                  type="number"
+                  placeholder="Nhập giá vé"
+                  className="cinema-group-price"
                   onChange={(e) => setPriceTicket(e.target.value)}
                 />
               </CinemaGroupField>
 
-              <CinemaGroupField label='Mã rạp'>
+              <CinemaGroupField label="Mã rạp">
                 <p>{idCinema}</p>
               </CinemaGroupField>
             </div>
             <button
-              className='btn btn--primary'
+              className="btn btn--primary"
               onClick={handleAddShowtime}
               style={{ marginTop: "20px", padding: "14px 20px" }}
             >
@@ -214,7 +214,7 @@ const CinemaGroup = () => {
 };
 
 const CinemaGroupField = ({ label, children }) => (
-  <div className='cinema-group-field'>
+  <div className="cinema-group-field">
     <h3>{label}:</h3>
     {children}
   </div>

@@ -21,27 +21,18 @@ const FilterShowtime = () => {
   return (
     <Filter
       onChange={handleGetIdBooking}
-      labelNotSelectItem='Chọn suất chiếu'
-      selectedItem={selectedShowtime.ngayChieuGioChieu}
+      labelNotSelect="Chọn suất chiếu"
+      title={selectedShowtime.ngayChieuGioChieu}
       selectedTitle={formatISOtoHours(selectedShowtime.ngayChieuGioChieu)}
     >
-      {showtimeList ? (
-        <ul>
-          {showtimeList.map((showtime, index) => (
-            <li
-              key={index}
-              className={selectedShowtime === showtime ? "active-option" : null}
-              onClick={() => handleGetIdBooking(showtime)}
-            >
-              {formatISOtoHours(showtime.ngayChieuGioChieu)}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <ul>
-          <li>Vui lòng chọn ngày</li>
-        </ul>
-      )}
+      {showtimeList?.map((showtime, index) => {
+        const isActive = selectedShowtime === showtime ? "active-option" : null;
+        return (
+          <li key={index} className={isActive} onClick={() => handleGetIdBooking(showtime)}>
+            {formatISOtoHours(showtime.ngayChieuGioChieu)}
+          </li>
+        );
+      })}
     </Filter>
   );
 };

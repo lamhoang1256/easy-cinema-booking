@@ -16,7 +16,10 @@ const StyledHomeFilter = styled.div`
     align-items: end;
     color: var(--white);
   }
-  .field-label {
+  .filter-buy button {
+    width: 100%;
+  }
+  .label {
     display: block;
     color: #767676;
     margin-bottom: 6px;
@@ -25,37 +28,24 @@ const StyledHomeFilter = styled.div`
 
 const HomeFilter = () => {
   const { idTicketRoom } = useSelector((state) => state.movieFilter);
-  const isFilterVisible = useMediaQuery("(min-width:1200px)");
+  const isVisible = useMediaQuery("(min-width:1200px)");
 
   return (
     <StyledHomeFilter>
-      {isFilterVisible && (
+      {isVisible && (
         <div className="container">
           <div className="filter-content">
-            <div className="field">
-              <span className="field-label">Chọn phim</span>
-              <FilterMovie />
-            </div>
-            <div className="field">
-              <span className="field-label">Chọn rạp chiếu</span>
-              <FilterCinema />
-            </div>
-            <div className="field">
-              <span className="field-label">Chọn ngày xem</span>
-              <FilterOpenday />
-            </div>
-            <div className="field">
-              <span className="field-label">Chọn suất chiếu</span>
-              <FilterShowtime />
-            </div>
-            <div className="field">
-              {idTicketRoom ? (
+            <FilterMovie />
+            <FilterCinema />
+            <FilterOpenday />
+            <FilterShowtime />
+            <div className="filter-buy">
+              {idTicketRoom && (
                 <Button to={`/booking/${idTicketRoom}`} kind="primary" height="56">
                   Đặt vé
                 </Button>
-              ) : (
-                <Button height="56">Đặt vé</Button>
               )}
+              {!idTicketRoom && <Button height="56">Đặt vé</Button>}
             </div>
           </div>
         </div>

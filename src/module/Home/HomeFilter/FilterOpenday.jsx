@@ -7,7 +7,6 @@ import { formatISOtoLocaleDateString, formatLocaleDateString } from "utilities/f
 const FilterOpenday = () => {
   const dispatch = useDispatch();
   const { opendayList } = useSelector((state) => state.movieFilter);
-  const [visibility, setVisibility] = useState(false);
   const [selectedOpenday, setSelectedOpenday] = useState({ ngayChieuGioChieu: "" });
 
   // tạo mảng ngày không bị trùng lặp
@@ -37,27 +36,18 @@ const FilterOpenday = () => {
   return (
     <Filter
       onChange={handleGetShowtimeList}
-      labelNotSelectItem='Chọn Ngày'
+      labelNotSelect="Chọn Ngày"
       selectedTitle={formatLocaleDateString(selectedOpenday.ngayChieuGioChieu)}
-      selectedItem={selectedOpenday.ngayChieuGioChieu}
+      title={selectedOpenday.ngayChieuGioChieu}
     >
-      {uniqueOpendayList ? (
-        <ul>
-          {uniqueOpendayList.map((openday, index) => (
-            <li
-              key={index}
-              className={selectedOpenday === openday ? "active-option" : null}
-              onClick={() => handleGetShowtimeList(openday)}
-            >
-              {formatISOtoLocaleDateString(openday.ngayChieuGioChieu)}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <ul>
-          <li>Vui lòng chọn rạp</li>
-        </ul>
-      )}
+      {uniqueOpendayList?.map((openday, index) => {
+        const isActive = selectedOpenday === openday ? "active-option" : null;
+        return (
+          <li key={index} className={isActive} onClick={() => handleGetShowtimeList(openday)}>
+            {formatISOtoLocaleDateString(openday.ngayChieuGioChieu)}
+          </li>
+        );
+      })}
     </Filter>
   );
 };
