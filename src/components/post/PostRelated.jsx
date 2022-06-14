@@ -35,7 +35,7 @@ const StyledPostRelated = styled.div`
     ${TextClamp.multilines(3)}
   }
   .related-desc p {
-    color: rgba(219, 219, 219);
+    color: var(--gray-color);
   }
 `;
 

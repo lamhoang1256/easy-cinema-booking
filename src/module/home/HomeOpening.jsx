@@ -7,7 +7,7 @@ const StyledShowTime = styled.div`
   @import "../abstracts/global.scss";
   padding-top: 40px;
   border-radius: 20px;
-  background-color: #222;
+  background-color: var(--darker-color);
   .heading {
     padding-left: 20px;
     margin-bottom: 10px;

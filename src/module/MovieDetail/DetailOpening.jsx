@@ -27,7 +27,13 @@ const StyledDetailOpening = styled.div`
     font-weight: 600;
   }
   .tabpanel-header span {
-    color: rgba(219, 219, 219);
+    color: var(--gray-color);
+  }
+  @media screen and (max-width: 767.98px) {
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
   }
 `;
 
@@ -35,7 +41,7 @@ const DetailOpening = () => {
   const { calendarShowList } = useSelector((state) => state.movieDetail);
   const { TabPane } = Tabs;
 
-  if (!calendarShowList) {
+  if (calendarShowList?.length === 0) {
     return (
       <StyledDetailOpening>
         <Tag kind="secondary" marginTop="14px">

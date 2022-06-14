@@ -82,7 +82,7 @@
     @include size(50px);
     @include flexbox(center, center);
     background-color: #fff;
-    border: 1px solid rgba(219, 219, 219);
+    border: 1px solid var(--gray-color);
     border-radius: 6px;
     transition: all 0.25s linear;
   }

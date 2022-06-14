@@ -7,8 +7,8 @@ const StyledSection = styled.div`
   padding: 20px;
 `;
 
-const Section = ({ children }) => {
-  return <StyledSection>{children}</StyledSection>;
+const Section = ({ children, ...props }) => {
+  return <StyledSection {...props}>{children}</StyledSection>;
 };
 
 export default Section;

@@ -1,5 +1,5 @@
-import { useMediaQuery } from "hooks/useMediaQuery";
 import { useEffect } from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // component
@@ -7,45 +7,48 @@ import AddComment from "components/AddComment/AddComment";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import PostRelated from "components/post/PostRelated";
-import Comment from "module/MovieDetail/Comment";
+import DetailComment from "module/MovieDetail/DetailComment";
 import DetailOpening from "module/MovieDetail/DetailOpening";
-import DetailShowtimeMobile from "module/MovieDetail/DetailShowtimeMobile";
 import {
   getCalendarShowMovieDetail,
   getCommentList,
   getMovieDetail,
 } from "redux/actions/movieDetail.action";
-
 import Image from "components/image/Image";
+import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
 import Description from "components/text/Description";
 import DetailBanner from "module/MovieDetail/DetailBanner";
 import DetailOverview from "module/MovieDetail/DetailOverview";
-import styled from "styled-components";
-import Section from "components/section/Section";
 
 const StyledMovieDetail = styled.div`
   .grid-layout {
     display: flex;
     gap: 20px;
+    padding-top: 20px;
   }
   .column1 {
     width: 65%;
   }
   .column2 {
     width: 35%;
-    padding-top: 60px;
+    padding-top: 20px;
   }
   .detail-poster {
-    width: 215px;
-    transform: translateY(-130px);
+    width: 160px;
     border-radius: 10px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
   }
   .detail-info {
-    padding: 60px 0 20px;
+    margin-top: 14px;
     display: flex;
-    gap: 0 40px;
-    margin-bottom: -90px;
+    gap: 20px 30px;
+  }
+  .detail-trailer {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
   }
   @media screen and (max-width: 1023.98px) {
     .grid-layout {
@@ -57,9 +60,6 @@ const StyledMovieDetail = styled.div`
     }
   }
   @media screen and (max-width: 767.98px) {
-    .detail-poster {
-      margin-bottom: -90px;
-    }
     .detail-info {
       flex-direction: column;
     }
@@ -70,7 +70,6 @@ const MovieDetail = () => {
   const { idDetail } = useParams();
   const dispatch = useDispatch();
   const { isLoading, movieDetail, togglePostComment } = useSelector((state) => state.movieDetail);
-  const isMobile = useMediaQuery("(max-width:767.98px)");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,29 +82,49 @@ const MovieDetail = () => {
 
   if (isLoading) return <LoadingAnimation />;
 
+  const { hinhAnh, trailer, moTa } = movieDetail;
+  const arraySplited = trailer.split("/");
+  const embedId = arraySplited[arraySplited.length - 1];
   return (
     <StyledMovieDetail>
-      <DetailBanner hinhAnh={movieDetail.hinhAnh} />
+      <DetailBanner hinhAnh={hinhAnh} />
       <div className="container">
         <div className="grid-layout">
           {/* Movie Detail */}
           <div className="column1">
-            <div className="detail-info">
-              <Image url={movieDetail.hinhAnh} alt="poster" className="detail-poster" />
-              <DetailOverview data={movieDetail} />
-            </div>
+            <Section>
+              <Tag kind="secondary" marginTop="14px">
+                Chi tiết phim
+              </Tag>
+              <div className="detail-info">
+                <Image url={hinhAnh} alt="poster" className="detail-poster" />
+                <DetailOverview data={movieDetail} />
+              </div>
+            </Section>
             <Section>
               <Tag kind="secondary" marginTop="14px">
                 Tóm tắt phim
               </Tag>
-              <Description lineHeight={"2"}>{movieDetail.moTa}</Description>
+              <Description lineHeight={"2"}>{moTa}</Description>
             </Section>
-            <Section>{isMobile ? <DetailShowtimeMobile /> : <DetailOpening />}</Section>
+            <Section>
+              <iframe
+                className="detail-trailer"
+                src={`https://www.youtube.com/embed/${embedId}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </Section>
+            <Section>
+              <DetailOpening />
+            </Section>
             <Section>
               <Tag kind="secondary" marginTop="14px">
                 Đánh giá
               </Tag>
-              <Comment />
+              <DetailComment />
               <AddComment />
             </Section>
           </div>
