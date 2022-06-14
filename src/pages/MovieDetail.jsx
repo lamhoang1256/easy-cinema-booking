@@ -7,8 +7,8 @@ import AddComment from "components/AddComment/AddComment";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import PostRelated from "components/post/PostRelated";
-import DetailComment from "module/MovieDetail/DetailComment";
-import DetailOpening from "module/MovieDetail/DetailOpening";
+import DetailComment from "module/temp/DetailComment";
+import DetailOpening from "module/temp/DetailOpening";
 import {
   getCalendarShowMovieDetail,
   getCommentList,
@@ -18,8 +18,8 @@ import Image from "components/image/Image";
 import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
 import Description from "components/text/Description";
-import DetailBanner from "module/MovieDetail/DetailBanner";
-import DetailOverview from "module/MovieDetail/DetailOverview";
+import DetailBanner from "module/temp/DetailBanner";
+import DetailOverview from "module/temp/DetailOverview";
 
 const StyledMovieDetail = styled.div`
   .grid-layout {
