@@ -14,9 +14,10 @@
   }
   &-square {
     @include size(40px);
-    background-color: #d1d1d1;
+    background-color: #9692c7;
     border-radius: 6px;
     cursor: pointer;
+    color: var(--white);
   }
   &-seat {
     @extend .seating-plan-square;
@@ -29,7 +30,7 @@
     @include flexbox(center, center);
   }
   &-seat--vip {
-    background-color: #ffd124;
+    background-color: var(--secondary-color);
   }
   &-seat--selecting {
     background-color: #2fdd92;
@@ -45,10 +46,6 @@
     border: 2px solid #bfbfbf;
     border-radius: 8px;
   }
-  &-sample {
-    @include flexbox($justify-content: center);
-    gap: 20px;
-  }
   &-box {
     @include flexbox(center, center, column);
     text-align: center;
@@ -61,5 +58,11 @@
   }
   &-square--bought {
     @extend .seating-plan-seat--bought;
+  }
+  .seatingPlan-example {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

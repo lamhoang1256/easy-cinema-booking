@@ -5,7 +5,6 @@ import PostRelated from "components/post/PostRelated";
 import { dataFakeNews } from "constants/dataFakeNews";
 import Description from "components/text/Description";
 import styled from "styled-components";
-import Section from "components/section/Section";
 
 const StyledNewsDetail = styled.div`
   .article-top {
@@ -40,23 +39,9 @@ const StyledNewsDetail = styled.div`
     gap: 30px;
     padding: 60px 0 20px;
   }
-  .article-left {
-    flex-basis: 65%;
-    @include tablet {
-      flex: 1;
-    }
-  }
-  .article-right {
-    flex-basis: 35%;
-    @include tablet {
-      display: none;
-    }
-  }
-  .article-post {
-    img {
-      margin: 20px auto;
-      border-radius: 10px;
-    }
+  .article-post img {
+    margin: 20px auto;
+    border-radius: 10px;
   }
 `;
 
