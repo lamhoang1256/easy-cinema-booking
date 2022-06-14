@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "hooks/useMediaQuery";
 // component
-import RightSideNews from "components/RightSideNews/RightSideNews";
+import PostRelated from "components/post/PostRelated";
 import AddComment from "components/AddComment/AddComment";
 import Comment from "module/MovieDetail/Comment";
 import DetailShowtime from "module/MovieDetail/DetailShowtime";
@@ -37,66 +37,66 @@ const MovieDetail = () => {
     <>
       {isLoading && <LoadingAnimation />}
       {!isLoading && (
-        <div className='movie-detail'>
-          <div className='movie-detail-top'>
+        <div className="movie-detail">
+          <div className="movie-detail-top">
             <div
-              className='movie-detail-banner'
+              className="movie-detail-banner"
               style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
             ></div>
             <h2>Chi tiết phim</h2>
           </div>
-          <div className='container'>
-            <div className='movie-detail-main'>
-              <div className='movie-detail-left'>
-                <div className='movie-detail-info'>
-                  <div className='movie-card-thumb'>
+          <div className="container">
+            <div className="movie-detail-main">
+              <div className="movie-detail-left">
+                <div className="movie-detail-info">
+                  <div className="movie-card-thumb">
                     <img
                       src={movieDetail.hinhAnh}
-                      className='movie-card-image'
-                      alt='movie-card-thumb'
+                      className="movie-card-image"
+                      alt="movie-card-thumb"
                     />
-                    <div className='movie-card-score'>{movieDetail.danhGia / 2}</div>
-                    <div className='movie-card-overplay'></div>
-                    <div className='movie-card-play'>
+                    <div className="movie-card-score">{movieDetail.danhGia / 2}</div>
+                    <div className="movie-card-overplay"></div>
+                    <div className="movie-card-play">
                       <ion-icon
                         onClick={() => {
                           dispatch(openModalTrailer(movieDetail.trailer));
                         }}
-                        name='play-circle-outline'
+                        name="play-circle-outline"
                       ></ion-icon>
                     </div>
                   </div>
 
-                  <div className='movie-detail-detail'>
+                  <div className="movie-detail-detail">
                     <h3>Chi tiết phim</h3>
-                    <MovieDetailItem label='Tên phim'>
-                      <span className='movie-detail-title'>{movieDetail.tenPhim}</span>
+                    <MovieDetailItem label="Tên phim">
+                      <span className="movie-detail-title">{movieDetail.tenPhim}</span>
                     </MovieDetailItem>
-                    <MovieDetailItem label='Ngày công chiếu'>
+                    <MovieDetailItem label="Ngày công chiếu">
                       {formatLocaleDateString(movieDetail.ngayKhoiChieu)}
                     </MovieDetailItem>
-                    <MovieDetailItem label='Điểm đánh giá'>
+                    <MovieDetailItem label="Điểm đánh giá">
                       {movieDetail.danhGia / 2 + "/ 5"}
                     </MovieDetailItem>
-                    <MovieDetailItem label='Đạo diễn'>Adam Wingard</MovieDetailItem>
-                    <MovieDetailItem label='Diễn viên'>
+                    <MovieDetailItem label="Đạo diễn">Adam Wingard</MovieDetailItem>
+                    <MovieDetailItem label="Diễn viên">
                       Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown
                     </MovieDetailItem>
                   </div>
                 </div>
                 <div>
-                  <h3 className='text--primary'>Tóm tắt phim</h3>
-                  <p className='movie-detail-desc'>{movieDetail.moTa}</p>
+                  <h3 className="text--primary">Tóm tắt phim</h3>
+                  <p className="movie-detail-desc">{movieDetail.moTa}</p>
                 </div>
                 {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
-                <div className='comment'>
-                  <h3 className='text--primary'>Đánh giá</h3>
+                <div className="comment">
+                  <h3 className="text--primary">Đánh giá</h3>
                   <Comment />
                 </div>
                 <AddComment />
               </div>
-              <div className='movie-detail-right'>
-                <RightSideNews />
+              <div className="movie-detail-right">
+                <PostRelated />
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@ const MovieDetail = () => {
 
 const MovieDetailItem = ({ label, children }) => (
   <p>
-    <span className='label'>{label}:</span>
+    <span className="label">{label}:</span>
     {children}
   </p>
 );

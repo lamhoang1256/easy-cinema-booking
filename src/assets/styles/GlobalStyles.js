@@ -15,6 +15,8 @@ export const GlobalStyle = createGlobalStyle`
     --gray80: #808080;
     --grayf9: #f9f8ff;
     --grayed: #edf1f5;
+    --purple-color:#6f5cf1;
     --bg-skeleton: #656871;
+    --primary-gradient:linear-gradient(270deg,#c042ff,#8a3cff);
   }
 `;

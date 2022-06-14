@@ -12,7 +12,7 @@ const COLOR = {
   `,
   purple: css`
     color: var(--white);
-    background-color: #6f5cf1;
+    background-color: var(--purple-color);
   `,
 };
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Banner from "components/Banner/Banner";
-import RightSideNews from "components/RightSideNews/RightSideNews";
+import PostRelated from "components/post/PostRelated";
 import { dataFakeNews } from "constants/dataFakeNews";
 
 const urlBanner = `${process.env.PUBLIC_URL}/assets/images/background/news.png`;
@@ -15,28 +15,28 @@ const NewsDetail = () => {
   return (
     <>
       {news ? (
-        <div className='new-detail'>
+        <div className="new-detail">
           <Banner urlBanner={`url(${urlBanner})`} heading={"Trang tin chi tiết"} />
-          <div className='container'>
-            <div className='new-detail-main'>
-              <div className='new-detail-left'>
+          <div className="container">
+            <div className="new-detail-main">
+              <div className="new-detail-left">
                 {news && (
-                  <div className='new-detail-post'>
+                  <div className="new-detail-post">
                     <p dangerouslySetInnerHTML={{ __html: news.createdAt }}></p>
                     <h2
-                      className='new-detail-title'
+                      className="new-detail-title"
                       dangerouslySetInnerHTML={{ __html: news.title }}
                     ></h2>
                     <div
-                      className='new-detail-content'
+                      className="new-detail-content"
                       dangerouslySetInnerHTML={{ __html: news.content }}
                     ></div>
                   </div>
                 )}
               </div>
 
-              <div className='new-detail-right'>
-                <RightSideNews />
+              <div className="new-detail-right">
+                <PostRelated />
               </div>
             </div>
           </div>

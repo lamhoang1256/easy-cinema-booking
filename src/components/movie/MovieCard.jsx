@@ -5,6 +5,10 @@ import Button from "components/button/Button";
 import { TextClamp } from "assets/styles/_mixin";
 
 const StyledMovieCard = styled.div`
+  .lazy-load-image-loaded {
+    width: 100%;
+    height: 100%;
+  }
   .card-poster {
     border-radius: 12px;
     overflow: hidden;

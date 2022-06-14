@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
 import HomeBanner from "module/Home/HomeBanner";
 import HomeFilter from "module/Home/HomeFilter/";
-// fix
 import MovieList from "components/movie/MovieList";
-import Article from "module/Home/Article";
-import ModalTrailer from "components/ModalTrailer/ModalTrailer";
-import Showtime from "module/Home/Showtime";
-import ShowtimeMobile from "module/Home/ShowtimeMobile";
+import HomeOpening from "module/Home/HomeOpening";
+import HomeOpeningMobile from "module/Home/HomeOpeningMobile";
+import HomeFeature from "module/Home/HomeFeature";
 import { moviesApi } from "apis/moviesApi";
 
 const Home = () => {
@@ -63,15 +61,14 @@ const Home = () => {
           <MovieList data={nowShowingMovieList} heading="Phim đang chiếu" />
           <div id="showtime">
             {isMobile ? (
-              <ShowtimeMobile showtimeList={showtimeList} />
+              <HomeOpeningMobile showtimeList={showtimeList} />
             ) : (
-              <Showtime showtimeList={showtimeList} />
+              <HomeOpening showtimeList={showtimeList} />
             )}
           </div>
-          <Article />
+          <HomeFeature />
         </div>
       </div>
-      <ModalTrailer />
     </div>
   );
 };
