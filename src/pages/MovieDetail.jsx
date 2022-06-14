@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-// component
 import AddComment from "components/AddComment/AddComment";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import PostRelated from "components/post/PostRelated";
-import DetailComment from "module/temp/DetailComment";
-import DetailOpening from "module/temp/DetailOpening";
+import DetailComment from "module/detail/DetailComment";
+import DetailOpening from "module/detail/DetailOpening";
 import {
   getCalendarShowMovieDetail,
   getCommentList,
@@ -18,8 +17,8 @@ import Image from "components/image/Image";
 import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
 import Description from "components/text/Description";
-import DetailBanner from "module/temp/DetailBanner";
-import DetailOverview from "module/temp/DetailOverview";
+import DetailBanner from "module/detail/DetailBanner";
+import DetailOverview from "module/detail/DetailOverview";
 
 const StyledMovieDetail = styled.div`
   .grid-layout {
