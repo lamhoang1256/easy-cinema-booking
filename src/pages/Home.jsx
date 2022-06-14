@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "hooks/useMediaQuery";
-import HomeBanner from "module/Home/HomeBanner";
-import HomeFilter from "module/Home/HomeFilter/";
+import HomeBanner from "module/home/HomeBanner";
+import HomeFilter from "module/home/HomeFilter";
 import MovieList from "components/movie/MovieList";
-import HomeOpening from "module/Home/HomeOpening";
-import HomeOpeningMobile from "module/Home/HomeOpeningMobile";
-import HomeFeature from "module/Home/HomeFeature";
+import HomeOpening from "module/home/HomeOpening";
+import HomeOpeningMobile from "module/home/HomeOpeningMobile";
+import HomeFeature from "module/home/HomeFeature";
 import { moviesApi } from "apis/moviesApi";
 
 const Home = () => {
