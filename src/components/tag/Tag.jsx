@@ -10,6 +10,9 @@ const STATUS = {
   normal: css`
     color: var(--white);
   `,
+  gray: css`
+    color: var(--gray-light);
+  `,
 };
 
 const StyledTag = styled.span`
@@ -25,8 +28,8 @@ const StyledTag = styled.span`
     `}
 `;
 
-const Tag = ({ children, className, kind, marginTop, ...props }) => (
-  <StyledTag className={className} kind={kind} marginTop={marginTop} {...props}>
+const Tag = ({ children, className, ...props }) => (
+  <StyledTag className={className} {...props}>
     {children}
   </StyledTag>
 );

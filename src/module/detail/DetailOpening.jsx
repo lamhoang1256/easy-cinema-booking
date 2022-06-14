@@ -59,7 +59,7 @@ const DetailOpening = () => {
       </Tag>
       <div className="boxed">
         <Tabs defaultActiveKey="0">
-          {calendarShowList.map(({ date, heThongRap }) => (
+          {calendarShowList?.map(({ date, heThongRap }) => (
             <TabPane tab={<TabPanelHeader date={date} />} key={uuidv4()}>
               <Tabs defaultActiveKey="0" tabPosition="left">
                 {heThongRap.map(({ logo, cumRapChieu }) => (

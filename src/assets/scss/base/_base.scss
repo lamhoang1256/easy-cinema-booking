@@ -30,6 +30,27 @@ body {
     padding: 0 15px;
   }
 }
+.grid-layout {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+}
+.column1 {
+  width: 65%;
+}
+.column2 {
+  width: 35%;
+  padding-top: 20px;
+}
+@media screen and (max-width: 1023.98px) {
+  .grid-layout {
+    flex-direction: column;
+  }
+  .column1,
+  .column2 {
+    width: 100%;
+  }
+}
 .main-layout {
   min-height: calc(100vh);
 }

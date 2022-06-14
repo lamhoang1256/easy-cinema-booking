@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { dataFakeAvatar, yourAvatar } from "constants/dataFakeAvatar";
 import Description from "components/text/Description";
 import Heading from "components/heading/Heading";
-import Tag from "components/tag/Tag";
 
 const StyledDetailComment = styled.div`
   .comment {
@@ -48,7 +47,7 @@ const DetailComment = () => {
   if (commentList?.length === 0) return <Description>Chưa có nhận xét</Description>;
   return (
     <StyledDetailComment>
-      {commentList.map(({ id, username, createdAt, content }) => (
+      {commentList?.map(({ id, username, createdAt, content }) => (
         <div className="comment-item" key={id}>
           <div className="comment-header">
             <img

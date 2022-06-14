@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Tabs } from "antd";
 import Skeleton from "react-loading-skeleton";
 import HomeOpeningTheaters from "./HomeOpeningTheaters";
+import Tag from "components/tag/Tag";
 
 const StyledShowTime = styled.div`
   @import "../abstracts/global.scss";
@@ -11,7 +12,6 @@ const StyledShowTime = styled.div`
   .heading {
     padding-left: 20px;
     margin-bottom: 10px;
-    color: var(--white);
   }
   & > .ant-tabs-top > .ant-tabs-nav {
     padding-left: 20px;
@@ -46,7 +46,9 @@ export const Showtime = ({ showtimeList }) => {
   if (!showtimeList) return <Skeleton height={300} borderRadius={10} />;
   return (
     <StyledShowTime>
-      <h2 className="heading">Lịch chiếu phim</h2>
+      <Tag kind="secondary" className="heading">
+        Lịch chiếu phim
+      </Tag>
       <Tabs defaultActiveKey="0" tabPosition="top">
         {showtimeList.map(({ logo, lstCumRap }, index) => (
           <TabPane tab={<img className="theater-logo" src={logo} alt="logo" />} key={index}>

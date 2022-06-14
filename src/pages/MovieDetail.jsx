@@ -21,18 +21,6 @@ import DetailBanner from "module/detail/DetailBanner";
 import DetailOverview from "module/detail/DetailOverview";
 
 const StyledMovieDetail = styled.div`
-  .grid-layout {
-    display: flex;
-    gap: 20px;
-    padding-top: 20px;
-  }
-  .column1 {
-    width: 65%;
-  }
-  .column2 {
-    width: 35%;
-    padding-top: 20px;
-  }
   .detail-poster {
     width: 160px;
     border-radius: 10px;
@@ -48,15 +36,6 @@ const StyledMovieDetail = styled.div`
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
-  }
-  @media screen and (max-width: 1023.98px) {
-    .grid-layout {
-      flex-direction: column;
-    }
-    .column1,
-    .column2 {
-      width: 100%;
-    }
   }
   @media screen and (max-width: 767.98px) {
     .detail-info {
