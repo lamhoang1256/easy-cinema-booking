@@ -1,22 +1,71 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "hooks/useMediaQuery";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 // component
-import PostRelated from "components/post/PostRelated";
 import AddComment from "components/AddComment/AddComment";
+import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
+import ModalTrailer from "components/ModalTrailer/ModalTrailer";
+import PostRelated from "components/post/PostRelated";
 import Comment from "module/MovieDetail/Comment";
 import DetailShowtime from "module/MovieDetail/DetailShowtime";
 import DetailShowtimeMobile from "module/MovieDetail/DetailShowtimeMobile";
-import ModalTrailer from "components/ModalTrailer/ModalTrailer";
-import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import {
-  getMovieDetail,
-  getCommentList,
   getCalendarShowMovieDetail,
+  getCommentList,
+  getMovieDetail,
 } from "redux/actions/movieDetail.action";
-import { openModalTrailer } from "redux/actions/modalTrailer.action";
 import { formatLocaleDateString } from "utilities/formatDate";
+
+import DetailBanner from "module/MovieDetail/DetailBanner";
+import styled from "styled-components";
+import Heading from "components/heading/Heading";
+import Tag from "components/tag/Tag";
+import Description from "components/text/Description";
+import DetailOverview from "module/MovieDetail/DetailOverview";
+import Image from "components/image/Image";
+
+const StyledMovieDetail = styled.div`
+  .grid-layout {
+    display: flex;
+    gap: 20px;
+  }
+  .column1 {
+    width: 65%;
+  }
+  .column2 {
+    width: 35%;
+    padding-top: 60px;
+  }
+  .detail-poster {
+    width: 215px;
+    transform: translateY(-130px);
+    border-radius: 10px;
+  }
+  .detail-info {
+    padding: 60px 0 20px;
+    display: flex;
+    gap: 0 40px;
+    margin-bottom: -90px;
+  }
+  @media screen and (max-width: 1023.98px) {
+    .grid-layout {
+      flex-direction: column;
+    }
+    .column1,
+    .column2 {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 767.98px) {
+    .detail-poster {
+      margin-bottom: -90px;
+    }
+    .detail-info {
+      flex-direction: column;
+    }
+  }
+`;
 
 const MovieDetail = () => {
   const { idDetail } = useParams();
@@ -33,86 +82,40 @@ const MovieDetail = () => {
     dispatch(getCommentList(idDetail));
   }, [togglePostComment]);
 
-  return (
-    <>
-      {isLoading && <LoadingAnimation />}
-      {!isLoading && (
-        <div className="movie-detail">
-          <div className="movie-detail-top">
-            <div
-              className="movie-detail-banner"
-              style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
-            ></div>
-            <h2>Chi tiết phim</h2>
-          </div>
-          <div className="container">
-            <div className="movie-detail-main">
-              <div className="movie-detail-left">
-                <div className="movie-detail-info">
-                  <div className="movie-card-thumb">
-                    <img
-                      src={movieDetail.hinhAnh}
-                      className="movie-card-image"
-                      alt="movie-card-thumb"
-                    />
-                    <div className="movie-card-score">{movieDetail.danhGia / 2}</div>
-                    <div className="movie-card-overplay"></div>
-                    <div className="movie-card-play">
-                      <ion-icon
-                        onClick={() => {
-                          dispatch(openModalTrailer(movieDetail.trailer));
-                        }}
-                        name="play-circle-outline"
-                      ></ion-icon>
-                    </div>
-                  </div>
+  if (isLoading) return <LoadingAnimation />;
 
-                  <div className="movie-detail-detail">
-                    <h3>Chi tiết phim</h3>
-                    <MovieDetailItem label="Tên phim">
-                      <span className="movie-detail-title">{movieDetail.tenPhim}</span>
-                    </MovieDetailItem>
-                    <MovieDetailItem label="Ngày công chiếu">
-                      {formatLocaleDateString(movieDetail.ngayKhoiChieu)}
-                    </MovieDetailItem>
-                    <MovieDetailItem label="Điểm đánh giá">
-                      {movieDetail.danhGia / 2 + "/ 5"}
-                    </MovieDetailItem>
-                    <MovieDetailItem label="Đạo diễn">Adam Wingard</MovieDetailItem>
-                    <MovieDetailItem label="Diễn viên">
-                      Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown
-                    </MovieDetailItem>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text--primary">Tóm tắt phim</h3>
-                  <p className="movie-detail-desc">{movieDetail.moTa}</p>
-                </div>
-                {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
-                <div className="comment">
-                  <h3 className="text--primary">Đánh giá</h3>
-                  <Comment />
-                </div>
-                <AddComment />
-              </div>
-              <div className="movie-detail-right">
-                <PostRelated />
-              </div>
+  return (
+    <StyledMovieDetail>
+      <DetailBanner hinhAnh={movieDetail.hinhAnh} />
+      <div className="container">
+        <div className="grid-layout">
+          {/* Movie Detail */}
+          <div className="column1">
+            <div className="detail-info">
+              <Image url={movieDetail.hinhAnh} alt="poster" className="detail-poster" />
+              <DetailOverview data={movieDetail} />
             </div>
+            <Tag kind="secondary" marginTop="14px">
+              Tóm tắt phim
+            </Tag>
+            <Description lineHeight={"2"}>{movieDetail.moTa}</Description>
+            {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
+            <Tag kind="secondary" marginTop="14px">
+              Đánh giá
+            </Tag>
+            <Comment />
+            <AddComment />
           </div>
-          <ModalTrailer />
+          {/* Related Post */}
+          <div className="column2">
+            <PostRelated />
+          </div>
         </div>
-      )}
-    </>
+      </div>
+      <ModalTrailer />
+    </StyledMovieDetail>
   );
 };
-
-const MovieDetailItem = ({ label, children }) => (
-  <p>
-    <span className="label">{label}:</span>
-    {children}
-  </p>
-);
 
 // DỮ LIỆU MẪU TRẢ VỀ CỦA MOVIE DETAIL TỪ API
 // {

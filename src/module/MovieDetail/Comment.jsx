@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { dataFakeAvatar, yourAvatar } from "constants/dataFakeAvatar";
+import Description from "components/text/Description";
 
 const Comment = () => {
   const { commentList } = useSelector((state) => state.movieDetail);
@@ -16,26 +17,26 @@ const Comment = () => {
   return (
     <>
       {commentList && (
-        <div className='comment-list'>
+        <div className="comment-list">
           {commentList.length !== 0 ? (
             commentList.map((comment) => (
-              <div className='comment-item' key={comment.id}>
-                <div className='comment-info'>
+              <div className="comment-item" key={comment.id}>
+                <div className="comment-info">
                   <img
-                    className='comment-avatar'
+                    className="comment-avatar"
                     src={comment.username === userInfo.taiKhoan ? meAvatar : fakeAvatar}
-                    alt='comment-avatar'
+                    alt="comment-avatar"
                   />
-                  <div className='comment-profile'>
+                  <div className="comment-profile">
                     <h3>{comment.username}</h3>
                     <span>{moment(comment.createdAt).fromNow()}</span>
                   </div>
                 </div>
-                <div className='comment-desc'>{comment.content}</div>
+                <div className="comment-desc">{comment.content}</div>
               </div>
             ))
           ) : (
-            <p className='text--primary'>Chưa có nhận xét</p>
+            <Description>Chưa có nhận xét</Description>
           )}
         </div>
       )}

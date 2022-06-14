@@ -1,3 +1,4 @@
+import Tag from "components/tag/Tag";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -44,17 +45,19 @@ const AddComment = () => {
   };
 
   return (
-    <div className='addComment'>
-      <h3>Thêm nhận xét mới</h3>
+    <div className="addComment">
+      <Tag kind="secondary" marginTop="14px">
+        Thêm nhận xét mới
+      </Tag>
       <textarea
-        name='addComment-textarea'
-        className='addComment-textarea'
+        name="addComment-textarea"
+        className="addComment-textarea"
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
-        placeholder='Viết nhận xét...'
+        placeholder="Viết nhận xét..."
       ></textarea>
-      {error !== "" && <span className='text--primary'>{error}</span>}
-      <button className='btn btn--primary addComment-btn' onClick={handleAddNewComment}>
+      {error !== "" && <span className="text--primary">{error}</span>}
+      <button className="btn btn--primary addComment-btn" onClick={handleAddNewComment}>
         Nhận xét
       </button>
     </div>
