@@ -21,10 +21,6 @@ const StyledHomeOpeningTheaters = styled.div`
     border-radius: 10px;
     margin-bottom: 20px;
   }
-  .time-button {
-    font-size: 1.4rem;
-    padding: 0 8px;
-  }
 `;
 
 const HomeOpeningTheaters = ({ data }) => {

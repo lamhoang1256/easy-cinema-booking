@@ -8,22 +8,21 @@ import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import PostRelated from "components/post/PostRelated";
 import Comment from "module/MovieDetail/Comment";
-import DetailShowtime from "module/MovieDetail/DetailShowtime";
+import DetailOpening from "module/MovieDetail/DetailOpening";
 import DetailShowtimeMobile from "module/MovieDetail/DetailShowtimeMobile";
 import {
   getCalendarShowMovieDetail,
   getCommentList,
   getMovieDetail,
 } from "redux/actions/movieDetail.action";
-import { formatLocaleDateString } from "utilities/formatDate";
 
-import DetailBanner from "module/MovieDetail/DetailBanner";
-import styled from "styled-components";
-import Heading from "components/heading/Heading";
+import Image from "components/image/Image";
 import Tag from "components/tag/Tag";
 import Description from "components/text/Description";
+import DetailBanner from "module/MovieDetail/DetailBanner";
 import DetailOverview from "module/MovieDetail/DetailOverview";
-import Image from "components/image/Image";
+import styled from "styled-components";
+import Section from "components/section/Section";
 
 const StyledMovieDetail = styled.div`
   .grid-layout {
@@ -95,16 +94,20 @@ const MovieDetail = () => {
               <Image url={movieDetail.hinhAnh} alt="poster" className="detail-poster" />
               <DetailOverview data={movieDetail} />
             </div>
-            <Tag kind="secondary" marginTop="14px">
-              Tóm tắt phim
-            </Tag>
-            <Description lineHeight={"2"}>{movieDetail.moTa}</Description>
-            {isMobile ? <DetailShowtimeMobile /> : <DetailShowtime />}
-            <Tag kind="secondary" marginTop="14px">
-              Đánh giá
-            </Tag>
-            <Comment />
-            <AddComment />
+            <Section>
+              <Tag kind="secondary" marginTop="14px">
+                Tóm tắt phim
+              </Tag>
+              <Description lineHeight={"2"}>{movieDetail.moTa}</Description>
+            </Section>
+            <Section>{isMobile ? <DetailShowtimeMobile /> : <DetailOpening />}</Section>
+            <Section>
+              <Tag kind="secondary" marginTop="14px">
+                Đánh giá
+              </Tag>
+              <Comment />
+              <AddComment />
+            </Section>
           </div>
           {/* Related Post */}
           <div className="column2">

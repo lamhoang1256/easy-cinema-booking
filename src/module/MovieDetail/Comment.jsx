@@ -24,7 +24,7 @@ const Comment = () => {
                 <div className="comment-info">
                   <img
                     className="comment-avatar"
-                    src={comment.username === userInfo.taiKhoan ? meAvatar : fakeAvatar}
+                    src={comment.username === userInfo?.taiKhoan ? meAvatar : fakeAvatar}
                     alt="comment-avatar"
                   />
                   <div className="comment-profile">

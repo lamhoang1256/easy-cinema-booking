@@ -9,7 +9,7 @@ const StyledPostRelated = styled.div`
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  background-color: #121112;
+  background-color: var(--darker-color);
   border-radius: 20px;
   .related-item {
     display: flex;
