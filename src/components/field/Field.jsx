@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const StyledField = styled.div`
-  gap: 8px;
-  display: flex;
+  span:first-child {
+    margin-right: 8px;
+  }
 `;
 
 const Field = ({ children, ...props }) => {

@@ -1,12 +1,15 @@
+import styled from "styled-components";
 import Field from "components/field/Field";
+import Heading from "components/heading/Heading";
 import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
-import Description from "components/text/Description";
-import styled from "styled-components";
 
 const StyledTicketRoomDetail = styled.div`
-  .tag {
-    flex-shrink: 0;
+  .poster {
+    margin: 10px 0;
+    width: 140px;
+    overflow: hidden;
+    border-radius: 10px;
   }
 `;
 
@@ -15,46 +18,45 @@ const TicketRoomDetail = ({ data, selectingSeatList }) => {
   return (
     <StyledTicketRoomDetail>
       <Section>
-        <Tag kind="secondary">Thông tin phim</Tag>
-        <div className="ticketRoom-thumb">
-          <img src={hinhAnh} alt="movie-thumb" />
-        </div>
+        <Heading>Thông tin phim</Heading>
+        <Field>
+          <img src={hinhAnh} alt="poster" className="poster" />
+        </Field>
         <Field>
           <Tag className="tag" kind="secondary">
             Tên phim:
           </Tag>
-          <Description kind="gray">{tenPhim}</Description>
+          <span>{tenPhim}</span>
         </Field>
         <Field>
           <Tag className="tag" kind="secondary">
             Rạp:
           </Tag>
-          <Description kind="gray">{tenCumRap}</Description>
+          <span>{tenCumRap}</span>
         </Field>
         <Field>
           <Tag className="tag" kind="secondary">
             Địa chỉ:
           </Tag>
-          <Description kind="gray">{diaChi}</Description>
+          <span>{diaChi}</span>
         </Field>
         <Field>
           <Tag className="tag" kind="secondary">
             Suất chiếu:
           </Tag>
-          <Description kind="gray">{`${gioChieu} ${ngayChieu}`}</Description>
+          <span>{`${gioChieu} ${ngayChieu}`}</span>
         </Field>
         <Field>
           <Tag className="tag" kind="secondary">
             Số ghế đã chọn:
           </Tag>
-          <Description kind="gray">
+          <span>
             {selectingSeatList?.length !== 0
-              ? selectingSeatList?.map((seat, index) => {
-                  // Eg: if 3 seat : 3,5,9 -> if 1 seat : 3 (not ,)
-                  return index === 0 ? seat.tenGhe : `, ${seat.tenGhe}`;
-                })
+              ? selectingSeatList?.map(({ tenGhe }, index) =>
+                  index === 0 ? tenGhe : `, ${tenGhe}`
+                )
               : "Chưa chọn ghế"}
-          </Description>
+          </span>
         </Field>
       </Section>
     </StyledTicketRoomDetail>

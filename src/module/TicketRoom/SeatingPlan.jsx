@@ -27,6 +27,7 @@ const StyleSeat = styled.div`
   background-color: #9692c7;
   border-radius: 6px;
   cursor: pointer;
+  overflow: hidden;
   color: var(--white);
   ${(props) => props.status && STATUS_SEAT[props.status]}
 `;
@@ -91,7 +92,9 @@ const SeatingPlan = ({ danhSachGhe, selectingSeatList }) => {
           <TagSmall kind="gray">Ghế đã được đặt</TagSmall>
         </div>
         <div className="field">
-          <StyleSeat status="yout"></StyleSeat>
+          <StyleSeat status="your">
+            <img src={imgYourChoice} alt="your-seat" />
+          </StyleSeat>
           <TagSmall kind="gray">Ghế bạn đặt</TagSmall>
         </div>
         {/* <SeatingPlanSampleSeat>Ghế thường</SeatingPlanSampleSeat>

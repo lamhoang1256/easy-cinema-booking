@@ -5,7 +5,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif;
-  background-color: $dark-color;
+  background-color: var(--dark-color);
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -40,7 +40,6 @@ body {
 }
 .column2 {
   width: 35%;
-  padding-top: 20px;
 }
 @media screen and (max-width: 1023.98px) {
   .grid-layout {
@@ -49,6 +48,9 @@ body {
   .column1,
   .column2 {
     width: 100%;
+  }
+  .column2 {
+    padding-top: 20px;
   }
 }
 .main-layout {
