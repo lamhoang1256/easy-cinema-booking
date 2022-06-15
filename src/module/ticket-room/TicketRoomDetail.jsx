@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Field from "components/field/FieldText";
 import Heading from "components/heading/Heading";
-import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
 
 const StyledTicketRoomDetail = styled.div`

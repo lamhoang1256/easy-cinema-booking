@@ -20,10 +20,7 @@ export const schemaYupSignUp = yup.object({
 });
 
 export const schemaYupSignIn = yup.object({
-  email: yup
-    .string()
-    .email("Please enter valid email address")
-    .required("Please enter your email address"),
+  username: yup.string().required("Please enter your username"),
   password: yup
     .string()
     .min(8, "Password must be at least 8 characters")

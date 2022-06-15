@@ -5,12 +5,12 @@ import { Controller } from "react-hook-form";
 import { Input } from "antd";
 import { Switch } from "antd";
 import { DatePicker } from "antd";
-import InputText from "components/temp/InputText";
+import InputText from "components/InputText/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 // validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaYupFilm } from "constants/schemaYupFilm";
+import { schemaYupFilm } from "constants/movie.schema";
 import { moviesApi } from "apis/moviesApi";
 import { sweetAlert } from "utilities/sweetAlert";
 

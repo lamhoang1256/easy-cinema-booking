@@ -46,8 +46,8 @@ const SignIn = () => {
               <span className="auth-label">SignIn to continue</span>
               <div className="auth-main">
                 <Field>
-                  <Label htmlFor="email">Email</Label>
-                  <Input name="email" type="text" placeholder="Email" control={control} />
+                  <Label htmlFor="username">Username</Label>
+                  <Input name="username" type="text" placeholder="Username" control={control} />
                   <LabelError>{errors.email?.message}</LabelError>
                 </Field>
                 <Field>

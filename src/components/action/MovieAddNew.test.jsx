@@ -1,0 +1,199 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { DatePicker, Switch } from "antd";
+import { moviesApi } from "apis/moviesApi";
+import Button from "components/button/Button";
+import Field from "components/field/Field";
+import ImageUpload from "components/image/ImageUpload";
+import Input from "components/input/Input";
+import Label from "components/label/Label";
+import LabelError from "components/label/LabelError";
+import TextArea from "components/textarea/TextArea";
+import { schemaYupFilm } from "constants/movie.schema";
+import moment from "moment";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import styled from "styled-components";
+import { sweetAlert } from "utilities/sweetAlert";
+
+const StyledMovieAddNew = styled.div`
+  .form-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    button {
+      width: max-content;
+    }
+  }
+  .movie-date {
+    height: 53px;
+  }
+  .movie-editor p {
+    line-height: 2;
+    font-size: 1.8rem;
+  }
+`;
+
+const MovieAddNew = () => {
+  const [poster, setPoster] = useState(null);
+  const [movieOpenday, setMovieOpenday] = useState("");
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schemaYupFilm) });
+
+  const onChangeDatePicker = (value) => {
+    setMovieOpenday(moment(value).format("DD/MM/YYYY"));
+  };
+
+  const handleAddMovie = (data) => {
+    console.log(poster);
+    const values = {
+      tenPhim: data.title,
+      moTa: data.description,
+      trailer: data.trailer,
+      maNhom: "GP00",
+      ngayKhoiChieu: movieOpenday || moment(new Date()).format("DD/MM/YYYY"),
+      sapChieu: data.comingSoon,
+      dangChieu: data.isShowing,
+      hot: data.isHot,
+      danhGia: data.rating * 2,
+      hinhAnh: poster,
+    };
+
+    let formData = new FormData();
+    for (var key in values) {
+      if (key !== "hinhAnh") {
+        formData.append(key, values[key]);
+      } else {
+        // if (values.hinhAnh !== null) {
+        formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
+        // }
+      }
+    }
+
+    (async () => {
+      try {
+        const res = await moviesApi.addNewMovieApi(formData);
+        if (res.status === 200) {
+          sweetAlert("success", "Thêm mới phim thành công!", "Bạn đã thêm mới phim thành công!");
+        }
+        console.log(res);
+      } catch (error) {
+        sweetAlert("error", "Thêm mới phim thất bại!", error?.response?.data?.content);
+      }
+    })();
+  };
+
+  return (
+    <StyledMovieAddNew>
+      <h2>Thêm phim mới</h2>
+      <form className="movie" onSubmit={handleSubmit(handleAddMovie)}>
+        <div className="form-layout">
+          <Field>
+            <Label>Ngày khởi chiếu</Label>
+            <DatePicker
+              className="movie-date"
+              defaultValue={moment(new Date(), "DD/MM/YYYY")}
+              control={control}
+              onChange={onChangeDatePicker}
+              format="DD/MM/YYYY"
+            />
+          </Field>
+          <Field>
+            <Label htmlFor="title">Tên phim</Label>
+            <Input placeholder="Tên phim" name="title" type="text" control={control} />
+            <LabelError>{errors.title?.message} </LabelError>
+          </Field>
+        </div>
+        <div className="form-layout">
+          <Field>
+            <Label htmlFor="rating">Đánh giá</Label>
+            <Input type="number" control={control} name="rating" />
+            <LabelError>{errors.rating?.message}</LabelError>
+          </Field>
+          <Field>
+            <Label htmlFor={"trailer"}>Trailer</Label>
+            <Input type="text" control={control} name="trailer" />
+            <LabelError>{errors.trailer?.message}</LabelError>
+          </Field>
+        </div>
+        <div className="form-layout">
+          <Field>
+            <Label>Poster</Label>
+            <div className="poster">
+              <ImageUpload setImage={setPoster}></ImageUpload>
+            </div>
+          </Field>
+          <Field>
+            <Label>Status</Label>
+            <Field>
+              <Label htmlFor="isShowing">Đang chiếu</Label>
+              <Controller
+                control={control}
+                name="isShowing"
+                defaultValue={false}
+                render={({ field: { onChange } }) => <Switch onChange={onChange} />}
+              />
+            </Field>
+            <Field>
+              <Label htmlFor="commingSoon">Sắp chiếu</Label>
+              <Controller
+                control={control}
+                name="commingSoon"
+                defaultValue={false}
+                render={({ field: { onChange } }) => <Switch onChange={onChange} />}
+              />
+            </Field>
+            <Field>
+              <Label htmlFor="isHot">Đang hot</Label>
+              <Controller
+                control={control}
+                name="isHot"
+                defaultValue={false}
+                render={({ field: { onChange } }) => <Switch onChange={onChange} />}
+              />
+            </Field>
+          </Field>
+        </div>
+        <Field>
+          <Label htmlFor="description">Description</Label>
+          <div className="movie-description">
+            <Controller
+              control={control}
+              name="description"
+              defaultValue=""
+              render={({ field: { onChange } }) => <TextArea onChange={onChange} />}
+            />
+          </div>
+          <LabelError>{errors.description?.message} </LabelError>
+        </Field>
+        <Button kind="purple" type="submit">
+          Sửa
+        </Button>
+      </form>
+    </StyledMovieAddNew>
+  );
+};
+
+export default MovieAddNew;
+
+// biDanh: "wanted-2"
+// dangChieu: true
+// danhGia: 10
+// hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/wanted2_gp13.jpg"
+// hot: false
+// maNhom: "GP13"
+// maPhim: 8188
+// moTa: "Wanted is a 2008 American action thriller film directed by Timur Bekmambetov and written by Michael Brandt, Derek Haas, and Chris Morgan, loosely based on the comic book miniseries by Mark Millar and J. G. Jones. The film stars James McAvoy, Morgan Freeman, Terence Stamp, Thomas Kretschmann, Common, and Angelina Jolie.nn"
+// ngayKhoiChieu: "2021-11-09T01:46:29.307"
+// sapChieu: false
+// tenPhim: "Wanted 2"
+// trailer: "https://www.youtube.com/embed/-TJ0o4oB0gc"
+
+// lastModified: 1655268352000
+// lastModifiedDate: Wed Jun 15 2022 11:45:52 GMT+0700 (Giờ Đông Dương) {}
+// name: "yeuDi.jpg"
+// size: 351190
+// type: "image/jpeg"
+// webkitRelativePath: ""
