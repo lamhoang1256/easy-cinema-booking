@@ -1,42 +1,69 @@
 import { Tabs } from "antd";
 import { useEffect } from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailUserAction, updateUserAction } from "redux/actions/user.action";
-// validation
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaYupRegister } from "constants/schemaYupRegister";
-// components
+import { getDetailUserAction } from "redux/actions/user.action";
 import Banner from "components/Banner/Banner";
-import History from "module/Profile/History";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
-import InputText from "components/InputText/InputText";
-import ErrorValidation from "components/Message/ErrorValidation";
-const urlBanner = `url("${process.env.PUBLIC_URL}/assets/images/background/news.png"
-)`;
+import Section from "components/section/Section";
+import ProfileInfo from "module/profile/ProfileInfo";
+import ProfileEdit from "module/profile/ProfileEdit";
+import ProfileHistory from "module/profile/ProfileHistory";
+const urlBanner = `url("/assets/images/background/news.png")`;
+
+const StyledProfile = styled.div`
+  .profile-header {
+    transform: translateY(-20%);
+    margin-bottom: -20px;
+    gap: 0 40px;
+    display: flex;
+    align-items: center;
+  }
+  .profile-avatar {
+    overflow: hidden;
+    border: 3px solid #fff;
+    border-radius: 100rem;
+    width: 200px;
+    height: 200px;
+  }
+  // style css tab antd
+  .ant-tabs-top > .ant-tabs-nav .ant-tabs-tab {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .ant-tabs-top .ant-tabs-tab .ant-tabs-tab-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    min-width: 180px;
+    color: var(--white);
+  }
+  .ant-tabs-top .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    background-image: var(--gradient-primary);
+  }
+  @media screen and (max-width: 1023.98px) {
+    .ant-tabs-top .ant-tabs {
+      flex-direction: column;
+    }
+    .ant-tabs-top > div > .ant-tabs-content-holder {
+      margin-top: 30px;
+    }
+  }
+  @media screen and (max-width: 767.98px) {
+    .profile-top {
+      flex-direction: column;
+    }
+    .profile-avatar {
+      width: 160px;
+      height: 160px;
+    }
+  }
+`;
 
 const Profile = () => {
   const { TabPane } = Tabs;
   const dispatch = useDispatch();
   const { isLoading, userProfile } = useSelector((state) => state.user);
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaYupRegister) });
-
-  const handleUpdateProfile = (dataForm) => {
-    const requestRegister = {
-      taiKhoan: dataForm.username,
-      matKhau: dataForm.password,
-      email: dataForm.email,
-      soDt: dataForm.phone,
-      maNhom: "GP00",
-      hoTen: dataForm.fullname,
-      maLoaiNguoiDung: "KhachHang",
-    };
-    dispatch(updateUserAction(requestRegister));
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,134 +74,40 @@ const Profile = () => {
     <>
       {isLoading && <LoadingAnimation />}
       {!isLoading && (
-        <div className='user-info'>
+        <StyledProfile>
           <Banner urlBanner={urlBanner} heading={"Thông tin tài khoản"} />
-          <div className='container'>
-            <div className='user-info-top'>
-              <div className='user-info-avatar'>
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/avatar/avatar-boss-baby.jpg`}
-                  alt='avatar'
-                />
+          <div className="container">
+            <div className="profile-header">
+              <div className="profile-avatar">
+                <img src="/assets/images/avatar/avatar-boss-baby.jpg" alt="avatar" />
               </div>
-              <div className='user-info-name'>
+              <div className="profile-name">
                 <h2>{userProfile.hoTen}</h2>
                 <p>{userProfile.email}</p>
               </div>
             </div>
-            <Tabs tabPosition={"left"}>
-              {/* TAB 1 - THÔNG TIN CƠ BẢN */}
-              <TabPane tab='Thông tin cơ bản' key='1'>
-                {userProfile ? (
-                  <div className='user-info-basic'>
-                    <h2 className='user-info-title'>Thông tin cơ bản</h2>
-                    <UserProfileItem label='Tên tài khoản:'>{userProfile.taiKhoan}</UserProfileItem>
-                    <UserProfileItem label='Họ và tên:'>{userProfile.hoTen}</UserProfileItem>
-                    <UserProfileItem label='Email:'>{userProfile.email}</UserProfileItem>
-                    <UserProfileItem label='Số điện thoại:'>{userProfile.soDT}</UserProfileItem>
-                    <UserProfileItem label='Quyền truy cập'>
-                      {userProfile.maLoaiNguoiDung === "QuanTri" ? "Quản Trị" : "Khách Hàng"}
-                    </UserProfileItem>
+            <Section>
+              <Tabs tabPosition={"top"}>
+                <TabPane tab="Thông tin cơ bản" key="1">
+                  {!userProfile && "Thông tin tài khoản hiện đang trống"}
+                  {userProfile && <ProfileInfo data={userProfile} />}
+                </TabPane>
+                <TabPane tab="Chỉnh sửa thông tin" key="2">
+                  <ProfileEdit />
+                </TabPane>
+                <TabPane tab="Lịch sử đặt vé" key="3">
+                  <div className="profile-history">
+                    <ProfileHistory thongTinDatVe={userProfile.thongTinDatVe} />
                   </div>
-                ) : (
-                  "Thông tin tài khoản hiện đang trống"
-                )}
-              </TabPane>
-              {/* TAB 2 - CHỈNH SỬA THÔNG TIN */}
-              <TabPane tab='Chỉnh sửa thông tin' key='2'>
-                <h2 className='user-info-title'>Chỉnh sửa thông tin</h2>
-                <form className='user-info-edit' onSubmit={handleSubmit(handleUpdateProfile)}>
-                  <div className='user-info-edit-group'>
-                    <InputText
-                      label='Tên tài khoản'
-                      name='username'
-                      control={control}
-                      type='text'
-                      defaultValue={userProfile.taiKhoan}
-                      placeholder='Tên tài khoản'
-                    />
-                    <ErrorValidation errorMessage={errors.username?.message} />
-                  </div>
-                  <div className='user-info-edit-group'>
-                    <InputText
-                      label='Họ và tên'
-                      name='fullname'
-                      control={control}
-                      type='text'
-                      placeholder='Họ và tên'
-                      defaultValue={userProfile.hoTen}
-                    />
-                    <ErrorValidation errorMessage={errors.fullname?.message} />
-                  </div>
-                  <div className='user-info-edit-group'>
-                    <InputText
-                      label='Email'
-                      name='email'
-                      control={control}
-                      type='email'
-                      placeholder='Email'
-                      defaultValue={userProfile.email}
-                    />
-                    <ErrorValidation errorMessage={errors.email?.message} />
-                  </div>
-                  <div className='user-info-edit-group'>
-                    <InputText
-                      label='Số điện thoại'
-                      name='phone'
-                      control={control}
-                      type='text'
-                      placeholder='Số điện thoại'
-                      defaultValue={userProfile.soDT}
-                    />
-                    <ErrorValidation errorMessage={errors.phone?.message} />
-                  </div>
-                  <div className='user-info-edit-group'>
-                    <InputText
-                      label='Mật khẩu'
-                      name='password'
-                      control={control}
-                      type='password'
-                      placeholder='Mật khẩu'
-                      defaultValue={userProfile.matKhau}
-                    />
-                    <ErrorValidation errorMessage={errors.password?.message} />
-                  </div>
-                  <div className='user-info-edit-group'>
-                    <InputText
-                      label='Xác nhận mật khẩu'
-                      name='password_repeat'
-                      control={control}
-                      type='password'
-                      placeholder='Xác nhận mật khẩu'
-                      defaultValue={userProfile.matKhau}
-                    />
-                    <ErrorValidation errorMessage={errors.password_repeat?.message} />
-                  </div>
-                  <button type='submit' className='user-info-edit-submit btn btn--primary'>
-                    Chỉnh sửa
-                  </button>
-                </form>
-              </TabPane>
-              {/* TAB 3 - LỊCH SỬ ĐẶT VÉ */}
-              <TabPane tab='Lịch sử đặt vé' key='3'>
-                <div className='user-info-history'>
-                  <h2 className='user-info-title'>Lịch sử đặt vé</h2>
-                  <History thongTinDatVe={userProfile.thongTinDatVe} />
-                </div>
-              </TabPane>
-            </Tabs>
+                </TabPane>
+              </Tabs>
+            </Section>
           </div>
-        </div>
+        </StyledProfile>
       )}
     </>
   );
 };
-
-const UserProfileItem = ({ label, children }) => (
-  <p className='line'>
-    <span className='label'>{label}</span> {children}
-  </p>
-);
 
 export default Profile;
 

@@ -17,39 +17,29 @@ const TicketRoomDetail = ({ data, selectingSeatList }) => {
   const { tenPhim, hinhAnh, tenCumRap, diaChi, gioChieu, ngayChieu } = data;
   return (
     <StyledTicketRoomDetail>
-      <Section>
+      <div>
         <Heading>Thông tin phim</Heading>
         <Field>
           <img src={hinhAnh} alt="poster" className="poster" />
         </Field>
         <Field>
-          <Tag className="tag" kind="secondary">
-            Tên phim:
-          </Tag>
+          <Tag kind="secondary">Tên phim:</Tag>
           <span>{tenPhim}</span>
         </Field>
         <Field>
-          <Tag className="tag" kind="secondary">
-            Rạp:
-          </Tag>
+          <Tag kind="secondary">Rạp:</Tag>
           <span>{tenCumRap}</span>
         </Field>
         <Field>
-          <Tag className="tag" kind="secondary">
-            Địa chỉ:
-          </Tag>
+          <Tag kind="secondary">Địa chỉ:</Tag>
           <span>{diaChi}</span>
         </Field>
         <Field>
-          <Tag className="tag" kind="secondary">
-            Suất chiếu:
-          </Tag>
+          <Tag kind="secondary">Suất chiếu:</Tag>
           <span>{`${gioChieu} ${ngayChieu}`}</span>
         </Field>
         <Field>
-          <Tag className="tag" kind="secondary">
-            Số ghế đã chọn:
-          </Tag>
+          <Tag kind="secondary">Số ghế đã chọn:</Tag>
           <span>
             {selectingSeatList?.length !== 0
               ? selectingSeatList?.map(({ tenGhe }, index) =>
@@ -58,7 +48,7 @@ const TicketRoomDetail = ({ data, selectingSeatList }) => {
               : "Chưa chọn ghế"}
           </span>
         </Field>
-      </Section>
+      </div>
     </StyledTicketRoomDetail>
   );
 };

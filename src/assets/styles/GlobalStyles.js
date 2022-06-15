@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     --darker-color:#1c093c;
     --gray-color:#dbdbdb;
     --gray-light:#e1dff4;
+    --gradient-primary:linear-gradient(270deg, #c042ff, #8a3cff);
     /* --redff8: #ff8282;
     --redffe: #ffe2e2;
     --grayea: #eaeaea;
