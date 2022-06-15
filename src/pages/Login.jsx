@@ -8,7 +8,7 @@ import { schemaYupLogin } from "constants/schemaYupLogin";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "redux/actions/user.action";
 // components
-import InputText from "components/InputText/InputText";
+import InputText from "components/temp/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 
 const Login = () => {
@@ -34,41 +34,41 @@ const Login = () => {
   }, [userLocalStorage]);
 
   return (
-    <div className='auth login'>
-      <div className='auth-container'>
-        <div className='auth-main'>
-          <h2 className='auth-heading'>Đăng nhập</h2>
-          <form className='auth-content' onSubmit={handleSubmit(handleLogin)}>
-            <div className='auth-group'>
-              <ion-icon name='person-outline'></ion-icon>
+    <div className="auth login">
+      <div className="auth-container">
+        <div className="auth-main">
+          <h2 className="auth-heading">Đăng nhập</h2>
+          <form className="auth-content" onSubmit={handleSubmit(handleLogin)}>
+            <div className="auth-group">
+              <ion-icon name="person-outline"></ion-icon>
               <InputText
-                name='username'
-                type='text'
-                placeholder='Tên tài khoản *'
+                name="username"
+                type="text"
+                placeholder="Tên tài khoản *"
                 control={control}
               />
             </div>
             <ErrorValidation errorMessage={errors.username?.message} />
 
-            <div className='auth-group'>
-              <ion-icon name='lock-closed-outline'></ion-icon>
+            <div className="auth-group">
+              <ion-icon name="lock-closed-outline"></ion-icon>
               <InputText
-                name='password'
-                type='password'
-                placeholder='Mật khẩu *'
+                name="password"
+                type="password"
+                placeholder="Mật khẩu *"
                 control={control}
               />
             </div>
             <ErrorValidation errorMessage={errors.password?.message} />
             {/* log error form API */}
             <ErrorValidation errorMessage={errorLogin?.content} />
-            <button className='auth-submit btn btn--primary' type='submit'>
+            <button className="auth-submit btn btn--primary" type="submit">
               Đăng nhập
             </button>
             {!userInfo && (
-              <div className='auth-switch'>
+              <div className="auth-switch">
                 Bạn đã chưa có tài khoản ?{" "}
-                <Link to='/auth/register' className='text--primary'>
+                <Link to="/auth/register" className="text--primary">
                   Đăng kí
                 </Link>
               </div>

@@ -10,7 +10,7 @@ const Profile = React.lazy(() => import("pages/Profile"));
 const MovieDetail = React.lazy(() => import("pages/MovieDetail"));
 const NewsDetail = React.lazy(() => import("pages/NewsDetail"));
 const TicketRoom = React.lazy(() => import("pages/TicketRoom"));
-const Register = React.lazy(() => import("pages/Register"));
+const SignUp = React.lazy(() => import("pages/Authentication/SignUp"));
 const NotFound = React.lazy(() => import("pages/NotFound"));
 const UserManage = React.lazy(() => import("pages/UserManage"));
 const MovieManage = React.lazy(() => import("pages/MovieManage"));
@@ -54,7 +54,7 @@ const RoutesComponent = () => {
           {/* Auth Layout */}
           <Route path="/auth" element={<AuthLayout />}>
             <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+            <Route path="sign-up" element={<SignUp />} />
           </Route>
           {/* Not Found 404 */}
           <Route path="*" element={<NotFound />} />

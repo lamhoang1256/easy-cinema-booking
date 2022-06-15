@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
 // components
-import InputText from "components/InputText/InputText";
+import InputText from "components/temp/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 
 const ModalEdit = (props) => {
@@ -89,71 +89,71 @@ const ModalEdit = (props) => {
       onCancel={onCloseModal}
       footer={null}
     >
-      <form className='user-info-edit' onSubmit={handleSubmit(handleEditUser)}>
-        <div className='user-info-edit-group'>
+      <form className="user-info-edit" onSubmit={handleSubmit(handleEditUser)}>
+        <div className="user-info-edit-group">
           <InputText
-            label='Họ và tên'
-            name='fullname'
+            label="Họ và tên"
+            name="fullname"
             control={control}
-            type='text'
-            placeholder='Họ và tên'
+            type="text"
+            placeholder="Họ và tên"
           />
           <ErrorValidation errorMessage={errors.fullname?.message} />
         </div>
 
-        <div className='user-info-edit-group'>
+        <div className="user-info-edit-group">
           <InputText
-            label='Email'
-            name='email'
+            label="Email"
+            name="email"
             control={control}
-            type='email'
-            placeholder='Email'
+            type="email"
+            placeholder="Email"
           />
           <ErrorValidation errorMessage={errors.email?.message} />
         </div>
 
-        <div className='user-info-edit-group'>
+        <div className="user-info-edit-group">
           <InputText
-            label='Số điện thoại'
-            name='phone'
+            label="Số điện thoại"
+            name="phone"
             control={control}
-            type='text'
-            placeholder='Số điện thoại'
+            type="text"
+            placeholder="Số điện thoại"
           />
           <ErrorValidation errorMessage={errors.phone?.message} />
         </div>
 
-        <div className='user-info-edit-group'>
+        <div className="user-info-edit-group">
           <InputText
-            label='Mật khẩu'
-            name='password'
+            label="Mật khẩu"
+            name="password"
             control={control}
-            type='password'
-            placeholder='Mật khẩu'
+            type="password"
+            placeholder="Mật khẩu"
           />
           <ErrorValidation errorMessage={errors.password?.message} />
         </div>
 
-        <div className='user-info-edit-group'>
+        <div className="user-info-edit-group">
           <InputText
-            label='Xác nhận mật khẩu'
-            name='password_repeat'
+            label="Xác nhận mật khẩu"
+            name="password_repeat"
             control={control}
-            type='password'
-            placeholder='Xác nhận mật khẩu'
+            type="password"
+            placeholder="Xác nhận mật khẩu"
           />
           <ErrorValidation errorMessage={errors.password_repeat?.message} />
         </div>
 
-        <div className='user-info-edit-group'>
+        <div className="user-info-edit-group">
           <h3>Quyền quản trị</h3>
-          <select name='role' className='user-info-edit-role' {...register("role")}>
-            <option value='KhachHang'>Khách Hàng</option>
-            <option value='QuanTri'>Quản Trị</option>
+          <select name="role" className="user-info-edit-role" {...register("role")}>
+            <option value="KhachHang">Khách Hàng</option>
+            <option value="QuanTri">Quản Trị</option>
           </select>
         </div>
         {/* SUBMIT */}
-        <button type='submit' className='user-info-edit-submit btn btn--primary'>
+        <button type="submit" className="user-info-edit-submit btn btn--primary">
           Chỉnh sửa
         </button>
       </form>

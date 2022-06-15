@@ -1,5 +1,5 @@
 import Heading from "components/heading/Heading";
-import Field from "components/field/Field";
+import Field from "components/field/FieldText";
 import Tag from "components/tag/Tag";
 import styled from "styled-components";
 

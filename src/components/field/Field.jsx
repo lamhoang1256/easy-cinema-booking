@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 const StyledField = styled.div`
-  span:first-child {
-    margin-right: 8px;
-  }
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 14px;
 `;
 
-const Field = ({ children, ...props }) => {
-  return <StyledField {...props}>{children}</StyledField>;
+const Field = ({ children }) => {
+  return <StyledField>{children}</StyledField>;
 };
 
 export default Field;

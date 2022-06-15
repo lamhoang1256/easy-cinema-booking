@@ -1,7 +1,7 @@
 import { formatLocaleDateString } from "utilities/formatDate";
 import styled from "styled-components";
 import Description from "components/text/Description";
-import Field from "components/field/Field";
+import Field from "components/field/FieldText";
 
 const StyledDetailOverview = styled.div`
   font-size: 1.8rem;

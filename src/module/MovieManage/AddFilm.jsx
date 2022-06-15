@@ -5,7 +5,7 @@ import { Controller } from "react-hook-form";
 import { Input } from "antd";
 import { Switch } from "antd";
 import { DatePicker } from "antd";
-import InputText from "components/InputText/InputText";
+import InputText from "components/temp/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 // validation
 import { useForm } from "react-hook-form";
@@ -80,87 +80,87 @@ const AddFilm = () => {
   return (
     <div>
       <h2>Thêm phim mới</h2>
-      <form className='form-film' onSubmit={handleSubmit(handleAddMovie)}>
-        <AddFilmGroup label='Mã phim'>
+      <form className="form-film" onSubmit={handleSubmit(handleAddMovie)}>
+        <AddFilmGroup label="Mã phim">
           <p>Tự động thêm mới</p>
         </AddFilmGroup>
 
-        <AddFilmGroup label='Ngày khởi chiếu'>
+        <AddFilmGroup label="Ngày khởi chiếu">
           <DatePicker
             defaultValue={moment(new Date(), "DD/MM/YYYY")}
             control={control}
             onChange={onChangeDatePicker}
-            format='DD/MM/YYYY'
+            format="DD/MM/YYYY"
           />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Tên Phim'>
+        <AddFilmGroup label="Tên Phim">
           <InputText
-            defaultValue=''
-            name='movieName'
-            type='text'
+            defaultValue=""
+            name="movieName"
+            type="text"
             control={control}
-            className='form-film-input'
+            className="form-film-input"
           />
           <ErrorValidation errorMessage={errors.movieName?.message} />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Đang chiếu'>
+        <AddFilmGroup label="Đang chiếu">
           <Controller
             control={control}
-            name='showingMovie'
+            name="showingMovie"
             defaultValue={false}
             render={({ field: { onChange } }) => <Switch onChange={onChange} />}
           />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Trailer'>
+        <AddFilmGroup label="Trailer">
           <InputText
-            defaultValue=''
-            type='text'
+            defaultValue=""
+            type="text"
             control={control}
-            className='form-film-input'
-            name='movieUrlTrailer'
+            className="form-film-input"
+            name="movieUrlTrailer"
           />
           <ErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Sắp chiếu'>
+        <AddFilmGroup label="Sắp chiếu">
           <Controller
             control={control}
-            name='comingSoonMovie'
+            name="comingSoonMovie"
             defaultValue={false}
             render={({ field: { onChange } }) => <Switch onChange={onChange} />}
           />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Đánh giá'>
+        <AddFilmGroup label="Đánh giá">
           <InputText
-            defaultValue=''
-            type='number'
+            defaultValue=""
+            type="number"
             control={control}
-            className='form-film-input'
-            name='movieRating'
+            className="form-film-input"
+            name="movieRating"
             min={1}
             max={5}
           />
           <ErrorValidation errorMessage={errors.movieRating?.message} />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Đang hot'>
+        <AddFilmGroup label="Đang hot">
           <Controller
             control={control}
-            name='hotMovie'
+            name="hotMovie"
             defaultValue={false}
             render={({ field: { onChange } }) => <Switch onChange={onChange} />}
           />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Mô tả'>
+        <AddFilmGroup label="Mô tả">
           <Controller
             control={control}
-            name='movieDesc'
-            defaultValue=''
+            name="movieDesc"
+            defaultValue=""
             render={({ field: { onChange } }) => (
               <TextArea width={300} rows={10} onChange={onChange} />
             )}
@@ -168,19 +168,19 @@ const AddFilm = () => {
           <ErrorValidation errorMessage={errors.movieDesc?.message} />
         </AddFilmGroup>
 
-        <AddFilmGroup label='Thumbnail'>
-          <input type='file' accept='image/*' onChange={onUploadThumbnail} />
+        <AddFilmGroup label="Thumbnail">
+          <input type="file" accept="image/*" onChange={onUploadThumbnail} />
           {movieThumbPreviewUrl ? (
-            <img className='form-film-thumbnail' src={movieThumbPreviewUrl} />
+            <img className="form-film-thumbnail" src={movieThumbPreviewUrl} />
           ) : (
             <img
-              className='form-film-thumbnail'
-              src='https://as1.ftcdn.net/v2/jpg/03/95/54/28/1000_F_395542843_yEu4THq7LoI4EWl19sm3A8ApbKSUxTVl.jpg'
+              className="form-film-thumbnail"
+              src="https://as1.ftcdn.net/v2/jpg/03/95/54/28/1000_F_395542843_yEu4THq7LoI4EWl19sm3A8ApbKSUxTVl.jpg"
             />
           )}
         </AddFilmGroup>
 
-        <button className='btn btn--primary' type='submit'>
+        <button className="btn btn--primary" type="submit">
           Sửa
         </button>
       </form>
@@ -189,8 +189,8 @@ const AddFilm = () => {
 };
 
 const AddFilmGroup = ({ label, children }) => (
-  <div className='form-film-group'>
-    <span className='form-film-label'>{label}: </span>
+  <div className="form-film-group">
+    <span className="form-film-label">{label}: </span>
     {children}
   </div>
 );

@@ -4,7 +4,7 @@ import { updateUserAction } from "redux/actions/user.action";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
-import InputText from "components/InputText/InputText";
+import InputText from "components/temp/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 import Heading from "components/heading/Heading";
 import Button from "components/button/Button";

@@ -6,7 +6,7 @@ import { Controller } from "react-hook-form";
 import { Input } from "antd";
 import { Switch } from "antd";
 import { DatePicker } from "antd";
-import InputText from "components/InputText/InputText";
+import InputText from "components/temp/InputText";
 import { moviesApi } from "apis/moviesApi";
 import ErrorValidation from "components/Message/ErrorValidation";
 // validation
@@ -105,12 +105,12 @@ const EditFilm = () => {
       {!isLoading && (
         <div>
           <h2>Chỉnh sửa thông tin phim</h2>
-          <form className='form-film' onSubmit={handleSubmit(handleEditMovie)}>
-            <EditFilmGroup label='Mã phim'>
+          <form className="form-film" onSubmit={handleSubmit(handleEditMovie)}>
+            <EditFilmGroup label="Mã phim">
               <p>{movieEdit.maPhim}</p>
             </EditFilmGroup>
 
-            <EditFilmGroup label='Ngày khởi chiếu'>
+            <EditFilmGroup label="Ngày khởi chiếu">
               <DatePicker
                 defaultValue={moment(
                   new Date(movieEdit.ngayKhoiChieu).toLocaleDateString("vi-VI"),
@@ -118,25 +118,25 @@ const EditFilm = () => {
                 )}
                 control={control}
                 onChange={onChangeDatePicker}
-                format='DD/MM/YYYY'
+                format="DD/MM/YYYY"
               />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Tên Phim'>
+            <EditFilmGroup label="Tên Phim">
               <InputText
-                name='movieName'
-                type='text'
+                name="movieName"
+                type="text"
                 control={control}
-                className='form-film-input'
+                className="form-film-input"
                 defaultValue={movieEdit.tenPhim}
               />
               <ErrorValidation errorMessage={errors.movieName?.message} />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Đang chiếu'>
+            <EditFilmGroup label="Đang chiếu">
               <Controller
                 control={control}
-                name='showingMovie'
+                name="showingMovie"
                 defaultValue={movieEdit.dangChieu}
                 render={({ field: { onChange } }) => (
                   <Switch defaultChecked={movieEdit.dangChieu} onChange={onChange} />
@@ -144,21 +144,21 @@ const EditFilm = () => {
               />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Trailer'>
+            <EditFilmGroup label="Trailer">
               <InputText
-                type='text'
+                type="text"
                 control={control}
-                className='form-film-input'
+                className="form-film-input"
                 defaultValue={movieEdit.trailer}
-                name='movieUrlTrailer'
+                name="movieUrlTrailer"
               />
               <ErrorValidation errorMessage={errors.movieUrlTrailer?.message} />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Sắp chiếu'>
+            <EditFilmGroup label="Sắp chiếu">
               <Controller
                 control={control}
-                name='comingSoonMovie'
+                name="comingSoonMovie"
                 defaultValue={movieEdit.sapChieu}
                 render={({ field: { onChange } }) => (
                   <Switch defaultChecked={movieEdit.sapChieu} onChange={onChange} />
@@ -166,23 +166,23 @@ const EditFilm = () => {
               />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Đánh giá'>
+            <EditFilmGroup label="Đánh giá">
               <InputText
-                type='number'
+                type="number"
                 control={control}
-                className='form-film-input'
+                className="form-film-input"
                 defaultValue={movieEdit.danhGia / 2}
-                name='movieRating'
+                name="movieRating"
                 min={1}
                 max={5}
               />
               <ErrorValidation errorMessage={errors.movieRating?.message} />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Đang hot'>
+            <EditFilmGroup label="Đang hot">
               <Controller
                 control={control}
-                name='hotMovie'
+                name="hotMovie"
                 defaultValue={movieEdit.hot}
                 render={({ field: { onChange } }) => (
                   <Switch defaultChecked={movieEdit.hot} onChange={onChange} />
@@ -190,10 +190,10 @@ const EditFilm = () => {
               />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Mô tả'>
+            <EditFilmGroup label="Mô tả">
               <Controller
                 control={control}
-                name='movieDesc'
+                name="movieDesc"
                 defaultValue={movieEdit.moTa}
                 render={({ field: { onChange } }) => (
                   <TextArea
@@ -207,16 +207,16 @@ const EditFilm = () => {
               <ErrorValidation errorMessage={errors.movieDesc?.message} />
             </EditFilmGroup>
 
-            <EditFilmGroup label='Thumbnail'>
-              <input type='file' accept='image/*' onChange={onUploadThumbnail} />
+            <EditFilmGroup label="Thumbnail">
+              <input type="file" accept="image/*" onChange={onUploadThumbnail} />
               {movieThumbPreviewUrl ? (
-                <img className='form-film-thumbnail' src={movieThumbPreviewUrl} />
+                <img className="form-film-thumbnail" src={movieThumbPreviewUrl} />
               ) : (
-                <img className='form-film-thumbnail' src={movieEdit?.hinhAnh} />
+                <img className="form-film-thumbnail" src={movieEdit?.hinhAnh} />
               )}
             </EditFilmGroup>
 
-            <button className='btn btn--primary' type='submit'>
+            <button className="btn btn--primary" type="submit">
               Sửa
             </button>
           </form>
@@ -227,8 +227,8 @@ const EditFilm = () => {
 };
 
 const EditFilmGroup = ({ label, children }) => (
-  <div className='form-film-group'>
-    <span className='form-film-label'>{label}: </span>
+  <div className="form-film-group">
+    <span className="form-film-label">{label}: </span>
     {children}
   </div>
 );
