@@ -2,15 +2,14 @@ import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const AdminLayout = React.lazy(() => import("layouts/AdminLayout"));
-const AuthLayout = React.lazy(() => import("layouts/AuthLayout"));
 const MainLayout = React.lazy(() => import("layouts/MainLayout"));
 const Home = React.lazy(() => import("pages/Home"));
-const Login = React.lazy(() => import("pages/Login"));
 const Profile = React.lazy(() => import("pages/Profile"));
 const MovieDetail = React.lazy(() => import("pages/MovieDetail"));
 const NewsDetail = React.lazy(() => import("pages/NewsDetail"));
 const TicketRoom = React.lazy(() => import("pages/TicketRoom"));
 const SignUp = React.lazy(() => import("pages/Authentication/SignUp"));
+const SignIn = React.lazy(() => import("pages/Authentication/SignIn"));
 const NotFound = React.lazy(() => import("pages/NotFound"));
 const UserManage = React.lazy(() => import("pages/UserManage"));
 const MovieManage = React.lazy(() => import("pages/MovieManage"));
@@ -52,10 +51,8 @@ const RoutesComponent = () => {
             </Route>
           </Route>
           {/* Auth Layout */}
-          <Route path="/auth" element={<AuthLayout />}>
-            <Route path="login" element={<Login />} />
-            <Route path="sign-up" element={<SignUp />} />
-          </Route>
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
           {/* Not Found 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
