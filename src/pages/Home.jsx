@@ -1,71 +1,36 @@
-import { useEffect, useState } from "react";
-import { useMediaQuery } from "hooks/useMediaQuery";
-import HomeBanner from "module/home/HomeBanner";
-import HomeFilter from "module/home/HomeFilter";
+import axios from "axios";
 import MovieList from "components/movie/MovieList";
-import HomeOpening from "module/home/HomeOpening";
-import HomeOpeningMobile from "module/home/HomeOpeningMobile";
+import HomeBanner from "module/home/HomeBanner";
 import HomeFeature from "module/home/HomeFeature";
-import { moviesApi } from "apis/moviesApi";
+import HomeFilter from "module/home/HomeFilter";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-  const isMobile = useMediaQuery("(max-width:767.98px)");
-  const [comingSoonMovieList, setComingSoonMovieList] = useState(null);
-  const [nowShowingMovieList, setNowShowingMovieList] = useState(null);
-  const [showtimeList, setShowtimeList] = useState(null);
+  const [movieList, setMovieList] = useState([]);
 
-  // lấy danh sách phim sắp chiếu
-  const fetchComingSoonMovieList = async () => {
+  const fetchMovieList = async () => {
     try {
-      const { data } = await moviesApi.getMovieListApi("01");
-      setComingSoonMovieList(data.content);
+      const { data } = await axios.get("https://roxy-cinema-api.herokuapp.com/api/movies/all");
+      setMovieList(data.data.movies);
+      console.log(data);
     } catch (err) {
       console.log(err);
-    }
-  };
-  // lấy danh sách phim đang chiếu
-  const fetchNowShowingMovieList = async () => {
-    try {
-      const { data } = await moviesApi.getMovieListApi("00");
-      setNowShowingMovieList(data.content);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // lấy dữ liệu cụm rạp (lịch chiếu phim)
-  const fetchCalendarShowtime = async () => {
-    try {
-      const { data } = await moviesApi.getCinemaApi("05");
-      setShowtimeList(data.content);
-    } catch (error) {
-      console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchComingSoonMovieList();
-    fetchNowShowingMovieList();
-    fetchCalendarShowtime();
+    fetchMovieList();
   }, []);
 
   return (
     <div className="home">
       <div className="home-top">
-        {/* <Carousel /> */}
         <HomeBanner />
       </div>
       <div className="home-main">
         <HomeFilter />
         <div className="container">
-          <MovieList data={comingSoonMovieList} heading="Phim sắp chiếu" />
-          <MovieList data={nowShowingMovieList} heading="Phim đang chiếu" />
-          <div id="showtime">
-            {isMobile ? (
-              <HomeOpeningMobile showtimeList={showtimeList} />
-            ) : (
-              <HomeOpening showtimeList={showtimeList} />
-            )}
-          </div>
+          <MovieList data={movieList} heading="Phim sắp chiếu" />
           <HomeFeature />
         </div>
       </div>

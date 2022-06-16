@@ -16,7 +16,6 @@ const STATUS = {
 };
 
 const StyledHeading = styled.h3`
-  color: var(--white);
   ${(props) => props.kind && STATUS[props.kind]}
 `;
 

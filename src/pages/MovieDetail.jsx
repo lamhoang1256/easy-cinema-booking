@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -19,6 +19,7 @@ import Tag from "components/tag/Tag";
 import Description from "components/text/Description";
 import DetailBanner from "module/detail/DetailBanner";
 import DetailOverview from "module/detail/DetailOverview";
+import axios from "axios";
 
 const StyledMovieDetail = styled.div`
   .detail-poster {
@@ -46,8 +47,26 @@ const StyledMovieDetail = styled.div`
 
 const MovieDetail = () => {
   const { idDetail } = useParams();
+  console.log(idDetail);
+  const [detail, setDetail] = useState();
   const dispatch = useDispatch();
   const { isLoading, movieDetail, togglePostComment } = useSelector((state) => state.movieDetail);
+
+  const fetchMovieList = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://roxy-cinema-api.herokuapp.com/api/movies/" + idDetail
+      );
+      setDetail(data.data.movie);
+      console.log(data.data.movie);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovieList();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,14 +77,9 @@ const MovieDetail = () => {
     dispatch(getCommentList(idDetail));
   }, [togglePostComment]);
 
-  if (isLoading) return <LoadingAnimation />;
-
-  const { hinhAnh, trailer, moTa } = movieDetail;
-  const arraySplited = trailer.split("/");
-  const embedId = arraySplited[arraySplited.length - 1];
   return (
     <StyledMovieDetail>
-      <DetailBanner hinhAnh={hinhAnh} />
+      <DetailBanner hinhAnh={"/" + detail?.poster?.split("public/")[1]} />
       <div className="container">
         <div className="grid-layout">
           {/* Movie Detail */}
@@ -75,36 +89,31 @@ const MovieDetail = () => {
                 Chi tiết phim
               </Tag>
               <div className="detail-info">
-                <Image url={hinhAnh} alt="poster" className="detail-poster" />
-                <DetailOverview data={movieDetail} />
+                <Image
+                  url={"/" + detail?.poster?.split("public/")[1]}
+                  alt="poster"
+                  className="detail-poster"
+                />
+                <DetailOverview data={detail} />
               </div>
             </Section>
             <Section>
               <Tag kind="secondary" marginTop="14px">
                 Tóm tắt phim
               </Tag>
-              <Description lineHeight={"2"}>{moTa}</Description>
+              <Description lineHeight={"2"}>{detail?.description}</Description>
             </Section>
-            <Section>
-              <iframe
-                className="detail-trailer"
-                src={`https://www.youtube.com/embed/${embedId}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </Section>
-            <Section>
+
+            {/* <Section>
               <DetailOpening />
-            </Section>
-            <Section>
+            </Section> */}
+            {/* <Section>
               <Tag kind="secondary" marginTop="14px">
                 Đánh giá
               </Tag>
               <DetailComment />
               <AddComment />
-            </Section>
+            </Section> */}
           </div>
           {/* Related Post */}
           <div className="column2">
@@ -115,6 +124,64 @@ const MovieDetail = () => {
       <ModalTrailer />
     </StyledMovieDetail>
   );
+
+  // if (isLoading) return <LoadingAnimation />;
+
+  // // const { hinhAnh, trailer, moTa } = movieDetail;
+  // const arraySplited = trailer.split("/");
+  // const embedId = arraySplited[arraySplited.length - 1];
+  // return (
+  //   <StyledMovieDetail>
+  //     <DetailBanner hinhAnh={hinhAnh} />
+  //     <div className="container">
+  //       <div className="grid-layout">
+  //         {/* Movie Detail */}
+  //         <div className="column1">
+  //           <Section>
+  //             <Tag kind="secondary" marginTop="14px">
+  //               Chi tiết phim
+  //             </Tag>
+  //             <div className="detail-info">
+  //               <Image url={hinhAnh} alt="poster" className="detail-poster" />
+  //               <DetailOverview data={movieDetail} />
+  //             </div>
+  //           </Section>
+  //           <Section>
+  //             <Tag kind="secondary" marginTop="14px">
+  //               Tóm tắt phim
+  //             </Tag>
+  //             <Description lineHeight={"2"}>{moTa}</Description>
+  //           </Section>
+  //           <Section>
+  //             <iframe
+  //               className="detail-trailer"
+  //               src={`https://www.youtube.com/embed/${embedId}`}
+  //               title="YouTube video player"
+  //               frameBorder="0"
+  //               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  //               allowFullScreen
+  //             ></iframe>
+  //           </Section>
+  //           <Section>
+  //             <DetailOpening />
+  //           </Section>
+  //           <Section>
+  //             <Tag kind="secondary" marginTop="14px">
+  //               Đánh giá
+  //             </Tag>
+  //             <DetailComment />
+  //             <AddComment />
+  //           </Section>
+  //         </div>
+  //         {/* Related Post */}
+  //         <div className="column2">
+  //           <PostRelated />
+  //         </div>
+  //       </div>
+  //     </div>
+  //     <ModalTrailer />
+  //   </StyledMovieDetail>
+  // );
 };
 
 // DỮ LIỆU MẪU TRẢ VỀ CỦA MOVIE DETAIL TỪ API

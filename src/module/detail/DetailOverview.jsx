@@ -16,20 +16,19 @@ const StyledDetailOverview = styled.div`
 `;
 
 const DetailOverview = ({ data }) => {
-  const { tenPhim, ngayKhoiChieu, danhGia } = data;
   return (
     <StyledDetailOverview>
       <Field>
         <span>Tên phim:</span>
-        <Description>{tenPhim}</Description>
+        <Description>{data?.name}</Description>
       </Field>
       <Field>
         <span>Ngày công chiếu:</span>
-        {formatLocaleDateString(ngayKhoiChieu)}
+        {formatLocaleDateString(data?.releaseDate)}
       </Field>
       <Field>
         <span>Điểm đánh giá:</span>
-        <Description>{danhGia / 2 + "/ 5"}</Description>
+        <Description>{data?.rating}</Description>
       </Field>
       <Field>
         <span>Đạo diễn:</span>

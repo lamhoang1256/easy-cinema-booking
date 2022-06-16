@@ -22,7 +22,6 @@ const StyledMovieCard = styled.div`
   }
   .card-title {
     margin: 10px 0 6px;
-    color: var(--white);
     height: 58px;
     font-size: 1.8rem;
     font-weight: 500;
@@ -30,7 +29,6 @@ const StyledMovieCard = styled.div`
     ${TextClamp.multilines(2)}
   }
   .card-meta {
-    color: #e5e7eb;
     font-weight: 300;
     display: flex;
     font-size: 1.4rem;
@@ -43,29 +41,39 @@ const StyledMovieCard = styled.div`
 `;
 
 const MovieCard = ({ movie }) => {
-  const duration = ((movie.maPhim * movie.danhGia) / 500).toFixed(0);
-
   if (!movie) return null;
   return (
     <StyledMovieCard>
       <div className="card-poster">
-        <Image url={movie.hinhAnh} className="card-image" alt="poster" />
+        <Image url={"/" + movie.poster.split("public/")[1]} className="card-image" alt="poster" />
       </div>
       <div className="card-info">
-        <Link to={`detail/${movie.maPhim}`}>
-          <h3 className="card-title">{movie.tenPhim}</h3>
+        <Link to={`detail/${movie.id}`}>
+          <h3 className="card-title">{movie.name}</h3>
         </Link>
         <div className="card-meta">
-          <span className="card-duration">{duration < 100 ? +duration + 100 : duration} phút</span>
-          <span className="card-score">{movie.danhGia / 2}</span>
+          <span className="card-duration">{movie.duration} phút</span>
+          <span className="card-score">{movie.rating}</span>
         </div>
-        <Button kind="purple" className="card-watch" to={`detail/${movie.maPhim}`}>
+        <Button kind="purple" className="card-watch" to={`detail/${movie.id}`}>
           Watch Now
         </Button>
       </div>
     </StyledMovieCard>
   );
 };
+
+// createdAt: "2022-06-16T02:44:48.000Z"
+// description: "Stephen Strange sử dụng một phép thuật bị cấm mở ra cánh cửa đến đa vũ trụ, với sự giúp đỡ của các đồng minh thần bí cả cũ và mới, vượt qua thực tại để đối đầu với 1 kẻ thù mới, bí ẩn ,nguy hiểm và đáng sợ hơn"
+// duration: 128
+// id: 4
+// name: "DOCTOR STRANGE IN THE MULTIVERSE OF MADNESS"
+// poster: "public/default/images/movies/doctor-strange.jpeg"
+// rating: 4.9
+// releaseDate: "2022-05-04"
+// status: "now-showing"
+// trailer: "https://www.youtube.com/watch?v=aWzlQ2N6qqg"
+// updatedAt: "2022-06-16T02:44:48.000Z"
 
 export default MovieCard;
 
