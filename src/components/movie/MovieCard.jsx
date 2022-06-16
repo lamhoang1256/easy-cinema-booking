@@ -1,64 +1,34 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Image from "components/image/Image";
-import Button from "components/button/Button";
-import { TextClamp } from "assets/styles/_mixin";
+import styled from "styled-components";
+import MovieTitle from "./MovieTitle";
 
 const StyledMovieCard = styled.div`
   .lazy-load-image-loaded {
     width: 100%;
     height: 100%;
   }
-  .card-poster {
-    border-radius: 12px;
+  .card-media {
+    border-radius: 4px;
     overflow: hidden;
     background-color: var(--bg-skeleton);
     aspect-ratio: 2/2.7;
   }
-  .card-image {
+  .card-poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  .card-title {
-    margin: 10px 0 6px;
-    height: 58px;
-    font-size: 1.8rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    ${TextClamp.multilines(2)}
-  }
-  .card-meta {
-    font-weight: 300;
-    display: flex;
-    font-size: 1.4rem;
-    justify-content: space-between;
-  }
-  .card-watch {
-    margin-top: 13px;
-    width: 100%;
   }
 `;
 
 const MovieCard = ({ movie }) => {
   if (!movie) return null;
+  const posterCard = movie.poster;
   return (
     <StyledMovieCard>
-      <div className="card-poster">
-        <Image url={"/" + movie.poster.split("public/")[1]} className="card-image" alt="poster" />
+      <div className="card-media">
+        <Image url={posterCard} className="card-poster" alt="poster" />
       </div>
-      <div className="card-info">
-        <Link to={`detail/${movie.id}`}>
-          <h3 className="card-title">{movie.name}</h3>
-        </Link>
-        <div className="card-meta">
-          <span className="card-duration">{movie.duration} phút</span>
-          <span className="card-score">{movie.rating}</span>
-        </div>
-        <Button kind="purple" className="card-watch" to={`detail/${movie.id}`}>
-          Watch Now
-        </Button>
-      </div>
+      <MovieTitle to={`detail/${movie.id}`}>{movie.name}</MovieTitle>
     </StyledMovieCard>
   );
 };

@@ -79,7 +79,7 @@ const MovieDetail = () => {
 
   return (
     <StyledMovieDetail>
-      <DetailBanner hinhAnh={"/" + detail?.poster?.split("public/")[1]} />
+      <DetailBanner hinhAnh={detail?.poster} />
       <div className="container">
         <div className="grid-layout">
           {/* Movie Detail */}
@@ -89,11 +89,7 @@ const MovieDetail = () => {
                 Chi tiết phim
               </Tag>
               <div className="detail-info">
-                <Image
-                  url={"/" + detail?.poster?.split("public/")[1]}
-                  alt="poster"
-                  className="detail-poster"
-                />
+                <Image url={detail?.poster} alt="poster" className="detail-poster" />
                 <DetailOverview data={detail} />
               </div>
             </Section>

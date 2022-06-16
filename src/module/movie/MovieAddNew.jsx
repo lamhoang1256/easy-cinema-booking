@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DatePicker, Switch } from "antd";
+import { DatePicker } from "antd";
 import { moviesApi } from "apis/moviesApi";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
@@ -46,37 +46,34 @@ const MovieAddNew = () => {
   } = useForm({ resolver: yupResolver(schemaYupFilm) });
 
   const onChangeDatePicker = (value) => {
-    setReleasedOn(moment(value).format("DD/MM/YYYY"));
+    setReleasedOn(moment(value).format("YYYY-MM-DD"));
   };
 
   const handleAddMovie = (data) => {
     console.log(poster);
     const values = {
-      tenPhim: data.title,
-      moTa: data.description,
+      name: data.title,
+      description: data.description,
       trailer: data.trailer,
-      maNhom: "GP00",
-      ngayKhoiChieu: releasedOn || moment(new Date()).format("DD/MM/YYYY"),
-      sapChieu: data.isComming,
-      dangChieu: data.isShowing,
-      hot: data.isHot,
-      danhGia: data.rating * 2,
-      hinhAnh: poster,
+      releaseDate: "2022-05-27",
+      status: "now-showing",
+      rating: data.rating,
+      duration: 100,
+      poster: poster,
     };
 
     let formData = new FormData();
     for (var key in values) {
-      if (key !== "hinhAnh") {
+      if (key !== "poster") {
         formData.append(key, values[key]);
       } else {
-        if (values.hinhAnh !== null)
-          formData.append("hinhAnh", values.hinhAnh, values.hinhAnh.name);
+        if (values.hinhAnh !== null) formData.append("poster", values.poster, values.poster.name);
       }
     }
 
     (async () => {
       try {
-        const res = await moviesApi.addNewMovieApi(formData);
+        const res = await moviesApi.movieAddNew(formData);
         if (res.status === 200) {
           sweetAlert("success", "Thêm mới phim thành công!", "Bạn đã thêm mới phim thành công!");
         }
@@ -119,42 +116,10 @@ const MovieAddNew = () => {
             <LabelError>{errors.trailer?.message}</LabelError>
           </Field>
         </div>
-        <div className="form-layout">
-          <Field>
-            <Label>Poster</Label>
-            <ImageUpload setImage={setPoster}></ImageUpload>
-          </Field>
-          <Field>
-            <Label>Status</Label>
-            <Field>
-              <Label htmlFor="isShowing">Đang chiếu</Label>
-              <Controller
-                control={control}
-                name="isShowing"
-                defaultValue={false}
-                render={({ field: { onChange } }) => <Switch onChange={onChange} />}
-              />
-            </Field>
-            <Field>
-              <Label htmlFor="isComming">Sắp chiếu</Label>
-              <Controller
-                control={control}
-                name="isComming"
-                defaultValue={false}
-                render={({ field: { onChange } }) => <Switch onChange={onChange} />}
-              />
-            </Field>
-            <Field>
-              <Label htmlFor="isHot">Đang hot</Label>
-              <Controller
-                control={control}
-                name="isHot"
-                defaultValue={false}
-                render={({ field: { onChange } }) => <Switch onChange={onChange} />}
-              />
-            </Field>
-          </Field>
-        </div>
+        <Field>
+          <Label>Poster</Label>
+          <ImageUpload setImage={setPoster}></ImageUpload>
+        </Field>
         <Field>
           <Label htmlFor="description">Description</Label>
           <div className="description">

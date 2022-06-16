@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
 import { formatLocaleDateString } from "utilities/formatDate";
+import axios from "axios";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
@@ -13,8 +14,8 @@ const MovieManagement = () => {
   const fetchMovieList = async () => {
     setIsLoading(true);
     try {
-      const { data } = await moviesApi.getMovieListApi("00");
-      const movieListHasKey = createKeyForObj(data.content);
+      const { data } = await axios.get("https://roxy-cinema-api.herokuapp.com/api/movies/all");
+      const movieListHasKey = createKeyForObj(data.data.movies);
       setMovieList(movieListHasKey);
       setIsLoading(false);
     } catch (error) {
@@ -25,6 +26,21 @@ const MovieManagement = () => {
   useEffect(() => {
     fetchMovieList();
   }, []);
+  // const fetchMovieList = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const { data } = await moviesApi.getMovieListApi("00");
+  //     const movieListHasKey = createKeyForObj(data.content);
+  //     setMovieList(movieListHasKey);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchMovieList();
+  // }, []);
 
   const handleDeleteMovie = (idMovie) => {
     Swal.fire({
@@ -56,31 +72,31 @@ const MovieManagement = () => {
   const columns = [
     {
       title: "Mã phim",
-      dataIndex: "maPhim",
+      dataIndex: "id",
       key: "id",
       fixed: "left",
       width: 100,
     },
     {
       title: "Tên phim",
-      dataIndex: "tenPhim",
+      dataIndex: "name",
       key: "name",
       fixed: "left",
       width: 130,
     },
     {
       title: "Mô tả",
-      dataIndex: "moTa",
-      key: "desc",
+      dataIndex: "description",
+      key: "description",
       width: 340,
-      render: (desc) => <p className='movie-manage-desc'>{desc}</p>,
+      render: (desc) => <p className="movie-manage-desc">{desc}</p>,
     },
     {
       title: "Hình ảnh",
-      dataIndex: "hinhAnh",
+      dataIndex: "poster",
       key: "img",
       width: 140,
-      render: (img) => <img className='movie-manage-thumb' src={img} />,
+      render: (img) => <img className="movie-manage-thumb" src={img} alt="poster" />,
     },
     {
       title: "Trailer",
@@ -88,40 +104,40 @@ const MovieManagement = () => {
       key: "trailer",
       width: 150,
       render: (urlTrailer) => (
-        <a className='text-center' href={urlTrailer}>
+        <a className="text-center" href={urlTrailer}>
           {urlTrailer}
         </a>
       ),
     },
     {
       title: "Ngày khởi chiếu",
-      dataIndex: "ngayKhoiChieu",
-      key: "openday",
+      dataIndex: "releaseDate",
+      key: "releaseDate",
       width: 160,
-      render: (openday) => <p className='text-center'>{formatLocaleDateString(openday)}</p>,
+      render: (releaseDate) => <p className="text-center">{formatLocaleDateString(releaseDate)}</p>,
     },
     {
       title: "Đánh giá",
-      dataIndex: "danhGia",
+      dataIndex: "rating",
       key: "rating",
       width: 100,
-      render: (rating) => <p className='text-center'>{rating / 2}/5</p>,
+      render: (rating) => <p className="text-center">{rating}</p>,
     },
     {
       title: "Action",
-      dataIndex: "maPhim",
+      dataIndex: "id",
       key: "operation",
       fixed: "right",
       render: (id) => (
-        <div className='movie-manage-action'>
+        <div className="movie-manage-action">
           <Link to={`/admin/movie-manage/edit-film/${id}`}>
-            <button className='btn btn--warning'>Sửa</button>
+            <button className="btn btn--warning">Sửa</button>
           </Link>
-          <button className='btn btn--primary' onClick={() => handleDeleteMovie(id)}>
+          <button className="btn btn--primary" onClick={() => handleDeleteMovie(id)}>
             Xóa
           </button>
           <Link to={`/admin/movie-manage/schedule/${id}`}>
-            <button className='btn btn--success'>Lịch chiếu</button>
+            <button className="btn btn--success">Lịch chiếu</button>
           </Link>
         </div>
       ),
@@ -129,15 +145,15 @@ const MovieManagement = () => {
   ];
 
   return (
-    <div className='movie-manage'>
+    <div className="movie-manage">
       {isLoading && "Loading"}
       {!isLoading && (
         <>
-          <div className='movie-manage-top'>
+          <div className="movie-manage-top">
             <h2>Quản lí phim</h2>
-            <Link to='/admin/movie-manage/add-film'>
-              <button className='btn btn--info btn-add-film'>
-                <ion-icon name='add-outline'></ion-icon> Thêm phim mới
+            <Link to="/admin/movie-manage/add-film">
+              <button className="btn btn--info btn-add-film">
+                <ion-icon name="add-outline"></ion-icon> Thêm phim mới
               </button>
             </Link>
           </div>

@@ -1,4 +1,6 @@
+import axios from "axios";
 import axiosClient from "./axiosClient";
+import axiosClient2 from "./axiosClient2";
 export const moviesApi = {
   //lấy toàn bộ dữ liệu danh sách phim (mã nhóm: 01, 02, 03, ... 13)
   getMovieListApi: (groupCode) => {
@@ -58,10 +60,25 @@ export const moviesApi = {
     const path = `/QuanLyPhim/ThemPhimUploadHinh`;
     return axiosClient.post(path, requestNewMovie);
   },
-
   // xóa phim
   deleteMovieApi: (movieCode) => {
     const path = `/QuanLyPhim/XoaPhim?MaPhim=${movieCode}`;
     return axiosClient.delete(path);
+  },
+
+  // Refactor
+  movieDetailApi: (id) => {
+    const path = `/api/movies/${id}`;
+    return axiosClient2.get(path);
+  },
+
+  movieAddNew: (data) => {
+    const path = `/api/movies`;
+    return axiosClient2.post(path, data);
+  },
+
+  movieUpdate: (id, data) => {
+    const path = `/api/movies/${id}`;
+    return axiosClient2.put(path, data);
   },
 };

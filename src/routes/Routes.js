@@ -15,8 +15,8 @@ const UserManage = React.lazy(() => import("pages/UserManage"));
 const MovieManage = React.lazy(() => import("pages/MovieManage"));
 const CinemaManage = React.lazy(() => import("pages/CinemaManage"));
 const MainManage = React.lazy(() => import("pages/MainManage"));
-const EditFilm = React.lazy(() => import("module/MovieManage/EditFilm"));
 const MovieAddNew = React.lazy(() => import("module/movie/MovieAddNew"));
+const MovieUpdate = React.lazy(() => import("module/movie/MovieUpdate"));
 const CinemaGroup = React.lazy(() => import("module/CinemaManage/CinemaGroup"));
 const ScheduleFilm = React.lazy(() => import("module/MovieManage/ScheduleFilm"));
 const SeatMap = React.lazy(() => import("module/MovieManage/SeatMap"));
@@ -40,7 +40,7 @@ const RoutesComponent = () => {
             <Route path="user-manage" element={<UserManage />} />
             <Route path="movie-manage">
               <Route index element={<MovieManage />} />
-              <Route path="edit-film/:idMovieEdit" element={<EditFilm />} />
+              <Route path="edit-film/:idMovieEdit" element={<MovieUpdate />} />
               <Route path="add-film" element={<MovieAddNew />} />
               <Route path="seat-map/:idTicketRoom" element={<SeatMap />} />
               <Route path="schedule/:idSchedule" element={<ScheduleFilm />} />
