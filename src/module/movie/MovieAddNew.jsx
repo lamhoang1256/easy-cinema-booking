@@ -38,10 +38,10 @@ const StyledMovieAddNew = styled.div`
 
 const MovieAddNew = () => {
   const [poster, setPoster] = useState(null);
-  const [releasedOn, setReleasedOn] = useState("");
+  const [releasedOn, setReleasedOn] = useState(moment(new Date()).format("YYYY-MM-DD"));
   const {
-    handleSubmit,
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupFilm) });
 
@@ -49,44 +49,39 @@ const MovieAddNew = () => {
     setReleasedOn(moment(value).format("YYYY-MM-DD"));
   };
 
-  const handleAddMovie = (data) => {
-    console.log(poster);
-    const values = {
-      name: data.title,
-      description: data.description,
-      trailer: data.trailer,
-      releaseDate: "2022-05-27",
+  const handleAddNewMovie = (req) => {
+    const newMovie = {
+      name: req.title,
+      description: req.description,
+      trailer: req.trailer,
+      releaseDate: releasedOn,
       status: "now-showing",
-      rating: data.rating,
-      duration: 100,
+      rating: req.rating,
+      duration: req.duration,
       poster: poster,
     };
-
-    let formData = new FormData();
-    for (var key in values) {
-      if (key !== "poster") {
-        formData.append(key, values[key]);
-      } else {
-        if (values.hinhAnh !== null) formData.append("poster", values.poster, values.poster.name);
-      }
-    }
-
-    (async () => {
+    const addNewMovie = async () => {
       try {
-        const res = await moviesApi.movieAddNew(formData);
-        if (res.status === 200) {
+        let formData = new FormData();
+        for (const key in newMovie) {
+          formData.append(key, newMovie[key]);
+        }
+        const { data } = await moviesApi.movieAddNew(formData);
+        // notification
+        if (data?.status === "success") {
           sweetAlert("success", "Thêm mới phim thành công!", "Bạn đã thêm mới phim thành công!");
         }
       } catch (error) {
         sweetAlert("error", "Thêm mới phim thất bại!", error?.response?.data?.content);
       }
-    })();
+    };
+    addNewMovie();
   };
 
   return (
     <StyledMovieAddNew>
       <h2>Thêm phim mới</h2>
-      <form className="movie" onSubmit={handleSubmit(handleAddMovie)}>
+      <form className="movie" onSubmit={handleSubmit(handleAddNewMovie)}>
         <div className="form-layout">
           <Field>
             <Label>Ngày khởi chiếu</Label>
@@ -99,20 +94,27 @@ const MovieAddNew = () => {
             />
           </Field>
           <Field>
-            <Label htmlFor="title">Tên phim</Label>
-            <Input placeholder="Tên phim" name="title" type="text" control={control} />
+            <Label htmlFor="title">Name</Label>
+            <Input placeholder="Name" name="title" type="text" control={control} />
             <LabelError>{errors.title?.message} </LabelError>
           </Field>
         </div>
         <div className="form-layout">
-          <Field>
-            <Label htmlFor="rating">Đánh giá</Label>
-            <Input type="number" control={control} name="rating" />
-            <LabelError>{errors.rating?.message}</LabelError>
-          </Field>
+          <div className="form-layout">
+            <Field>
+              <Label htmlFor="rating">Rating</Label>
+              <Input name="rating" placeholder="Rating" type="number" control={control} />
+              <LabelError>{errors.rating?.message}</LabelError>
+            </Field>
+            <Field>
+              <Label htmlFor="duration">Duration</Label>
+              <Input name="duration" placeholder="Duration" type="number" control={control} />
+              <LabelError>{errors.duration?.message}</LabelError>
+            </Field>
+          </div>
           <Field>
             <Label htmlFor={"trailer"}>Trailer</Label>
-            <Input type="text" control={control} name="trailer" />
+            <Input name="trailer" placeholder="Trailer" type="text" control={control} />
             <LabelError>{errors.trailer?.message}</LabelError>
           </Field>
         </div>
@@ -124,10 +126,12 @@ const MovieAddNew = () => {
           <Label htmlFor="description">Description</Label>
           <div className="description">
             <Controller
-              control={control}
               name="description"
+              control={control}
               defaultValue=""
-              render={({ field: { onChange } }) => <TextArea onChange={onChange} />}
+              render={({ field: { onChange } }) => (
+                <TextArea placeholder="Description" onChange={onChange} />
+              )}
             />
           </div>
           <LabelError>{errors.description?.message} </LabelError>

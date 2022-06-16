@@ -6,6 +6,7 @@ import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
 import { formatLocaleDateString } from "utilities/formatDate";
 import axios from "axios";
+import Button from "components/button/Button";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
@@ -26,21 +27,6 @@ const MovieManagement = () => {
   useEffect(() => {
     fetchMovieList();
   }, []);
-  // const fetchMovieList = async () => {
-  //   setIsLoading(true);
-  //   try {
-  //     const { data } = await moviesApi.getMovieListApi("00");
-  //     const movieListHasKey = createKeyForObj(data.content);
-  //     setMovieList(movieListHasKey);
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchMovieList();
-  // }, []);
 
   const handleDeleteMovie = (idMovie) => {
     Swal.fire({
@@ -55,7 +41,7 @@ const MovieManagement = () => {
       if (result.isConfirmed) {
         const deleteMovie = async (idMovie) => {
           try {
-            const response = await moviesApi.deleteMovieApi(idMovie);
+            const response = await moviesApi.movieDelete(idMovie);
             if (response) {
               Swal.fire("Xóa thành công!", "Phim bạn chọn đã được xóa.", "success");
               fetchMovieList();
@@ -89,14 +75,14 @@ const MovieManagement = () => {
       dataIndex: "description",
       key: "description",
       width: 340,
-      render: (desc) => <p className="movie-manage-desc">{desc}</p>,
+      render: (description) => <p className="movie-manage-desc">{description}</p>,
     },
     {
       title: "Hình ảnh",
       dataIndex: "poster",
-      key: "img",
+      key: "poster",
       width: 140,
-      render: (img) => <img className="movie-manage-thumb" src={img} alt="poster" />,
+      render: (poster) => <img className="movie-manage-thumb" src={poster} alt="poster" />,
     },
     {
       title: "Trailer",
@@ -126,19 +112,13 @@ const MovieManagement = () => {
     {
       title: "Action",
       dataIndex: "id",
-      key: "operation",
+      key: "action",
       fixed: "right",
       render: (id) => (
         <div className="movie-manage-action">
-          <Link to={`/admin/movie-manage/edit-film/${id}`}>
-            <button className="btn btn--warning">Sửa</button>
-          </Link>
-          <button className="btn btn--primary" onClick={() => handleDeleteMovie(id)}>
-            Xóa
-          </button>
-          <Link to={`/admin/movie-manage/schedule/${id}`}>
-            <button className="btn btn--success">Lịch chiếu</button>
-          </Link>
+          <Button to={`/admin/movie-manage/edit-film/${id}`}>Sửa</Button>
+          <Button onClick={() => handleDeleteMovie(id)}>Xóa</Button>
+          <Button to={`/admin/movie-manage/schedule/${id}`}>Lịch chiếu</Button>
         </div>
       ),
     },
@@ -152,9 +132,9 @@ const MovieManagement = () => {
           <div className="movie-manage-top">
             <h2>Quản lí phim</h2>
             <Link to="/admin/movie-manage/add-film">
-              <button className="btn btn--info btn-add-film">
+              <Button>
                 <ion-icon name="add-outline"></ion-icon> Thêm phim mới
-              </button>
+              </Button>
             </Link>
           </div>
           <Table columns={columns} dataSource={movieList} scroll={{ x: 1300 }} sticky />

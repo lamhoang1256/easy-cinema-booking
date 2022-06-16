@@ -81,4 +81,9 @@ export const moviesApi = {
     const path = `/api/movies/${id}`;
     return axiosClient2.put(path, data);
   },
+
+  movieDelete: (id) => {
+    const path = `/api/movies/${id}`;
+    return axiosClient2.delete(path);
+  },
 };

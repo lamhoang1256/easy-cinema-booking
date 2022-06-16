@@ -40,60 +40,48 @@ const StyledMovieUpdate = styled.div`
 
 const MovieUpdate = () => {
   const { idMovieEdit } = useParams();
-  const [movieEdit, setMovieEdit] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [movie, setMovie] = useState([]);
   const [poster, setPoster] = useState(null);
   const [releasedOn, setReleasedOn] = useState(null);
   const {
-    handleSubmit,
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupFilm) });
 
   const fetchMovieEdit = async () => {
-    setIsLoading(true);
+    setLoading(true);
     try {
       const { data } = await moviesApi.movieDetailApi(idMovieEdit);
-      setMovieEdit(data.data.movie);
-      console.log(data);
-      setIsLoading(false);
+      setMovie(data.data.movie);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  console.log(movieEdit);
-  const onChangeDatePicker = (value) => {
-    setReleasedOn(moment(value).format("DD/MM/YYYY"));
+  const onChangeReleaseOn = (date) => {
+    setReleasedOn(moment(date).format("YYYY-MM-DD"));
   };
 
-  const handleEditMovie = (data) => {
-    const requestEditMovie = {
-      id: 14,
-      name: "NGHỀ SIÊU DỄ",
-      description:
-        "Doraemon: Nobita và Cuộc Chiến Vũ Trụ Tí Hon 2022 là một lựa chọn cực kỳ sáng suốt trong dịp Tết Thiếu Nhi 2022 sắp đến. Một bom tấn đúng nghĩa dành cho tất cả mọi người, từ già trẻ lớn bé...",
-      trailer: "https://www.youtube.com/watch?v=Nm0ImwyPaVE",
-      rating: 4.9,
-      duration: 113,
+  const handleUpdateMovie = (req) => {
+    const updates = {
+      name: req.title,
+      description: req.description,
+      trailer: req.trailer,
+      releaseDate: releasedOn,
       status: "now-showing",
-      releaseDate: "2022-04-29",
-      // name: data.title,
-      // description: data.description,
-      // trailer: data.trailer,
-      // releaseDate: "2022-09-13",
-      // status: "now-showing",
-      // rating: data.rating,
-      // duration: 100,
+      rating: req.rating,
+      duration: req.duration,
       poster: poster,
     };
-    let formData = new FormData();
-    for (var key in requestEditMovie) {
-      formData.append(key, requestEditMovie[key]);
-    }
-    (async () => {
+    const updateMovie = async () => {
       try {
+        let formData = new FormData();
+        for (const key in updates) {
+          formData.append(key, updates[key]);
+        }
         const response = await moviesApi.movieUpdate(idMovieEdit, formData);
         if (response) {
           sweetAlert(
@@ -105,19 +93,20 @@ const MovieUpdate = () => {
       } catch (error) {
         sweetAlert("error", "Cập nhật phim thất bại!", error?.response?.data?.content);
       }
-    })();
+    };
+    updateMovie();
   };
 
   useEffect(() => {
     fetchMovieEdit();
   }, []);
 
-  if (isLoading) return "Loading";
-  console.log(movieEdit);
+  if (loading) return "Loading";
+  console.log(movie);
   return (
     <StyledMovieUpdate>
       <h2>Thêm phim mới</h2>
-      <form className="movie" onSubmit={handleSubmit(handleEditMovie)}>
+      <form className="movie" onSubmit={handleSubmit(handleUpdateMovie)}>
         <div className="form-layout">
           <Field>
             <Label>Ngày khởi chiếu</Label>
@@ -125,31 +114,56 @@ const MovieUpdate = () => {
               className="date"
               defaultValue={moment(new Date(), "DD/MM/YYYY")}
               control={control}
-              onChange={onChangeDatePicker}
+              onChange={onChangeReleaseOn}
               format="DD/MM/YYYY"
             />
           </Field>
           <Field>
-            <Label htmlFor="title">Tên phim</Label>
+            <Label htmlFor="title">Name</Label>
             <Input
-              placeholder="Tên phim"
+              placeholder="Name"
               name="title"
               type="text"
-              defaultValue={movieEdit?.name}
+              defaultValue={movie?.name}
               control={control}
             />
             <LabelError>{errors.title?.message} </LabelError>
           </Field>
         </div>
         <div className="form-layout">
-          <Field>
-            <Label htmlFor="rating">Đánh giá</Label>
-            <Input type="number" defaultValue={movieEdit?.rating} control={control} name="rating" />
-            <LabelError>{errors.rating?.message}</LabelError>
-          </Field>
+          <div className="form-layout">
+            <Field>
+              <Label htmlFor="rating">Rating</Label>
+              <Input
+                placeholder="Rating"
+                type="number"
+                defaultValue={movie?.rating}
+                control={control}
+                name="rating"
+              />
+              <LabelError>{errors.rating?.message}</LabelError>
+            </Field>
+            <Field>
+              <Label htmlFor="duration">Duration</Label>
+              <Input
+                placeholder="Duration"
+                type="number"
+                defaultValue={movie?.duration}
+                control={control}
+                name="duration"
+              />
+              <LabelError>{errors.duration?.message}</LabelError>
+            </Field>
+          </div>
           <Field>
             <Label htmlFor={"trailer"}>Trailer</Label>
-            <Input type="text" defaultValue={movieEdit?.trailer} control={control} name="trailer" />
+            <Input
+              type="text"
+              placeholder="Trailer"
+              defaultValue={movie?.trailer}
+              control={control}
+              name="trailer"
+            />
             <LabelError>{errors.trailer?.message}</LabelError>
           </Field>
         </div>
@@ -164,10 +178,14 @@ const MovieUpdate = () => {
           <div className="description">
             <Controller
               control={control}
-              defaultValue={movieEdit?.description}
+              defaultValue={movie?.description}
               name="description"
               render={({ field: { onChange } }) => (
-                <TextArea onChange={onChange} defaultValue={movieEdit?.description} />
+                <TextArea
+                  onChange={onChange}
+                  placeholder="Description"
+                  defaultValue={movie?.description}
+                />
               )}
             />
           </div>
