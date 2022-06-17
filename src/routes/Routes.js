@@ -12,6 +12,7 @@ const SignUp = React.lazy(() => import("pages/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("pages/Authentication/SignIn"));
 const NotFound = React.lazy(() => import("pages/NotFound"));
 const UserManage = React.lazy(() => import("pages/UserManage"));
+const UserUpdate = React.lazy(() => import("module/user/UserUpdate"));
 const MovieManage = React.lazy(() => import("pages/MovieManage"));
 const CinemaManage = React.lazy(() => import("pages/CinemaManage"));
 const MainManage = React.lazy(() => import("pages/MainManage"));
@@ -38,6 +39,7 @@ const RoutesComponent = () => {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<MainManage />} />
             <Route path="user-manage" element={<UserManage />} />
+            <Route path="update-user/:id" element={<UserUpdate />} />
             <Route path="movie-manage">
               <Route index element={<MovieManage />} />
               <Route path="edit-film/:idMovieEdit" element={<MovieUpdate />} />

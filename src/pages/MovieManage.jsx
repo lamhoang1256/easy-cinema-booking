@@ -10,17 +10,17 @@ import Button from "components/button/Button";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const fetchMovieList = async () => {
-    setIsLoading(true);
+    setLoading(true);
     try {
       const { data } = await axios.get("https://roxy-cinema-api.herokuapp.com/api/movies/all");
       const movieListHasKey = createKeyForObj(data.data.movies);
       setMovieList(movieListHasKey);
-      setIsLoading(false);
+      setLoading(false);
     } catch (error) {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -124,22 +124,19 @@ const MovieManagement = () => {
     },
   ];
 
+  if (loading) return <div>Loading</div>;
+
   return (
     <div className="movie-manage">
-      {isLoading && "Loading"}
-      {!isLoading && (
-        <>
-          <div className="movie-manage-top">
-            <h2>Quản lí phim</h2>
-            <Link to="/admin/movie-manage/add-film">
-              <Button>
-                <ion-icon name="add-outline"></ion-icon> Thêm phim mới
-              </Button>
-            </Link>
-          </div>
-          <Table columns={columns} dataSource={movieList} scroll={{ x: 1300 }} sticky />
-        </>
-      )}
+      <div className="movie-manage-top">
+        <h2>Quản lí phim</h2>
+        <Link to="/admin/movie-manage/add-film">
+          <Button>
+            <ion-icon name="add-outline"></ion-icon> Thêm phim mới
+          </Button>
+        </Link>
+      </div>
+      <Table columns={columns} dataSource={movieList} scroll={{ x: 1300 }} sticky />
     </div>
   );
 };
