@@ -1,23 +1,19 @@
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaYupSignIn } from "constants/auth.schema";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "redux/actions/user.action";
 import Field from "components/field/Field";
-import Label from "components/label/Label";
 import Input from "components/input/Input";
+import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
+import { schemaYupSignIn } from "constants/auth.schema";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { StyledAuth, StyledButtonAuth } from "./authentication";
 
 const StyledSignIn = styled.div``;
 
 const SignIn = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userInfo } = useSelector((state) => state.user);
   const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
   const {
     handleSubmit,
@@ -27,7 +23,6 @@ const SignIn = () => {
 
   const handleSignIn = (data) => {
     const requestSignIn = { taiKhoan: data.username, matKhau: data.password };
-    dispatch(loginUser(requestSignIn));
   };
   useEffect(() => {
     // if login successful will redirect previous page

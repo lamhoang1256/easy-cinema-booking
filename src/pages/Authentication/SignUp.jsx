@@ -6,15 +6,12 @@ import LabelError from "components/label/LabelError";
 import { schemaYupSignUp } from "constants/auth.schema";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "redux/actions/user.action";
 import { StyledAuth, StyledButtonAuth } from "./authentication";
 
 const SignUp = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userInfo } = useSelector((state) => state.user);
+
   const {
     handleSubmit,
     control,
@@ -30,13 +27,7 @@ const SignUp = () => {
       maNhom: "GP00",
       hoTen: data.fullname,
     };
-    dispatch(registerUser(requestSignUp));
   };
-  useEffect(() => {
-    if (userInfo) {
-      navigate(-1);
-    }
-  }, []);
 
   return (
     <StyledAuth>

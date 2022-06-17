@@ -4,17 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupRegister } from "constants/schemaYupRegister";
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "redux/actions/user.action";
 // components
 import InputText from "components/temp/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 
 const Register = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { errorRegister, userInfo } = useSelector((state) => state.user);
   const {
     handleSubmit,
     control,
@@ -30,14 +25,7 @@ const Register = () => {
       maNhom: "GP00",
       hoTen: data.fullname,
     };
-    dispatch(registerUser(requestRegister));
   };
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate(-1);
-    }
-  }, [userInfo]);
 
   return (
     <div className="auth register">
@@ -107,7 +95,6 @@ const Register = () => {
             </div>
           </div>
           {/* Log error messenge when register form API */}
-          <ErrorValidation errorMessage={errorRegister?.content} />
 
           <button className="auth-submit btn btn--primary" type="submit">
             Đăng kí

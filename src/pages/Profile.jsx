@@ -1,8 +1,6 @@
 import { Tabs } from "antd";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetailUserAction } from "redux/actions/user.action";
 import Banner from "components/Banner/Banner";
 import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
 import Section from "components/section/Section";
@@ -62,51 +60,12 @@ const StyledProfile = styled.div`
 
 const Profile = () => {
   const { TabPane } = Tabs;
-  const dispatch = useDispatch();
-  const { isLoading, userProfile } = useSelector((state) => state.user);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getDetailUserAction());
   }, []);
 
-  return (
-    <>
-      {isLoading && <LoadingAnimation />}
-      {!isLoading && (
-        <StyledProfile>
-          <Banner urlBanner={urlBanner} heading={"Thông tin tài khoản"} />
-          <div className="container">
-            <div className="profile-header">
-              <div className="profile-avatar">
-                <img src="/assets/images/avatar/avatar-boss-baby.jpg" alt="avatar" />
-              </div>
-              <div className="profile-name">
-                <h2>{userProfile.hoTen}</h2>
-                <p>{userProfile.email}</p>
-              </div>
-            </div>
-            <Section>
-              <Tabs tabPosition={"top"}>
-                <TabPane tab="Thông tin cơ bản" key="1">
-                  {!userProfile && "Thông tin tài khoản hiện đang trống"}
-                  {userProfile && <ProfileInfo data={userProfile} />}
-                </TabPane>
-                <TabPane tab="Chỉnh sửa thông tin" key="2">
-                  <ProfileEdit />
-                </TabPane>
-                <TabPane tab="Lịch sử đặt vé" key="3">
-                  <div className="profile-history">
-                    <ProfileHistory thongTinDatVe={userProfile.thongTinDatVe} />
-                  </div>
-                </TabPane>
-              </Tabs>
-            </Section>
-          </div>
-        </StyledProfile>
-      )}
-    </>
-  );
+  return <>Profile</>;
 };
 
 export default Profile;

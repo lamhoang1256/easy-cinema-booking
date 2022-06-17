@@ -4,17 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaYupLogin } from "constants/schemaYupLogin";
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "redux/actions/user.action";
 // components
 import InputText from "components/temp/InputText";
 import ErrorValidation from "components/Message/ErrorValidation";
 
 const Login = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { errorLogin, userInfo } = useSelector((state) => state.user);
   const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
   const {
     handleSubmit,
@@ -24,7 +19,6 @@ const Login = () => {
 
   const handleLogin = (data) => {
     const requestLogin = { taiKhoan: data.username, matKhau: data.password };
-    dispatch(loginUser(requestLogin));
   };
   useEffect(() => {
     // if login successful will redirect previous page

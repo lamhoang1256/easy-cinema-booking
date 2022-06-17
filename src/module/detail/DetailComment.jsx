@@ -1,6 +1,5 @@
 import moment from "moment";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 import { dataFakeAvatar, yourAvatar } from "constants/dataFakeAvatar";
 import Description from "components/text/Description";
 import Heading from "components/heading/Heading";
@@ -34,8 +33,6 @@ const StyledDetailComment = styled.div`
 `;
 
 const DetailComment = () => {
-  const { commentList } = useSelector((state) => state.movieDetail);
-  const { userInfo } = useSelector((state) => state.user);
   const fakeAvatarUser = () => {
     const length = dataFakeAvatar.length;
     const random = Math.floor(Math.random() * length);
@@ -44,27 +41,7 @@ const DetailComment = () => {
   const fakeAvatar = `/assets/images/${fakeAvatarUser()}`;
   const meAvatar = `/assets/images/${yourAvatar.url}`;
 
-  if (commentList?.length === 0) return <Description>Chưa có nhận xét</Description>;
-  return (
-    <StyledDetailComment>
-      {commentList?.map(({ id, username, createdAt, content }) => (
-        <div className="comment-item" key={id}>
-          <div className="comment-header">
-            <img
-              src={username === userInfo?.taiKhoan ? meAvatar : fakeAvatar}
-              className="comment-avatar"
-              alt="avatar"
-            />
-            <div className="comment-info">
-              <Heading>{username}</Heading>
-              <span className="comment-ago">{moment(createdAt).fromNow()}</span>
-            </div>
-          </div>
-          <Description className="comment-desc">{content}</Description>
-        </div>
-      ))}
-    </StyledDetailComment>
-  );
+  return <StyledDetailComment>DetailComment</StyledDetailComment>;
 };
 
 // DATA MẪU

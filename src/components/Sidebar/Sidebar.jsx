@@ -1,15 +1,7 @@
-import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { logoutAction } from "redux/actions/user.action";
 import "./sidebar.scss";
 
 const Sidebar = () => {
-  const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logoutAction());
-    window.location.reload();
-  };
-
   return (
     <div className="sidebar">
       <div className="sidebar-container">
@@ -48,9 +40,7 @@ const Sidebar = () => {
         <NavLink to="/">
           <button className="btn btn--success sidebar-btn">Về trang chủ</button>
         </NavLink>
-        <button className="btn btn--info sidebar-btn" onClick={handleLogout}>
-          Đăng xuất
-        </button>
+        <button className="btn btn--info sidebar-btn">Đăng xuất</button>
       </div>
     </div>
   );

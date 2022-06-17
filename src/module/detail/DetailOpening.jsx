@@ -1,6 +1,5 @@
 import { Tabs } from "antd";
 import { v4 as uuidv4 } from "uuid";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Tag from "components/tag/Tag";
 import Description from "components/text/Description";
@@ -38,19 +37,18 @@ const StyledDetailOpening = styled.div`
 `;
 
 const DetailOpening = () => {
-  const { calendarShowList } = useSelector((state) => state.movieDetail);
   const { TabPane } = Tabs;
 
-  if (calendarShowList?.length === 0) {
-    return (
-      <StyledDetailOpening>
-        <Tag kind="secondary" marginTop="14px">
-          Lịch chiếu phim
-        </Tag>
-        <Description>Phim này hiện chưa có lịch chiếu !</Description>
-      </StyledDetailOpening>
-    );
-  }
+  // if (calendarShowList?.length === 0) {
+  //   return (
+  //     <StyledDetailOpening>
+  //       <Tag kind="secondary" marginTop="14px">
+  //         Lịch chiếu phim
+  //       </Tag>
+  //       <Description>Phim này hiện chưa có lịch chiếu !</Description>
+  //     </StyledDetailOpening>
+  //   );
+  // }
 
   return (
     <StyledDetailOpening>
@@ -59,7 +57,7 @@ const DetailOpening = () => {
       </Tag>
       <div className="boxed">
         <Tabs defaultActiveKey="0">
-          {calendarShowList?.map(({ date, heThongRap }) => (
+          {/* {calendarShowList?.map(({ date, heThongRap }) => (
             <TabPane tab={<TabPanelHeader date={date} />} key={uuidv4()}>
               <Tabs defaultActiveKey="0" tabPosition="left">
                 {heThongRap.map(({ logo, cumRapChieu }) => (
@@ -69,7 +67,7 @@ const DetailOpening = () => {
                 ))}
               </Tabs>
             </TabPane>
-          ))}
+          ))} */}
         </Tabs>
       </div>
     </StyledDetailOpening>

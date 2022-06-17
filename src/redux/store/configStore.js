@@ -8,10 +8,10 @@ import { movieFilter } from "redux/reducers/movieFilter.reducer";
 import { user } from "redux/reducers/user.reducer";
 
 const rootReducer = combineReducers({
-  modalTrailer,
-  movieDetail,
-  TicketRoom,
-  movieFilter,
-  user,
+  // modalTrailer,
+  // movieDetail,
+  // TicketRoom,
+  // movieFilter,
+  // user,
 });
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

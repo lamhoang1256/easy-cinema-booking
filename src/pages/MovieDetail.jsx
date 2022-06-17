@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import AddComment from "components/AddComment/AddComment";
-import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
+import axios from "axios";
+import Image from "components/image/Image";
 import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import PostRelated from "components/post/PostRelated";
-import DetailComment from "module/detail/DetailComment";
-import DetailOpening from "module/detail/DetailOpening";
-import {
-  getCalendarShowMovieDetail,
-  getCommentList,
-  getMovieDetail,
-} from "redux/actions/movieDetail.action";
-import Image from "components/image/Image";
 import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
 import Description from "components/text/Description";
 import DetailBanner from "module/detail/DetailBanner";
 import DetailOverview from "module/detail/DetailOverview";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 const StyledMovieDetail = styled.div`
   .detail-poster {
@@ -49,8 +39,6 @@ const MovieDetail = () => {
   const { idDetail } = useParams();
   console.log(idDetail);
   const [detail, setDetail] = useState();
-  const dispatch = useDispatch();
-  const { isLoading, movieDetail, togglePostComment } = useSelector((state) => state.movieDetail);
 
   const fetchMovieList = async () => {
     try {
@@ -67,15 +55,6 @@ const MovieDetail = () => {
   useEffect(() => {
     fetchMovieList();
   }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    dispatch(getMovieDetail(idDetail));
-    dispatch(getCalendarShowMovieDetail(idDetail));
-  }, []);
-  useEffect(() => {
-    dispatch(getCommentList(idDetail));
-  }, [togglePostComment]);
 
   return (
     <StyledMovieDetail>
