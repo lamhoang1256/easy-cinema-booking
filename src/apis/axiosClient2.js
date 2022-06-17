@@ -10,7 +10,7 @@ const axiosClient2 = axios.create({
 });
 
 axiosClient2.interceptors.request.use((config) => {
-  config.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1NTM2ODY2MiwiZXhwIjoxNjU1NDU1MDYyfQ.AkvcuakNhXwhEyYNG-gpYtZmcfjKpCyjBhIeC_crjos`;
+  config.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1NTQ1NTMzMCwiZXhwIjoxNjU1NTQxNzMwfQ.6Ux2SpYjrIjOkGuOZk_HMWmET-kuDiw5OHOA-Avqu8Y`;
   return config;
 });
 

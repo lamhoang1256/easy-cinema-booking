@@ -1,3 +1,4 @@
+import CinemaInformation from "module/cinema/CinemaInfomation";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -17,6 +18,9 @@ const MovieManage = React.lazy(() => import("pages/MovieManage"));
 const CinemaComplexesManage = React.lazy(() => import("module/cinema/CinemaComplexesManage"));
 const MainManage = React.lazy(() => import("pages/MainManage"));
 const MovieAddNew = React.lazy(() => import("module/movie/MovieAddNew"));
+const ShowtimeManage = React.lazy(() => import("module/showtime/ShowtimeManage"));
+const ShowtimeAddNew = React.lazy(() => import("module/showtime/ShowtimeAddNew"));
+const ShowtimeUpdate = React.lazy(() => import("module/showtime/ShowtimeUpdate"));
 const MovieUpdate = React.lazy(() => import("module/movie/MovieUpdate"));
 const CinemaManage = React.lazy(() => import("module/cinema/CinemaManage"));
 const ScheduleFilm = React.lazy(() => import("module/MovieManage/ScheduleFilm"));
@@ -50,6 +54,12 @@ const RoutesComponent = () => {
             <Route path="cinema-manage">
               <Route index element={<CinemaComplexesManage />} />
               <Route path=":id" element={<CinemaManage />} />
+              <Route path="information/:id" element={<CinemaInformation />} />
+            </Route>
+            <Route path="showtime-manage">
+              <Route index element={<ShowtimeManage />} />
+              <Route path="add" element={<ShowtimeAddNew />} />
+              <Route path="update/:id" element={<ShowtimeUpdate />} />
             </Route>
           </Route>
           {/* Auth Layout */}

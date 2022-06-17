@@ -100,4 +100,25 @@ export const moviesApi = {
     const path = `/api/cinemas/${id}`;
     return axiosClient2.get(path);
   },
+  cinemaGetInformation: (id) => {
+    const path = `/api/cinemas/${id}`;
+    return axiosClient2.get(path);
+  },
+
+  showtimeGetAll: () => {
+    const path = `/api/showtimes/all`;
+    return axiosClient2.get(path);
+  },
+  showtimeGetSingle: (id) => {
+    const path = `/api/showtimes/${id}`;
+    return axiosClient2.get(path);
+  },
+  showtimeAddNew: (data) => {
+    const path = `/api/showtimes`;
+    return axiosClient2.post(path, data);
+  },
+  showtimeUpdate: (id, data) => {
+    const path = `/api/showtimes/${id}`;
+    return axiosClient2.put(path, data);
+  },
 };

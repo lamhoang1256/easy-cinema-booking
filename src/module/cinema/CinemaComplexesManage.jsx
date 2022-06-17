@@ -14,11 +14,6 @@ const StyledCinemaManageComplexes = styled.div`
   }
 `;
 
-// createdAt: "2022-06-16T02:44:42.000Z"
-// id: 34
-// logo: "public/default/images/cinemaComplexes/lotte-cinema.png"
-// name: "Lotte Cinema"
-// updatedAt: "2022-06-16T02:44:42.000Z"
 const CinemaManageComplexes = () => {
   const [cinemaComplexes, setCinemaComplexes] = useState([]);
   const fetchCinemaComplexes = async () => {
@@ -66,3 +61,9 @@ const CinemaManageComplexes = () => {
 };
 
 export default CinemaManageComplexes;
+
+// "logo": "public/default/images/cinemaComplexes/cgv.jpeg",
+// "id": 4,
+// "name": "CGV",
+// "createdAt": "2022-06-16T02:44:42.000Z",
+// "updatedAt": "2022-06-16T02:44:42.000Z"

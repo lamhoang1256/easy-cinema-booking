@@ -46,7 +46,7 @@ const CinemaManage = () => {
                 <td>{cinema.address}</td>
                 <td>{cinema.rating}</td>
                 <td>
-                  <Button to={`/admin/cinema-manage/${cinema.id}`}>Update</Button>
+                  <Button to={`/admin/cinema-manage/information/${cinema.id}`}>Update</Button>
                 </td>
               </tr>
             ))}
