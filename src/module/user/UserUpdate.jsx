@@ -1,5 +1,5 @@
+import styled from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { moviesApi } from "apis/moviesApi";
 import { usersApi } from "apis/usersApi";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
@@ -10,7 +10,6 @@ import { schemaUserUpdate } from "constants/user.schema";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import { sweetAlert } from "utilities/sweetAlert";
 
 const StyledUserUpdate = styled.div`

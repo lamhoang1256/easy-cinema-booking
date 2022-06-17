@@ -71,19 +71,33 @@ export const moviesApi = {
     const path = `/api/movies/${id}`;
     return axiosClient2.get(path);
   },
-
   movieAddNew: (data) => {
     const path = `/api/movies`;
     return axiosClient2.post(path, data);
   },
-
   movieUpdate: (id, data) => {
     const path = `/api/movies/${id}`;
     return axiosClient2.put(path, data);
   },
-
   movieDelete: (id) => {
     const path = `/api/movies/${id}`;
     return axiosClient2.delete(path);
+  },
+
+  cinemaComplexesGet: (params) => {
+    const path = `/api/cinema-complexes`;
+    return axiosClient2.get(path, { params });
+  },
+  cinemaComplexesGetSingle: (id) => {
+    const path = `/api/cinema-complexes/${id}`;
+    return axiosClient2.get(path);
+  },
+  cinemasGetAll: (params) => {
+    const path = `/api/cinemas/all`;
+    return axiosClient2.get(path, { params });
+  },
+  cinemasGetSingle: (id) => {
+    const path = `/api/cinemas/${id}`;
+    return axiosClient2.get(path);
   },
 };

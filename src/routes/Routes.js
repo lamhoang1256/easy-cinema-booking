@@ -14,11 +14,11 @@ const NotFound = React.lazy(() => import("pages/NotFound"));
 const UserManage = React.lazy(() => import("pages/UserManage"));
 const UserUpdate = React.lazy(() => import("module/user/UserUpdate"));
 const MovieManage = React.lazy(() => import("pages/MovieManage"));
-const CinemaManage = React.lazy(() => import("pages/CinemaManage"));
+const CinemaComplexesManage = React.lazy(() => import("module/cinema/CinemaComplexesManage"));
 const MainManage = React.lazy(() => import("pages/MainManage"));
 const MovieAddNew = React.lazy(() => import("module/movie/MovieAddNew"));
 const MovieUpdate = React.lazy(() => import("module/movie/MovieUpdate"));
-const CinemaGroup = React.lazy(() => import("module/CinemaManage/CinemaGroup"));
+const CinemaManage = React.lazy(() => import("module/cinema/CinemaManage"));
 const ScheduleFilm = React.lazy(() => import("module/MovieManage/ScheduleFilm"));
 const SeatMap = React.lazy(() => import("module/MovieManage/SeatMap"));
 
@@ -48,8 +48,8 @@ const RoutesComponent = () => {
               <Route path="schedule/:idSchedule" element={<ScheduleFilm />} />
             </Route>
             <Route path="cinema-manage">
-              <Route index element={<CinemaManage />} />
-              <Route path=":cinemaSystem/:cinemaName" element={<CinemaGroup />} />
+              <Route index element={<CinemaComplexesManage />} />
+              <Route path=":id" element={<CinemaManage />} />
             </Route>
           </Route>
           {/* Auth Layout */}
