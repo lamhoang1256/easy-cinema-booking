@@ -5,7 +5,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const StyledShowtimeView = styled.div``;
+const StyledShowtimeView = styled.div`
+  div span {
+    color: red;
+  }
+`;
 
 const ShowtimeView = () => {
   const { id } = useParams();
@@ -33,7 +37,12 @@ const ShowtimeView = () => {
     <StyledShowtimeView>
       <h2>{showtime.movie.name}</h2>
       <img src={showtime.movie.poster} alt="" />
-      {JSON.stringify(showtime)}
+      {showtime.tickets.map((ticket) => (
+        <div>
+          {ticket.id}
+          <span>{`${ticket.status}`}</span>
+        </div>
+      ))}
     </StyledShowtimeView>
   );
 };

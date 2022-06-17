@@ -126,4 +126,10 @@ export const moviesApi = {
     const path = `/api/showtimes/${id}`;
     return axiosClient2.delete(path);
   },
+
+  // BOOKING (Đặt vé)
+  bookingAddNew: (data) => {
+    const path = `/api/bookings`;
+    return axiosClient2.post(path, data);
+  },
 };

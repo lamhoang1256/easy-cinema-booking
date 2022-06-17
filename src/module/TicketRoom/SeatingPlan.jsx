@@ -1,120 +1,110 @@
-import Tag from "components/tag/Tag";
+import { moviesApi } from "apis/moviesApi";
+import Button from "components/button/Button";
 import TagSmall from "components/tag/TagSmall";
-import { memo } from "react";
-import { useDispatch } from "react-redux";
-import { selectSeat } from "redux/actions/ticketRoom.action";
+import { useState } from "react";
 import styled, { css } from "styled-components";
 
 const STATUS_SEAT = {
-  selecting: css`
+  normal: css`
+    background-color: #9692c7;
+  `,
+  isSelecting: css`
     background-color: #2fdd92;
   `,
   bought: css`
     background-color: #ff0000;
   `,
-  your: css`
-    background-color: #bfbfbf;
-  `,
-  vip: css`
-    background-color: var(--secondary-color);
-  `,
 };
 
-const StyleSeat = styled.div`
+const StyledSeatingPlan = styled.div`
+  .field {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const StyleSeat = styled.button`
   width: 40px;
   height: 40px;
   margin: 0 auto;
-  background-color: #9692c7;
+  text-align: center;
   border-radius: 6px;
   cursor: pointer;
   overflow: hidden;
   color: var(--white);
   ${(props) => props.status && STATUS_SEAT[props.status]}
+  &:disabled {
+    ${STATUS_SEAT["bought"]};
+  }
 `;
 
-const imgMultiply = `${process.env.REACT_APP_PUBLIC}/assets/images/chore/seat-multiply.png`;
-const imgYourChoice = `${process.env.REACT_APP_PUBLIC}/assets/images/chore/seat-your-choice.png`;
+const SeatingPlan = ({ tickets }) => {
+  const [selecting, setSelecting] = useState([]);
+  const checkIsSelecting = (id) => {
+    const index = selecting.findIndex((item) => id === item.ticketId);
+    return index !== -1 ? "isSelecting" : "normal";
+  };
 
-const SeatingPlan = ({ danhSachGhe, selectingSeatList }) => {
-  const dispatch = useDispatch();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const handleSelectSeat = (seat) => {
-    dispatch(selectSeat(seat));
+  const handleToggleClickSeat = (id) => {
+    const index = selecting.findIndex((item) => id === item.ticketId);
+    if (index === -1) {
+      setSelecting([...selecting, { ticketId: id }]);
+    } else {
+      let cloneSelecting = [...selecting];
+      cloneSelecting.splice(index, 1);
+      setSelecting(cloneSelecting);
+    }
+  };
+
+  const handleBooking = async () => {
+    console.log(selecting);
+    const values = {
+      showtimeId: tickets[0].showtimeId,
+      tickets: selecting,
+    };
+    try {
+      const { data } = await moviesApi.bookingAddNew(values);
+      console.log(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div className="seating-plan">
-      <div className="seating-plan-container">
-        {danhSachGhe.map((seat, index) => {
-          const baseSeat = "seating-plan-seat";
-          const isVip = seat.loaiGhe === "Vip";
-          const isBought = seat.daDat;
-          const isYouBought = seat.taiKhoanNguoiDat === userInfo?.taiKhoan;
-          const isSelecting = selectingSeatList?.findIndex((c) => c.maGhe === seat.maGhe);
-
-          const vip = isVip ? `${baseSeat}--vip` : "";
-          const bought = isBought ? `${baseSeat}--bought` : "";
-          const youBought = isYouBought ? `${baseSeat}--youBought` : "";
-          const selecting = isSelecting === -1 ? "" : `${baseSeat}--selecting`;
-
-          return (
-            <button
-              disabled={bought !== "" ? true : false}
-              className={`${baseSeat} ${bought} ${vip} ${selecting} ${youBought}`}
-              onClick={() => handleSelectSeat(seat)}
-              key={index}
+    <StyledSeatingPlan>
+      <div className="seating-plan">
+        <div className="seating-plan-container">
+          {tickets.map((ticket, index) => (
+            <StyleSeat
+              disabled={ticket.status}
+              key={ticket.id}
+              onClick={() => handleToggleClickSeat(ticket.id)}
+              status={checkIsSelecting(ticket.id)}
             >
-              {bought !== "" && !isYouBought && <img src={imgMultiply} alt="multiply" />}
-              {bought && isYouBought && (
-                <img src={imgYourChoice} alt="youBought" className="seating-plan-youBought" />
-              )}
-              {!bought && seat.stt}
-            </button>
-          );
-        })}
+              {index + 1}
+            </StyleSeat>
+          ))}
+        </div>
+        <Button onClick={handleBooking}>Buy ticket</Button>
+        <div className="seatingPlan-example">
+          <div className="field">
+            <StyleSeat status="normal"></StyleSeat>
+            <TagSmall kind="normal">Ghế thường</TagSmall>
+          </div>
+          <div className="field">
+            <StyleSeat status="isSelecting"></StyleSeat>
+            <TagSmall kind="normal">Ghế đang đặt</TagSmall>
+          </div>
+          <div className="field">
+            <StyleSeat status="bought"></StyleSeat>
+            <TagSmall kind="normal">Ghế đã được đặt</TagSmall>
+          </div>
+        </div>
       </div>
-
-      <div className="seatingPlan-example">
-        <div className="field">
-          <StyleSeat></StyleSeat>
-          <TagSmall kind="gray">Ghế thường</TagSmall>
-        </div>
-        <div className="field">
-          <StyleSeat status="vip"></StyleSeat>
-          <TagSmall kind="gray">Ghế vip</TagSmall>
-        </div>
-        <div className="field">
-          <StyleSeat status="selecting"></StyleSeat>
-          <TagSmall kind="gray">Ghế đang đặt</TagSmall>
-        </div>
-        <div className="field">
-          <StyleSeat status="bought"></StyleSeat>
-          <TagSmall kind="gray">Ghế đã được đặt</TagSmall>
-        </div>
-        <div className="field">
-          <StyleSeat status="your">
-            <img src={imgYourChoice} alt="your-seat" />
-          </StyleSeat>
-          <TagSmall kind="gray">Ghế bạn đặt</TagSmall>
-        </div>
-        {/* <SeatingPlanSampleSeat>Ghế thường</SeatingPlanSampleSeat>
-        <SeatingPlanSampleSeat type='vip'>Ghế vip</SeatingPlanSampleSeat>
-        <SeatingPlanSampleSeat type='selecting'>Ghế đang chọn</SeatingPlanSampleSeat>
-        <SeatingPlanSampleSeat type='bought' img={imgMultiply}>
-          Ghế đã được mua
-        </SeatingPlanSampleSeat> */}
-      </div>
-    </div>
+    </StyledSeatingPlan>
   );
 };
 
-export default memo(SeatingPlan);
-
-const SeatingPlanSampleSeat = ({ type, children, img }) => (
-  <div className="seating-plan-box">
-    <div className={`seating-plan-square seating-plan-square--${type}`}>
-      {img && <img src={img} alt="seat" />}
-    </div>
-    {children}
-  </div>
-);
+export default SeatingPlan;

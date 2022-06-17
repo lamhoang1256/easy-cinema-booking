@@ -12,42 +12,30 @@ const StyledTicketRoomDetail = styled.div`
   }
 `;
 
-const TicketRoomDetail = ({ data, selectingSeatList }) => {
-  const { tenPhim, hinhAnh, tenCumRap, diaChi, gioChieu, ngayChieu } = data;
+// createdAt: "2022-06-16T02:44:48.000Z"
+// description: "As the most powerful entity of all time, the Demon Lord Varvatos thinks life is a big fat snore
+// duration: 100
+// id: 4
+// name: "Shijou Saikyou no Daimaou, Murabito A ni Tensei suru 1"
+// poster: "https://res.cloudinary.com/lamhoang1256/image/upload/v1655386300/omtbs/103438246d7c611739d702285dcd9fe4.jpg"
+// rating: 4.5
+// releaseDate: "2022-09-13"
+// status: "now-showing"
+// trailer: "https://www.youtube.com/watch?v=Nm0ImwyPaVE"
+// updatedAt: "2022-06-16T13:32:11.000Z"
+
+const TicketRoomDetail = ({ movie }) => {
+  const { name, poster } = movie;
   return (
     <StyledTicketRoomDetail>
-      <div>
-        <Heading>Thông tin phim</Heading>
-        <Field>
-          <img src={hinhAnh} alt="poster" className="poster" />
-        </Field>
-        <Field>
-          <Tag kind="secondary">Tên phim:</Tag>
-          <span>{tenPhim}</span>
-        </Field>
-        <Field>
-          <Tag kind="secondary">Rạp:</Tag>
-          <span>{tenCumRap}</span>
-        </Field>
-        <Field>
-          <Tag kind="secondary">Địa chỉ:</Tag>
-          <span>{diaChi}</span>
-        </Field>
-        <Field>
-          <Tag kind="secondary">Suất chiếu:</Tag>
-          <span>{`${gioChieu} ${ngayChieu}`}</span>
-        </Field>
-        <Field>
-          <Tag kind="secondary">Số ghế đã chọn:</Tag>
-          <span>
-            {selectingSeatList?.length !== 0
-              ? selectingSeatList?.map(({ tenGhe }, index) =>
-                  index === 0 ? tenGhe : `, ${tenGhe}`
-                )
-              : "Chưa chọn ghế"}
-          </span>
-        </Field>
-      </div>
+      <Heading>Thông tin phim</Heading>
+      <Field>
+        <img src={poster} alt="poster" className="poster" />
+      </Field>
+      <Field>
+        <Tag kind="secondary">Tên phim:</Tag>
+        <span>{name}</span>
+      </Field>
     </StyledTicketRoomDetail>
   );
 };
