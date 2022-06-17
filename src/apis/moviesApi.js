@@ -105,6 +105,7 @@ export const moviesApi = {
     return axiosClient2.get(path);
   },
 
+  // SHOWTIME API (Lịch chiếu API)
   showtimeGetAll: () => {
     const path = `/api/showtimes/all`;
     return axiosClient2.get(path);
@@ -120,5 +121,9 @@ export const moviesApi = {
   showtimeUpdate: (id, data) => {
     const path = `/api/showtimes/${id}`;
     return axiosClient2.put(path, data);
+  },
+  showtimeDelete: (id) => {
+    const path = `/api/showtimes/${id}`;
+    return axiosClient2.delete(path);
   },
 };

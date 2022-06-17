@@ -21,6 +21,7 @@ const MovieAddNew = React.lazy(() => import("module/movie/MovieAddNew"));
 const ShowtimeManage = React.lazy(() => import("module/showtime/ShowtimeManage"));
 const ShowtimeAddNew = React.lazy(() => import("module/showtime/ShowtimeAddNew"));
 const ShowtimeUpdate = React.lazy(() => import("module/showtime/ShowtimeUpdate"));
+const ShowtimeView = React.lazy(() => import("module/showtime/ShowtimeView"));
 const MovieUpdate = React.lazy(() => import("module/movie/MovieUpdate"));
 const CinemaManage = React.lazy(() => import("module/cinema/CinemaManage"));
 const ScheduleFilm = React.lazy(() => import("module/MovieManage/ScheduleFilm"));
@@ -60,6 +61,7 @@ const RoutesComponent = () => {
               <Route index element={<ShowtimeManage />} />
               <Route path="add" element={<ShowtimeAddNew />} />
               <Route path="update/:id" element={<ShowtimeUpdate />} />
+              <Route path="view/:id" element={<ShowtimeView />} />
             </Route>
           </Route>
           {/* Auth Layout */}

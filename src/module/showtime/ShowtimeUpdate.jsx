@@ -39,7 +39,6 @@ const ShowtimeUpdate = () => {
     }
   };
 
-  console.log(showtime);
   useEffect(() => {
     fetchShowtimeNeedUpdate();
   }, [id]);

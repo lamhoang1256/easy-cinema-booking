@@ -14,6 +14,15 @@ const StyledShowtimeManage = styled.div`
 const ShowtimeManage = () => {
   const [loading, setLoading] = useState(true);
   const [showtimes, setShowtimes] = useState([]);
+
+  const handleDeleteShowtime = (id) => {
+    try {
+      moviesApi.showtimeDelete(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchCinemaComplexes = async () => {
     setLoading(true);
     try {
@@ -63,6 +72,8 @@ const ShowtimeManage = () => {
               <td>{showtime.screenId}</td>
               <td>
                 <Button to={`/admin/showtime-manage/update/${showtime.id}`}>Update</Button>
+                <Button to={`/admin/showtime-manage/view/${showtime.id}`}>View</Button>
+                <Button onClick={() => handleDeleteShowtime(showtime.id)}>Delete</Button>
               </td>
             </tr>
           ))}
