@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { moviesApi } from "apis/moviesApi";
 import React, { useEffect } from "react";
-import Button from "components/button/Button";
 import Table from "components/table/Table";
 import styled from "styled-components";
+import ActionView from "components/action/ActionView";
 
 const StyledCinemaManageComplexes = styled.div`
   .cinema-logo {
@@ -32,28 +32,32 @@ const CinemaManageComplexes = () => {
     <StyledCinemaManageComplexes>
       <Table>
         <table>
-          <tr>
-            <th>ID</th>
-            <th>Logo</th>
-            <th>Name</th>
-            <th>Actions</th>
-          </tr>
-          {cinemaComplexes.map((cinema) => (
-            <tr key={cinema.id}>
-              <td>{cinema.id}</td>
-              <td>
-                <img
-                  src={cinema.logo.split("public/default")[1]}
-                  className="cinema-logo"
-                  alt="logo"
-                />
-              </td>
-              <td>{cinema.name}</td>
-              <td>
-                <Button to={`/admin/cinema-manage/${cinema.id}`}>Update</Button>
-              </td>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Logo</th>
+              <th>Name</th>
+              <th>Actions</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {cinemaComplexes.map((cinema) => (
+              <tr key={cinema.id}>
+                <td>{cinema.id}</td>
+                <td>
+                  <img
+                    src={cinema.logo.split("public/default")[1]}
+                    className="cinema-logo"
+                    alt="logo"
+                  />
+                </td>
+                <td>{cinema.name}</td>
+                <td>
+                  <ActionView to={`/admin/cinema-manage/${cinema.id}`}>Update</ActionView>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </Table>
     </StyledCinemaManageComplexes>

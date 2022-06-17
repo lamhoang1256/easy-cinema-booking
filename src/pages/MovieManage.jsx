@@ -1,12 +1,15 @@
+import { Table } from "antd";
+import { moviesApi } from "apis/moviesApi";
+import axios from "axios";
+import ActionDelete from "components/action/ActionDelete";
+import ActionUpdate from "components/action/ActionUpdate";
+import ActionView from "components/action/ActionView";
+import Button from "components/button/Button";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Table } from "antd";
 import Swal from "sweetalert2";
-import { moviesApi } from "apis/moviesApi";
 import { createKeyForObj } from "utilities/createKeyForObject";
 import { formatLocaleDateString } from "utilities/formatDate";
-import axios from "axios";
-import Button from "components/button/Button";
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
@@ -116,9 +119,9 @@ const MovieManagement = () => {
       fixed: "right",
       render: (id) => (
         <div className="movie-manage-action">
-          <Button to={`/admin/movie-manage/edit-film/${id}`}>Sửa</Button>
-          <Button onClick={() => handleDeleteMovie(id)}>Xóa</Button>
-          <Button to={`/admin/movie-manage/schedule/${id}`}>Lịch chiếu</Button>
+          <ActionUpdate to={`/admin/movie-manage/edit-film/${id}`}></ActionUpdate>
+          <ActionDelete onClick={() => handleDeleteMovie(id)}></ActionDelete>
+          <ActionView to={`/admin/movie-manage/schedule/${id}`}></ActionView>
         </div>
       ),
     },

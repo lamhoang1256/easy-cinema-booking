@@ -7,14 +7,13 @@ const StyledTable = styled.div`
     border-collapse: collapse;
     width: 100%;
   }
+  thead {
+    background-color: rgb(247, 247, 248);
+  }
   td,
   th {
-    border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-  }
-  tr:nth-child(even) {
-    background-color: #dddddd;
   }
 `;
 

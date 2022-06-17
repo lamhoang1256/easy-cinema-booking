@@ -1,8 +1,8 @@
+import { usersApi } from "apis/usersApi";
+import ActionUpdate from "components/action/ActionUpdate";
+import Table from "components/table/Table";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Table from "components/table/Table";
-import { usersApi } from "apis/usersApi";
-import Button from "components/button/Button";
 
 const StyledUserManage = styled.div``;
 
@@ -42,7 +42,7 @@ const UserManage = () => {
               <td>{user.dateOfBirth}</td>
               <td>{user.role}</td>
               <td>
-                <Button to={`/admin/update-user/${user.id}`}>Update</Button>
+                <ActionUpdate to={`/admin/update-user/${user.id}`}>Update</ActionUpdate>
               </td>
             </tr>
           ))}

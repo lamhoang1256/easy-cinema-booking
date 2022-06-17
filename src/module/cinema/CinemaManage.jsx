@@ -1,5 +1,5 @@
 import { moviesApi } from "apis/moviesApi";
-import Button from "components/button/Button";
+import ActionView from "components/action/ActionView";
 import Table from "components/table/Table";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -46,7 +46,7 @@ const CinemaManage = () => {
                 <td>{cinema.address}</td>
                 <td>{cinema.rating}</td>
                 <td>
-                  <Button to={`/admin/cinema-manage/information/${cinema.id}`}>Update</Button>
+                  <ActionView to={`/admin/cinema-manage/information/${cinema.id}`}></ActionView>
                 </td>
               </tr>
             ))}

@@ -1,6 +1,5 @@
 import axios from "axios";
 import Image from "components/image/Image";
-import ModalTrailer from "components/ModalTrailer/ModalTrailer";
 import PostRelated from "components/post/PostRelated";
 import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
@@ -96,7 +95,6 @@ const MovieDetail = () => {
           </div>
         </div>
       </div>
-      <ModalTrailer />
     </StyledMovieDetail>
   );
 

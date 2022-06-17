@@ -1,4 +1,7 @@
 import { moviesApi } from "apis/moviesApi";
+import ActionDelete from "components/action/ActionDelete";
+import ActionUpdate from "components/action/ActionUpdate";
+import ActionView from "components/action/ActionView";
 import Button from "components/button/Button";
 import Table from "components/table/Table";
 import { useEffect, useState } from "react";
@@ -71,9 +74,9 @@ const ShowtimeManage = () => {
               <td>{showtime.endTime}</td>
               <td>{showtime.screenId}</td>
               <td>
-                <Button to={`/admin/showtime-manage/update/${showtime.id}`}>Update</Button>
-                <Button to={`/admin/showtime-manage/view/${showtime.id}`}>View</Button>
-                <Button onClick={() => handleDeleteShowtime(showtime.id)}>Delete</Button>
+                <ActionUpdate to={`/admin/showtime-manage/update/${showtime.id}`}></ActionUpdate>
+                <ActionView to={`/admin/showtime-manage/view/${showtime.id}`}></ActionView>
+                <ActionDelete onClick={() => handleDeleteShowtime(showtime.id)}></ActionDelete>
               </td>
             </tr>
           ))}

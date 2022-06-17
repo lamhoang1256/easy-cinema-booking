@@ -1,12 +1,6 @@
 import { Tabs } from "antd";
 import { useEffect } from "react";
 import styled from "styled-components";
-import Banner from "components/Banner/Banner";
-import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
-import Section from "components/section/Section";
-import ProfileInfo from "module/profile/ProfileInfo";
-import ProfileEdit from "module/profile/ProfileEdit";
-import ProfileHistory from "module/profile/ProfileHistory";
 const urlBanner = `url("/assets/images/background/news.png")`;
 
 const StyledProfile = styled.div`
