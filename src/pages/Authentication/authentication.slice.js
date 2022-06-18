@@ -3,7 +3,7 @@ import { usersApi } from "apis/usersApi";
 import LocalStorage from "constants/localStorage";
 
 const initialState = {
-  currentUser: [],
+  currentUser: JSON.parse(localStorage.getItem(LocalStorage.currentUser)) || null,
   error: "",
 };
 

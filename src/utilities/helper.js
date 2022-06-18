@@ -2,5 +2,5 @@ export const calculateSumMoney = (array, keyObj) => {
   const total = array.reduce(function (prevValue, currentValue) {
     return prevValue + currentValue[keyObj];
   }, 0);
-  return total.toLocaleString("en-US");
+  return total.toLocaleString("vi", { style: "currency", currency: "VND" });
 };

@@ -1,20 +1,9 @@
 import { moviesApi } from "apis/moviesApi";
 import Button from "components/button/Button";
 import TagSmall from "components/tag/TagSmall";
+import { STATUS_SEAT } from "constants/styles";
 import { useState } from "react";
-import styled, { css } from "styled-components";
-
-const STATUS_SEAT = {
-  normal: css`
-    background-color: #9692c7;
-  `,
-  isSelecting: css`
-    background-color: #2fdd92;
-  `,
-  bought: css`
-    background-color: #ff0000;
-  `,
-};
+import styled from "styled-components";
 
 const StyledSeatingPlan = styled.div`
   .field {

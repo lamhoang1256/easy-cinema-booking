@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 
-export const useCountDownBooking = (setIsShowModalAlert) => {
+export const useCountDownBooking = (initMinutes, initSeconds) => {
   const idSetInterval = useRef();
   const ONE_SECONDS = 1000;
-  const [minutes, setMinutes] = useState(5);
-  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(initMinutes);
+  const [seconds, setSeconds] = useState(initSeconds);
 
   const countdown = () => {
     idSetInterval.current = setInterval(() => {
@@ -13,7 +13,6 @@ export const useCountDownBooking = (setIsShowModalAlert) => {
       }
       if (seconds === 0) {
         if (minutes === 0) {
-          setIsShowModalAlert(true);
           clearInterval(idSetInterval.current);
         } else {
           setMinutes(minutes - 1);

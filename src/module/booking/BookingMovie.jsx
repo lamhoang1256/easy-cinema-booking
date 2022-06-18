@@ -1,0 +1,52 @@
+import Field from "components/field/FieldText";
+import BookingHeading from "module/booking/BookingHeading";
+import BookingTag from "module/booking/BookingTag";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+
+const StyledBookingMovie = styled.div`
+  .overview {
+    display: flex;
+    gap: 10px;
+  }
+  .poster {
+    margin-bottom: 10px;
+    width: 140px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+`;
+
+const BookingMovie = () => {
+  const { showtime } = useSelector((state) => state.booking);
+  return (
+    <StyledBookingMovie>
+      <BookingHeading>Movie Information</BookingHeading>
+      <div className="overview">
+        <Field>
+          <img src={showtime.movie.poster} alt="poster" className="poster" />
+        </Field>
+        <div className="meta">
+          <Field>
+            <BookingTag>Name:</BookingTag>
+            <span class="text">{showtime.movie.name}</span>
+          </Field>
+          <Field>
+            <BookingTag>Rating:</BookingTag>
+            <span class="text">{showtime.movie.rating}</span>
+          </Field>
+          <Field>
+            <BookingTag>Duration:</BookingTag>
+            <span class="text">{showtime.movie.duration}</span>
+          </Field>
+          <Field>
+            <BookingTag>Release Date:</BookingTag>
+            <span class="text">{showtime.movie.releaseDate}</span>
+          </Field>
+        </div>
+      </div>
+    </StyledBookingMovie>
+  );
+};
+
+export default BookingMovie;

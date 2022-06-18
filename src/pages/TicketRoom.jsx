@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { moviesApi } from "apis/moviesApi";
 import SeatingPlan from "module/TicketRoom/SeatingPlan";
-import TicketRoomDetail from "module/ticket-room/TicketRoomDetail";
+import TicketRoomDetail from "module/booking/BookingMovie";
 
 const StyledTicketRoom = styled.div`
   .ticketRoom-countdown {

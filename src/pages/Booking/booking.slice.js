@@ -12,12 +12,18 @@ export const fetchShowtime = createAsyncThunk("booking/fetchShowtime", async (id
   return data.data.showtime;
 });
 const toggleSelectSeat = (state, action) => {
+  const { idDisplay, userSelected } = action.payload;
+  console.log({ idDisplay, userSelected });
   // if user HAS SELECTED return index of seat else user NOT SELECT return -1
-  const index = state.isSelecting.findIndex((item) => action.payload.id === item.ticketId);
+  const index = state.isSelecting.findIndex((item) => item.ticketId === userSelected.id);
+  console.log(index);
   if (index === -1) {
-    state.isSelecting = [...state.isSelecting, { ticketId: action.payload.id }];
+    state.isSelecting = [
+      ...state.isSelecting,
+      { ...userSelected, idDisplay: idDisplay, ticketId: userSelected.id },
+    ];
   } else {
-    state.isSelecting = state.isSelecting.splice(index, 1);
+    state.isSelecting = state.isSelecting.filter((seat, key) => key !== index);
   }
 };
 

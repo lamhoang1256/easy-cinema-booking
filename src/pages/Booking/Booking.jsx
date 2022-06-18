@@ -1,14 +1,18 @@
 import Section from "components/section/Section";
-import Tag from "components/tag/Tag";
-import TicketRoomDetail from "module/ticket-room/TicketRoomDetail";
+import BookingMovie from "module/booking/BookingMovie";
+import BookingProfile from "module/booking/BookingProfile";
 import BookingSeatingPlan from "module/booking/BookingSeatingPlan";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchShowtime } from "./booking.slice";
+import BookingPayment from "module/booking/BookingPayment";
 
 const StyledBooking = styled.div`
+  .column1 {
+    margin-right: 40px;
+  }
   .ticketRoom-countdown {
     text-align: center;
   }
@@ -48,27 +52,15 @@ const Booking = () => {
     <StyledBooking>
       <div className="container">
         <div className="grid-layout">
-          {/* Planing map seat */}
-          <div className="column1">
-            <Section>
-              <div className="ticketRoom-countdown">
-                <Tag kind="gray">Thời gian giữ ghế :</Tag>{" "}
-                {/* <Tag kind="primary">{formatTimeTwoDigit(minutes, seconds)}</Tag> */}
-              </div>
-              <div className="ticketRoom-screen">Màn hình</div>
-              <BookingSeatingPlan tickets={showtime.tickets} />
-            </Section>
-          </div>
-          {/* Information movie, user, bill, total money... */}
+          <Section className="column1">
+            {/* <BookingTag kind="primary">{formatTimeTwoDigit(minutes, seconds)}</BookingTag> */}
+            <BookingSeatingPlan tickets={showtime.tickets} />
+          </Section>
+
           <div className="column2">
-            <TicketRoomDetail movie={showtime.movie}></TicketRoomDetail>
-            {/* <BookingUser data={userInfo}></BookingUser>
-                <Section>
-                  <Heading kind="secondary">Tổng tiền: {totalMoney} VNĐ</Heading>
-                  <Button kind="purple" className="btn-buy" onClick={handleBuyTicket}>
-                    Đặt vé
-                  </Button>
-                </Section> */}
+            <BookingMovie movie={showtime.movie}></BookingMovie>
+            <BookingProfile></BookingProfile>
+            <BookingPayment />
           </div>
         </div>
       </div>

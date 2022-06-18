@@ -13,6 +13,9 @@ const STATUS = {
   gray: css`
     color: var(--gray-light);
   `,
+  purple: css`
+    color: #273167;
+  `,
 };
 
 const StyledTag = styled.span`
