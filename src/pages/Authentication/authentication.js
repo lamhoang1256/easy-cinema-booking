@@ -26,24 +26,15 @@ export const StyledAuth = styled.div`
     justify-content: center;
     align-items: center;
     position: relative;
-    background-image: url("/images/auth-bg.png");
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: 1;
-    }
   }
   .heading {
     margin-bottom: 10px;
-    /* font-size: ; */
   }
   .auth-container {
     position: relative;
-    max-width: 500px;
-    padding: 50px 60px;
-    background-color: var(--dark-color);
+    max-width: 600px;
+    padding: 40px 60px;
+    background-color: #fafafa;
     border-radius: 10px;
     z-index: 2;
   }
@@ -54,8 +45,9 @@ export const StyledAuth = styled.div`
     color: var(--white);
     font-weight: 700;
     border-radius: 6px;
-    border: 1px solid #8a3cff;
-    background-image: var(--gradient-primary);
+    border: 0;
+    outline: 0;
+    background-color: rgba(61, 180, 242);
   }
   .auth-other {
     margin: 7px 0;
@@ -77,13 +69,6 @@ export const StyledAuth = styled.div`
     &:after {
       right: 30px;
     }
-  }
-  .auth-facebook {
-    color: var(--white);
-    background-color: #404eed;
-  }
-  .auth-google {
-    background-color: var(--white);
   }
   .already-account {
     padding-top: 20px;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Field from "components/field/FieldText";
 import Heading from "components/heading/Heading";
 import Tag from "components/tag/Tag";
+import { useSelector } from "react-redux";
 
 const StyledTicketRoomDetail = styled.div`
   .poster {
@@ -24,17 +25,17 @@ const StyledTicketRoomDetail = styled.div`
 // trailer: "https://www.youtube.com/watch?v=Nm0ImwyPaVE"
 // updatedAt: "2022-06-16T13:32:11.000Z"
 
-const TicketRoomDetail = ({ movie }) => {
-  const { name, poster } = movie;
+const TicketRoomDetail = () => {
+  const { loading, showtime } = useSelector((state) => state.booking);
   return (
     <StyledTicketRoomDetail>
       <Heading>Thông tin phim</Heading>
       <Field>
-        <img src={poster} alt="poster" className="poster" />
+        <img src={showtime.movie.poster} alt="poster" className="poster" />
       </Field>
       <Field>
         <Tag kind="secondary">Tên phim:</Tag>
-        <span>{name}</span>
+        <span>{showtime.movie.name}</span>
       </Field>
     </StyledTicketRoomDetail>
   );

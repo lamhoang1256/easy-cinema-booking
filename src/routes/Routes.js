@@ -8,7 +8,7 @@ const Home = React.lazy(() => import("pages/Home"));
 const Profile = React.lazy(() => import("pages/Profile"));
 const MovieDetail = React.lazy(() => import("pages/MovieDetail"));
 const NewsDetail = React.lazy(() => import("pages/NewsDetail"));
-const TicketRoom = React.lazy(() => import("pages/TicketRoom"));
+const Booking = React.lazy(() => import("pages/Booking/Booking"));
 const SignUp = React.lazy(() => import("pages/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("pages/Authentication/SignIn"));
 const NotFound = React.lazy(() => import("pages/NotFound"));
@@ -38,7 +38,7 @@ const RoutesComponent = () => {
             <Route path="/detail/:idDetail" element={<MovieDetail />} />
             <Route path="/user" element={<Profile />} />
             <Route path="/news/:idNewsDetail" element={<NewsDetail />} />
-            <Route path="/booking/:idTicketRoom" element={<TicketRoom />} />
+            <Route path="/booking/:id" element={<Booking />} />
           </Route>
           {/* Admin Layout */}
           <Route path="/admin" element={<AdminLayout />}>
@@ -49,7 +49,7 @@ const RoutesComponent = () => {
               <Route index element={<MovieManage />} />
               <Route path="edit-film/:idMovieEdit" element={<MovieUpdate />} />
               <Route path="add-film" element={<MovieAddNew />} />
-              <Route path="seat-map/:idTicketRoom" element={<SeatMap />} />
+              <Route path="seat-map/:idBooking" element={<SeatMap />} />
               <Route path="schedule/:idSchedule" element={<ScheduleFilm />} />
             </Route>
             <Route path="cinema-manage">

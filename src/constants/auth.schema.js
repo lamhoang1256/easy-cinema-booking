@@ -1,7 +1,8 @@
 import * as yup from "yup";
 
 export const schemaYupSignUp = yup.object({
-  username: yup.string().required("Please enter your username"),
+  firstName: yup.string().required("Please enter your first name"),
+  lastName: yup.string().required("Please enter your last name"),
   email: yup
     .string()
     .email("Please enter valid email address")
@@ -17,10 +18,15 @@ export const schemaYupSignUp = yup.object({
     .string()
     .required("Please enter re-password")
     .oneOf([yup.ref("password")], "Passwords must be same!"),
+  phoneNumber: yup.string().required("Please enter your phone number"),
+  dateOfBirth: yup.string().required("Please enter your date of birth"),
 });
 
 export const schemaYupSignIn = yup.object({
-  username: yup.string().required("Please enter your username"),
+  email: yup
+    .string()
+    .email("Please enter valid email address")
+    .required("Please enter your email address"),
   password: yup
     .string()
     .min(8, "Password must be at least 8 characters")

@@ -41,6 +41,11 @@ body {
 .column2 {
   width: 35%;
 }
+.form-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
 @media screen and (max-width: 1023.98px) {
   .grid-layout {
     flex-direction: column;

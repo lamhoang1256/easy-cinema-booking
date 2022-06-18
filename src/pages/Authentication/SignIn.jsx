@@ -4,32 +4,42 @@ import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import { schemaYupSignIn } from "constants/auth.schema";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StyledAuth, StyledButtonAuth } from "./authentication";
+import { signIn } from "./authentication.slice";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import LocalStorage from "constants/localStorage";
+import { useEffect } from "react";
 
 const StyledSignIn = styled.div``;
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
+  const currentUser = JSON.parse(localStorage.getItem(LocalStorage.currentUser));
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupSignIn) });
 
-  const handleSignIn = (data) => {
-    const requestSignIn = { taiKhoan: data.username, matKhau: data.password };
-  };
-  useEffect(() => {
-    // if login successful will redirect previous page
-    if (userLocalStorage) {
-      navigate(-1);
+  const handleSignIn = async (user) => {
+    try {
+      const signInResult = await dispatch(signIn(user));
+      unwrapResult(signInResult);
+      toast.success("Sign In Success");
+    } catch (error) {
+      toast.error(error.message);
     }
-  }, [userLocalStorage]);
+  };
+
+  useEffect(() => {
+    if (currentUser?.email) navigate("/");
+  }, [currentUser]);
 
   return (
     <StyledSignIn>
@@ -41,8 +51,8 @@ const SignIn = () => {
               <span className="auth-label">SignIn to continue</span>
               <div className="auth-main">
                 <Field>
-                  <Label htmlFor="username">Username</Label>
-                  <Input name="username" type="text" placeholder="Username" control={control} />
+                  <Label htmlFor="email">Email</Label>
+                  <Input name="email" type="text" placeholder="Email" control={control} />
                   <LabelError>{errors.email?.message}</LabelError>
                 </Field>
                 <Field>

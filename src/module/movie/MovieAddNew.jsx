@@ -16,13 +16,8 @@ import styled from "styled-components";
 import { sweetAlert } from "utilities/sweetAlert";
 
 const StyledMovieAddNew = styled.div`
-  .form-layout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    button {
-      width: max-content;
-    }
+  button {
+    width: max-content;
   }
   .date {
     height: 53px;

@@ -5,7 +5,7 @@ const StyledInput = styled.input`
   border-radius: 6px;
   width: 100%;
   padding: 12px 14px;
-  background: hsla(0, 0%, 100%, 0.01);
+  background-color: rgba(250, 250, 250, 0.7);
   border: 1px solid #656293;
   font-size: 1.8rem;
   &:focus {

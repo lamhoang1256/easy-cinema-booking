@@ -59,4 +59,12 @@ export const usersApi = {
     const path = `/api/users/${id}`;
     return axiosClient2.put(path, data);
   },
+  userSignIn: (user) => {
+    const path = `/api/auth/sign-in`;
+    return axiosClient2.post(path, user);
+  },
+  userSignUp: (user) => {
+    const path = `/api/auth/sign-up`;
+    return axiosClient2.post(path, user);
+  },
 };

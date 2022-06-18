@@ -4,48 +4,64 @@ import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import { schemaYupSignUp } from "constants/auth.schema";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { StyledAuth, StyledButtonAuth } from "./authentication";
+import { signUp } from "./authentication.slice";
+import { toast } from "react-toastify";
+import { unwrapResult } from "@reduxjs/toolkit";
+import LocalStorage from "constants/localStorage";
+import { useEffect } from "react";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const currentUser = JSON.parse(localStorage.getItem(LocalStorage.currentUser));
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaYupSignUp) });
 
-  const handleSignUp = (data) => {
-    const requestSignUp = {
-      taiKhoan: data.username,
-      matKhau: data.password,
-      email: data.email,
-      soDt: data.phone,
-      maNhom: "GP00",
-      hoTen: data.fullname,
-    };
+  const handleSignUp = async (values) => {
+    try {
+      const signUpResult = await dispatch(signUp(values));
+      unwrapResult(signUpResult);
+      toast.success("Sign Up Success");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
+
+  useEffect(() => {
+    if (currentUser?.email) navigate("/");
+  }, [currentUser]);
 
   return (
     <StyledAuth>
       <div className="auth">
         <div className="auth-container">
           <form onSubmit={handleSubmit(handleSignUp)}>
-            <div className="auth-main">
-              <h2 className="heading">Sign Up Account</h2>
+            <h2 className="heading">Sign Up Account</h2>
+            <Field>
+              <Label htmlFor="email">Email</Label>
+              <Input name="email" control={control} type="email" placeholder="Email" />
+              <LabelError>{errors.email?.message}</LabelError>
+            </Field>
+            <div className="form-layout">
               <Field>
-                <Label htmlFor="username">Username</Label>
-                <Input name="username" control={control} type="text" placeholder={"Username"} />
-                <LabelError>{errors.username?.message}</LabelError>
+                <Label htmlFor="firstName">First Name</Label>
+                <Input name="firstName" control={control} type="text" placeholder={"First Name"} />
+                <LabelError>{errors.firstName?.message}</LabelError>
               </Field>
               <Field>
-                <Label htmlFor="email">Email</Label>
-                <Input name="email" control={control} type="email" placeholder="Email" />
-                <LabelError>{errors.email?.message}</LabelError>
+                <Label htmlFor="lastName">Last Name</Label>
+                <Input name="lastName" control={control} type="text" placeholder={"Last Name"} />
+                <LabelError>{errors.lastName?.message}</LabelError>
               </Field>
+            </div>
+            <div className="form-layout">
               <Field>
                 <Label htmlFor="password">Password</Label>
                 <Input
@@ -66,12 +82,29 @@ const SignUp = () => {
                 />
                 <LabelError>{errors.repeatPassword?.message}</LabelError>
               </Field>
-              <StyledButtonAuth type="submit" className="auth-primary">
-                {"Sign Up"}
-              </StyledButtonAuth>
-              <div className="already-account">
-                Have an account? <Link to="/sign-in">Sign In Here</Link>
-              </div>
+            </div>
+            <div className="form-layout">
+              <Field>
+                <Label htmlFor="phoneNumber">Phone Number</Label>
+                <Input
+                  name="phoneNumber"
+                  control={control}
+                  type="phone"
+                  placeholder={"Phone Number"}
+                />
+                <LabelError>{errors.phoneNumber?.message}</LabelError>
+              </Field>
+              <Field>
+                <Label htmlFor="repeatPassword">Date Of Birth</Label>
+                <Input name="dateOfBirth" control={control} type="date" />
+                <LabelError>{errors.dateOfBirth?.message}</LabelError>
+              </Field>
+            </div>
+            <StyledButtonAuth type="submit" className="auth-primary">
+              {"Sign Up"}
+            </StyledButtonAuth>
+            <div className="already-account">
+              Have an account? <Link to="/sign-in">Sign In Here</Link>
             </div>
           </form>
         </div>
