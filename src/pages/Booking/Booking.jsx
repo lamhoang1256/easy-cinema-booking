@@ -1,7 +1,7 @@
 import Section from "components/section/Section";
 import Tag from "components/tag/Tag";
 import TicketRoomDetail from "module/ticket-room/TicketRoomDetail";
-import SeatingPlan from "module/TicketRoom/SeatingPlan";
+import BookingSeatingPlan from "module/booking/BookingSeatingPlan";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -44,7 +44,6 @@ const Booking = () => {
   }, [id, dispatch]);
 
   if (loading) return "Loading";
-
   return (
     <StyledBooking>
       <div className="container">
@@ -57,7 +56,7 @@ const Booking = () => {
                 {/* <Tag kind="primary">{formatTimeTwoDigit(minutes, seconds)}</Tag> */}
               </div>
               <div className="ticketRoom-screen">Màn hình</div>
-              <SeatingPlan tickets={showtime.tickets} />
+              <BookingSeatingPlan tickets={showtime.tickets} />
             </Section>
           </div>
           {/* Information movie, user, bill, total money... */}

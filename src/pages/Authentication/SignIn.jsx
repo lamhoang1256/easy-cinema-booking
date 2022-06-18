@@ -14,6 +14,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import LocalStorage from "constants/localStorage";
 import { useEffect } from "react";
+import { path } from "constants/path";
 
 const StyledSignIn = styled.div``;
 
@@ -36,9 +37,8 @@ const SignIn = () => {
       toast.error(error.message);
     }
   };
-
   useEffect(() => {
-    if (currentUser?.email) navigate("/");
+    if (currentUser?.email) navigate(path.home);
   }, [currentUser]);
 
   return (
@@ -65,7 +65,7 @@ const SignIn = () => {
                 </StyledButtonAuth>
               </div>
               <div className="already-account">
-                Do not have an account? <Link to="/sign-up">Sign Up Here</Link>
+                Do not have an account? <Link to={path.signUp}>Sign Up Here</Link>
               </div>
             </form>
           </div>

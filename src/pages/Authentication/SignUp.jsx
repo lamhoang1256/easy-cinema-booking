@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { unwrapResult } from "@reduxjs/toolkit";
 import LocalStorage from "constants/localStorage";
 import { useEffect } from "react";
+import { path } from "constants/path";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,8 @@ const SignUp = () => {
       toast.error(error.message);
     }
   };
-
   useEffect(() => {
-    if (currentUser?.email) navigate("/");
+    if (currentUser?.email) navigate(path.home);
   }, [currentUser]);
 
   return (
@@ -104,7 +104,7 @@ const SignUp = () => {
               {"Sign Up"}
             </StyledButtonAuth>
             <div className="already-account">
-              Have an account? <Link to="/sign-in">Sign In Here</Link>
+              Have an account? <Link to={path.signIn}>Sign In Here</Link>
             </div>
           </form>
         </div>
