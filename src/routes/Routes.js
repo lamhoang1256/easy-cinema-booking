@@ -2,7 +2,7 @@ import CinemaInformation from "module/cinema/CinemaInfomation";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-const AdminLayout = React.lazy(() => import("layouts/AdminLayout"));
+const DashboardLayout = React.lazy(() => import("module/dashboard/DashboardLayout"));
 const MainLayout = React.lazy(() => import("layouts/MainLayout"));
 const Home = React.lazy(() => import("pages/Home"));
 const Profile = React.lazy(() => import("pages/Profile"));
@@ -41,7 +41,7 @@ const RoutesComponent = () => {
             <Route path="/booking/:id" element={<Booking />} />
           </Route>
           {/* Admin Layout */}
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin" element={<DashboardLayout />}>
             <Route index element={<MainManage />} />
             <Route path="user-manage" element={<UserManage />} />
             <Route path="update-user/:id" element={<UserUpdate />} />

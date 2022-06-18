@@ -31,6 +31,7 @@ const StyledButton = styled.button`
   border-radius: 8px;
   border: 0;
   outline: 0;
+  cursor: pointer;
   ${(props) => props.kind && COLOR[props.kind]}
   ${(props) => props.disabled && DISABLED}
   &:disabled {

@@ -11,27 +11,30 @@ export const fetchShowtime = createAsyncThunk("booking/fetchShowtime", async (id
   const { data } = await moviesApi.showtimeGetSingle(id);
   return data.data.showtime;
 });
-const toggleSelectSeat = (state, action) => {
+
+const handleSelectSeat = (state, action) => {
   const { idDisplay, userSelected } = action.payload;
-  console.log({ idDisplay, userSelected });
   // if user HAS SELECTED return index of seat else user NOT SELECT return -1
-  const index = state.isSelecting.findIndex((item) => item.ticketId === userSelected.id);
-  console.log(index);
+  const index = state.isSelecting.findIndex((seat) => seat.ticketId === userSelected.id);
   if (index === -1) {
     state.isSelecting = [
       ...state.isSelecting,
-      { ...userSelected, idDisplay: idDisplay, ticketId: userSelected.id },
+      { ...userSelected, idDisplay, ticketId: userSelected.id },
     ];
   } else {
     state.isSelecting = state.isSelecting.filter((seat, key) => key !== index);
   }
+};
+const handleSelectingSeat = (state) => {
+  state.isSelecting = [];
 };
 
 export const bookingSlice = createSlice({
   name: "booking",
   initialState,
   reducers: {
-    selectSeat: toggleSelectSeat,
+    selectSeat: handleSelectSeat,
+    resetSelectingSeat: handleSelectingSeat,
   },
   extraReducers: (builder) => {
     builder
@@ -44,5 +47,5 @@ export const bookingSlice = createSlice({
       });
   },
 });
-export const { selectSeat } = bookingSlice.actions;
+export const { selectSeat, resetSelectingSeat } = bookingSlice.actions;
 export default bookingSlice.reducer;

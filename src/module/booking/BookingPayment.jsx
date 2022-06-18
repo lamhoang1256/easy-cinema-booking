@@ -4,20 +4,32 @@ import Field from "components/field/FieldText";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 import { calculateSumMoney } from "utilities/helper";
 import BookingHeading from "./BookingHeading";
 import BookingTag from "./BookingTag";
 
-const StyledBookingPayment = styled.div``;
+const StyledBookingPayment = styled.div`
+  .booking-buy {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--blue-color);
+  }
+`;
 
 const BookingPayment = () => {
   const { isSelecting, showtime } = useSelector((state) => state.booking);
+  const isHaveSelecting = isSelecting.length > 0;
 
   const handleBooking = async () => {
     const values = {
       showtimeId: showtime.tickets[0].showtimeId,
       tickets: isSelecting,
     };
+    if (values.tickets.length > 10) {
+      return Swal.fire("Too Many Tickets!", "Maximum number of tickets is 10");
+    }
     try {
       const { data } = await moviesApi.bookingAddNew(values);
       if (data?.status === "success") toast.success("Success Booking Ticket");
@@ -32,15 +44,15 @@ const BookingPayment = () => {
       <Field>
         <BookingTag className="seats">Your selecting: </BookingTag>
         <span>
-          {isSelecting.length > 0
-            ? isSelecting.map((seat) => seat.idDisplay + 1 + ", ")
-            : "No thing"}
+          {isHaveSelecting ? isSelecting.map((seat) => seat.idDisplay + 1 + ", ") : "No thing"}
         </span>
       </Field>
       <Field>
         <BookingTag>Total Money: {calculateSumMoney(isSelecting, "price")}</BookingTag>
       </Field>
-      <Button onClick={handleBooking}>Buy ticket</Button>
+      <Button disabled={!isHaveSelecting} className="booking-buy" onClick={handleBooking}>
+        BOOKING TICKET
+      </Button>
     </StyledBookingPayment>
   );
 };

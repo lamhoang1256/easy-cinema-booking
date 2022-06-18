@@ -40,7 +40,7 @@ const StyledBooking = styled.div`
 
 const Booking = () => {
   const { id } = useParams();
-  const { loading, showtime } = useSelector((state) => state.booking);
+  const { loading } = useSelector((state) => state.booking);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,13 +53,11 @@ const Booking = () => {
       <div className="container">
         <div className="grid-layout">
           <Section className="column1">
-            {/* <BookingTag kind="primary">{formatTimeTwoDigit(minutes, seconds)}</BookingTag> */}
-            <BookingSeatingPlan tickets={showtime.tickets} />
+            <BookingSeatingPlan />
           </Section>
-
           <div className="column2">
-            <BookingMovie movie={showtime.movie}></BookingMovie>
-            <BookingProfile></BookingProfile>
+            <BookingMovie />
+            <BookingProfile />
             <BookingPayment />
           </div>
         </div>

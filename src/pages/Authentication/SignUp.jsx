@@ -7,7 +7,7 @@ import { schemaYupSignUp } from "constants/auth.schema";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { StyledAuth, StyledButtonAuth } from "./authentication";
+import { StyledAuth, StyledButtonAuth } from "./authentication.style";
 import { signUp } from "./authentication.slice";
 import { toast } from "react-toastify";
 import { unwrapResult } from "@reduxjs/toolkit";

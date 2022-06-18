@@ -6,6 +6,11 @@ export const useCountDownBooking = (initMinutes, initSeconds) => {
   const [minutes, setMinutes] = useState(initMinutes);
   const [seconds, setSeconds] = useState(initSeconds);
 
+  const handleResetCountdown = () => {
+    setMinutes(initMinutes);
+    setSeconds(initSeconds);
+  };
+
   const countdown = () => {
     idSetInterval.current = setInterval(() => {
       if (seconds > 0) {
@@ -28,5 +33,5 @@ export const useCountDownBooking = (initMinutes, initSeconds) => {
       clearInterval(idSetInterval.current);
     };
   }, [seconds]);
-  return { idSetInterval, minutes, seconds };
+  return { idSetInterval, minutes, seconds, handleResetCountdown };
 };

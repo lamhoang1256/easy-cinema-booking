@@ -1,16 +1,19 @@
 import TagSmall from "components/tag/TagSmall";
+import { path } from "constants/path";
 import { STATUS_SEAT } from "constants/styles";
 import { useCountDownBooking } from "hooks/useCountDownBooking";
-import { selectSeat } from "pages/Booking/booking.slice";
+import { resetSelectingSeat, selectSeat } from "pages/Booking/booking.slice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 import { formatTimeTwoDigit } from "utilities/formatDate";
 
 const StyledBookingSeatingPlan = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  gap: 10px 40px;
   .field {
     gap: 8px;
     display: flex;
@@ -40,9 +43,19 @@ const StyledBookingSeatingPlan = styled.div`
   }
   @media screen and (max-width: 767.98px) {
     flex-direction: column;
+    .seatingPlan-main {
+      grid-template-columns: repeat(8, 1fr);
+    }
+    .seatingPlan-example {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .seatingPlan-example span {
+      font-size: 1.2rem;
+    }
   }
 `;
-
 const StyleSeat = styled.button`
   width: 100%;
   aspect-ratio: 1/1;
@@ -58,11 +71,16 @@ const StyleSeat = styled.button`
   }
 `;
 
-const BookingSeatingPlan = ({ tickets }) => {
+const COUNTDOWN_MINUTES = 5;
+const COUNTDOWN_SECONDS = 0;
+const BookingSeatingPlan = () => {
   const dispatch = useDispatch();
-  const { isSelecting } = useSelector((state) => state.booking);
-  const { idSetInterval, minutes, seconds } = useCountDownBooking(0, 30);
-
+  const navigate = useNavigate();
+  const { isSelecting, showtime } = useSelector((state) => state.booking);
+  const { handleResetCountdown, minutes, seconds } = useCountDownBooking(
+    COUNTDOWN_MINUTES,
+    COUNTDOWN_SECONDS
+  );
   const checkIsSelecting = (id) => {
     const index = isSelecting.findIndex((item) => id === item.ticketId);
     return index !== -1 ? "isSelecting" : "normal";
@@ -73,7 +91,28 @@ const BookingSeatingPlan = ({ tickets }) => {
 
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
-      console.log("Hết giờ");
+      Swal.fire({
+        icon: "warning",
+        title: "Time out",
+        text: "Tickets hold time to expire!",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Return home",
+        confirmButtonText: "Continue booking",
+      }).then((result) => {
+        if (result.isDismissed) {
+          navigate(path.home);
+        }
+        if (result.isConfirmed) {
+          Swal.fire(
+            "Start counting!",
+            `Ticket holding time is ${formatTimeTwoDigit(COUNTDOWN_MINUTES, COUNTDOWN_SECONDS)}`
+          );
+          dispatch(resetSelectingSeat());
+          handleResetCountdown();
+        }
+      });
     }
   }, [seconds]);
 
@@ -99,9 +138,8 @@ const BookingSeatingPlan = ({ tickets }) => {
           </div>
         </div>
       </div>
-
       <div className="seatingPlan-main">
-        {tickets.map((ticket, index) => (
+        {showtime.tickets.map((ticket, index) => (
           <StyleSeat
             disabled={ticket.status}
             key={ticket.id}

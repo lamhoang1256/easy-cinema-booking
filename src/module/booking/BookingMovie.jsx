@@ -14,6 +14,12 @@ const StyledBookingMovie = styled.div`
     width: 140px;
     overflow: hidden;
     border-radius: 10px;
+    flex-shrink: 0;
+  }
+  @media screen and (max-width: 767.98px) {
+    .overview {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -23,25 +29,25 @@ const BookingMovie = () => {
     <StyledBookingMovie>
       <BookingHeading>Movie Information</BookingHeading>
       <div className="overview">
-        <Field>
-          <img src={showtime.movie.poster} alt="poster" className="poster" />
+        <Field className="poster">
+          <img src={showtime.movie.poster} alt="poster" />
         </Field>
         <div className="meta">
           <Field>
             <BookingTag>Name:</BookingTag>
-            <span class="text">{showtime.movie.name}</span>
+            <span className="text">{showtime.movie.name}</span>
           </Field>
           <Field>
             <BookingTag>Rating:</BookingTag>
-            <span class="text">{showtime.movie.rating}</span>
+            <span className="text">{showtime.movie.rating}</span>
           </Field>
           <Field>
             <BookingTag>Duration:</BookingTag>
-            <span class="text">{showtime.movie.duration}</span>
+            <span className="text">{showtime.movie.duration}</span>
           </Field>
           <Field>
             <BookingTag>Release Date:</BookingTag>
-            <span class="text">{showtime.movie.releaseDate}</span>
+            <span className="text">{showtime.movie.releaseDate}</span>
           </Field>
         </div>
       </div>

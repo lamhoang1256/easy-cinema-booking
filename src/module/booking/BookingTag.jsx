@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledBookingTag = styled.h3`
   display: inline-block;
-  color: #273167;
+  color: #ffce73;
   margin-right: 6px;
 `;
 

@@ -26,15 +26,17 @@ export const StyledAuth = styled.div`
     justify-content: center;
     align-items: center;
     position: relative;
+    color: var(--white);
   }
   .heading {
     margin-bottom: 10px;
+    color: var(--white);
   }
   .auth-container {
     position: relative;
     max-width: 600px;
     padding: 40px 60px;
-    background-color: #fafafa;
+    background-color: var(--darker-color);
     border-radius: 10px;
     z-index: 2;
   }
@@ -73,6 +75,7 @@ export const StyledAuth = styled.div`
   .already-account {
     padding-top: 20px;
     text-align: center;
+    color: var(--white);
     a {
       color: var(--blue-color);
     }

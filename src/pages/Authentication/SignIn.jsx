@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { StyledAuth, StyledButtonAuth } from "./authentication";
+import { StyledAuth, StyledButtonAuth } from "./authentication.style";
 import { signIn } from "./authentication.slice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
@@ -47,7 +47,7 @@ const SignIn = () => {
         <div className="auth">
           <div className="auth-container">
             <form onSubmit={handleSubmit(handleSignIn)}>
-              <h2>Welcome to website</h2>
+              <h2 className="heading">Welcome to website</h2>
               <span className="auth-label">SignIn to continue</span>
               <div className="auth-main">
                 <Field>

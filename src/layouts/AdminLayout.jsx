@@ -1,4 +1,5 @@
 import ErrorPage from "components/ErrorPage/ErrorPage";
+import Section from "components/section/Section";
 import Sidebar from "components/Sidebar/Sidebar";
 import { useMediaQuery } from "hooks/useMediaQuery";
 import { Outlet } from "react-router-dom";
@@ -17,9 +18,9 @@ const AdminLayout = () => {
         <div className="admin-layout">
           <Sidebar />
           <div className="admin-layout-main">
-            <div className="admin-layout-container">
+            <Section>
               <Outlet />
-            </div>
+            </Section>
           </div>
         </div>
       )}
