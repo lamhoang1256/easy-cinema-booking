@@ -24,28 +24,32 @@ const UserManage = () => {
     <StyledUserManage>
       <Table>
         <table>
-          <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Fullname</th>
-            <th>Phone</th>
-            <th>Date Of Birth</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.email}</td>
-              <td>{`${user.firstName} ${user.lastName}`}</td>
-              <td>{user.phoneNumber}</td>
-              <td>{user.dateOfBirth}</td>
-              <td>{user.role}</td>
-              <td>
-                <ActionUpdate to={`/admin/update-user/${user.id}`}>Update</ActionUpdate>
-              </td>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Fullname</th>
+              <th>Phone</th>
+              <th>Date Of Birth</th>
+              <th>Role</th>
+              <th>Action</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.email}</td>
+                <td>{`${user.firstName} ${user.lastName}`}</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.dateOfBirth}</td>
+                <td>{user.role}</td>
+                <td>
+                  <ActionUpdate to={`/admin/update-user/${user.id}`}>Update</ActionUpdate>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </Table>
     </StyledUserManage>

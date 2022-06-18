@@ -1,15 +1,32 @@
-import { Table } from "antd";
 import { moviesApi } from "apis/moviesApi";
 import axios from "axios";
 import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
-import Button from "components/button/Button";
+import Table from "components/table/Table";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { createKeyForObj } from "utilities/createKeyForObject";
-import { formatLocaleDateString } from "utilities/formatDate";
+import styled from "styled-components";
+import { TextClamp } from "assets/styles/_mixin";
+
+const StyledMovieManage = styled.div`
+  .title {
+    min-width: 140px;
+    ${TextClamp.multilines(2)}
+  }
+  .desc {
+    ${TextClamp.multilines(3)}
+  }
+  .poster {
+    width: 100px;
+    border-radius: 8px;
+  }
+  .releaseDate {
+    min-width: 100px;
+    display: inline-block;
+  }
+`;
 
 const MovieManagement = () => {
   const [movieList, setMovieList] = useState(null);
@@ -58,89 +75,55 @@ const MovieManagement = () => {
     });
   };
 
-  const columns = [
-    {
-      title: "Mã phim",
-      dataIndex: "id",
-      key: "id",
-      fixed: "left",
-      width: 100,
-    },
-    {
-      title: "Tên phim",
-      dataIndex: "name",
-      key: "name",
-      fixed: "left",
-      width: 130,
-    },
-    {
-      title: "Mô tả",
-      dataIndex: "description",
-      key: "description",
-      width: 340,
-      render: (description) => <p className="movie-manage-desc">{description}</p>,
-    },
-    {
-      title: "Hình ảnh",
-      dataIndex: "poster",
-      key: "poster",
-      width: 140,
-      render: (poster) => <img className="movie-manage-thumb" src={poster} alt="poster" />,
-    },
-    {
-      title: "Trailer",
-      dataIndex: "trailer",
-      key: "trailer",
-      width: 150,
-      render: (urlTrailer) => (
-        <a className="text-center" href={urlTrailer}>
-          {urlTrailer}
-        </a>
-      ),
-    },
-    {
-      title: "Ngày khởi chiếu",
-      dataIndex: "releaseDate",
-      key: "releaseDate",
-      width: 160,
-      render: (releaseDate) => <p className="text-center">{formatLocaleDateString(releaseDate)}</p>,
-    },
-    {
-      title: "Đánh giá",
-      dataIndex: "rating",
-      key: "rating",
-      width: 100,
-      render: (rating) => <p className="text-center">{rating}</p>,
-    },
-    {
-      title: "Action",
-      dataIndex: "id",
-      key: "action",
-      fixed: "right",
-      render: (id) => (
-        <div className="movie-manage-action">
-          <ActionUpdate to={`/admin/movie-manage/edit-film/${id}`}></ActionUpdate>
-          <ActionDelete onClick={() => handleDeleteMovie(id)}></ActionDelete>
-          <ActionView to={`/admin/movie-manage/schedule/${id}`}></ActionView>
-        </div>
-      ),
-    },
-  ];
-
   if (loading) return <div>Loading</div>;
 
   return (
-    <div className="movie-manage">
-      <div className="movie-manage-top">
-        <h2>Quản lí phim</h2>
-        <Link to="/admin/movie-manage/add-film">
-          <Button>
-            <ion-icon name="add-outline"></ion-icon> Thêm phim mới
-          </Button>
-        </Link>
-      </div>
-      <Table columns={columns} dataSource={movieList} scroll={{ x: 1300 }} sticky />
-    </div>
+    <StyledMovieManage>
+      <Table>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Poster</th>
+              <th>Description</th>
+              <th>Rating</th>
+              <th>Trailer</th>
+              <th>Release Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {movieList.map((movie) => (
+              <tr key={movie.id}>
+                <td>{movie.id}</td>
+                <td>
+                  <p className="title">{movie.name}</p>
+                </td>
+                <td>
+                  <img className="poster" src={movie.poster} alt="poster" />
+                </td>
+                <td>
+                  <p className="desc">{movie.description}</p>
+                </td>
+                <td>{movie.rating}</td>
+                <td>
+                  <a href={movie.trailer}>Open Trailer</a>
+                </td>
+                <td>
+                  <span className="releaseDate">{movie.releaseDate}</span>
+                </td>
+                <td>
+                  <ActionUpdate to={`/admin/movie-manage/edit-film/${movie.id}`}></ActionUpdate>
+                  <ActionDelete onClick={() => handleDeleteMovie(movie.id)}></ActionDelete>
+                  <ActionView to={`/admin/movie-manage/schedule/${movie.id}`}></ActionView>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Table>
+    </StyledMovieManage>
   );
 };
 

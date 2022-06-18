@@ -3,10 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledSidebar = styled.div`
-  min-width: 280px;
-  max-width: 300px;
+  width: 300px;
   background-color: #280f4c;
   min-height: 80vh;
+  padding-top: 40px;
+  flex-shrink: 0;
   .sidebar-logo {
     text-align: center;
     margin-bottom: 20px;
@@ -22,26 +23,27 @@ const StyledSidebar = styled.div`
   .sidebar-container {
     padding: 20px;
   }
-  .sidebar-item {
-    a {
-      margin: 10px 0;
-      padding: 14px;
-      display: flex;
-      align-items: center;
-      border-radius: 8px;
+  .sidebar-item ion-icon {
+    margin-right: 10px;
+    font-size: 2rem;
+  }
+  .sidebar-link {
+    margin: 10px 0;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    color: var(--white);
+    &:hover {
       color: var(--white);
-      &:hover {
-        color: var(--white);
-      }
-      &.active {
-        color: var(--white);
-        background-color: #461d6a;
-      }
     }
-    ion-icon {
-      margin-right: 10px;
-      font-size: 2rem;
+    &.active {
+      color: var(--white);
+      background-color: #461d6a;
     }
+  }
+  @media screen and (max-width: 767.98px) {
+    display: none;
   }
 `;
 
@@ -54,29 +56,29 @@ const Sidebar = () => {
         </Link>
         <ul>
           <li className="sidebar-item">
-            <NavLink end to="/admin">
+            <NavLink end to="/admin" className="sidebar-link">
               <ion-icon name="people-outline"></ion-icon>
               Trang tổng quan
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/user-manage">
+            <NavLink to="/admin/user-manage" className="sidebar-link">
               <ion-icon name="people-outline"></ion-icon>
               Quản lí người dùng
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/movie-manage">
+            <NavLink to="/admin/movie-manage" className="sidebar-link">
               <ion-icon name="videocam-outline"></ion-icon>Quản lí phim
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/cinema-manage">
+            <NavLink to="/admin/cinema-manage" className="sidebar-link">
               <ion-icon name="storefront-outline"></ion-icon>Quản lí rạp
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/showtime-manage">
+            <NavLink to="/admin/showtime-manage" className="sidebar-link">
               <ion-icon name="storefront-outline"></ion-icon>Quản lí lịch chiếu
             </NavLink>
           </li>

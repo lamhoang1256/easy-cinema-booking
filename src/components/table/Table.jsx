@@ -3,26 +3,25 @@ import styled from "styled-components";
 
 const StyledTable = styled.div`
   table {
-    font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-  }
-  thead {
-    background-color: rgb(247, 247, 248);
+    border-radius: 8px;
   }
   td,
   th {
     text-align: left;
-    padding: 8px;
+    padding: 20px;
+  }
+  thead {
+    background-color: #210b47;
+  }
+  tbody tr {
+    background-color: rgb(40, 15, 76);
   }
 `;
 
 const Table = ({ children }) => {
-  return (
-    <StyledTable>
-      <table>{children}</table>
-    </StyledTable>
-  );
+  return <StyledTable>{children}</StyledTable>;
 };
 
 Table.propTypes = {
