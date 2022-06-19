@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { createKeyForObj } from "utilities/createKeyForObject";
 import styled from "styled-components";
 import { TextClamp } from "assets/styles/_mixin";
+import ImageResize from "components/image/ImageResize";
 
 const StyledMovieManage = styled.div`
   .title {
@@ -28,7 +29,7 @@ const StyledMovieManage = styled.div`
   }
 `;
 
-const MovieManagement = () => {
+const MovieManage = () => {
   const [movieList, setMovieList] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -101,7 +102,7 @@ const MovieManagement = () => {
                   <p className="title">{movie.name}</p>
                 </td>
                 <td>
-                  <img className="poster" src={movie.poster} alt="poster" />
+                  <ImageResize className="poster" url={movie.poster} width="100" alt="poster" />
                 </td>
                 <td>
                   <p className="desc">{movie.description}</p>
@@ -127,4 +128,4 @@ const MovieManagement = () => {
   );
 };
 
-export default MovieManagement;
+export default MovieManage;

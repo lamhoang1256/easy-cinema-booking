@@ -1,16 +1,25 @@
 import { moviesApi } from "apis/moviesApi";
+import { TextClamp } from "assets/styles/_mixin";
 import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
 import Button from "components/button/Button";
+import ImageResize from "components/image/ImageResize";
 import Table from "components/table/Table";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { formatISOtoLocaleDateString } from "utilities/formatDate";
 
 const StyledShowtimeManage = styled.div`
   .poster {
     width: 100px;
     overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .movie-name {
+    width: 200px;
+    ${TextClamp.multilines(2)}
   }
 `;
 
@@ -53,8 +62,6 @@ const ShowtimeManage = () => {
             <th>Name</th>
             <th>Poster</th>
             <th>Rating</th>
-            <th>Status</th>
-            <th>Release Date</th>
             <th>Start Time</th>
             <th>End Time</th>
             <th>Id Cinema</th>
@@ -63,15 +70,20 @@ const ShowtimeManage = () => {
           {showtimes.map((showtime) => (
             <tr key={showtime.id}>
               <td>{showtime.id}</td>
-              <td>{showtime.movie.name}</td>
               <td>
-                <img src={showtime.movie.poster} className="poster" alt="poster" />
+                <p className="movie-name">{showtime.movie.name}</p>
+              </td>
+              <td>
+                <ImageResize
+                  className="poster"
+                  url={showtime.movie.poster}
+                  width="100"
+                  alt="poster"
+                />
               </td>
               <td>{showtime.movie.rating}</td>
-              <td>{showtime.movie.status}</td>
-              <td>{showtime.movie.releaseDate}</td>
-              <td>{showtime.startTime}</td>
-              <td>{showtime.endTime}</td>
+              <td>{formatISOtoLocaleDateString(showtime?.startTime)}</td>
+              <td>{formatISOtoLocaleDateString(showtime?.endTime)}</td>
               <td>{showtime.screenId}</td>
               <td>
                 <ActionUpdate to={`/admin/showtime-manage/update/${showtime.id}`}></ActionUpdate>

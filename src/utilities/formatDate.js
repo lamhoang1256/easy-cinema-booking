@@ -8,7 +8,7 @@ export const formatDateToHours = (time) => {
 
 // format 2019-01-01T10:10:00 -> 1/1/2019
 export const formatISOtoLocaleDateString = (iso) => {
-  return new Date(iso.split("T")[0]).toLocaleDateString("vi-VI");
+  return new Date(iso?.split("T")[0])?.toLocaleDateString("vi-VI");
 };
 
 // format 1:3 -> 01:03

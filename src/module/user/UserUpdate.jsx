@@ -78,7 +78,7 @@ const UserUpdate = () => {
   // console.log(user);
   return (
     <StyledUserUpdate>
-      <h2>Thêm phim mới</h2>
+      <h2>Update User</h2>
       <form className="movie" onSubmit={handleSubmit(handleUpdateUser)}>
         <div className="form-layout">
           <Field>
