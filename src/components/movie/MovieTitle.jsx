@@ -1,16 +1,19 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { TextClamp } from "assets/styles/_mixin";
 import { Link } from "react-router-dom";
 
 const StyledMovieTitle = styled.h3`
   margin: 10px 0 6px;
   font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--gray-lighter);
   ${TextClamp.multilines(2)};
   a {
-    color: var(--gray-lighter);
+    font-weight: 500;
+    color: var(--white);
+    transition: all 0.25s linear;
+  }
+  &:hover a {
+    color: #8a3cff;
   }
 `;
 

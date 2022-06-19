@@ -1,4 +1,4 @@
-import Image from "components/image/Image";
+import ImageResize from "components/image/ImageResize";
 import styled from "styled-components";
 import MovieTitle from "./MovieTitle";
 
@@ -26,7 +26,7 @@ const MovieCard = ({ movie }) => {
   return (
     <StyledMovieCard>
       <div className="card-media">
-        <Image url={posterCard} className="card-poster" alt="poster" />
+        <ImageResize url={posterCard} width="200" className="card-poster" alt="poster" />
       </div>
       <MovieTitle to={`detail/${movie.id}`}>{movie.name}</MovieTitle>
     </StyledMovieCard>

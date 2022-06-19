@@ -24,8 +24,6 @@ const ShowtimeUpdate = React.lazy(() => import("module/showtime/ShowtimeUpdate")
 const ShowtimeView = React.lazy(() => import("module/showtime/ShowtimeView"));
 const MovieUpdate = React.lazy(() => import("module/movie/MovieUpdate"));
 const CinemaManage = React.lazy(() => import("module/cinema/CinemaManage"));
-const ScheduleFilm = React.lazy(() => import("module/MovieManage/ScheduleFilm"));
-const SeatMap = React.lazy(() => import("module/MovieManage/SeatMap"));
 
 const RoutesComponent = () => {
   return (
@@ -49,8 +47,6 @@ const RoutesComponent = () => {
               <Route index element={<MovieManage />} />
               <Route path="edit-film/:idMovieEdit" element={<MovieUpdate />} />
               <Route path="add-film" element={<MovieAddNew />} />
-              <Route path="seat-map/:idBooking" element={<SeatMap />} />
-              <Route path="schedule/:idSchedule" element={<ScheduleFilm />} />
             </Route>
             <Route path="cinema-manage">
               <Route index element={<CinemaComplexesManage />} />
