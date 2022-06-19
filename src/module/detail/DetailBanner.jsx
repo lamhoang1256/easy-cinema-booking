@@ -1,42 +1,27 @@
 import styled from "styled-components";
+import ImageResize from "components/image/ImageResize";
 
 const StyledDetailBanner = styled.div`
-  height: 40vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  .banner-heading {
-    position: relative;
-    z-index: 100;
-    font-size: 4rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    color: #fff;
+  height: 50vh;
+  opacity: 0.5;
+  span {
+    width: 100%;
+    height: 100%;
   }
   .banner-image {
-    inset: 0;
-    position: absolute;
-    background-size: cover;
-    background-repeat: no-repeat !important;
-    background-position: top;
-    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
     border-radius: 10px;
-  }
-  .banner-image::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.15);
   }
 `;
 
 const DetailBanner = ({ hinhAnh }) => {
   return (
-    <div className="container">
-      <StyledDetailBanner>
-        <div className="banner-image" style={{ backgroundImage: `url(${hinhAnh})` }}></div>
-      </StyledDetailBanner>
-    </div>
+    <StyledDetailBanner>
+      <ImageResize width="1440" height="470" className="banner-image" url={hinhAnh}></ImageResize>
+    </StyledDetailBanner>
   );
 };
 

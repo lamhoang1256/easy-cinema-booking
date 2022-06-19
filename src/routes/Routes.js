@@ -46,7 +46,7 @@ const RoutesComponent = () => {
             <Route path="movie-manage">
               <Route index element={<MovieManage />} />
               <Route path="edit-film/:idMovieEdit" element={<MovieUpdate />} />
-              <Route path="add-film" element={<MovieAddNew />} />
+              <Route path="add" element={<MovieAddNew />} />
             </Route>
             <Route path="cinema-manage">
               <Route index element={<CinemaComplexesManage />} />

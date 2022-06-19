@@ -1,36 +1,21 @@
 import axios from "axios";
-import Image from "components/image/Image";
-import PostRelated from "components/post/PostRelated";
-import Section from "components/section/Section";
-import Tag from "components/tag/Tag";
-import Description from "components/text/Description";
 import DetailBanner from "module/detail/DetailBanner";
+import DetailCasts from "module/detail/DetailCasts";
+import DetailHeader from "module/detail/DetailHeader";
 import DetailOverview from "module/detail/DetailOverview";
+import DetailTrailer from "module/detail/DetailTrailer";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledMovieDetail = styled.div`
-  .detail-poster {
-    width: 160px;
-    border-radius: 10px;
-    aspect-ratio: 2/3;
-    object-fit: cover;
+  .heading-sub {
+    margin: 20px 0 10px;
   }
-  .detail-info {
-    margin-top: 14px;
-    display: flex;
-    gap: 20px 30px;
-  }
-  .detail-trailer {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-  }
-  @media screen and (max-width: 767.98px) {
-    .detail-info {
-      flex-direction: column;
-    }
+  .tag {
+    color: rgb(150, 146, 199);
+    font-size: 1.8rem;
+    font-weight: 500;
   }
 `;
 
@@ -51,110 +36,35 @@ const MovieDetail = () => {
     }
   };
 
+  const fetchMovieTMDB = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://api.themoviedb.org/3/movie/675353?api_key=95f2419536f533cdaa1dadf83c606027&language=en-US"
+      );
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     fetchMovieList();
+    fetchMovieTMDB();
   }, []);
 
   return (
     <StyledMovieDetail>
-      <DetailBanner hinhAnh={detail?.poster} />
+      <DetailBanner
+        hinhAnh={"https://image.tmdb.org/t/p/original/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg"}
+      />
       <div className="container">
-        <div className="grid-layout">
-          {/* Movie Detail */}
-          <div className="column1">
-            <Section>
-              <Tag kind="secondary" marginTop="14px">
-                Chi tiết phim
-              </Tag>
-              <div className="detail-info">
-                <Image url={detail?.poster} alt="poster" className="detail-poster" />
-                <DetailOverview data={detail} />
-              </div>
-            </Section>
-            <Section>
-              <Tag kind="secondary" marginTop="14px">
-                Tóm tắt phim
-              </Tag>
-              <Description lineHeight={"2"}>{detail?.description}</Description>
-            </Section>
-
-            {/* <Section>
-              <DetailOpening />
-            </Section> */}
-            {/* <Section>
-              <Tag kind="secondary" marginTop="14px">
-                Đánh giá
-              </Tag>
-              <DetailComment />
-              <AddComment />
-            </Section> */}
-          </div>
-          {/* Related Post */}
-          <div className="column2">
-            <PostRelated />
-          </div>
-        </div>
+        <DetailHeader data={detail} />
+        <DetailOverview />
+        <DetailCasts />
+        <DetailTrailer />
       </div>
     </StyledMovieDetail>
   );
-
-  // if (isLoading) return <LoadingAnimation />;
-
-  // // const { hinhAnh, trailer, moTa } = movieDetail;
-  // const arraySplited = trailer.split("/");
-  // const embedId = arraySplited[arraySplited.length - 1];
-  // return (
-  //   <StyledMovieDetail>
-  //     <DetailBanner hinhAnh={hinhAnh} />
-  //     <div className="container">
-  //       <div className="grid-layout">
-  //         {/* Movie Detail */}
-  //         <div className="column1">
-  //           <Section>
-  //             <Tag kind="secondary" marginTop="14px">
-  //               Chi tiết phim
-  //             </Tag>
-  //             <div className="detail-info">
-  //               <Image url={hinhAnh} alt="poster" className="detail-poster" />
-  //               <DetailOverview data={movieDetail} />
-  //             </div>
-  //           </Section>
-  //           <Section>
-  //             <Tag kind="secondary" marginTop="14px">
-  //               Tóm tắt phim
-  //             </Tag>
-  //             <Description lineHeight={"2"}>{moTa}</Description>
-  //           </Section>
-  //           <Section>
-  //             <iframe
-  //               className="detail-trailer"
-  //               src={`https://www.youtube.com/embed/${embedId}`}
-  //               title="YouTube video player"
-  //               frameBorder="0"
-  //               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  //               allowFullScreen
-  //             ></iframe>
-  //           </Section>
-  //           <Section>
-  //             <DetailOpening />
-  //           </Section>
-  //           <Section>
-  //             <Tag kind="secondary" marginTop="14px">
-  //               Đánh giá
-  //             </Tag>
-  //             <DetailComment />
-  //             <AddComment />
-  //           </Section>
-  //         </div>
-  //         {/* Related Post */}
-  //         <div className="column2">
-  //           <PostRelated />
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <ModalTrailer />
-  //   </StyledMovieDetail>
-  // );
 };
 
 // DỮ LIỆU MẪU TRẢ VỀ CỦA MOVIE DETAIL TỪ API

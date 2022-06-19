@@ -95,7 +95,7 @@ const MovieAddNew = () => {
           </Field>
         </div>
         <div className="form-layout">
-          <div className="form-layout">
+          <div className="form-layout-3">
             <Field>
               <Label htmlFor="rating">Rating</Label>
               <Input name="rating" placeholder="Rating" type="number" control={control} />
@@ -106,6 +106,11 @@ const MovieAddNew = () => {
               <Input name="duration" placeholder="Duration" type="number" control={control} />
               <LabelError>{errors.duration?.message}</LabelError>
             </Field>
+            {/* <Field>
+              <Label htmlFor="duration">ID TMDB</Label>
+              <Input name="duration" placeholder="Duration" type="number" control={control} />
+              <LabelError>{errors.duration?.message}</LabelError>
+            </Field> */}
           </div>
           <Field>
             <Label htmlFor={"trailer"}>Trailer</Label>

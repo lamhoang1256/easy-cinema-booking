@@ -1,43 +1,21 @@
-import { formatLocaleDateString } from "utilities/formatDate";
+import FieldText from "components/field/FieldText";
 import styled from "styled-components";
-import Description from "components/text/Description";
-import Field from "components/field/FieldText";
 
 const StyledDetailOverview = styled.div`
-  font-size: 1.8rem;
-  line-height: 2;
-  flex: 1;
-  color: var(--white);
-  span {
-    color: #9692c7;
-    font-weight: 500;
-    margin-right: 10px;
-  }
+  margin-top: -40px;
 `;
 
-const DetailOverview = ({ data }) => {
+const DetailOverview = () => {
   return (
     <StyledDetailOverview>
-      <Field>
-        <span>Tên phim:</span>
-        <Description>{data?.name}</Description>
-      </Field>
-      <Field>
-        <span>Ngày công chiếu:</span>
-        {formatLocaleDateString(data?.releaseDate)}
-      </Field>
-      <Field>
-        <span>Điểm đánh giá:</span>
-        <Description>{data?.rating}</Description>
-      </Field>
-      <Field>
-        <span>Đạo diễn:</span>
-        <Description>Adam Wingard</Description>
-      </Field>
-      <Field>
-        <span>Diễn viên:</span>
-        <Description>Kyle Chandler, Rebecca Hall, Eiza González, Millie Bobby Brown</Description>
-      </Field>
+      <h2 className="heading-sub">Overview</h2>
+      <p>
+        After settling in Green Hills, Sonic is eager to prove he has what it takes to be a true
+        hero. His test comes when Dr. Robotnik returns, this time with a new partner, Knuckles, in
+        search for an emerald that has the power to destroy civilizations. Sonic teams up with his
+        own sidekick, Tails, and together they embark on a globe-trotting journey to find the
+        emerald before it falls into the wrong hands.
+      </p>
     </StyledDetailOverview>
   );
 };
