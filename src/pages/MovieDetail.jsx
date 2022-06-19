@@ -21,8 +21,8 @@ const StyledMovieDetail = styled.div`
 
 const MovieDetail = () => {
   const { idDetail } = useParams();
-  console.log(idDetail);
   const [detail, setDetail] = useState();
+  const [detailTmdb, setDetailTmdb] = useState();
 
   const fetchMovieList = async () => {
     try {
@@ -39,8 +39,9 @@ const MovieDetail = () => {
   const fetchMovieTMDB = async () => {
     try {
       const { data } = await axios.get(
-        "https://api.themoviedb.org/3/movie/675353?api_key=95f2419536f533cdaa1dadf83c606027&language=en-US"
+        "https://api.themoviedb.org/3/movie/508947?api_key=95f2419536f533cdaa1dadf83c606027&language=en-US"
       );
+      setDetailTmdb(data);
       console.log(data);
     } catch (err) {
       console.log(err);
@@ -54,12 +55,10 @@ const MovieDetail = () => {
 
   return (
     <StyledMovieDetail>
-      <DetailBanner
-        hinhAnh={"https://image.tmdb.org/t/p/original/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg"}
-      />
+      <DetailBanner banner={detailTmdb?.backdrop_path} fallback={detail?.poster} />
       <div className="container">
-        <DetailHeader data={detail} />
-        <DetailOverview />
+        <DetailHeader detail={detail} detailTmdb={detailTmdb} />
+        <DetailOverview overview={detailTmdb?.overview} />
         <DetailCasts />
         <DetailTrailer />
       </div>

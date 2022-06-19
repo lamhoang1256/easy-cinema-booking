@@ -12,15 +12,18 @@ const StyledDetailBanner = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
-    border-radius: 10px;
+    object-position: center;
   }
 `;
 
-const DetailBanner = ({ hinhAnh }) => {
+const DetailBanner = ({ banner, fallback }) => {
   return (
     <StyledDetailBanner>
-      <ImageResize width="1440" height="470" className="banner-image" url={hinhAnh}></ImageResize>
+      <ImageResize
+        width="1440"
+        className="banner-image"
+        url={banner ? `https://image.tmdb.org/t/p/original/${banner}` : fallback}
+      ></ImageResize>
     </StyledDetailBanner>
   );
 };
