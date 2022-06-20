@@ -37,6 +37,7 @@ const StyledHomeShowtimes = styled.div`
     ${TextClamp.multilines(2)}
   }
   .movie-booking {
+    margin-top: 6px;
     width: 100%;
     background-color: var(--purple-color);
   }
@@ -47,6 +48,30 @@ const StyledHomeShowtimes = styled.div`
 
 export const HomeShowtimes = ({ showtimes }) => {
   if (showtimes?.length === 0) return <h3>No movies showing</h3>;
+  const isShowtimeAtHome = showtimes?.some((e) => e.hasOwnProperty("movie"));
+  if (!isShowtimeAtHome) {
+    return (
+      <StyledHomeShowtimes>
+        <Swiper grabCursor={"true"} spaceBetween={30} slidesPerView={"auto"}>
+          {showtimes?.map((showtime) => {
+            const { id, startTime, endTime, movie } = showtime;
+            return (
+              <SwiperSlide key={id}>
+                <div className="movie-meta">
+                  <span>Day: {moment(startTime).format("L")}</span>
+                  <span>Start: {moment(startTime).format("LT")}</span>
+                  <span>End: {moment(endTime).format("LT")}</span>
+                </div>
+                <Button to={`/booking/${showtime.id}`} className="movie-booking">
+                  Booking now
+                </Button>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </StyledHomeShowtimes>
+    );
+  }
   return (
     <StyledHomeShowtimes>
       <Swiper grabCursor={"true"} spaceBetween={30} slidesPerView={"auto"}>
@@ -60,8 +85,9 @@ export const HomeShowtimes = ({ showtimes }) => {
                 <div className="movie-meta">
                   <span>Rating: {rating}</span>
                   <span>Duration: {duration} minutes</span>
-                  <span>Start: {moment(startTime).format("lll")}</span>
-                  <span>End: {moment(endTime).format("lll")}</span>
+                  <span>Day: {moment(startTime).format("L")}</span>
+                  <span>Start: {moment(startTime).format("LT")}</span>
+                  <span>End: {moment(endTime).format("LT")}</span>
                 </div>
               </div>
               <div className="movie-bottom">

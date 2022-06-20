@@ -5,6 +5,7 @@ import Tag from "components/tag/Tag";
 import HomeCinemas from "./HomeCinemas";
 
 const StyledHomeComplexes = styled.div`
+  margin-top: 40px;
   padding-top: 40px;
   border-radius: 20px;
   background-color: var(--darker-color);
@@ -17,6 +18,8 @@ const StyledHomeComplexes = styled.div`
   }
   .theater-logo {
     width: 40px;
+    background-color: var(--white);
+    border-radius: 100rem;
   }
   .theater-name {
     font-size: 1.4rem;
@@ -29,12 +32,22 @@ const StyledHomeComplexes = styled.div`
   .ant-tabs-content-holder {
     width: 100%;
   }
-  .ant-tabs-top > .ant-tabs-nav {
-    padding-left: 10px;
+  .ant-tabs .ant-tabs-top .ant-tabs-content-holder {
+    padding: 0 20px;
+  }
+  .nohave {
+    padding: 20px;
+    color: var(--white);
+  }
+  @media screen and (max-width: 767.98px) {
+    .ant-tabs-tab + .ant-tabs-tab {
+      margin: 0 0 0 15px;
+    }
   }
 `;
 
-export const HomeComplexes = ({ cinemaComplexes }) => {
+export const HomeComplexes = (props) => {
+  const { cinemaComplexes } = props;
   const { TabPane } = Tabs;
   if (!cinemaComplexes) return <Skeleton height={300} borderRadius={10} />;
   return (
@@ -43,7 +56,6 @@ export const HomeComplexes = ({ cinemaComplexes }) => {
         Lịch chiếu phim
       </Tag>
       <Tabs defaultActiveKey="0" tabPosition="top">
-        {/* Render danh sách các hệ thống rạp VD: CVG, BHD, Galaxy */}
         {cinemaComplexes.map(({ logo, cinemas }, index) => (
           <TabPane key={index} tab={<TabLogo url={logo?.split("public/default")[1]} />}>
             <HomeCinemas cinemas={cinemas} />

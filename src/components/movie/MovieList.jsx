@@ -6,7 +6,7 @@ import MovieCardSkeleton from "./MovieCardSkeleton";
 import HeadingH3 from "components/heading/HeadingH3";
 
 const StyledMovieList = styled.div`
-  margin: 20px 0;
+  margin-top: 20px;
   .heading {
     color: var(--white);
     margin-bottom: 10px;

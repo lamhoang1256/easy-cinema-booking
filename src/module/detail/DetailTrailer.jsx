@@ -4,11 +4,13 @@ import useSWR from "swr";
 
 const StyledDetailTrailer = styled.div`
   margin-top: 40px;
+  margin-bottom: 40px;
   .trailer {
     width: 100%;
     aspect-ratio: 16/9;
   }
   .trailer-list {
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
@@ -19,16 +21,39 @@ const StyledDetailTrailer = styled.div`
     }
   }
 `;
+const StyledMyTrailer = styled.div`
+  .my-trailer {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+`;
 
-const DetailTrailer = () => {
+const MyTrailer = ({ embedId }) => (
+  <StyledMyTrailer>
+    <h2 className="heading-sub">Trailer</h2>
+    <iframe
+      className="my-trailer"
+      src={`https://www.youtube.com/embed/${embedId}`}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </StyledMyTrailer>
+);
+
+const DetailTrailer = ({ myTrailer }) => {
+  const arraySplited = myTrailer?.split("?v=");
+  const embedId = arraySplited[arraySplited?.length - 1];
+
   const movieId = "508947";
   const { data } = useSWR(tmdbAPI.getMovieMeta(movieId, "videos"), fetcher);
-  if (!data) return null;
+  if (!data) return <MyTrailer embedId={embedId} />;
   const { results } = data;
-  if (!results || results.length <= 0) return null;
+  if (!results || results.length <= 0) return <MyTrailer embedId={embedId} />;
   return (
     <StyledDetailTrailer>
-      <h2 className="heading-sub">Trailer</h2>
+      <MyTrailer embedId={embedId} />
       <div className="trailer-list">
         {results.slice(0, 6).map((item) => (
           <iframe

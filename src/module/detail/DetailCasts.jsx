@@ -1,15 +1,15 @@
-import useSWR from "swr";
 import { fetcher, tmdbAPI } from "apis/tmdbApi";
 import { TextClamp } from "assets/styles/_mixin";
-import Image from "components/image/Image";
+import ImageResize from "components/image/ImageResize";
 import styled from "styled-components";
+import useSWR from "swr";
 
 const StyledDetailCasts = styled.div`
   margin-top: 40px;
   .cast-list {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 20px 10px;
   }
   .cast-avatar {
     border-radius: 6px;
@@ -17,6 +17,11 @@ const StyledDetailCasts = styled.div`
   .cast-name {
     text-align: center;
     ${TextClamp.multilines(2)}
+  }
+  @media screen and (max-width: 767.98px) {
+    .cast-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 `;
 
@@ -30,13 +35,14 @@ const DetailCasts = () => {
     <StyledDetailCasts>
       <h2 className="heading-sub">Casts</h2>
       <div className="cast-list">
-        {cast.slice(0, 16).map((item) => (
+        {cast.slice(0, 18).map((item) => (
           <div className="cast-item">
-            <Image
+            <ImageResize
+              width="150"
               className="cast-avatar"
               url={`https://image.tmdb.org/t/p/original/${item.profile_path}`}
-            ></Image>
-            <h3 className="cast-name">{item.name}</h3>
+            ></ImageResize>
+            <span className="cast-name">{item.name}</span>
           </div>
         ))}
       </div>

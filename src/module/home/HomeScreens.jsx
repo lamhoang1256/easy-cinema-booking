@@ -27,7 +27,6 @@ const StyledHomeScreens = styled.div`
 const HomeScreens = ({ cinemas }) => {
   return (
     <StyledHomeScreens>
-      {/* Render danh sách các phòng chiếu phim của rạp */}
       {cinemas?.map((cinema) => (
         <div className="cinema" key={cinema.id}>
           <h3 className="cinema-title">Lịch chiếu phim {cinema?.name}</h3>

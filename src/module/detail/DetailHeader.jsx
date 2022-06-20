@@ -1,7 +1,8 @@
+import moment from "moment";
+import styled from "styled-components";
 import { TextClamp } from "assets/styles/_mixin";
 import FieldText from "components/field/FieldText";
-import Image from "components/image/Image";
-import styled from "styled-components";
+import ImageResize from "components/image/ImageResize";
 
 const StyledDetailHeader = styled.div`
   line-height: 2;
@@ -31,7 +32,19 @@ const StyledDetailHeader = styled.div`
   }
   .meta {
     display: flex;
-    gap: 30px;
+    gap: 10px 30px;
+  }
+  @media screen and (max-width: 767.98px) {
+    flex-direction: column;
+    .heading {
+      font-size: 2.6rem;
+    }
+    .content {
+      margin-top: -140px;
+    }
+    .meta {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -39,7 +52,8 @@ const DetailHeader = ({ detail, detailTmdb }) => {
   return (
     <StyledDetailHeader>
       <div className="poster">
-        <Image
+        <ImageResize
+          width="240"
           url={`https://image.tmdb.org/t/p/original/${detailTmdb?.poster_path}`}
           alt="poster"
         />
@@ -75,7 +89,7 @@ const DetailHeader = ({ detail, detailTmdb }) => {
           </FieldText>
           <FieldText>
             <span className="tag">Release Date:</span>
-            <span>{detail?.releaseDate}</span>
+            <span>{moment(detail?.releaseDate).format("L")}</span>
           </FieldText>
         </div>
       </div>

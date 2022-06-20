@@ -40,7 +40,6 @@ const Home = () => {
         <HomeBanner />
       </div>
       <div className="home-main">
-        {/* <HomeFilter cinemaComplexes={cinemaComplexes} /> */}
         <div className="container">
           <MovieList data={movieList} heading="Phim sắp chiếu" />
           <HomeComplexes cinemaComplexes={cinemaComplexes} />
