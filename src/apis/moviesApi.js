@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosClient from "./axiosClient";
 import axiosClient2 from "./axiosClient2";
 export const moviesApi = {

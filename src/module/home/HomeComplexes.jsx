@@ -46,14 +46,13 @@ const StyledHomeComplexes = styled.div`
   }
 `;
 
-export const HomeComplexes = (props) => {
-  const { cinemaComplexes } = props;
+export const HomeComplexes = ({ cinemaComplexes }) => {
   const { TabPane } = Tabs;
   if (!cinemaComplexes) return <Skeleton height={300} borderRadius={10} />;
   return (
     <StyledHomeComplexes>
       <Tag kind="secondary" className="heading">
-        Lịch chiếu phim
+        All showtime
       </Tag>
       <Tabs defaultActiveKey="0" tabPosition="top">
         {cinemaComplexes.map(({ logo, cinemas }, index) => (

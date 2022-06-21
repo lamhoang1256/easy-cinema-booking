@@ -5,7 +5,7 @@ import Table from "components/table/Table";
 import styled from "styled-components";
 import ActionView from "components/action/ActionView";
 
-const StyledCinemaManageComplexes = styled.div`
+const StyledComplexesManage = styled.div`
   .cinema-logo {
     width: 40px;
     height: 40px;
@@ -14,22 +14,22 @@ const StyledCinemaManageComplexes = styled.div`
   }
 `;
 
-const CinemaManageComplexes = () => {
-  const [cinemaComplexes, setCinemaComplexes] = useState([]);
-  const fetchCinemaComplexes = async () => {
+const ComplexesManage = () => {
+  const [cinemaComplexes, setComplexes] = useState([]);
+  const fetchComplexes = async () => {
     try {
       const { data } = await moviesApi.cinemaComplexesGet();
-      setCinemaComplexes(data.data.cinemaComplexes);
+      setComplexes(data.data.cinemaComplexes);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    fetchCinemaComplexes();
+    fetchComplexes();
   }, []);
 
   return (
-    <StyledCinemaManageComplexes>
+    <StyledComplexesManage>
       <Table>
         <table>
           <thead>
@@ -60,11 +60,11 @@ const CinemaManageComplexes = () => {
           </tbody>
         </table>
       </Table>
-    </StyledCinemaManageComplexes>
+    </StyledComplexesManage>
   );
 };
 
-export default CinemaManageComplexes;
+export default ComplexesManage;
 
 // "logo": "public/default/images/cinemaComplexes/cgv.jpeg",
 // "id": 4,

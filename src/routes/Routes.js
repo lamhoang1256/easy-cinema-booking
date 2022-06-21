@@ -2,20 +2,23 @@ import CinemaInformation from "module/cinema/CinemaInfomation";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+const SignUp = React.lazy(() => import("pages/Authentication/SignUp"));
+const SignIn = React.lazy(() => import("pages/Authentication/SignIn"));
+const MovieDetail = React.lazy(() => import("pages/MovieDetail/MovieDetail"));
+const Booking = React.lazy(() => import("pages/Booking/Booking"));
+// need optimize
 const DashboardLayout = React.lazy(() => import("module/dashboard/DashboardLayout"));
 const MainLayout = React.lazy(() => import("layouts/MainLayout"));
 const Home = React.lazy(() => import("pages/Home"));
 const Profile = React.lazy(() => import("pages/Profile"));
-const MovieDetail = React.lazy(() => import("pages/MovieDetail"));
 const NewsDetail = React.lazy(() => import("pages/NewsDetail"));
-const Booking = React.lazy(() => import("pages/Booking/Booking"));
-const SignUp = React.lazy(() => import("pages/Authentication/SignUp"));
-const SignIn = React.lazy(() => import("pages/Authentication/SignIn"));
 const NotFound = React.lazy(() => import("pages/NotFound"));
 const UserManage = React.lazy(() => import("module/user/UserManage"));
 const UserUpdate = React.lazy(() => import("module/user/UserUpdate"));
+const UserHistory = React.lazy(() => import("module/user/UserHistory"));
+const BookingHistory = React.lazy(() => import("module/booking/BookingHistory"));
 const MovieManage = React.lazy(() => import("module/movie/MovieManage"));
-const CinemaComplexesManage = React.lazy(() => import("module/cinema/CinemaComplexesManage"));
+const ComplexesManage = React.lazy(() => import("module/cinema/ComplexesManage"));
 const MainManage = React.lazy(() => import("pages/MainManage"));
 const MovieAddNew = React.lazy(() => import("module/movie/MovieAddNew"));
 const ShowtimeManage = React.lazy(() => import("module/showtime/ShowtimeManage"));
@@ -35,8 +38,10 @@ const RoutesComponent = () => {
             <Route index element={<Home />} />
             <Route path="/detail/:idDetail" element={<MovieDetail />} />
             <Route path="/user" element={<Profile />} />
+            <Route path="/user-history" element={<UserHistory />} />
             <Route path="/news/:idNewsDetail" element={<NewsDetail />} />
             <Route path="/booking/:id" element={<Booking />} />
+            <Route path="/booking-history/:id" element={<BookingHistory />} />
           </Route>
           {/* Admin Layout */}
           <Route path="/admin" element={<DashboardLayout />}>
@@ -49,7 +54,7 @@ const RoutesComponent = () => {
               <Route path="add" element={<MovieAddNew />} />
             </Route>
             <Route path="cinema-manage">
-              <Route index element={<CinemaComplexesManage />} />
+              <Route index element={<ComplexesManage />} />
               <Route path=":id" element={<CinemaManage />} />
               <Route path="information/:id" element={<CinemaInformation />} />
             </Route>

@@ -54,11 +54,11 @@ export const HomeShowtimes = ({ showtimes }) => {
       <StyledHomeShowtimes>
         <Swiper grabCursor={"true"} spaceBetween={30} slidesPerView={"auto"}>
           {showtimes?.map((showtime) => {
-            const { id, startTime, endTime, movie } = showtime;
+            const { id, startTime, endTime } = showtime;
             return (
               <SwiperSlide key={id}>
                 <div className="movie-meta">
-                  <span>Day: {moment(startTime).format("L")}</span>
+                  <span>Day: {moment(startTime).format("LL")}</span>
                   <span>Start: {moment(startTime).format("LT")}</span>
                   <span>End: {moment(endTime).format("LT")}</span>
                 </div>
@@ -85,7 +85,7 @@ export const HomeShowtimes = ({ showtimes }) => {
                 <div className="movie-meta">
                   <span>Rating: {rating}</span>
                   <span>Duration: {duration} minutes</span>
-                  <span>Day: {moment(startTime).format("L")}</span>
+                  <span>Day: {moment(startTime).format("LL")}</span>
                   <span>Start: {moment(startTime).format("LT")}</span>
                   <span>End: {moment(endTime).format("LT")}</span>
                 </div>

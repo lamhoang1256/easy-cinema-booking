@@ -1,5 +1,3 @@
-import { Tabs } from "antd";
-import { useEffect } from "react";
 import styled from "styled-components";
 const urlBanner = `url("/assets/images/background/news.png")`;
 
@@ -53,29 +51,7 @@ const StyledProfile = styled.div`
 `;
 
 const Profile = () => {
-  const { TabPane } = Tabs;
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return <>Profile</>;
 };
 
 export default Profile;
-
-// "taiKhoan": "TramQuynh127",
-// "matKhau": "123456789",
-// "email": "TramQuynh127@gmail.com",
-// "soDt": "090481451",
-// "maNhom": "GP00",
-// "maLoaiNguoiDung": "QuanTri",
-// "hoTen": "Nguyễn Thị Quỳnh Trâm"
-
-// taiKhoan:"TramQuynh127"
-// hoTen :"Lam Hoang Nguyen"
-// email :"TramQuynh127@gmail.com"
-// soDT :null
-// maNhom :"GP00"
-// maLoaiNguoiDung :"KhachHang"
-// accessToken :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVHJhbVF1eW5oMTI3IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiVHJhbVF1eW5oMTI3QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJLaGFjaEhhbmciLCJUcmFtUXV5bmgxMjdAZ21haWwuY29tIiwiR1AwMCJdLCJuYmYiOjE2NDk0MTQ5MjUsImV4cCI6MTY0OTQxODUyNX0.SlmtTcHgjj88hOz-z6caZHMxsD6E3wRros-K-q3TlMg"
