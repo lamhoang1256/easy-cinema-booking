@@ -10,6 +10,7 @@ import ActionStatus from "components/action/ActionStatus";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
 import ImageResize from "components/image/ImageResize";
+import ActionView from "components/action/ActionView";
 
 const StyledBookingHistory = styled.div`
   .booking-header {
@@ -82,6 +83,7 @@ const BookingDetail = () => {
     try {
       const { data } = await bookingsApi.bookingCancel(booking?.id);
       if (data.status === "success") toast.success("Booking cancelled successfully");
+      fetchBookingDetail();
     } catch (error) {
       console.log(error);
     }
@@ -120,6 +122,10 @@ const BookingDetail = () => {
           <Field>
             <h3>Total money</h3>
             <span>{calculateSumMoney(booking?.tickets, "price")}</span>
+          </Field>
+          <Field>
+            <h3>Action</h3>
+            <ActionView to={`/booking/${showtime?.id}`}></ActionView>
           </Field>
         </div>
         <div className="booking-movie">

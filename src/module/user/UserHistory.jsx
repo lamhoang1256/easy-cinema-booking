@@ -16,7 +16,8 @@ const UserHistory = () => {
     setLoading(true);
     try {
       const { data } = await usersApi.userMyBooking();
-      setBookings(data.data.bookings);
+      const sortBooking = data.data.bookings.sort((a, b) => b.id - a.id);
+      setBookings(sortBooking);
       setLoading(false);
     } catch (error) {
       setLoading(false);

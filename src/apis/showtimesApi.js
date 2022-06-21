@@ -5,4 +5,8 @@ export const showtimesApi = {
     const path = `/api/showtimes/${id}`;
     return axiosClient2.get(path);
   },
+  showtimeGetByComplexes: () => {
+    const path = `/api/cinema-complexes/showtimes`;
+    return axiosClient2.get(path);
+  },
 };

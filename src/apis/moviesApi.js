@@ -66,6 +66,10 @@ export const moviesApi = {
   },
 
   // Refactor
+  movieGetWithPagination: (params) => {
+    const path = `https://roxy-cinema-api.herokuapp.com/api/movies`;
+    return axiosClient2.get(path, { params });
+  },
   movieDetailApi: (id) => {
     const path = `/api/movies/${id}`;
     return axiosClient2.get(path);

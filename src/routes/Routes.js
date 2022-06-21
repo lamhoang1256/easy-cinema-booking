@@ -9,10 +9,10 @@ const Booking = React.lazy(() => import("pages/Booking/Booking"));
 // need optimize
 const DashboardLayout = React.lazy(() => import("module/dashboard/DashboardLayout"));
 const MainLayout = React.lazy(() => import("layouts/MainLayout"));
-const Home = React.lazy(() => import("pages/Home"));
+const Home = React.lazy(() => import("pages/Home/Home"));
 const UserProfile = React.lazy(() => import("module/user/UserProfile"));
-const NewsDetail = React.lazy(() => import("pages/NewsDetail"));
-const NotFound = React.lazy(() => import("pages/NotFound"));
+const NewsDetail = React.lazy(() => import("pages/Article/NewsDetail"));
+const NotFound = React.lazy(() => import("pages/NotFound/NotFound"));
 const UserManage = React.lazy(() => import("module/user/UserManage"));
 const UserUpdate = React.lazy(() => import("module/user/UserUpdate"));
 const UserHistory = React.lazy(() => import("module/user/UserHistory"));

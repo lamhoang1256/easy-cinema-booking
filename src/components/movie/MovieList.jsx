@@ -1,9 +1,7 @@
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { v4 as uuidv4 } from "uuid";
-import MovieCard from "./MovieCard";
-import MovieCardSkeleton from "./MovieCardSkeleton";
 import HeadingH3 from "components/heading/HeadingH3";
+import Pagination from "components/pagination/Pagination";
+import styled from "styled-components";
+import MovieCard from "./MovieCard";
 
 const StyledMovieList = styled.div`
   margin-top: 20px;
@@ -17,36 +15,20 @@ const StyledMovieList = styled.div`
   }
   .movie-list {
     margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-gap: 20px;
   }
 `;
 
-const MovieList = ({ data, heading }) => {
+const MovieList = ({ data, heading, pagination, handlePageChange }) => {
   return (
     <StyledMovieList>
       <HeadingH3 kind="grayDarker">{heading}</HeadingH3>
       <div className="movie-list">
-        {data && (
-          <Swiper grabCursor={"true"} spaceBetween={30} slidesPerView={"auto"}>
-            {data.length > 0 &&
-              data.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <MovieCard movie={item}></MovieCard>
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        )}
-        {!data && (
-          <Swiper grabCursor={"true"} spaceBetween={30} slidesPerView={"auto"}>
-            {Array(6)
-              .fill(0)
-              .map(() => (
-                <SwiperSlide key={uuidv4()}>
-                  <MovieCardSkeleton />
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        )}
+        {data?.length > 0 && data.map((item) => <MovieCard movie={item} key={item.id}></MovieCard>)}
       </div>
+      <Pagination pagination={pagination} onPageChange={handlePageChange}></Pagination>
     </StyledMovieList>
   );
 };
