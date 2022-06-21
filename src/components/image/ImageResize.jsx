@@ -1,5 +1,5 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { resizeImage } from "constants/resizeImage";
+import { path } from "constants/path";
 import { Link } from "react-router-dom";
 
 const ImageResize = ({ to, url, width, height, alt, className }) => {
@@ -8,7 +8,7 @@ const ImageResize = ({ to, url, width, height, alt, className }) => {
       <Link to={to}>
         <LazyLoadImage
           className={className}
-          src={resizeImage(url, width, height)}
+          src={path.resizeImage(url, width, height)}
           effect="opacity"
           alt={alt}
         />
@@ -18,7 +18,7 @@ const ImageResize = ({ to, url, width, height, alt, className }) => {
   return (
     <LazyLoadImage
       className={className}
-      src={resizeImage(url, width, height)}
+      src={path.resizeImage(url, width, height)}
       effect="opacity"
       alt={alt}
     />

@@ -34,6 +34,7 @@ const CinemaManage = () => {
   }, [pagination.page, id]);
 
   if (loading) return "Loading";
+  if (cinemaList.length === 0) return <span>No cinema</span>;
   return (
     <StyledCinemaManage>
       <Table>

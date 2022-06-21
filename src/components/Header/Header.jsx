@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { scroller } from "react-scroll";
-import "./header.scss";
 
 const headerNav = [
   { display: "Lịch chiếu", path: "showtime" },
