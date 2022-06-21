@@ -5,10 +5,14 @@ import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
 import Button from "components/button/Button";
 import ImageResize from "components/image/ImageResize";
+import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
+import { usePagination } from "hooks/usePagination";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import { formatISOtoLocaleDateString } from "utilities/formatDate";
+import { sortArrayDescending } from "utilities/helper";
 
 const StyledShowtimeManage = styled.div`
   .poster {
@@ -26,30 +30,32 @@ const StyledShowtimeManage = styled.div`
 const ShowtimeManage = () => {
   const [loading, setLoading] = useState(true);
   const [showtimes, setShowtimes] = useState([]);
+  const { pagination, handlePageChange, setPagination } = usePagination();
 
-  const handleDeleteShowtime = (id) => {
-    try {
-      moviesApi.showtimeDelete(id);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchCinemaComplexes = async () => {
+  const fetchShowtimes = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.showtimeGetAll();
-      setShowtimes(data.data.showtimes);
+      const { data } = await moviesApi.showtimeGetWithPagination(pagination);
+      setShowtimes(sortArrayDescending(data.data.showtimes, "id"));
+      setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log(error);
+    }
+  };
+  const handleDeleteShowtime = async (id) => {
+    try {
+      const { data } = await moviesApi.showtimeDelete(id);
+      if (data?.status === "success") toast.success("Delete showtime successfully");
+      fetchShowtimes();
+    } catch (error) {
+      toast.error(error?.message);
     }
   };
 
   useEffect(() => {
-    fetchCinemaComplexes();
-  }, []);
+    fetchShowtimes();
+  }, [pagination.page]);
 
   if (loading) return "Loading";
   return (
@@ -94,6 +100,7 @@ const ShowtimeManage = () => {
           ))}
         </table>
       </Table>
+      <Pagination pagination={pagination} onPageChange={handlePageChange} />
     </StyledShowtimeManage>
   );
 };

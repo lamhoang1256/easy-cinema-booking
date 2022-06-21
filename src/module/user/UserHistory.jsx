@@ -2,22 +2,33 @@ import styled from "styled-components";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { usersApi } from "apis/usersApi";
-import { calculateSumMoney } from "utilities/helper";
+import { calculateSumMoney, sortArrayDescending } from "utilities/helper";
 import Table from "components/table/Table";
 import ActionStatus from "components/action/ActionStatus";
 import ActionView from "components/action/ActionView";
+import { usePagination } from "hooks/usePagination";
+import Pagination from "components/pagination/Pagination";
 
 const StyledUserHistory = styled.div``;
 
 const UserHistory = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { pagination, setPagination } = usePagination();
+  const { page, limit } = pagination;
+  const displayVisited = page * limit;
+  const displayBookings = bookings.slice(displayVisited - limit, displayVisited);
+
+  const handlePageChange = (newPage) => {
+    setPagination({ ...pagination, page: newPage });
+  };
   const fetchMyBookings = async () => {
     setLoading(true);
     try {
       const { data } = await usersApi.userMyBooking();
-      const sortBooking = data.data.bookings.sort((a, b) => b.id - a.id);
+      const sortBooking = sortArrayDescending(data.data.bookings, "id");
       setBookings(sortBooking);
+      setPagination({ ...pagination, totalPages: Math.ceil(sortBooking?.length / limit) });
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -47,7 +58,7 @@ const UserHistory = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings.map((booking) => (
+              {displayBookings.map((booking) => (
                 <tr key={booking.id}>
                   <td>{booking.id}</td>
                   <td>{moment(booking.createdAt).format("LLL")}</td>
@@ -60,7 +71,7 @@ const UserHistory = () => {
                   </td>
                   <td>
                     {booking.tickets.map((ticket) => (
-                      <span>{ticket.seatId}, </span>
+                      <span key={ticket.seatId}>{ticket.seatId}, </span>
                     ))}
                   </td>
                   <td>{booking.tickets[0].showtimeId}</td>
@@ -73,6 +84,7 @@ const UserHistory = () => {
             </tbody>
           </table>
         </Table>
+        <Pagination pagination={pagination} onPageChange={handlePageChange} />
       </div>
     </StyledUserHistory>
   );

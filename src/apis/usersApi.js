@@ -1,8 +1,12 @@
 import axiosClient2 from "./axiosClient2";
 
 export const usersApi = {
-  userGetAll: (params) => {
+  userGetAll: () => {
     const path = `/api/users/all`;
+    return axiosClient2.get(path);
+  },
+  userGetWithPagination: (params) => {
+    const path = `/api/users`;
     return axiosClient2.get(path, { params });
   },
   userGetSingle: (id) => {

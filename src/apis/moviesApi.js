@@ -66,6 +66,10 @@ export const moviesApi = {
   },
 
   // Refactor
+  movieGetAll: () => {
+    const path = `https://roxy-cinema-api.herokuapp.com/api/movies/all`;
+    return axiosClient2.get(path);
+  },
   movieGetWithPagination: (params) => {
     const path = `https://roxy-cinema-api.herokuapp.com/api/movies`;
     return axiosClient2.get(path, { params });
@@ -99,6 +103,10 @@ export const moviesApi = {
     const path = `/api/cinemas/all`;
     return axiosClient2.get(path, { params });
   },
+  cinemaGetWithPagination: (params) => {
+    const path = `/api/cinemas`;
+    return axiosClient2.get(path, { params });
+  },
   cinemasGetSingle: (id) => {
     const path = `/api/cinemas/${id}`;
     return axiosClient2.get(path);
@@ -112,6 +120,10 @@ export const moviesApi = {
   showtimeGetAll: () => {
     const path = `/api/showtimes/all`;
     return axiosClient2.get(path);
+  },
+  showtimeGetWithPagination: (params) => {
+    const path = `api/showtimes`;
+    return axiosClient2.get(path, { params });
   },
   showtimeGetSingle: (id) => {
     const path = `/api/showtimes/${id}`;

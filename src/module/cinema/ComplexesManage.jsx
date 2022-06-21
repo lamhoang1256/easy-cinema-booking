@@ -16,18 +16,22 @@ const StyledComplexesManage = styled.div`
 
 const ComplexesManage = () => {
   const [cinemaComplexes, setComplexes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const fetchComplexes = async () => {
+    setLoading(true);
     try {
       const { data } = await moviesApi.cinemaComplexesGet();
       setComplexes(data.data.cinemaComplexes);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
     fetchComplexes();
   }, []);
 
+  if (loading) return "Loading";
   return (
     <StyledComplexesManage>
       <Table>

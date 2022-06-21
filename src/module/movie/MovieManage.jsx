@@ -10,6 +10,8 @@ import { createKeyForObj } from "utilities/createKeyForObject";
 import styled from "styled-components";
 import { TextClamp } from "assets/styles/_mixin";
 import ImageResize from "components/image/ImageResize";
+import Pagination from "components/pagination/Pagination";
+import { usePagination } from "hooks/usePagination";
 
 const StyledMovieManage = styled.div`
   .title {
@@ -30,15 +32,16 @@ const StyledMovieManage = styled.div`
 `;
 
 const MovieManage = () => {
-  const [movieList, setMovieList] = useState(null);
+  const [movieList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { pagination, handlePageChange, setPagination } = usePagination();
 
   const fetchMovieList = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("https://roxy-cinema-api.herokuapp.com/api/movies/all");
-      const movieListHasKey = createKeyForObj(data.data.movies);
-      setMovieList(movieListHasKey);
+      const { data } = await moviesApi.movieGetWithPagination(pagination);
+      setMovieList(data.data.movies);
+      setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -47,7 +50,7 @@ const MovieManage = () => {
 
   useEffect(() => {
     fetchMovieList();
-  }, []);
+  }, [pagination.page]);
 
   const handleDeleteMovie = (idMovie) => {
     Swal.fire({
@@ -77,7 +80,6 @@ const MovieManage = () => {
   };
 
   if (loading) return <div>Loading</div>;
-
   return (
     <StyledMovieManage>
       <Table>
@@ -124,6 +126,7 @@ const MovieManage = () => {
           </tbody>
         </table>
       </Table>
+      <Pagination pagination={pagination} onPageChange={handlePageChange} />
     </StyledMovieManage>
   );
 };

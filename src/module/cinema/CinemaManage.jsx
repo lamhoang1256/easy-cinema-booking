@@ -1,30 +1,39 @@
-import { moviesApi } from "apis/moviesApi";
-import ActionView from "components/action/ActionView";
-import Table from "components/table/Table";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { moviesApi } from "apis/moviesApi";
+import { usePagination } from "hooks/usePagination";
+import Table from "components/table/Table";
+import ActionView from "components/action/ActionView";
+import Pagination from "components/pagination/Pagination";
 
 const StyledCinemaManage = styled.div``;
 
 const CinemaManage = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
   const [cinemaList, setCinemaList] = useState([]);
-  const fetchCinemaComplexe = async () => {
+  const { pagination, handlePageChange, setPagination } = usePagination();
+
+  const fetchCinemaList = async () => {
+    setLoading(true);
     try {
       const { data } = await moviesApi.cinemaComplexesGetSingle(id);
       const { name } = data.data.cinemaComplex;
-      const response2 = await moviesApi.cinemasGetAll({ name });
-      console.log(response2.data.data);
-      setCinemaList(response2.data.data.cinemas);
+      const res2 = await moviesApi.cinemaGetWithPagination({ ...pagination, name });
+      setCinemaList(res2.data.data.cinemas);
+      setPagination({ ...pagination, totalPages: res2.data.data.pagination.totalPages });
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
     }
   };
-  useEffect(() => {
-    fetchCinemaComplexe();
-  }, [id]);
 
+  useEffect(() => {
+    fetchCinemaList();
+  }, [pagination.page, id]);
+
+  if (loading) return "Loading";
   return (
     <StyledCinemaManage>
       <Table>
@@ -53,6 +62,7 @@ const CinemaManage = () => {
           </tbody>
         </table>
       </Table>
+      <Pagination pagination={pagination} onPageChange={handlePageChange} />
     </StyledCinemaManage>
   );
 };

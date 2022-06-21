@@ -1,25 +1,34 @@
 import { usersApi } from "apis/usersApi";
 import ActionUpdate from "components/action/ActionUpdate";
+import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
+import { usePagination } from "hooks/usePagination";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { sortArrayDescending } from "utilities/helper";
 
 const StyledUserManage = styled.div``;
 
 const UserManage = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { pagination, handlePageChange, setPagination } = usePagination();
   const fetchAllUser = async () => {
+    setLoading(true);
     try {
-      const { data } = await usersApi.userGetAll();
+      const { data } = await usersApi.userGetWithPagination(pagination);
       setUsers(data.data.users);
+      setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
     fetchAllUser();
-  }, []);
+  }, [pagination.page]);
 
+  if (loading) return "Loading";
   return (
     <StyledUserManage>
       <Table>
@@ -52,6 +61,7 @@ const UserManage = () => {
           </tbody>
         </table>
       </Table>
+      <Pagination pagination={pagination} onPageChange={handlePageChange} />
     </StyledUserManage>
   );
 };
