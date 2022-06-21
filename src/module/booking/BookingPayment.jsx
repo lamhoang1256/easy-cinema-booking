@@ -2,6 +2,7 @@ import { moviesApi } from "apis/moviesApi";
 import Button from "components/button/Button";
 import Field from "components/field/FieldText";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import Swal from "sweetalert2";
@@ -19,6 +20,7 @@ const StyledBookingPayment = styled.div`
 `;
 
 const BookingPayment = () => {
+  const navigate = useNavigate();
   const { isSelecting, showtime } = useSelector((state) => state.booking);
   const isHaveSelecting = isSelecting.length > 0;
 
@@ -33,6 +35,7 @@ const BookingPayment = () => {
     try {
       const { data } = await moviesApi.bookingAddNew(values);
       if (data?.status === "success") toast.success("Success Booking Ticket");
+      navigate(`/booking-history/${data?.data?.booking?.id}`);
     } catch (error) {
       toast.error(error.message);
     }

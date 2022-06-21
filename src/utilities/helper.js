@@ -7,3 +7,29 @@ export const calculateSumMoney = (array, keyObj) => {
   }, 0);
   return formatVND(total);
 };
+
+export const removeNullAndUndefinedProperties = (obj) => {
+  Object.keys(obj).forEach((key) => {
+    let value = obj[key];
+    let hasProperties = value && Object.keys(value).length > 0;
+    if (value === null || value === undefined) {
+      delete obj[key];
+    } else if (typeof value !== "string" && hasProperties) {
+      removeNullAndUndefinedProperties(value);
+    }
+  });
+  return obj;
+};
+
+export const removeEmptyStringProperties = (obj) => {
+  Object.keys(obj).forEach((key) => {
+    let value = obj[key];
+    let hasProperties = value && Object.keys(value).length > 0;
+    if (value === "") {
+      delete obj[key];
+    } else if (typeof value !== "string" && hasProperties) {
+      removeEmptyStringProperties(value);
+    }
+  });
+  return obj;
+};

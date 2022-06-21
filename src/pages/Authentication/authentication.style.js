@@ -8,6 +8,7 @@ export const StyledButtonAuth = styled.button`
   line-height: 2.4rem;
   font-weight: 600;
   margin: 7px 0;
+  background-color: rgba(61, 180, 242);
   img {
     position: absolute;
     top: 50%;

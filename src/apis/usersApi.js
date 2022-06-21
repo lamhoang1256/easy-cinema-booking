@@ -25,4 +25,12 @@ export const usersApi = {
     const path = `api/auth/my-bookings`;
     return axiosClient2.get(path);
   },
+  userMyProfile: () => {
+    const path = `/api/auth/my-profile`;
+    return axiosClient2.get(path);
+  },
+  userUpdateProfile: (user) => {
+    const path = `/api/auth/update-profile`;
+    return axiosClient2.put(path, user);
+  },
 };
