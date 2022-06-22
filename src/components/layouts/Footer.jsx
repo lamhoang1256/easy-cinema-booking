@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  margin-top: 50px;
+  margin-top: 30px;
   padding: 50px 0 50px;
-  background-color: #e8e8e8;
-
   .footer-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -21,7 +19,7 @@ const StyledFooter = styled.footer`
   .footer-item:first-child {
     h3 {
       font-size: 3rem;
-      color: $primary-color;
+      color: var(--primary-color);
       margin: 0 0 5px;
     }
     p {
@@ -55,10 +53,14 @@ const StyledFooter = styled.footer`
     height: 80px;
   }
   @media screen and (max-width: 1023.98px) {
-    grid-template-columns: repeat(2, 1fr);
+    .footer-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   @media screen and (max-width: 767.98px) {
-    grid-template-columns: repeat(1, 1fr);
+    .footer-list {
+      grid-template-columns: repeat(1, 1fr);
+    }
     .footer-bottom {
       flex-direction: column;
     }

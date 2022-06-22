@@ -1,6 +1,6 @@
-import Button from "components/button/Button";
 import { Link, NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import Button from "components/button/Button";
 
 const StyledSidebar = styled.div`
   width: 300px;
@@ -8,6 +8,7 @@ const StyledSidebar = styled.div`
   min-height: 80vh;
   padding-top: 40px;
   flex-shrink: 0;
+  transition: all 0.25s linear;
   .sidebar-logo {
     text-align: center;
     margin-bottom: 20px;
@@ -42,14 +43,25 @@ const StyledSidebar = styled.div`
       background-color: #461d6a;
     }
   }
-  @media screen and (max-width: 767.98px) {
-    display: none;
+  @media screen and (max-width: 1023.98px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #280f4c;
+    transform: translateX(-100%);
+    z-index: 100;
+    ${(props) =>
+      props.showSidebar === true &&
+      css`
+        transform: translateX(0);
+      `}
   }
 `;
 
-const Sidebar = () => {
+const Sidebar = ({ ...props }) => {
   return (
-    <StyledSidebar>
+    <StyledSidebar {...props}>
       <div className="sidebar">
         <Link to="/admin">
           <h2 className="sidebar-heading">Cineplex Admin</h2>

@@ -50,7 +50,7 @@ export const HomeComplexes = ({ cinemaComplexes }) => {
   const { TabPane } = Tabs;
   if (!cinemaComplexes) return <Skeleton height={300} borderRadius={10} />;
   return (
-    <StyledHomeComplexes>
+    <StyledHomeComplexes id="showtimes">
       <Tag kind="secondary" className="heading">
         All showtime
       </Tag>

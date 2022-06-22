@@ -12,7 +12,7 @@ const StyledHomeCinemas = styled.div`
     padding: 14px 20px;
   }
   .ant-tabs-left .ant-tabs-tab.ant-tabs-tab-active {
-    background-image: var(--primary-gradient);
+    background-image: var(--gradient-primary);
   }
 `;
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
-import Footer from "components/Footer/Footer";
-import Header from "components/Header/Header";
+import Footer from "components/layouts/Footer";
+import Header from "components/layouts/Header";
 
 const StyledMainLayout = styled.div`
   main {

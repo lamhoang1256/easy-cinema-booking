@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Banner from "components/Banner/Banner";
 import PostRelated from "components/post/PostRelated";
 import { dataFakeNews } from "constants/dataFakeNews";
 import Description from "components/text/Description";
@@ -45,7 +44,6 @@ const StyledNewsDetail = styled.div`
   }
 `;
 
-const urlBanner = `/assets/images/background/news.png`;
 const NewsDetail = () => {
   const { idNewsDetail } = useParams();
   const news = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
@@ -62,7 +60,6 @@ const NewsDetail = () => {
   }
   return (
     <StyledNewsDetail>
-      <Banner urlBanner={`url(${urlBanner})`} heading={"Trang tin chi tiết"} />
       <div className="container">
         <div className="grid-layout">
           <div className="column1">

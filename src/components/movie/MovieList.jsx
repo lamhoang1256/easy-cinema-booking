@@ -1,7 +1,6 @@
-import HeadingH3 from "components/heading/HeadingH3";
-import Pagination from "components/pagination/Pagination";
 import styled from "styled-components";
 import MovieCard from "./MovieCard";
+import Pagination from "components/pagination/Pagination";
 
 const StyledMovieList = styled.div`
   margin-top: 20px;
@@ -24,7 +23,7 @@ const StyledMovieList = styled.div`
 const MovieList = ({ data, heading, pagination, handlePageChange }) => {
   return (
     <StyledMovieList>
-      <HeadingH3 kind="grayDarker">{heading}</HeadingH3>
+      <h3>{heading}</h3>
       <div className="movie-list">
         {data?.length > 0 && data.map((item) => <MovieCard movie={item} key={item.id}></MovieCard>)}
       </div>

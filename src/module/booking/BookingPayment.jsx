@@ -15,7 +15,7 @@ const StyledBookingPayment = styled.div`
     margin-top: 20px;
     width: 100%;
     height: 50px;
-    background-color: var(--blue-color);
+    background-color: var(--primary-color);
   }
 `;
 
