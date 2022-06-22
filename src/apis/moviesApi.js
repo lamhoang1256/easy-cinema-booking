@@ -74,8 +74,12 @@ export const moviesApi = {
     const path = `https://roxy-cinema-api.herokuapp.com/api/movies`;
     return axiosClient2.get(path, { params });
   },
-  movieDetail: (id) => {
+  movieGetDetail: (id) => {
     const path = `/api/movies/${id}`;
+    return axiosClient2.get(path);
+  },
+  movieGetShowtime: (id) => {
+    const path = `/api/movies/${id}/showtimes`;
     return axiosClient2.get(path);
   },
   movieAddNew: (data) => {

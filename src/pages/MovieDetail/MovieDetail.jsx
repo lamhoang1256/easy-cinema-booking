@@ -1,11 +1,12 @@
-import axios from "axios";
-import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { useParams, useSearchParams } from "react-router-dom";
+import { moviesApi } from "apis/moviesApi";
+import { tmdbAPI } from "apis/tmdbApi";
 import DetailBanner from "module/detail/DetailBanner";
-import DetailCasts from "module/detail/DetailCasts";
 import DetailHeader from "module/detail/DetailHeader";
 import DetailOverview from "module/detail/DetailOverview";
+import DetailCasts from "module/detail/DetailCasts";
 import DetailTrailer from "module/detail/DetailTrailer";
 import HomeComplexes from "module/home/HomeComplexes";
 
@@ -21,62 +22,57 @@ const StyledMovieDetail = styled.div`
 `;
 
 const MovieDetail = () => {
-  const { idDetail } = useParams();
+  const { id } = useParams();
+  const [searchParams] = useSearchParams();
+  const tmdbId = searchParams.get("tmdbId");
   const [loading, setLoading] = useState(true);
-  const [detail, setDetail] = useState();
-  const [detailTmdb, setDetailTmdb] = useState();
+  const [detail, setDetail] = useState([]);
+  const [detailTmdb, setDetailTmdb] = useState([]);
   const [cinemaComplexes, setCinemaComplexes] = useState([]);
 
-  const fetchMovieList = async () => {
-    setLoading(true);
+  const fetchMovieDetailTMDB = async () => {
     try {
-      const { data } = await axios.get(
-        "https://roxy-cinema-api.herokuapp.com/api/movies/" + idDetail
-      );
-      setDetail(data.data.movie);
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-    }
-  };
-
-  const fetchMovieTMDB = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://api.themoviedb.org/3/movie/508947?api_key=95f2419536f533cdaa1dadf83c606027&language=en-US"
-      );
+      const { data } = await tmdbAPI.getMovieDetail(tmdbId);
       setDetailTmdb(data);
     } catch (err) {
       console.log(err);
     }
   };
-
   const fetchCinemaComplexes = async () => {
     try {
-      const { data } = await axios.get(
-        "https://roxy-cinema-api.herokuapp.com/api/movies/4/showtimes"
-      );
+      const { data } = await moviesApi.movieGetShowtime(id);
       setCinemaComplexes(data.data.cinemaComplexes);
     } catch (err) {
       console.log(err);
     }
   };
-
+  const fetchMovieDetail = async () => {
+    setLoading(true);
+    try {
+      const { data } = await moviesApi.movieGetDetail(id);
+      setDetail(data.data.movie);
+      await fetchMovieDetailTMDB();
+      await fetchCinemaComplexes();
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    fetchMovieList();
-    fetchMovieTMDB();
-    fetchCinemaComplexes();
-  }, []);
+    fetchMovieDetail();
+  }, [id]);
 
   if (loading) return "Loading";
+  const { poster, description, trailer } = detail;
+  const { overview, backdrop_path } = detailTmdb;
   return (
     <StyledMovieDetail>
-      <DetailBanner banner={detailTmdb?.backdrop_path} fallback={detail?.poster} />
+      <DetailBanner banner={backdrop_path} fallback={poster} />
       <div className="container">
         <DetailHeader detail={detail} detailTmdb={detailTmdb} />
-        <DetailOverview overview={detailTmdb?.overview} />
+        <DetailOverview description={description} overview={overview} />
         <DetailCasts />
-        <DetailTrailer myTrailer={detail?.trailer} />
+        <DetailTrailer myTrailer={trailer} />
         <HomeComplexes cinemaComplexes={cinemaComplexes} />
       </div>
     </StyledMovieDetail>

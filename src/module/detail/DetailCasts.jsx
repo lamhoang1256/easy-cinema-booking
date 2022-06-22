@@ -1,6 +1,7 @@
 import { fetcher, tmdbAPI } from "apis/tmdbApi";
 import { TextClamp } from "assets/styles/_mixin";
 import ImageResize from "components/image/ImageResize";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -26,8 +27,9 @@ const StyledDetailCasts = styled.div`
 `;
 
 const DetailCasts = () => {
-  const movieId = "508947";
-  const { data } = useSWR(tmdbAPI.getMovieMeta(movieId, "credits"), fetcher);
+  const [searchParams] = useSearchParams();
+  const tmdbId = searchParams.get("tmdbId");
+  const { data } = useSWR(tmdbAPI.getMovieMeta(tmdbId, "credits"), fetcher);
   if (!data) return null;
   const { cast } = data;
   if (!cast || cast.length <= 0) return null;
@@ -36,7 +38,7 @@ const DetailCasts = () => {
       <h2 className="heading-sub">Casts</h2>
       <div className="cast-list">
         {cast.slice(0, 18).map((item) => (
-          <div className="cast-item">
+          <div className="cast-item" key={item.id}>
             <ImageResize
               width="150"
               className="cast-avatar"

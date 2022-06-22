@@ -28,7 +28,7 @@ const StyledDetailHeader = styled.div`
   .summary {
     margin-top: 10px;
     font-size: 1.75rem;
-    ${TextClamp.multilines(4)}
+    ${TextClamp.multilines(2)}
   }
   .meta {
     display: flex;
@@ -52,11 +52,7 @@ const DetailHeader = ({ detail, detailTmdb }) => {
   return (
     <StyledDetailHeader>
       <div className="poster">
-        <ImageResize
-          width="240"
-          url={`https://image.tmdb.org/t/p/original/${detailTmdb?.poster_path}`}
-          alt="poster"
-        />
+        <ImageResize width="240" url={detail?.poster} alt="poster" />
       </div>
       <div className="content">
         <h1 className="heading">{detail?.name}</h1>

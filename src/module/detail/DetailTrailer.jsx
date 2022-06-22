@@ -1,4 +1,5 @@
 import { fetcher, tmdbAPI } from "apis/tmdbApi";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -46,8 +47,9 @@ const DetailTrailer = ({ myTrailer }) => {
   const arraySplited = myTrailer?.split("?v=");
   const embedId = arraySplited[arraySplited?.length - 1];
 
-  const movieId = "508947";
-  const { data } = useSWR(tmdbAPI.getMovieMeta(movieId, "videos"), fetcher);
+  const [searchParams] = useSearchParams();
+  const tmdbId = searchParams.get("tmdbId");
+  const { data } = useSWR(tmdbAPI.getMovieMeta(tmdbId, "videos"), fetcher);
   if (!data) return <MyTrailer embedId={embedId} />;
   const { results } = data;
   if (!results || results.length <= 0) return <MyTrailer embedId={embedId} />;

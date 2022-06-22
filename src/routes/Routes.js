@@ -37,7 +37,7 @@ const RoutesComponent = () => {
           {/* Main Layout */}
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path="/detail/:idDetail" element={<MovieDetail />} />
+            <Route path="/detail/:id/*" element={<MovieDetail />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/user-history" element={<UserHistory />} />
             <Route path="/news/:idNewsDetail" element={<NewsDetail />} />

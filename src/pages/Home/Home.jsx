@@ -5,6 +5,7 @@ import { usePagination } from "hooks/usePagination";
 import HomeComplexes from "module/home/HomeComplexes";
 import HomeFeature from "module/home/HomeFeature";
 import MovieList from "components/movie/MovieList";
+import HomeBanner from "module/home/HomeBanner";
 
 const Home = () => {
   const [movieList, setMovieList] = useState({ loading: true, data: [] });
@@ -40,7 +41,9 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="home-top">{/* <HomeBanner /> */}</div>
+      <div className="home-top">
+        <HomeBanner />
+      </div>
       <div className="home-main">
         <div className="container">
           <MovieList
