@@ -1,8 +1,4 @@
 import RoutesComponent from "routes/Routes";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "react-loading-skeleton/dist/skeleton.css";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

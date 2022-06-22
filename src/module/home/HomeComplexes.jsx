@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Tabs } from "antd";
-import Skeleton from "react-loading-skeleton";
 import Tag from "components/tag/Tag";
 import HomeCinemas from "./HomeCinemas";
 
@@ -48,7 +47,7 @@ const StyledHomeComplexes = styled.div`
 
 export const HomeComplexes = ({ cinemaComplexes }) => {
   const { TabPane } = Tabs;
-  if (!cinemaComplexes) return <Skeleton height={300} borderRadius={10} />;
+  if (!cinemaComplexes) return "Loading";
   return (
     <StyledHomeComplexes id="showtimes">
       <Tag kind="secondary" className="heading">
