@@ -11,7 +11,7 @@ const StyledMovieCard = styled.div`
     border-radius: 4px;
     overflow: hidden;
     background-color: var(--bg-skeleton);
-    aspect-ratio: 2/2.7;
+    aspect-ratio: 2/3;
   }
   .card-poster {
     width: 100%;

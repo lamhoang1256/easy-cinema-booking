@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import MovieCard from "./MovieCard";
+import { v4 as uuidv4 } from "uuid";
 import Pagination from "components/pagination/Pagination";
+import MovieCardSkeleton from "./MovieCardSkeleton";
 
 const StyledMovieList = styled.div`
   margin-top: 20px;
@@ -18,9 +20,28 @@ const StyledMovieList = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 20px;
   }
+  @media screen and (max-width: 400px) {
+    .movie-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 `;
 
-const MovieList = ({ data, heading, pagination, handlePageChange }) => {
+const MovieList = ({ loading, data, heading, pagination, handlePageChange }) => {
+  if (loading) {
+    return (
+      <StyledMovieList>
+        <h3>{heading}</h3>
+        <div className="movie-list">
+          {Array(7)
+            .fill(0)
+            .map(() => (
+              <MovieCardSkeleton key={uuidv4()} />
+            ))}
+        </div>
+      </StyledMovieList>
+    );
+  }
   return (
     <StyledMovieList>
       <h3>{heading}</h3>

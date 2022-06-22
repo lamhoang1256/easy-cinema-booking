@@ -1,25 +1,14 @@
 import styled from "styled-components";
 const StyledMovieCardSkeleton = styled.div`
   .poster {
-    aspect-ratio: 2/2.7;
+    aspect-ratio: 2/3;
     background-color: var(--bg-skeleton);
-    border-radius: 12px;
+    border-radius: 4px;
   }
   .title {
-    border-radius: 6px;
-    margin: 10px 0;
-    height: 40px;
-    background-color: var(--bg-skeleton);
-  }
-  .meta {
     border-radius: 4px;
-    margin: 6px 0;
-    height: 16px;
-    background-color: var(--bg-skeleton);
-  }
-  .button {
-    border-radius: 6px;
-    height: 44px;
+    margin: 10px 0;
+    height: 30px;
     background-color: var(--bg-skeleton);
   }
 `;
@@ -29,8 +18,6 @@ const MovieCardSkeleton = () => {
     <StyledMovieCardSkeleton>
       <div className="poster"></div>
       <div className="title"></div>
-      <div className="meta"></div>
-      <div className="button"></div>
     </StyledMovieCardSkeleton>
   );
 };

@@ -58,7 +58,7 @@ const StyledHeader = styled.header`
     .navbar-list {
       position: fixed;
       top: 0;
-      left: 0;
+      right: 0;
       z-index: 100;
       background-color: #280f4c;
       width: 300px;
