@@ -10,7 +10,7 @@ import Field from "components/field/Field";
 import ImageUpload from "components/image/ImageUpload";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
-import { schemaYupFilm } from "constants/movie.schema";
+import { schemaYupFilm } from "constants/yupSchema";
 import { useForm } from "react-hook-form";
 import { sweetAlert } from "utilities/sweetAlert";
 import styled from "styled-components";

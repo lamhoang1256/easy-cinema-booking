@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { dataFakeNews } from "constants/dataFakeNews";
+import { articles } from "constants/articles";
 import styled from "styled-components";
 import Image from "components/image/Image";
 import { TextClamp } from "assets/styles/mixin";
+import ImageResize from "components/image/ImageResize";
 
 const StyledPostRelated = styled.div`
   display: flex;
@@ -19,36 +20,43 @@ const StyledPostRelated = styled.div`
       gap: 10px;
     }
   }
-  .related-image {
-    min-width: 200px;
+  .lazy-load-image-background {
     flex-shrink: 0;
+  }
+  .related-image {
+    width: 200px;
+    aspect-ratio: 16/9;
     background-color: var(--bg-skeleton);
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
   }
-  .related-title h3 {
+  .related-image span {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .related-title {
     ${TextClamp.multilines(2)}
     color: var(--white);
   }
   .related-desc {
     ${TextClamp.multilines(3)}
-  }
-  .related-desc p {
     color: var(--gray-color);
   }
 `;
 
-const PostRelated = () => {
-  const postRelatedList = dataFakeNews.filter((news) => news.id !== 1);
+const PostRelated = ({ limit = 0 }) => {
+  const postRelatedList = articles.filter((news) => news.id !== articles[0].id);
+  const limitPost = limit === 0 ? postRelatedList.length : limit;
   return (
     <StyledPostRelated>
-      {postRelatedList?.map(({ id, thumbnail, title, content }) => (
+      {postRelatedList?.slice(0, limitPost).map(({ id, coverImg, title, introduction }) => (
         <Link to={`/news/${id}`} key={id} className="related-item">
-          <Image url={thumbnail} alt="thumbnail" className="related-image" />
+          <ImageResize width="200" url={coverImg} alt="coverImg" className="related-image" />
           <div className="related-content">
-            <div className="related-title" dangerouslySetInnerHTML={{ __html: title }} />
-            <div className="related-desc" dangerouslySetInnerHTML={{ __html: content }} />
+            <h3 className="related-title">{title}</h3>
+            <div className="related-desc">{introduction}</div>
           </div>
         </Link>
       ))}

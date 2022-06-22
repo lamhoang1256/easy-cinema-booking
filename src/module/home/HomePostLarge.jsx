@@ -1,8 +1,8 @@
-import { dataFakeNews } from "constants/dataFakeNews";
-import { Link } from "react-router-dom";
-import Image from "components/image/Image";
-import styled from "styled-components";
 import { TextClamp } from "assets/styles/mixin";
+import ImageResize from "components/image/ImageResize";
+import { articles } from "constants/articles";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const StyledHomePostLarge = styled.div`
   width: 50%;
@@ -17,14 +17,12 @@ const StyledHomePostLarge = styled.div`
     object-fit: cover;
     object-position: top;
   }
-  .post-title h3 {
+  .post-title {
     color: var(--white);
     ${TextClamp.multilines(2)}
   }
   .post-desc {
     ${TextClamp.multilines(2)}
-  }
-  .post-desc p {
     color: var(--white);
   }
   @media screen and (max-width: 1023.98px) {
@@ -45,21 +43,17 @@ const StyledHomePostLarge = styled.div`
 `;
 
 const HomePostLarge = () => {
-  const { id, thumbnail, title, content } = dataFakeNews[0];
+  const { id, coverImg, title, introduction } = articles[0];
   return (
     <StyledHomePostLarge>
-      <Image to={`news/${id}`} className="post-image" url={thumbnail} />
+      <ImageResize width="720" to={`news/${id}`} className="post-image" url={coverImg} />
       <div className="post-content">
-        <Link
-          to={`news/${id}`}
-          className="post-title"
-          dangerouslySetInnerHTML={{ __html: title }}
-        ></Link>
-        <Link
-          to={`news/${id}`}
-          className="post-desc"
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></Link>
+        <Link to={`news/${id}`} className="post-title">
+          <h3>{title}</h3>
+        </Link>
+        <Link to={`news/${id}`} className="post-desc">
+          {introduction}
+        </Link>
       </div>
     </StyledHomePostLarge>
   );

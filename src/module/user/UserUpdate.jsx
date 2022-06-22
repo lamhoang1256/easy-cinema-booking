@@ -6,7 +6,7 @@ import Field from "components/field/Field";
 import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
-import { schemaUserUpdate } from "constants/user.schema";
+import { schemaUserUpdate } from "constants/yupSchema";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";

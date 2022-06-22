@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PostRelated from "components/post/PostRelated";
-import { dataFakeNews } from "constants/dataFakeNews";
+import { articles } from "constants/articles";
 import Description from "components/text/Description";
 import styled from "styled-components";
 
@@ -46,7 +46,7 @@ const StyledNewsDetail = styled.div`
 
 const NewsDetail = () => {
   const { idNewsDetail } = useParams();
-  const news = dataFakeNews.filter((news) => news.id == idNewsDetail)[0];
+  const news = articles.filter((news) => news.id == idNewsDetail)[0];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -64,11 +64,10 @@ const NewsDetail = () => {
         <div className="grid-layout">
           <div className="column1">
             <div className="article-post">
-              <span
-                className="article-date"
-                dangerouslySetInnerHTML={{ __html: news.createdAt }}
-              ></span>
-              <h1 className="article-title" dangerouslySetInnerHTML={{ __html: news.title }} />
+              <h1 className="article-title">{news.title}</h1>
+              <span className="article-date">
+                {new Date(news.createTime).toLocaleDateString("vi-VI")}
+              </span>
               <Description
                 lineHeight={1.9}
                 className="article-content"

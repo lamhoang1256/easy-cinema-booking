@@ -3,7 +3,7 @@ import Field from "components/field/Field";
 import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
-import { schemaYupSignIn } from "constants/auth.schema";
+import { schemaYupSignIn } from "constants/yupSchema";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";

@@ -8,7 +8,7 @@ import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import TextArea from "components/textarea/TextArea";
-import { schemaYupFilm } from "constants/movie.schema";
+import { schemaYupFilm } from "constants/yupSchema";
 import moment from "moment";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
