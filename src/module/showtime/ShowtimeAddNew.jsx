@@ -6,27 +6,81 @@ import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import { schemaShowtime } from "constants/showtime.schema";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import styled from "styled-components";
+import { Select } from "antd";
+import { useEffect, useState } from "react";
+import ImageResize from "components/image/ImageResize";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+const { Option } = Select;
 
-const StyledShowtimeAddNew = styled.div``;
+const StyledShowtimeAddNew = styled.div`
+  .select {
+    width: 100%;
+    height: 50px;
+  }
+  .select .ant-select-selector {
+    background: transparent;
+    height: 50px;
+    color: var(--white);
+    border: 1px solid #656293;
+    border-radius: 6px;
+  }
+  .ant-select:hover .ant-select-selector {
+    border-color: var(--primary-color) !important;
+  }
+  .select .ant-select-selection-item {
+    line-height: 50px;
+  }
+  .select .ant-select-selection-placeholder {
+    color: #757563;
+    font-size: 1.8rem;
+    line-height: 50px;
+  }
+`;
 
 const ShowtimeAddNew = () => {
-  const handleAddNewShowtime = async (values) => {
-    console.log(values);
-    try {
-      const { data } = await moviesApi.showtimeAddNew(values);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  const navigate = useNavigate();
+  const [movies, setMovies] = useState([]);
+  const [screens, setScreens] = useState([]);
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schemaShowtime) });
+
+  const fetchMovies = async () => {
+    try {
+      const { data } = await moviesApi.movieGetAll();
+      setMovies(data.data.movies);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchScreens = async () => {
+    try {
+      const { data } = await moviesApi.screenGetAll();
+      setScreens(data.data.screens);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleAddNewShowtime = async (values) => {
+    try {
+      const { data } = await moviesApi.showtimeAddNew(values);
+      if (data?.status === "success") toast.success("Add new showtime successfully");
+      navigate("/admin/showtime-manage");
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies();
+    fetchScreens();
+  }, []);
 
   return (
     <StyledShowtimeAddNew>
@@ -34,12 +88,44 @@ const ShowtimeAddNew = () => {
         <div className="gird-layout">
           <Field>
             <Label htmlFor="movieId">Movie Id</Label>
-            <Input placeholder="Movie Id" name="movieId" type="number" control={control} />
+            <Controller
+              control={control}
+              name="movieId"
+              render={({ field: { onChange } }) => (
+                <Select placeholder="Movie Id" onChange={onChange} className="select">
+                  {movies?.map((movie) => (
+                    <Option value={movie.id} key={movie.id}>
+                      <div className="select-movie">
+                        <ImageResize
+                          width="40"
+                          className="select-poster"
+                          url={movie.poster}
+                          alt="poster"
+                        />
+                        <span>{movie.name}</span>
+                      </div>
+                    </Option>
+                  ))}
+                </Select>
+              )}
+            />
             <LabelError>{errors.movieId?.message} </LabelError>
           </Field>
           <Field>
             <Label htmlFor="screenId">Screen Id</Label>
-            <Input placeholder="Screen Id" name="screenId" type="number" control={control} />
+            <Controller
+              control={control}
+              name="screenId"
+              render={({ field: { onChange } }) => (
+                <Select placeholder="Screen Id" onChange={onChange} className="select">
+                  {screens?.map((screen) => (
+                    <Option value={screen.id} key={screen.id}>
+                      {screen.name}
+                    </Option>
+                  ))}
+                </Select>
+              )}
+            />
             <LabelError>{errors.screenId?.message} </LabelError>
           </Field>
         </div>

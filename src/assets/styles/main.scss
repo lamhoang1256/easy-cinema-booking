@@ -123,3 +123,14 @@ body {
   background-color: var(--primary-oclor);
   display: none;
 }
+.select-movie {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.select-poster {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

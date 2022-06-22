@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import CinemaInformation from "module/cinema/CinemaInfomation";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const SignUp = React.lazy(() => import("pages/Authentication/SignUp"));
@@ -8,6 +7,7 @@ const MovieDetail = React.lazy(() => import("pages/MovieDetail/MovieDetail"));
 const Booking = React.lazy(() => import("pages/Booking/Booking"));
 // need optimize
 const DashboardLayout = React.lazy(() => import("module/dashboard/DashboardLayout"));
+const CinemaView = React.lazy(() => import("module/cinema/CinemaView"));
 const MainLayout = React.lazy(() => import("layouts/MainLayout"));
 const Home = React.lazy(() => import("pages/Home/Home"));
 const UserProfile = React.lazy(() => import("module/user/UserProfile"));
@@ -19,13 +19,14 @@ const UserHistory = React.lazy(() => import("module/user/UserHistory"));
 const BookingHistory = React.lazy(() => import("module/booking/BookingHistory"));
 const MovieManage = React.lazy(() => import("module/movie/MovieManage"));
 const ComplexesManage = React.lazy(() => import("module/cinema/ComplexesManage"));
-const MainManage = React.lazy(() => import("pages/MainManage"));
+const Dashboard = React.lazy(() => import("pages/Dashboard/Dashboard"));
 const MovieAddNew = React.lazy(() => import("module/movie/MovieAddNew"));
 const ShowtimeManage = React.lazy(() => import("module/showtime/ShowtimeManage"));
 const ShowtimeAddNew = React.lazy(() => import("module/showtime/ShowtimeAddNew"));
 const ShowtimeUpdate = React.lazy(() => import("module/showtime/ShowtimeUpdate"));
 const ShowtimeView = React.lazy(() => import("module/showtime/ShowtimeView"));
 const MovieUpdate = React.lazy(() => import("module/movie/MovieUpdate"));
+const MovieView = React.lazy(() => import("module/movie/MovieView"));
 const CinemaManage = React.lazy(() => import("module/cinema/CinemaManage"));
 
 const RoutesComponent = () => {
@@ -45,18 +46,19 @@ const RoutesComponent = () => {
           </Route>
           {/* Admin Layout */}
           <Route path="/admin" element={<DashboardLayout />}>
-            <Route index element={<MainManage />} />
+            <Route index element={<Dashboard />} />
             <Route path="user-manage" element={<UserManage />} />
             <Route path="update-user/:id" element={<UserUpdate />} />
             <Route path="movie-manage">
               <Route index element={<MovieManage />} />
               <Route path="edit-film/:idMovieEdit" element={<MovieUpdate />} />
               <Route path="add" element={<MovieAddNew />} />
+              <Route path="view/:id" element={<MovieView />} />
             </Route>
             <Route path="cinema-manage">
               <Route index element={<ComplexesManage />} />
               <Route path=":id" element={<CinemaManage />} />
-              <Route path="information/:id" element={<CinemaInformation />} />
+              <Route path="information/:id" element={<CinemaView />} />
             </Route>
             <Route path="showtime-manage">
               <Route index element={<ShowtimeManage />} />

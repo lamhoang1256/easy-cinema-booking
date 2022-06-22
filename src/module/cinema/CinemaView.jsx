@@ -1,16 +1,17 @@
-import { moviesApi } from "apis/moviesApi";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { moviesApi } from "apis/moviesApi";
 
-const StyledCinemaInformation = styled.div``;
+const StyledCinemaView = styled.div`
+  line-height: 2;
+`;
 
-const CinemaInformation = () => {
+const CinemaView = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [information, setInformation] = useState(null);
-  const fetchCinemaInformation = async () => {
+  const fetchCinemaView = async () => {
     setLoading(true);
     try {
       const { data } = await moviesApi.cinemaGetInformation(id);
@@ -22,19 +23,19 @@ const CinemaInformation = () => {
     }
   };
   useEffect(() => {
-    fetchCinemaInformation();
+    fetchCinemaView();
   }, [id]);
 
   if (loading) return "Loading";
   return (
-    <StyledCinemaInformation>
+    <StyledCinemaView>
       <h1>{information.name}</h1>
-      <h2>{information.address}</h2>
+      <h3>Address: {information.address}</h3>
+      <h3>Phone Number: {information.phoneNumber}</h3>
+      <h3>Rating: {information.rating}</h3>
       <p>{information.description}</p>
-      <p>{information.phoneNumber}</p>
-      <p>{information.rating}</p>
-    </StyledCinemaInformation>
+    </StyledCinemaView>
   );
 };
 
-export default CinemaInformation;
+export default CinemaView;

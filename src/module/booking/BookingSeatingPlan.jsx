@@ -1,6 +1,5 @@
 import TagSmall from "components/tag/TagSmall";
 import { path } from "constants/path";
-import { STATUS_SEAT } from "constants/styles";
 import { useCountDownBooking } from "hooks/useCountDownBooking";
 import { resetSelectingSeat, selectSeat } from "pages/Booking/booking.slice";
 import { useEffect } from "react";
@@ -9,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { formatTimeTwoDigit } from "utilities/formatDate";
+import BookingSeating, { StyledSeat } from "./BookingSeating";
 
 const StyledBookingSeatingPlan = styled.div`
   display: flex;
@@ -19,12 +19,6 @@ const StyledBookingSeatingPlan = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .seatingPlan-main {
-    flex: 1;
-    display: grid;
-    gap: 5px;
-    grid-template-columns: repeat(12, 1fr);
   }
   .seatingPlan-introduction {
     flex-shrink: 0;
@@ -56,20 +50,6 @@ const StyledBookingSeatingPlan = styled.div`
     }
   }
 `;
-const StyleSeat = styled.button`
-  width: 100%;
-  aspect-ratio: 1/1;
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 6px;
-  cursor: pointer;
-  overflow: hidden;
-  color: var(--white);
-  ${(props) => props.status && STATUS_SEAT[props.status]}
-  &:disabled {
-    ${STATUS_SEAT["bought"]};
-  }
-`;
 
 const COUNTDOWN_MINUTES = 5;
 const COUNTDOWN_SECONDS = 0;
@@ -81,10 +61,6 @@ const BookingSeatingPlan = () => {
     COUNTDOWN_MINUTES,
     COUNTDOWN_SECONDS
   );
-  const checkIsSelecting = (id) => {
-    const index = isSelecting.findIndex((item) => id === item.ticketId);
-    return index !== -1 ? "isSelecting" : "normal";
-  };
   const handleClickSeat = (index, userSelected) => {
     dispatch(selectSeat({ idDisplay: index, userSelected }));
   };
@@ -125,31 +101,24 @@ const BookingSeatingPlan = () => {
         </div>
         <div className="seatingPlan-example">
           <div className="field">
-            <StyleSeat status="normal"></StyleSeat>
+            <StyledSeat status="normal"></StyledSeat>
             <TagSmall kind="normal">Ghế thường</TagSmall>
           </div>
           <div className="field">
-            <StyleSeat status="isSelecting"></StyleSeat>
+            <StyledSeat status="isSelecting"></StyledSeat>
             <TagSmall kind="normal">Ghế đang đặt</TagSmall>
           </div>
           <div className="field">
-            <StyleSeat status="bought"></StyleSeat>
+            <StyledSeat status="bought"></StyledSeat>
             <TagSmall kind="normal">Ghế đã được đặt</TagSmall>
           </div>
         </div>
       </div>
-      <div className="seatingPlan-main">
-        {showtime.tickets.map((ticket, index) => (
-          <StyleSeat
-            disabled={ticket.status}
-            key={ticket.id}
-            onClick={() => handleClickSeat(index, ticket)}
-            status={checkIsSelecting(ticket.id)}
-          >
-            {index + 1}
-          </StyleSeat>
-        ))}
-      </div>
+      <BookingSeating
+        seats={showtime.tickets}
+        isSelecting={isSelecting}
+        onClickSeat={handleClickSeat}
+      />
     </StyledBookingSeatingPlan>
   );
 };

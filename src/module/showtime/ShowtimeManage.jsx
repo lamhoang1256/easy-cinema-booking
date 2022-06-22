@@ -8,6 +8,7 @@ import ImageResize from "components/image/ImageResize";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
 import { usePagination } from "hooks/usePagination";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import styled from "styled-components";
@@ -88,8 +89,8 @@ const ShowtimeManage = () => {
                 />
               </td>
               <td>{showtime.movie.rating}</td>
-              <td>{formatISOtoLocaleDateString(showtime?.startTime)}</td>
-              <td>{formatISOtoLocaleDateString(showtime?.endTime)}</td>
+              <td>{moment(showtime?.startTime).format("lll")}</td>
+              <td>{moment(showtime?.endTime).format("lll")}</td>
               <td>{showtime.screenId}</td>
               <td>
                 <ActionUpdate to={`/admin/showtime-manage/update/${showtime.id}`}></ActionUpdate>

@@ -119,7 +119,7 @@ const MovieManage = () => {
                 <td>
                   <ActionUpdate to={`/admin/movie-manage/edit-film/${movie.id}`}></ActionUpdate>
                   <ActionDelete onClick={() => handleDeleteMovie(movie.id)}></ActionDelete>
-                  <ActionView to={`/admin/movie-manage/schedule/${movie.id}`}></ActionView>
+                  <ActionView to={`/admin/movie-manage/view/${movie.id}`}></ActionView>
                 </td>
               </tr>
             ))}

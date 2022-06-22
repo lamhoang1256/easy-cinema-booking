@@ -53,7 +53,7 @@ const MovieUpdate = () => {
   const fetchMovieEdit = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.movieDetailApi(idMovieEdit);
+      const { data } = await moviesApi.movieDetail(idMovieEdit);
       setMovie(data.data.movie);
       setLoading(false);
     } catch (error) {
