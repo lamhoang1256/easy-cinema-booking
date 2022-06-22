@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { moviesApi } from "apis/moviesApi";
-import { showtimesApi } from "apis/showtimesApi";
+import { configAPI } from "apis/configAPI";
 import { usePagination } from "hooks/usePagination";
 import HomeComplexes from "module/home/HomeComplexes";
 import HomeFeature from "module/home/HomeFeature";
@@ -15,7 +14,7 @@ const Home = () => {
   const fetchMovieList = async () => {
     setMovieList({ ...movieList, loading: true });
     try {
-      const { data } = await moviesApi.movieGetWithPagination(pagination);
+      const { data } = await configAPI.movieGetWithPagination(pagination);
       setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setMovieList({ data: data.data.movies, loading: false });
     } catch (err) {
@@ -25,7 +24,7 @@ const Home = () => {
   };
   const fetchCinemaComplexes = async () => {
     try {
-      const { data } = await showtimesApi.showtimeGetByComplexes();
+      const { data } = await configAPI.showtimeGetByComplexes();
       setCinemaComplexes(data.data.cinemaComplexes);
     } catch (err) {
       console.log(err);

@@ -1,4 +1,4 @@
-import { usersApi } from "apis/usersApi";
+import { configAPI } from "apis/configAPI";
 import ActionUpdate from "components/action/ActionUpdate";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
@@ -16,7 +16,7 @@ const UserManage = () => {
   const fetchAllUser = async () => {
     setLoading(true);
     try {
-      const { data } = await usersApi.userGetWithPagination(pagination);
+      const { data } = await configAPI.userGetWithPagination(pagination);
       setUsers(data.data.users);
       setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setLoading(false);

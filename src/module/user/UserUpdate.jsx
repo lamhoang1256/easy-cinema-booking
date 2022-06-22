@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { usersApi } from "apis/usersApi";
+import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
 import Input from "components/input/Input";
@@ -40,7 +40,7 @@ const UserUpdate = () => {
   const fetchUserNeedUpdate = async () => {
     setLoading(true);
     try {
-      const { data } = await usersApi.userGetSingle(id);
+      const { data } = await configAPI.userGetSingle(id);
       setUser(data.data.user);
       setLoading(false);
     } catch (error) {
@@ -55,7 +55,7 @@ const UserUpdate = () => {
     };
     const updateUser = async () => {
       try {
-        const { data } = await usersApi.userUpdate(id, updates);
+        const { data } = await configAPI.userUpdate(id, updates);
         if (data?.status === "success") {
           sweetAlert(
             "success",

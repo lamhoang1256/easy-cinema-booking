@@ -1,5 +1,5 @@
 import { fetcher, tmdbAPI } from "apis/tmdbApi";
-import { TextClamp } from "assets/styles/_mixin";
+import { TextClamp } from "assets/styles/mixin";
 import ImageResize from "components/image/ImageResize";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";

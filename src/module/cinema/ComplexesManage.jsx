@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import React, { useEffect } from "react";
 import Table from "components/table/Table";
 import styled from "styled-components";
@@ -20,7 +20,7 @@ const ComplexesManage = () => {
   const fetchComplexes = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.cinemaComplexesGet();
+      const { data } = await configAPI.cinemaComplexesGet();
       setComplexes(data.data.cinemaComplexes);
       setLoading(false);
     } catch (error) {

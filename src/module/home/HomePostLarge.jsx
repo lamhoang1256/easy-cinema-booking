@@ -2,7 +2,7 @@ import { dataFakeNews } from "constants/dataFakeNews";
 import { Link } from "react-router-dom";
 import Image from "components/image/Image";
 import styled from "styled-components";
-import { TextClamp } from "assets/styles/_mixin";
+import { TextClamp } from "assets/styles/mixin";
 
 const StyledHomePostLarge = styled.div`
   width: 50%;

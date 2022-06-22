@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import { usePagination } from "hooks/usePagination";
 import Table from "components/table/Table";
 import ActionView from "components/action/ActionView";
@@ -18,9 +18,9 @@ const CinemaManage = () => {
   const fetchCinemaList = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.cinemaComplexesGetSingle(id);
+      const { data } = await configAPI.cinemaComplexesGetSingle(id);
       const { name } = data.data.cinemaComplex;
-      const res2 = await moviesApi.cinemaGetWithPagination({ ...pagination, name });
+      const res2 = await configAPI.cinemaGetWithPagination({ ...pagination, name });
       setCinemaList(res2.data.data.cinemas);
       setPagination({ ...pagination, totalPages: res2.data.data.pagination.totalPages });
       setLoading(false);

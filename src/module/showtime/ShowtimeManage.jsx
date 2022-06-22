@@ -1,5 +1,5 @@
-import { moviesApi } from "apis/moviesApi";
-import { TextClamp } from "assets/styles/_mixin";
+import { configAPI } from "apis/configAPI";
+import { TextClamp } from "assets/styles/mixin";
 import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
@@ -36,7 +36,7 @@ const ShowtimeManage = () => {
   const fetchShowtimes = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.showtimeGetWithPagination(pagination);
+      const { data } = await configAPI.showtimeGetWithPagination(pagination);
       setShowtimes(sortArrayDescending(data.data.showtimes, "id"));
       setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setLoading(false);
@@ -46,7 +46,7 @@ const ShowtimeManage = () => {
   };
   const handleDeleteShowtime = async (id) => {
     try {
-      const { data } = await moviesApi.showtimeDelete(id);
+      const { data } = await configAPI.showtimeDelete(id);
       if (data?.status === "success") toast.success("Delete showtime successfully");
       fetchShowtimes();
     } catch (error) {

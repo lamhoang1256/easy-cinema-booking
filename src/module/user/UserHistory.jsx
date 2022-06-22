@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { usersApi } from "apis/usersApi";
+import { configAPI } from "apis/configAPI";
 import { calculateSumMoney, sortArrayDescending } from "utilities/helper";
 import Table from "components/table/Table";
 import ActionStatus from "components/action/ActionStatus";
@@ -25,7 +25,7 @@ const UserHistory = () => {
   const fetchMyBookings = async () => {
     setLoading(true);
     try {
-      const { data } = await usersApi.userMyBooking();
+      const { data } = await configAPI.userMyBooking();
       const sortBooking = sortArrayDescending(data.data.bookings, "id");
       setBookings(sortBooking);
       setPagination({ ...pagination, totalPages: Math.ceil(sortBooking?.length / limit) });

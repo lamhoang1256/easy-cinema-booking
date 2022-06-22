@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
 import Input from "components/input/Input";
@@ -52,7 +52,7 @@ const ShowtimeAddNew = () => {
 
   const fetchMovies = async () => {
     try {
-      const { data } = await moviesApi.movieGetAll();
+      const { data } = await configAPI.movieGetAll();
       setMovies(data.data.movies);
     } catch (error) {
       console.log(error);
@@ -60,7 +60,7 @@ const ShowtimeAddNew = () => {
   };
   const fetchScreens = async () => {
     try {
-      const { data } = await moviesApi.screenGetAll();
+      const { data } = await configAPI.screenGetAll();
       setScreens(data.data.screens);
     } catch (error) {
       console.log(error);
@@ -69,7 +69,7 @@ const ShowtimeAddNew = () => {
 
   const handleAddNewShowtime = async (values) => {
     try {
-      const { data } = await moviesApi.showtimeAddNew(values);
+      const { data } = await configAPI.showtimeAddNew(values);
       if (data?.status === "success") toast.success("Add new showtime successfully");
       navigate("/admin/showtime-manage");
     } catch (error) {

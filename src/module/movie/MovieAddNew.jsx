@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { DatePicker } from "antd";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
 import ImageUpload from "components/image/ImageUpload";
@@ -61,7 +61,7 @@ const MovieAddNew = () => {
         for (const key in newMovie) {
           formData.append(key, newMovie[key]);
         }
-        const { data } = await moviesApi.movieAddNew(formData);
+        const { data } = await configAPI.movieAddNew(formData);
         // notification
         if (data?.status === "success") {
           sweetAlert("success", "Thêm mới phim thành công!", "Bạn đã thêm mới phim thành công!");

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { dataFakeNews } from "constants/dataFakeNews";
 import styled from "styled-components";
 import Image from "components/image/Image";
-import { TextClamp } from "assets/styles/_mixin";
+import { TextClamp } from "assets/styles/mixin";
 
 const StyledPostRelated = styled.div`
   display: flex;

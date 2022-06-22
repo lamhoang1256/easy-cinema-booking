@@ -1,6 +1,6 @@
 import moment from "moment";
 import styled from "styled-components";
-import { TextClamp } from "assets/styles/_mixin";
+import { TextClamp } from "assets/styles/mixin";
 import FieldText from "components/field/FieldText";
 import ImageResize from "components/image/ImageResize";
 

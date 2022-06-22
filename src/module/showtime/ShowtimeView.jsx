@@ -1,4 +1,4 @@
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import BookingSeating from "module/booking/BookingSeating";
 import MovieViewDetail from "module/movie/MovieViewDetail";
 import { useEffect, useState } from "react";
@@ -29,7 +29,7 @@ const ShowtimeView = () => {
   const fetchShowtimeNeedUpdate = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.showtimeGetSingle(id);
+      const { data } = await configAPI.showtimeGetSingle(id);
       setShowtime(data.data.showtime);
       setLoading(false);
     } catch (error) {

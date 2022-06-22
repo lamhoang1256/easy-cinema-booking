@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { TextClamp } from "assets/styles/_mixin";
+import { TextClamp } from "assets/styles/mixin";
 
 const StyledDescription = styled.p`
   font-size: 1.7rem;

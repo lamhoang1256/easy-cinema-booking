@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { usersApi } from "apis/usersApi";
+import { configAPI } from "apis/configAPI";
 import LocalStorage from "constants/localStorage";
 
 const initialState = {
@@ -11,7 +11,7 @@ export const signIn = createAsyncThunk(
   "authentication/signIn",
   async (user, { rejectWithValue }) => {
     try {
-      const { data } = await usersApi.userSignIn(user);
+      const { data } = await configAPI.userSignIn(user);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -19,7 +19,7 @@ export const signIn = createAsyncThunk(
   }
 );
 export const signUp = createAsyncThunk("authentication/signUp", async (user) => {
-  const { data } = await usersApi.userSignUp(user);
+  const { data } = await configAPI.userSignUp(user);
   return data;
 });
 

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { DatePicker } from "antd";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
@@ -53,7 +53,7 @@ const MovieUpdate = () => {
   const fetchMovieEdit = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.movieDetail(idMovieEdit);
+      const { data } = await configAPI.movieDetail(idMovieEdit);
       setMovie(data.data.movie);
       setLoading(false);
     } catch (error) {
@@ -82,7 +82,7 @@ const MovieUpdate = () => {
         for (const key in updates) {
           formData.append(key, updates[key]);
         }
-        const response = await moviesApi.movieUpdate(idMovieEdit, formData);
+        const response = await configAPI.movieUpdate(idMovieEdit, formData);
         if (response) {
           sweetAlert(
             "success",

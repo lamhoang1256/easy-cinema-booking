@@ -1,4 +1,4 @@
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieViewDetail from "./MovieViewDetail";
@@ -11,7 +11,7 @@ const MovieView = () => {
   const fetchMovie = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.movieDetail(id);
+      const { data } = await configAPI.movieDetail(id);
       setMovie(data.data.movie);
       setLoading(false);
     } catch (error) {

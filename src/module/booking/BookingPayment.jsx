@@ -1,4 +1,4 @@
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/FieldText";
 import { useSelector } from "react-redux";
@@ -33,7 +33,7 @@ const BookingPayment = () => {
       return Swal.fire("Too Many Tickets!", "Maximum number of tickets is 10");
     }
     try {
-      const { data } = await moviesApi.bookingAddNew(values);
+      const { data } = await configAPI.bookingAddNew(values);
       if (data?.status === "success") toast.success("Success Booking Ticket");
       navigate(`/booking-history/${data?.data?.booking?.id}`);
     } catch (error) {

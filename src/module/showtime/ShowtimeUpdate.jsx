@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
 import Input from "components/input/Input";
@@ -20,7 +20,7 @@ const ShowtimeUpdate = () => {
   const handleUpdateShowtime = async (values) => {
     console.log(values);
     try {
-      const { data } = await moviesApi.showtimeUpdate(id, values);
+      const { data } = await configAPI.showtimeUpdate(id, values);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ const ShowtimeUpdate = () => {
   const fetchShowtimeNeedUpdate = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.showtimeGetSingle(id);
+      const { data } = await configAPI.showtimeGetSingle(id);
       setShowtime(data.data.showtime);
       setLoading(false);
     } catch (error) {

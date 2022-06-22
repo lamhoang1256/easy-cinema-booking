@@ -1,4 +1,4 @@
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import axios from "axios";
 import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { createKeyForObj } from "utilities/createKeyForObject";
 import styled from "styled-components";
-import { TextClamp } from "assets/styles/_mixin";
+import { TextClamp } from "assets/styles/mixin";
 import ImageResize from "components/image/ImageResize";
 import Pagination from "components/pagination/Pagination";
 import { usePagination } from "hooks/usePagination";
@@ -39,7 +39,7 @@ const MovieManage = () => {
   const fetchMovieList = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.movieGetWithPagination(pagination);
+      const { data } = await configAPI.movieGetWithPagination(pagination);
       setMovieList(data.data.movies);
       setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setLoading(false);
@@ -65,7 +65,7 @@ const MovieManage = () => {
       if (result.isConfirmed) {
         const deleteMovie = async (idMovie) => {
           try {
-            const response = await moviesApi.movieDelete(idMovie);
+            const response = await configAPI.movieDelete(idMovie);
             if (response) {
               Swal.fire("Xóa thành công!", "Phim bạn chọn đã được xóa.", "success");
               fetchMovieList();

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 
 const initialState = {
   showtime: [],
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const fetchShowtime = createAsyncThunk("booking/fetchShowtime", async (id) => {
-  const { data } = await moviesApi.showtimeGetSingle(id);
+  const { data } = await configAPI.showtimeGetSingle(id);
   return data.data.showtime;
 });
 

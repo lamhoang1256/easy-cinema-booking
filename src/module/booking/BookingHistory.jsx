@@ -4,8 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { calculateSumMoney, formatVND } from "utilities/helper";
-import { bookingsApi } from "apis/bookingsApi";
-import { showtimesApi } from "apis/showtimesApi";
+import { configAPI } from "apis/configAPI";
 import ActionStatus from "components/action/ActionStatus";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
@@ -61,7 +60,7 @@ const BookingDetail = () => {
 
   const fetchShowtimeDetail = async (id) => {
     try {
-      const { data } = await showtimesApi.showtimeGetSingle(id);
+      const { data } = await configAPI.showtimeGetSingle(id);
       setShowtime(data.data.showtime);
     } catch (error) {
       console.log(error);
@@ -70,7 +69,7 @@ const BookingDetail = () => {
   const fetchBookingDetail = async () => {
     setLoading(true);
     try {
-      const { data } = await bookingsApi.bookingGetSingle(id);
+      const { data } = await configAPI.bookingGetSingle(id);
       const showtimeId = data.data.booking?.tickets?.[0]?.showtimeId;
       await fetchShowtimeDetail(showtimeId);
       setBooking(data.data.booking);
@@ -81,7 +80,7 @@ const BookingDetail = () => {
   };
   const handleCancelBooking = async () => {
     try {
-      const { data } = await bookingsApi.bookingCancel(booking?.id);
+      const { data } = await configAPI.bookingCancel(booking?.id);
       if (data.status === "success") toast.success("Booking cancelled successfully");
       fetchBookingDetail();
     } catch (error) {

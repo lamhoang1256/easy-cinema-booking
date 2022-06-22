@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { usersApi } from "apis/usersApi";
+import { configAPI } from "apis/configAPI";
 import Field from "components/field/Field";
 import Input from "components/input/Input";
 import Label from "components/label/Label";
@@ -37,7 +37,7 @@ const UserProfile = () => {
     console.log(values);
     const body = removeEmptyStringProperties(values);
     try {
-      const { data } = await usersApi.userUpdateProfile(body);
+      const { data } = await configAPI.userUpdateProfile(body);
       if (data.status === "success") toast.success("Update user profile successfully");
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ const UserProfile = () => {
   };
   const fetchMyProfile = async () => {
     try {
-      const { data } = await usersApi.userMyProfile();
+      const { data } = await configAPI.userMyProfile();
       setProfile(data.data.user);
       reset(data.data.user);
     } catch (error) {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 
 const StyledCinemaView = styled.div`
   line-height: 2;
@@ -14,7 +14,7 @@ const CinemaView = () => {
   const fetchCinemaView = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.cinemaGetInformation(id);
+      const { data } = await configAPI.cinemaGetInformation(id);
       setInformation(data.data.cinema);
       setLoading(false);
     } catch (error) {

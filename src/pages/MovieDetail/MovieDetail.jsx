@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams, useSearchParams } from "react-router-dom";
-import { moviesApi } from "apis/moviesApi";
+import { configAPI } from "apis/configAPI";
 import { tmdbAPI } from "apis/tmdbApi";
 import DetailBanner from "module/detail/DetailBanner";
 import DetailHeader from "module/detail/DetailHeader";
@@ -40,7 +40,7 @@ const MovieDetail = () => {
   };
   const fetchCinemaComplexes = async () => {
     try {
-      const { data } = await moviesApi.movieGetShowtime(id);
+      const { data } = await configAPI.movieGetShowtime(id);
       setCinemaComplexes(data.data.cinemaComplexes);
     } catch (err) {
       console.log(err);
@@ -49,7 +49,7 @@ const MovieDetail = () => {
   const fetchMovieDetail = async () => {
     setLoading(true);
     try {
-      const { data } = await moviesApi.movieGetDetail(id);
+      const { data } = await configAPI.movieGetDetail(id);
       setDetail(data.data.movie);
       await fetchMovieDetailTMDB();
       await fetchCinemaComplexes();
