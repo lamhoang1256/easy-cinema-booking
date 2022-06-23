@@ -6,24 +6,6 @@ import Description from "components/text/Description";
 import styled from "styled-components";
 
 const StyledNewsDetail = styled.div`
-  .article-top {
-    position: relative;
-    height: 30vh;
-    width: 100%;
-    padding-top: 80px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    @include flexbox(center, center);
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-    @include tablet {
-      height: 30vh;
-    }
-  }
   .article-title h3 {
     color: #fff;
     font-size: 2.4rem;

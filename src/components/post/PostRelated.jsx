@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { articles } from "constants/articles";
+import { memo } from "react";
 import styled from "styled-components";
-import Image from "components/image/Image";
-import { TextClamp } from "assets/styles/mixin";
+import { Link } from "react-router-dom";
 import ImageResize from "components/image/ImageResize";
+import { TextClamp } from "assets/styles/mixin";
+import { articles } from "constants/articles";
 
 const StyledPostRelated = styled.div`
   display: flex;
@@ -16,9 +16,6 @@ const StyledPostRelated = styled.div`
     display: flex;
     height: calc(100% / 3);
     gap: 20px 10px;
-    @media screen and (max-width: 767.98px) {
-      gap: 10px;
-    }
   }
   .lazy-load-image-background {
     flex-shrink: 0;
@@ -44,6 +41,11 @@ const StyledPostRelated = styled.div`
     ${TextClamp.multilines(3)}
     color: var(--gray-color);
   }
+  @media screen and (max-width: 767.98px) {
+    .related-item {
+      gap: 10px;
+    }
+  }
 `;
 
 const PostRelated = ({ limit = 0 }) => {
@@ -64,4 +66,4 @@ const PostRelated = ({ limit = 0 }) => {
   );
 };
 
-export default PostRelated;
+export default memo(PostRelated);

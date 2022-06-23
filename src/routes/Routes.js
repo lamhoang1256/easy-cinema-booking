@@ -1,3 +1,4 @@
+import { path } from "constants/path";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -34,27 +35,25 @@ const RoutesComponent = () => {
     <Suspense fallback={<>Error</>}>
       <Router>
         <Routes>
-          {/* Main Layout */}
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path="/detail/:id/*" element={<MovieDetail />} />
-            <Route path="/profile" element={<UserProfile />} />
-            <Route path="/user-history" element={<UserHistory />} />
-            <Route path="/news/:idNewsDetail" element={<NewsDetail />} />
-            <Route path="/booking/:id" element={<Booking />} />
-            <Route path="/booking-history/:id" element={<BookingHistory />} />
+            <Route path={`${path.detail}/:id/*`} element={<MovieDetail />} />
+            <Route path={path.profile} element={<UserProfile />} />
+            <Route path={path.history} element={<UserHistory />} />
+            <Route path={`${path.article}/:id`} element={<NewsDetail />} />
+            <Route path={`${path.booking}/:id`} element={<Booking />} />
+            <Route path={`${path.bookingHistory}/:id`} element={<BookingHistory />} />
           </Route>
           {/* Admin Layout */}
-          <Route path="/admin" element={<DashboardLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="user-manage" element={<UserManage />} />
-            <Route path="update-user/:id" element={<UserUpdate />} />
-            <Route path="movie-manage">
-              <Route index element={<MovieManage />} />
-              <Route path="edit-film/:idMovieEdit" element={<MovieUpdate />} />
-              <Route path="add" element={<MovieAddNew />} />
-              <Route path="view/:id" element={<MovieView />} />
-            </Route>
+          <Route element={<DashboardLayout />}>
+            <Route path={path.dashboard} element={<Dashboard />} />
+            <Route path={path.userManage} element={<UserManage />} />
+            <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
+            <Route path={path.movieManage} element={<MovieManage />} />
+            <Route path={`${path.movieUpdate}/:id`} element={<MovieUpdate />} />
+            <Route path="add" element={<MovieAddNew />} />
+            <Route path="view/:id" element={<MovieView />} />
+
             <Route path="cinema-manage">
               <Route index element={<ComplexesManage />} />
               <Route path=":id" element={<CinemaManage />} />
