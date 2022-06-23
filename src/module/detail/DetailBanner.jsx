@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ImageResize from "components/image/ImageResize";
+import { tmdbAPI } from "apis/tmdbApi";
 
 const StyledDetailBanner = styled.div`
   background-color: var(--bg-skeleton);

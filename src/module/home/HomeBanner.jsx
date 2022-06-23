@@ -30,7 +30,7 @@ const StyledHomeBanner = styled.section`
     padding: 30px;
   }
   .banner-title {
-    font-size: 3.5rem;
+    font-size: 3.6rem;
     font-weight: 700;
   }
   .category {
@@ -38,13 +38,19 @@ const StyledHomeBanner = styled.section`
     gap: 10px;
     margin-bottom: 20px;
   }
+  .banner-watch {
+    width: 160px;
+    height: 48px;
+  }
+  @media screen and (max-width: 767.98px) {
+    .banner-title {
+      font-size: 2.6rem;
+    }
+  }
 `;
 
 const HomeBanner = () => {
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=95f2419536f533cdaa1dadf83c606027`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getUpcoming(), fetcher);
   const movies = data?.results || [];
   return (
     <section className="banner">
@@ -71,6 +77,7 @@ function HomeBannerItem({ item }) {
       <ImageResize
         width="1440"
         url={tmdbAPI.imageOriginal(backdrop_path)}
+        imageError={tmdbAPI.imageOriginal("4gqDdWoTf1wNOiliYWXMMSIlBnK.jpg")}
         className="banner-img"
         alt="banner"
       />
@@ -81,7 +88,13 @@ function HomeBannerItem({ item }) {
           <span>Adventure</span>
           <span>Action</span>
         </div>
-        <Button onClick={() => navigate(`${path.detailTmdb}?tmdbId=${id}`)}>Watch now</Button>
+        <Button
+          className="banner-watch"
+          kind="gradient"
+          onClick={() => navigate(`${path.detailTmdb}?tmdbId=${id}`)}
+        >
+          Watch now
+        </Button>
       </div>
       <div className="overlay"></div>
     </StyledHomeBanner>

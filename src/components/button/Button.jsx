@@ -14,6 +14,10 @@ const COLOR = {
     color: var(--white);
     background-color: var(--purple-color);
   `,
+  gradient: css`
+    color: var(--white);
+    background-image: var(--gradient-primary);
+  `,
 };
 
 const DISABLED = css`

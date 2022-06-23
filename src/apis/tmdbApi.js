@@ -15,4 +15,5 @@ export const tmdbAPI = {
     const path = `${tmdbEndpoint}/${movieId}?api_key=${apiKey}`;
     return axios.get(path);
   },
+  getUpcoming: () => `${tmdbEndpoint}/upcoming?api_key=${apiKey}`,
 };
