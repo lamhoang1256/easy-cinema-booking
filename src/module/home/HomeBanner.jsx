@@ -21,6 +21,7 @@ const StyledHomeBanner = styled.section`
     object-fit: cover;
     object-position: center;
     aspect-ratio: 16/9;
+    border-radius: 8px;
   }
   .banner-content {
     position: absolute;
@@ -70,7 +71,6 @@ const HomeBanner = () => {
 
 function HomeBannerItem({ item }) {
   const { title, backdrop_path, id } = item;
-  console.log(item);
   const navigate = useNavigate();
   return (
     <StyledHomeBanner>

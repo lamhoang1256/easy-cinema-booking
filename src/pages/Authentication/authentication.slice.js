@@ -22,6 +22,11 @@ export const signUp = createAsyncThunk("authentication/signUp", async (user) => 
   const { data } = await configAPI.userSignUp(user);
   return data;
 });
+const handleUnauth = (state) => {
+  state.currentUser = {};
+  localStorage.removeItem(LocalStorage.currentUser);
+  localStorage.removeItem(LocalStorage.accessToken);
+};
 
 const handleAuthFulfilled = (state, action) => {
   const { user, accessToken } = action.payload.data;
@@ -36,7 +41,9 @@ const handleAuthRejected = (state, action) => {
 export const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: handleUnauth,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signUp.fulfilled, handleAuthFulfilled)
@@ -46,4 +53,5 @@ export const authenticationSlice = createSlice({
   },
 });
 
+export const { logout } = authenticationSlice.actions;
 export default authenticationSlice.reducer;

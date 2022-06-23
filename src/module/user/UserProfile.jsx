@@ -4,18 +4,21 @@ import Field from "components/field/Field";
 import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
+import { path } from "constants/path";
 import { schemaUserUpdate } from "constants/yupSchema";
 import { StyledButtonAuth } from "pages/Authentication/authentication.style";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import { removeEmptyStringProperties } from "utilities/helper";
 
-const StyledUserProfile = styled.div``;
+const StyledUserProfile = styled.div`
+  max-width: 1000px;
+  margin: 20px auto;
+`;
 
 const UserProfile = () => {
-  const [profile, setProfile] = useState(null);
   const {
     control,
     handleSubmit,
@@ -34,7 +37,6 @@ const UserProfile = () => {
   });
 
   const handleUpdateProfile = async (values) => {
-    console.log(values);
     const body = removeEmptyStringProperties(values);
     try {
       const { data } = await configAPI.userUpdateProfile(body);
@@ -46,7 +48,6 @@ const UserProfile = () => {
   const fetchMyProfile = async () => {
     try {
       const { data } = await configAPI.userMyProfile();
-      setProfile(data.data.user);
       reset(data.data.user);
     } catch (error) {
       console.log(error);

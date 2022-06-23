@@ -48,7 +48,7 @@ const Home = () => {
           <MovieList
             loading={movieList.loading}
             data={movieList.data}
-            heading="Phim sắp chiếu"
+            heading="Now showing"
             pagination={pagination}
             handlePageChange={handlePageChange}
           />

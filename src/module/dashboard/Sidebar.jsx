@@ -1,7 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Button from "components/button/Button";
-import { path } from "constants/path";
+import { useDispatch } from "react-redux";
+import { logout } from "pages/Authentication/authentication.slice";
 
 const StyledSidebar = styled.div`
   width: 300px;
@@ -44,6 +45,9 @@ const StyledSidebar = styled.div`
       background-color: #461d6a;
     }
   }
+  .action button {
+    width: 100%;
+  }
   @media screen and (max-width: 1023.98px) {
     position: fixed;
     top: 0;
@@ -60,46 +64,29 @@ const StyledSidebar = styled.div`
   }
 `;
 
-const Sidebar = ({ ...props }) => {
+const Sidebar = ({ menu, ...props }) => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <StyledSidebar {...props}>
       <div className="sidebar">
-        <Link to={path.dashboard}>
-          <h2 className="sidebar-heading">Cineplex Admin</h2>
-        </Link>
         <ul>
-          <li className="sidebar-item">
-            <NavLink end to={path.dashboard} className="sidebar-link">
-              <ion-icon name="people-outline"></ion-icon>
-              Trang tổng quan
-            </NavLink>
-          </li>
-          <li className="sidebar-item">
-            <NavLink to={path.userManage} className="sidebar-link">
-              <ion-icon name="people-outline"></ion-icon>
-              Quản lí người dùng
-            </NavLink>
-          </li>
-          <li className="sidebar-item">
-            <NavLink to={path.movieManage} className="sidebar-link">
-              <ion-icon name="videocam-outline"></ion-icon>Quản lí phim
-            </NavLink>
-          </li>
-          <li className="sidebar-item">
-            <NavLink to={path.complexesManage} className="sidebar-link">
-              <ion-icon name="storefront-outline"></ion-icon>Quản lí rạp
-            </NavLink>
-          </li>
-          <li className="sidebar-item">
-            <NavLink to={path.showtimeManage} className="sidebar-link">
-              <ion-icon name="storefront-outline"></ion-icon>Quản lí lịch chiếu
-            </NavLink>
-          </li>
+          {menu?.map((item) => (
+            <li className="sidebar-item" key={item.id}>
+              <NavLink end to={item.path} className="sidebar-link">
+                {item.icon}
+                {item.display}
+              </NavLink>
+            </li>
+          ))}
         </ul>
-        <NavLink to={path.home}>
-          <Button>Về trang chủ</Button>
-        </NavLink>
-        <Button>Đăng xuất</Button>
+        <div className="action">
+          <Button kind="gradient" onClick={handleLogout}>
+            Logout
+          </Button>
+        </div>
       </div>
     </StyledSidebar>
   );

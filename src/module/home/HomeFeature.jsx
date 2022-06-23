@@ -12,7 +12,7 @@ const HomeFeature = () => {
   if (!articles) return null;
   return (
     <StyledHomeFeature id="article">
-      <Tag kind="secondary">Tin tức</Tag>
+      <Tag kind="secondary">Articles</Tag>
       <div className="grid-layout">
         <HomePostLarge />
         <PostRelated limit={3} />

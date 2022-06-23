@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { scroller } from "react-scroll";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { path } from "constants/path";
 import Button from "components/button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "pages/Authentication/authentication.slice";
 
 const StyledHeader = styled.header`
   margin-bottom: 40px;
@@ -23,6 +25,10 @@ const StyledHeader = styled.header`
   .navbar-link {
     font-size: 1.8rem;
     cursor: pointer;
+    color: var(--white);
+  }
+  .navbar-link.active {
+    color: var(--primary-color);
   }
   .header-auth {
     display: flex;
@@ -75,37 +81,19 @@ const StyledHeader = styled.header`
 `;
 
 const headerNav = [
-  { display: "Lịch chiếu", path: "showtimes" },
-  { display: "Tin tức", path: "article" },
-  { display: "Cụm rạp", path: "/" },
-  { display: "Ứng dụng", path: "/" },
+  { id: 3, display: "Profile", path: path.profile },
+  { id: 4, display: "History", path: path.history },
 ];
 
 const Header = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // handle when click link on header navbar
-  const onClickLink = async (id) => {
-    if (location.pathname === "/") {
-      scroller.scrollTo(id, {
-        duration: 800,
-        smooth: "easeInOutQuart",
-      });
-    } else {
-      await navigate(path.home);
-      setTimeout(() => {
-        scroller.scrollTo(id, {
-          duration: 800,
-          smooth: "easeInOutQuart",
-        });
-      }, 600);
-    }
-  };
-
+  const { currentUser } = useSelector((state) => state.authentication);
   const [isShowMenu, setIsShowMenu] = useState(false);
+  const dispatch = useDispatch();
   const handleToggleMenu = () => {
     setIsShowMenu(!isShowMenu);
+  };
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   return (
@@ -116,21 +104,25 @@ const Header = () => {
             <img src={`assets/images/chore/logo-star-cineplex.png`} alt="logo" />
           </Link>
           <ul className={`navbar-list ${isShowMenu ? "show" : null}`}>
-            {headerNav.map((item, index) => (
-              <li className="navbar-item" key={index}>
-                <span className="navbar-link" onClick={() => onClickLink(item.path)}>
+            {headerNav.map((item) => (
+              <li className="navbar-item" key={item.id}>
+                <NavLink to={item.path} className="navbar-link">
                   {item.display}
-                </span>
+                </NavLink>
               </li>
             ))}
           </ul>
           <div className="header-auth">
-            <Button className="sign-up" to={path.signUp}>
-              Đăng ký
-            </Button>
-            <Button className="sign-in" to={path.signIn}>
-              Đăng nhập
-            </Button>
+            {currentUser?.email && (
+              <Button kind="gradient" className="sign-in" onClick={handleLogout}>
+                Logout
+              </Button>
+            )}
+            {!currentUser?.email && (
+              <Button kind="gradient" className="sign-in" to={path.signIn}>
+                Sign In
+              </Button>
+            )}
           </div>
           <div className="header-open" onClick={handleToggleMenu}>
             <ion-icon name="list-outline"></ion-icon>
