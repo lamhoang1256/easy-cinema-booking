@@ -14,6 +14,7 @@ const UserHistory = React.lazy(() => import("module/user/UserHistory"));
 const Booking = React.lazy(() => import("pages/Booking/Booking"));
 const BookingHistory = React.lazy(() => import("module/booking/BookingHistory"));
 const MovieManage = React.lazy(() => import("module/movie/MovieManage"));
+const MovieDetailTmdb = React.lazy(() => import("pages/MovieDetail/MovieDetailTmdb"));
 const MovieDetail = React.lazy(() => import("pages/MovieDetail/MovieDetail"));
 const MovieAddNew = React.lazy(() => import("module/movie/MovieAddNew"));
 const MovieUpdate = React.lazy(() => import("module/movie/MovieUpdate"));
@@ -37,6 +38,7 @@ const RoutesComponent = () => {
           <Route element={<MainLayout />}>
             <Route path={path.home} element={<Home />} />
             <Route path={`${path.detail}/:id/*`} element={<MovieDetail />} />
+            <Route path={`${path.detailTmdb}`} element={<MovieDetailTmdb />} />
             <Route path={path.profile} element={<UserProfile />} />
             <Route path={path.history} element={<UserHistory />} />
             <Route path={`${path.article}/:id`} element={<Article />} />

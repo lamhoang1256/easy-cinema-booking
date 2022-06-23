@@ -1,5 +1,6 @@
 import { fetcher, tmdbAPI } from "apis/tmdbApi";
 import { TextClamp } from "assets/styles/mixin";
+import Image from "components/image/Image";
 import ImageResize from "components/image/ImageResize";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
@@ -14,6 +15,7 @@ const StyledDetailCasts = styled.div`
   }
   .cast-avatar {
     border-radius: 6px;
+    aspect-ratio: 2/3;
   }
   .cast-name {
     text-align: center;
@@ -42,7 +44,8 @@ const DetailCasts = () => {
             <ImageResize
               width="150"
               className="cast-avatar"
-              url={`https://image.tmdb.org/t/p/original/${item.profile_path}`}
+              imageError={`${tmdbAPI.imageOriginal("gasNitCwepbqNcYBmDHpsCgZH0I.jpg")}`}
+              url={`${tmdbAPI.imageOriginal(item.profile_path)}`}
             ></ImageResize>
             <span className="cast-name">{item.name}</span>
           </div>

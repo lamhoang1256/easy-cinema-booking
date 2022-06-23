@@ -11,7 +11,7 @@ const StyledDetailOverview = styled.div`
   }
 `;
 
-const DetailOverview = ({ overview, description }) => {
+const DetailOverview = ({ overview, description = "" }) => {
   return (
     <StyledDetailOverview>
       <h2 className="heading-sub">Overview</h2>

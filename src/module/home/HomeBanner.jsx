@@ -3,9 +3,10 @@ import useSWR from "swr";
 import { SwiperSlide, Swiper } from "swiper/react";
 import Button from "components/button/Button";
 import { useNavigate } from "react-router-dom";
-import { fetcher } from "apis/tmdbApi";
+import { fetcher, tmdbAPI } from "apis/tmdbApi";
 import styled from "styled-components";
 import { path } from "constants/path";
+import ImageResize from "components/image/ImageResize";
 
 const StyledHomeBanner = styled.section`
   position: relative;
@@ -63,22 +64,24 @@ const HomeBanner = () => {
 
 function HomeBannerItem({ item }) {
   const { title, backdrop_path, id } = item;
+  console.log(item);
   const navigate = useNavigate();
   return (
     <StyledHomeBanner>
-      <img
-        src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+      <ImageResize
+        width="1440"
+        url={tmdbAPI.imageOriginal(backdrop_path)}
         className="banner-img"
         alt="banner"
       />
       <div className="banner-content">
         <h2 className="banner-title">{title}</h2>
         <div className="category">
-          <span className="">Adventure</span>
-          <span className="">Adventure</span>
-          <span className="">Adventure</span>
+          <span>Animation</span>
+          <span>Adventure</span>
+          <span>Action</span>
         </div>
-        <Button onClick={() => navigate(`${path.detail}/${id}`)}>Watch now</Button>
+        <Button onClick={() => navigate(`${path.detailTmdb}?tmdbId=${id}`)}>Watch now</Button>
       </div>
       <div className="overlay"></div>
     </StyledHomeBanner>

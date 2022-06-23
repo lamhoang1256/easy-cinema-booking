@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Tabs } from "antd";
 import Tag from "components/tag/Tag";
 import HomeCinemas from "./HomeCinemas";
+import Section from "components/section/Section";
 
 const StyledHomeComplexes = styled.div`
   margin-top: 40px;
@@ -48,10 +49,20 @@ const StyledHomeComplexes = styled.div`
 export const HomeComplexes = ({ cinemaComplexes }) => {
   const { TabPane } = Tabs;
   if (!cinemaComplexes) return "Loading";
+  if (cinemaComplexes.length === 0)
+    return (
+      <Section>
+        <Tag kind="secondary" className="heading">
+          All showtimes
+        </Tag>
+        <h4>The movie not have showtime</h4>
+      </Section>
+    );
+
   return (
     <StyledHomeComplexes id="showtimes">
       <Tag kind="secondary" className="heading">
-        All showtime
+        All showtimes
       </Tag>
       <Tabs defaultActiveKey="0" tabPosition="top">
         {cinemaComplexes.map(({ logo, cinemas }, index) => (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledLoadingSpinner = styled.div`
-  margin: 40px auto;
+  margin: 60px auto;
   width: 40px;
   height: 40px;
   pointer-events: none;

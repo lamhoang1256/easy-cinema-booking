@@ -3,6 +3,7 @@ export const path = {
   signIn: "/sign-in",
   signUp: "/sign-up",
   detail: "/detail",
+  detailTmdb: "/detailTmdb",
   profile: "/profile",
   history: "/history",
   article: "/article",

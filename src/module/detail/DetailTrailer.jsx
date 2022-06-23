@@ -4,7 +4,7 @@ import styled from "styled-components";
 import useSWR from "swr";
 
 const StyledDetailTrailer = styled.div`
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 40px;
   .trailer {
     width: 100%;
@@ -22,40 +22,16 @@ const StyledDetailTrailer = styled.div`
     }
   }
 `;
-const StyledMyTrailer = styled.div`
-  .my-trailer {
-    width: 100%;
-    aspect-ratio: 16/9;
-  }
-`;
 
-const MyTrailer = ({ embedId }) => (
-  <StyledMyTrailer>
-    <h2 className="heading-sub">Trailer</h2>
-    <iframe
-      className="my-trailer"
-      src={`https://www.youtube.com/embed/${embedId}`}
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    ></iframe>
-  </StyledMyTrailer>
-);
-
-const DetailTrailer = ({ myTrailer }) => {
-  const arraySplited = myTrailer?.split("?v=");
-  const embedId = arraySplited[arraySplited?.length - 1];
-
+const DetailTrailer = () => {
   const [searchParams] = useSearchParams();
   const tmdbId = searchParams.get("tmdbId");
   const { data } = useSWR(tmdbAPI.getMovieMeta(tmdbId, "videos"), fetcher);
-  if (!data) return <MyTrailer embedId={embedId} />;
+  if (!data) return null;
   const { results } = data;
-  if (!results || results.length <= 0) return <MyTrailer embedId={embedId} />;
+  if (!results || results.length <= 0) return null;
   return (
     <StyledDetailTrailer>
-      <MyTrailer embedId={embedId} />
       <div className="trailer-list">
         {results.slice(0, 6).map((item) => (
           <iframe

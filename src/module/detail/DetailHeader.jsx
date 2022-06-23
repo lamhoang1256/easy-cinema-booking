@@ -1,8 +1,9 @@
-import moment from "moment";
-import styled from "styled-components";
+import { tmdbAPI } from "apis/tmdbApi";
 import { TextClamp } from "assets/styles/mixin";
 import FieldText from "components/field/FieldText";
 import ImageResize from "components/image/ImageResize";
+import moment from "moment";
+import styled from "styled-components";
 
 const StyledDetailHeader = styled.div`
   line-height: 2;
@@ -19,6 +20,7 @@ const StyledDetailHeader = styled.div`
     overflow: hidden;
     flex-shrink: 0;
     transform: translateY(-40%);
+    background-color: var(--bg-skeleton);
   }
   .categories {
     display: flex;
@@ -49,13 +51,19 @@ const StyledDetailHeader = styled.div`
 `;
 
 const DetailHeader = ({ detail, detailTmdb }) => {
+  const poster = detail?.poster ? detail?.poster : tmdbAPI.imageOriginal(detailTmdb?.poster_path);
+  const name = detail?.name ? detail?.name : detailTmdb?.original_title;
+  const description = detail?.description ? detail?.description : detailTmdb?.overview;
+  const rating = detail?.rating ? detail?.rating : detailTmdb?.vote_average;
+  const duration = detail?.duration ? detail.duration : detailTmdb?.runtime;
+  const releaseDate = detail?.releaseDate ? detail?.releaseDate : detailTmdb?.release_date;
   return (
     <StyledDetailHeader>
       <div className="poster">
-        <ImageResize width="240" url={detail?.poster} alt="poster" />
+        <ImageResize width="240" url={poster} alt="poster" />
       </div>
       <div className="content">
-        <h1 className="heading">{detail?.name}</h1>
+        <h1 className="heading">{name}</h1>
         {detailTmdb?.genres?.length > 0 ? (
           <div className="categories">
             {detailTmdb?.genres.map((genre) => (
@@ -67,25 +75,23 @@ const DetailHeader = ({ detail, detailTmdb }) => {
         ) : (
           <div className="categories">
             <span className="tag">Animation</span>
-            <span className="tag">Science Fiction</span>
             <span className="tag">Adventure</span>
             <span className="tag">Action</span>
-            <span className="tag">Family</span>
           </div>
         )}
-        <div className="summary">{detail?.description}</div>
+        <p className="summary">{description}</p>
         <div className="meta">
           <FieldText>
             <span className="tag">Rating:</span>
-            <span>{detail?.rating}</span>
+            <span>{rating}</span>
           </FieldText>
           <FieldText>
             <span className="tag">Duration:</span>
-            <span>{detail?.duration} minutes</span>
+            <span>{duration} minutes</span>
           </FieldText>
           <FieldText>
             <span className="tag">Release Date:</span>
-            <span>{moment(detail?.releaseDate).format("L")}</span>
+            <span>{moment(releaseDate).format("lll")}</span>
           </FieldText>
         </div>
       </div>

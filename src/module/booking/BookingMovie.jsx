@@ -1,4 +1,5 @@
 import Field from "components/field/FieldText";
+import Image from "components/image/Image";
 import BookingHeading from "module/booking/BookingHeading";
 import BookingTag from "module/booking/BookingTag";
 import { useSelector } from "react-redux";
@@ -30,7 +31,7 @@ const BookingMovie = () => {
       <BookingHeading>Movie Information</BookingHeading>
       <div className="overview">
         <Field className="poster">
-          <img src={showtime.movie.poster} alt="poster" />
+          <Image src={showtime.movie.poster} alt="poster" />
         </Field>
         <div className="meta">
           <Field>

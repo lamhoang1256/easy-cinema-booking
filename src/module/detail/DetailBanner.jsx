@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ImageResize from "components/image/ImageResize";
 
 const StyledDetailBanner = styled.div`
+  background-color: var(--bg-skeleton);
   height: 50vh;
   opacity: 0.5;
   span {
@@ -22,7 +23,7 @@ const DetailBanner = ({ banner, fallback }) => {
       <ImageResize
         width="1440"
         className="banner-image"
-        url={banner ? `https://image.tmdb.org/t/p/original/${banner}` : fallback}
+        url={banner ? tmdbAPI.imageOriginal(banner) : fallback}
       ></ImageResize>
     </StyledDetailBanner>
   );

@@ -9,6 +9,8 @@ import DetailOverview from "module/detail/DetailOverview";
 import DetailCasts from "module/detail/DetailCasts";
 import DetailTrailer from "module/detail/DetailTrailer";
 import HomeComplexes from "module/home/HomeComplexes";
+import DetailMyTrailer from "module/detail/DetailMyTrailer";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledMovieDetail = styled.div`
   .heading-sub {
@@ -62,7 +64,7 @@ const MovieDetail = () => {
     fetchMovieDetail();
   }, [id]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   const { poster, description, trailer } = detail;
   const { overview, backdrop_path } = detailTmdb;
   return (
@@ -72,7 +74,8 @@ const MovieDetail = () => {
         <DetailHeader detail={detail} detailTmdb={detailTmdb} />
         <DetailOverview description={description} overview={overview} />
         <DetailCasts />
-        <DetailTrailer myTrailer={trailer} />
+        <DetailMyTrailer url={trailer} />
+        <DetailTrailer />
         <HomeComplexes cinemaComplexes={cinemaComplexes} />
       </div>
     </StyledMovieDetail>
