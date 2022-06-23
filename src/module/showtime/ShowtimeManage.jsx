@@ -7,6 +7,7 @@ import Button from "components/button/Button";
 import ImageResize from "components/image/ImageResize";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
+import { path } from "constants/path";
 import { usePagination } from "hooks/usePagination";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -61,7 +62,7 @@ const ShowtimeManage = () => {
   if (loading) return "Loading";
   return (
     <StyledShowtimeManage>
-      <Button to="/admin/showtime-manage/add">Add new showtime</Button>
+      <Button to={path.showtimeAddNew}>Add new showtime</Button>
       <Table>
         <table>
           <tr>
@@ -93,8 +94,8 @@ const ShowtimeManage = () => {
               <td>{moment(showtime?.endTime).format("lll")}</td>
               <td>{showtime.screenId}</td>
               <td>
-                <ActionUpdate to={`/admin/showtime-manage/update/${showtime.id}`}></ActionUpdate>
-                <ActionView to={`/admin/showtime-manage/view/${showtime.id}`}></ActionView>
+                <ActionUpdate to={`${path.showtimeUpdate}/${showtime.id}`}></ActionUpdate>
+                <ActionView to={`${path.showtimeView}/${showtime.id}`}></ActionView>
                 <ActionDelete onClick={() => handleDeleteShowtime(showtime.id)}></ActionDelete>
               </td>
             </tr>

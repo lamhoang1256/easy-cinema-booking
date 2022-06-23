@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Table from "components/table/Table";
 import styled from "styled-components";
 import ActionView from "components/action/ActionView";
+import { path } from "constants/path";
 
 const StyledComplexesManage = styled.div`
   .cinema-logo {
@@ -57,7 +58,7 @@ const ComplexesManage = () => {
                 </td>
                 <td>{cinema.name}</td>
                 <td>
-                  <ActionView to={`/admin/cinema-manage/${cinema.id}`}>Update</ActionView>
+                  <ActionView to={`${path.cinemaView}/${cinema.id}`}></ActionView>
                 </td>
               </tr>
             ))}

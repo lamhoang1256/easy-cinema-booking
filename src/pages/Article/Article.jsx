@@ -5,7 +5,7 @@ import { articles } from "constants/articles";
 import Description from "components/text/Description";
 import styled from "styled-components";
 
-const StyledNewsDetail = styled.div`
+const StyledArticle = styled.div`
   .article-title h3 {
     color: #fff;
     font-size: 2.4rem;
@@ -26,9 +26,9 @@ const StyledNewsDetail = styled.div`
   }
 `;
 
-const NewsDetail = () => {
-  const { idNewsDetail } = useParams();
-  const news = articles.filter((news) => news.id == idNewsDetail)[0];
+const Article = () => {
+  const { idArticle } = useParams();
+  const news = articles.filter((news) => news.id == idArticle)[0];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -41,7 +41,7 @@ const NewsDetail = () => {
     );
   }
   return (
-    <StyledNewsDetail>
+    <StyledArticle>
       <div className="container">
         <div className="grid-layout">
           <div className="column1">
@@ -62,7 +62,7 @@ const NewsDetail = () => {
           </div>
         </div>
       </div>
-    </StyledNewsDetail>
+    </StyledArticle>
   );
 };
-export default NewsDetail;
+export default Article;

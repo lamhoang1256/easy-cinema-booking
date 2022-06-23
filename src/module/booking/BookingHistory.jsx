@@ -10,6 +10,7 @@ import Button from "components/button/Button";
 import Field from "components/field/Field";
 import ImageResize from "components/image/ImageResize";
 import ActionView from "components/action/ActionView";
+import { path } from "constants/path";
 
 const StyledBookingHistory = styled.div`
   .booking-header {
@@ -124,7 +125,7 @@ const BookingDetail = () => {
           </Field>
           <Field>
             <h3>Action</h3>
-            <ActionView to={`/booking/${showtime?.id}`}></ActionView>
+            <ActionView to={`${path.booking}/${showtime?.id}`}></ActionView>
           </Field>
         </div>
         <div className="booking-movie">

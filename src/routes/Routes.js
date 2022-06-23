@@ -12,7 +12,7 @@ const CinemaView = React.lazy(() => import("module/cinema/CinemaView"));
 const MainLayout = React.lazy(() => import("layouts/MainLayout"));
 const Home = React.lazy(() => import("pages/Home/Home"));
 const UserProfile = React.lazy(() => import("module/user/UserProfile"));
-const NewsDetail = React.lazy(() => import("pages/Article/NewsDetail"));
+const Article = React.lazy(() => import("pages/Article/Article"));
 const NotFound = React.lazy(() => import("pages/NotFound/NotFound"));
 const UserManage = React.lazy(() => import("module/user/UserManage"));
 const UserUpdate = React.lazy(() => import("module/user/UserUpdate"));
@@ -35,42 +35,34 @@ const RoutesComponent = () => {
     <Suspense fallback={<>Error</>}>
       <Router>
         <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
+          <Route element={<MainLayout />}>
+            <Route path={path.home} element={<Home />} />
             <Route path={`${path.detail}/:id/*`} element={<MovieDetail />} />
             <Route path={path.profile} element={<UserProfile />} />
             <Route path={path.history} element={<UserHistory />} />
-            <Route path={`${path.article}/:id`} element={<NewsDetail />} />
+            <Route path={`${path.article}/:id`} element={<Article />} />
             <Route path={`${path.booking}/:id`} element={<Booking />} />
             <Route path={`${path.bookingHistory}/:id`} element={<BookingHistory />} />
           </Route>
-          {/* Admin Layout */}
           <Route element={<DashboardLayout />}>
             <Route path={path.dashboard} element={<Dashboard />} />
             <Route path={path.userManage} element={<UserManage />} />
             <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
             <Route path={path.movieManage} element={<MovieManage />} />
+            <Route path={path.movieAddNew} element={<MovieAddNew />} />
+            <Route path={path.movieView} element={<MovieView />} />
             <Route path={`${path.movieUpdate}/:id`} element={<MovieUpdate />} />
-            <Route path="add" element={<MovieAddNew />} />
-            <Route path="view/:id" element={<MovieView />} />
-
-            <Route path="cinema-manage">
-              <Route index element={<ComplexesManage />} />
-              <Route path=":id" element={<CinemaManage />} />
-              <Route path="information/:id" element={<CinemaView />} />
-            </Route>
-            <Route path="showtime-manage">
-              <Route index element={<ShowtimeManage />} />
-              <Route path="add" element={<ShowtimeAddNew />} />
-              <Route path="update/:id" element={<ShowtimeUpdate />} />
-              <Route path="view/:id" element={<ShowtimeView />} />
-            </Route>
+            <Route path={path.complexesManage} element={<ComplexesManage />} />
+            <Route path={`${path.cinemaView}/:id`} element={<CinemaView />} />
+            <Route path={`${path.cinemaManage}/:id`} element={<CinemaManage />} />
+            <Route path={path.showtimeManage} element={<ShowtimeManage />} />
+            <Route path={path.showtimeAddNew} element={<ShowtimeAddNew />} />
+            <Route path={`${path.showtimeUpdate}/:id`} element={<ShowtimeUpdate />} />
+            <Route path={`${path.showtimeView}/:id`} element={<ShowtimeView />} />
           </Route>
-          {/* Auth Layout */}
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="sign-up" element={<SignUp />} />
-          {/* Not Found 404 */}
-          <Route path="*" element={<NotFound />} />
+          <Route path={path.signIn} element={<SignIn />} />
+          <Route path={path.signUp} element={<SignUp />} />
+          <Route path={path.notFound} element={<NotFound />} />
         </Routes>
       </Router>
     </Suspense>

@@ -3,6 +3,7 @@ import moment from "moment";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { TextClamp } from "assets/styles/mixin";
 import Button from "components/button/Button";
+import { path } from "constants/path";
 
 const StyledHomeShowtimes = styled.div`
   display: flex;
@@ -62,7 +63,7 @@ export const HomeShowtimes = ({ showtimes }) => {
                   <span>Start: {moment(startTime).format("LT")}</span>
                   <span>End: {moment(endTime).format("LT")}</span>
                 </div>
-                <Button to={`/booking/${showtime.id}`} className="movie-booking">
+                <Button to={`${path.booking}/${showtime.id}`} className="movie-booking">
                   Booking now
                 </Button>
               </SwiperSlide>
@@ -92,7 +93,7 @@ export const HomeShowtimes = ({ showtimes }) => {
               </div>
               <div className="movie-bottom">
                 <h4 className="movie-name">{name}</h4>
-                <Button to={`/booking/${showtime.id}`} className="movie-booking">
+                <Button to={`${path.booking}/${showtime.id}`} className="movie-booking">
                   Booking now
                 </Button>
               </div>

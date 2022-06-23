@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Button from "components/button/Button";
+import { path } from "constants/path";
 
 const StyledSidebar = styled.div`
   width: 300px;
@@ -63,39 +64,39 @@ const Sidebar = ({ ...props }) => {
   return (
     <StyledSidebar {...props}>
       <div className="sidebar">
-        <Link to="/admin">
+        <Link to={path.dashboard}>
           <h2 className="sidebar-heading">Cineplex Admin</h2>
         </Link>
         <ul>
           <li className="sidebar-item">
-            <NavLink end to="/admin" className="sidebar-link">
+            <NavLink end to={path.dashboard} className="sidebar-link">
               <ion-icon name="people-outline"></ion-icon>
               Trang tổng quan
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/user-manage" className="sidebar-link">
+            <NavLink to={path.userManage} className="sidebar-link">
               <ion-icon name="people-outline"></ion-icon>
               Quản lí người dùng
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/movie-manage" className="sidebar-link">
+            <NavLink to={path.movieManage} className="sidebar-link">
               <ion-icon name="videocam-outline"></ion-icon>Quản lí phim
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/cinema-manage" className="sidebar-link">
+            <NavLink to={path.complexesManage} className="sidebar-link">
               <ion-icon name="storefront-outline"></ion-icon>Quản lí rạp
             </NavLink>
           </li>
           <li className="sidebar-item">
-            <NavLink to="/admin/showtime-manage" className="sidebar-link">
+            <NavLink to={path.showtimeManage} className="sidebar-link">
               <ion-icon name="storefront-outline"></ion-icon>Quản lí lịch chiếu
             </NavLink>
           </li>
         </ul>
-        <NavLink to="/">
+        <NavLink to={path.home}>
           <Button>Về trang chủ</Button>
         </NavLink>
         <Button>Đăng xuất</Button>

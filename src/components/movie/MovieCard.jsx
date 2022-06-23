@@ -1,4 +1,5 @@
 import ImageResize from "components/image/ImageResize";
+import { path } from "constants/path";
 import styled from "styled-components";
 import MovieTitle from "./MovieTitle";
 
@@ -29,7 +30,7 @@ const MovieCard = ({ movie }) => {
       <div className="card-media">
         <ImageResize url={poster} width="200" className="card-poster" alt="poster" />
       </div>
-      <MovieTitle to={`detail/${id}?tmdbId=${tmdbId}`}>{name}</MovieTitle>
+      <MovieTitle to={`${path.detail}/${id}?tmdbId=${tmdbId}`}>{name}</MovieTitle>
     </StyledMovieCard>
   );
 };

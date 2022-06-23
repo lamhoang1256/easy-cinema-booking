@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import ImageResize from "components/image/ImageResize";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { path } from "constants/path";
 const { Option } = Select;
 
 const StyledShowtimeAddNew = styled.div`
@@ -71,7 +72,7 @@ const ShowtimeAddNew = () => {
     try {
       const { data } = await configAPI.showtimeAddNew(values);
       if (data?.status === "success") toast.success("Add new showtime successfully");
-      navigate("/admin/showtime-manage");
+      navigate(path.showtimeManage);
     } catch (error) {
       toast.error(error?.message);
     }

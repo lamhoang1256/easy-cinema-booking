@@ -93,7 +93,7 @@ const Header = () => {
         smooth: "easeInOutQuart",
       });
     } else {
-      await navigate("/");
+      await navigate(path.home);
       setTimeout(() => {
         scroller.scrollTo(id, {
           duration: 800,

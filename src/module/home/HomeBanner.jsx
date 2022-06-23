@@ -5,6 +5,7 @@ import Button from "components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { fetcher } from "apis/tmdbApi";
 import styled from "styled-components";
+import { path } from "constants/path";
 
 const StyledHomeBanner = styled.section`
   position: relative;
@@ -77,7 +78,7 @@ function HomeBannerItem({ item }) {
           <span className="">Adventure</span>
           <span className="">Adventure</span>
         </div>
-        <Button onClick={() => navigate(`/movie/${id}`)}>Watch now</Button>
+        <Button onClick={() => navigate(`${path.detail}/${id}`)}>Watch now</Button>
       </div>
       <div className="overlay"></div>
     </StyledHomeBanner>

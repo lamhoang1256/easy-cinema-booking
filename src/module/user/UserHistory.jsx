@@ -8,6 +8,7 @@ import ActionStatus from "components/action/ActionStatus";
 import ActionView from "components/action/ActionView";
 import { usePagination } from "hooks/usePagination";
 import Pagination from "components/pagination/Pagination";
+import { path } from "constants/path";
 
 const StyledUserHistory = styled.div``;
 
@@ -77,7 +78,7 @@ const UserHistory = () => {
                   <td>{booking.tickets[0].showtimeId}</td>
                   <td>{calculateSumMoney(booking.tickets, "price")}</td>
                   <td>
-                    <ActionView to={`/booking-history/${booking.id}`}></ActionView>
+                    <ActionView to={`${path.bookingHistory}/${booking.id}`}></ActionView>
                   </td>
                 </tr>
               ))}

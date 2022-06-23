@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ImageResize from "components/image/ImageResize";
 import { TextClamp } from "assets/styles/mixin";
 import { articles } from "constants/articles";
+import { path } from "constants/path";
 
 const StyledPostRelated = styled.div`
   display: flex;
@@ -54,7 +55,7 @@ const PostRelated = ({ limit = 0 }) => {
   return (
     <StyledPostRelated>
       {postRelatedList?.slice(0, limitPost).map(({ id, coverImg, title, introduction }) => (
-        <Link to={`/news/${id}`} key={id} className="related-item">
+        <Link to={`${path.article}/${id}`} key={id} className="related-item">
           <ImageResize width="200" url={coverImg} alt="coverImg" className="related-image" />
           <div className="related-content">
             <h3 className="related-title">{title}</h3>

@@ -1,6 +1,7 @@
 import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/FieldText";
+import { path } from "constants/path";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -35,7 +36,7 @@ const BookingPayment = () => {
     try {
       const { data } = await configAPI.bookingAddNew(values);
       if (data?.status === "success") toast.success("Success Booking Ticket");
-      navigate(`/booking-history/${data?.data?.booking?.id}`);
+      navigate(`${path.bookingHistory}/${data?.data?.booking?.id}`);
     } catch (error) {
       toast.error(error.message);
     }

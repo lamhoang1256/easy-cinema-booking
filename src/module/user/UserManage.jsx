@@ -2,6 +2,7 @@ import { configAPI } from "apis/configAPI";
 import ActionUpdate from "components/action/ActionUpdate";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
+import { path } from "constants/path";
 import { usePagination } from "hooks/usePagination";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -54,7 +55,7 @@ const UserManage = () => {
                 <td>{user.dateOfBirth}</td>
                 <td>{user.role}</td>
                 <td>
-                  <ActionUpdate to={`/admin/update-user/${user.id}`}>Update</ActionUpdate>
+                  <ActionUpdate to={`${path.userUpdate}/${user.id}`}>Update</ActionUpdate>
                 </td>
               </tr>
             ))}

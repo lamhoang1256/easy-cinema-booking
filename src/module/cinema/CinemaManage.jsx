@@ -6,6 +6,7 @@ import { usePagination } from "hooks/usePagination";
 import Table from "components/table/Table";
 import ActionView from "components/action/ActionView";
 import Pagination from "components/pagination/Pagination";
+import { path } from "constants/path";
 
 const StyledCinemaManage = styled.div``;
 
@@ -56,7 +57,7 @@ const CinemaManage = () => {
                 <td>{cinema.address}</td>
                 <td>{cinema.rating}</td>
                 <td>
-                  <ActionView to={`/admin/cinema-manage/information/${cinema.id}`}></ActionView>
+                  <ActionView to={`${path.cinemaView}/${cinema.id}`}></ActionView>
                 </td>
               </tr>
             ))}

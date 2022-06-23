@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "components/button/Button";
+import { path } from "constants/path";
 
 const StyledNotFound = styled.div`
   display: flex;
@@ -46,7 +47,7 @@ const NotFound = () => {
       <h1 className="heading">404</h1>
       <h2 className="title">Something is not right</h2>
       <p className="description">We can not find the page you are looking for.</p>
-      <Button kind="primary" height="40" to="/">
+      <Button kind="primary" height="40" to={path.home}>
         Go Home
       </Button>
     </StyledNotFound>

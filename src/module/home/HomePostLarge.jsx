@@ -1,6 +1,7 @@
 import { TextClamp } from "assets/styles/mixin";
 import ImageResize from "components/image/ImageResize";
 import { articles } from "constants/articles";
+import { path } from "constants/path";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -46,12 +47,12 @@ const HomePostLarge = () => {
   const { id, coverImg, title, introduction } = articles[0];
   return (
     <StyledHomePostLarge>
-      <ImageResize width="720" to={`news/${id}`} className="post-image" url={coverImg} />
+      <ImageResize width="720" to={`${path.article}/${id}`} className="post-image" url={coverImg} />
       <div className="post-content">
-        <Link to={`news/${id}`} className="post-title">
+        <Link to={`${path.article}/${id}`} className="post-title">
           <h3>{title}</h3>
         </Link>
-        <Link to={`news/${id}`} className="post-desc">
+        <Link to={`${path.article}/${id}`} className="post-desc">
           {introduction}
         </Link>
       </div>

@@ -12,6 +12,7 @@ import { TextClamp } from "assets/styles/mixin";
 import ImageResize from "components/image/ImageResize";
 import Pagination from "components/pagination/Pagination";
 import { usePagination } from "hooks/usePagination";
+import { path } from "constants/path";
 
 const StyledMovieManage = styled.div`
   .title {
@@ -117,9 +118,9 @@ const MovieManage = () => {
                   <span className="releaseDate">{movie.releaseDate}</span>
                 </td>
                 <td>
-                  <ActionUpdate to={`/admin/movie-manage/edit-film/${movie.id}`}></ActionUpdate>
+                  <ActionUpdate to={`${path.movieUpdate}/${movie.id}`}></ActionUpdate>
                   <ActionDelete onClick={() => handleDeleteMovie(movie.id)}></ActionDelete>
-                  <ActionView to={`/admin/movie-manage/view/${movie.id}`}></ActionView>
+                  <ActionView to={`${path.movieView}/${movie.id}`}></ActionView>
                 </td>
               </tr>
             ))}
