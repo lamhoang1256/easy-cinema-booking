@@ -6,6 +6,8 @@ const StyledTextArea = styled.textarea`
   padding: 10px;
   border-radius: 8px;
   border: 1px solid var(--purple-color);
+  background-color: transparent;
+  height: 100%;
 `;
 
 const TextArea = ({ ...props }) => {

@@ -5,6 +5,7 @@ const StyledMovieViewDetail = styled.div`
   display: flex;
   gap: 20px;
   margin-bottom: 30px;
+  line-height: 2;
   .poster {
     flex-shrink: 0;
   }
@@ -23,12 +24,12 @@ const MovieViewDetail = (props) => {
       </div>
       <div className="content">
         <h2>{name}</h2>
-        <p>{description}</p>
-        <p>Rating: {rating} score</p>
-        <p>Duration: {duration} minutes</p>
-        <p>Release Date: {releaseDate}</p>
+        <p>+ Description: {description}</p>
+        <p>+ Rating: {rating} score</p>
+        <p>+ Duration: {duration} minutes</p>
+        <p>+ Release Date: {releaseDate}</p>
         <p>
-          Trailer: <a href={trailer}>{trailer}</a>
+          + Trailer: <a href={trailer}>{trailer}</a>
         </p>
       </div>
     </StyledMovieViewDetail>

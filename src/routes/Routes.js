@@ -55,7 +55,7 @@ const RoutesComponent = () => {
               <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
               <Route path={path.movieManage} element={<MovieManage />} />
               <Route path={path.movieAddNew} element={<MovieAddNew />} />
-              <Route path={path.movieView} element={<MovieView />} />
+              <Route path={`${path.movieView}/:id`} element={<MovieView />} />
               <Route path={`${path.movieUpdate}/:id`} element={<MovieUpdate />} />
               <Route path={path.complexesManage} element={<ComplexesManage />} />
               <Route path={`${path.cinemaView}/:id`} element={<CinemaView />} />

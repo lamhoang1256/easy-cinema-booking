@@ -16,6 +16,7 @@ import { sweetAlert } from "utilities/sweetAlert";
 import styled from "styled-components";
 import Input from "components/input/Input";
 import TextArea from "components/textarea/TextArea";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledMovieUpdate = styled.div`
   .form-layout {
@@ -101,7 +102,7 @@ const MovieUpdate = () => {
     fetchMovieEdit();
   }, []);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   console.log(movie);
   return (
     <StyledMovieUpdate>

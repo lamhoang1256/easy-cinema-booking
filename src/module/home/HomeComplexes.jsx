@@ -3,6 +3,7 @@ import { Tabs } from "antd";
 import Tag from "components/tag/Tag";
 import HomeCinemas from "./HomeCinemas";
 import Section from "components/section/Section";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledHomeComplexes = styled.div`
   margin-top: 40px;
@@ -48,7 +49,7 @@ const StyledHomeComplexes = styled.div`
 
 export const HomeComplexes = ({ cinemaComplexes }) => {
   const { TabPane } = Tabs;
-  if (!cinemaComplexes) return "Loading";
+  if (!cinemaComplexes) return <LoadingSpinner />;
   if (cinemaComplexes.length === 0)
     return (
       <Section>

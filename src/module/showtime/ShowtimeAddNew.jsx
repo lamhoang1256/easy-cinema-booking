@@ -147,7 +147,9 @@ const ShowtimeAddNew = () => {
             <LabelError>{errors.price?.message} </LabelError>
           </Field>
         </div>
-        <Button type="submit">Add new showtime</Button>
+        <Button kind="purple" type="submit">
+          Add new showtime
+        </Button>
       </form>
     </StyledShowtimeAddNew>
   );

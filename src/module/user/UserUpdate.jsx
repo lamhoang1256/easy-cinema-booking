@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { sweetAlert } from "utilities/sweetAlert";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledUserUpdate = styled.div`
   .form-layout {
@@ -74,8 +75,7 @@ const UserUpdate = () => {
     fetchUserNeedUpdate();
   }, [id]);
 
-  if (loading) return "Loading";
-  // console.log(user);
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledUserUpdate>
       <h2>Update User</h2>

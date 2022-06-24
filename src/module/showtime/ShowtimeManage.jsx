@@ -5,6 +5,7 @@ import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
 import Button from "components/button/Button";
 import ImageResize from "components/image/ImageResize";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
 import { path } from "constants/path";
@@ -13,7 +14,6 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import styled from "styled-components";
-import { formatISOtoLocaleDateString } from "utilities/formatDate";
 import { sortArrayDescending } from "utilities/helper";
 
 const StyledShowtimeManage = styled.div`
@@ -22,7 +22,10 @@ const StyledShowtimeManage = styled.div`
     overflow: hidden;
     border-radius: 8px;
   }
-
+  .addNew {
+    margin-bottom: 20px;
+    margin-left: auto;
+  }
   .movie-name {
     width: 200px;
     ${TextClamp.multilines(2)}
@@ -59,10 +62,12 @@ const ShowtimeManage = () => {
     fetchShowtimes();
   }, [pagination.page]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledShowtimeManage>
-      <Button to={path.showtimeAddNew}>Add new showtime</Button>
+      <Button className="addNew" kind="purple" to={path.showtimeAddNew}>
+        Add new showtime
+      </Button>
       <Table>
         <table>
           <tr>

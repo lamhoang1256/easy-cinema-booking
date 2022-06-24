@@ -21,6 +21,12 @@ const StyledDetailHeader = styled.div`
     flex-shrink: 0;
     transform: translateY(-40%);
     background-color: var(--bg-skeleton);
+    span,
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
   .categories {
     display: flex;

@@ -1,4 +1,5 @@
 import { configAPI } from "apis/configAPI";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieViewDetail from "./MovieViewDetail";
@@ -11,7 +12,7 @@ const MovieView = () => {
   const fetchMovie = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.movieDetail(id);
+      const { data } = await configAPI.movieGetDetail(id);
       setMovie(data.data.movie);
       setLoading(false);
     } catch (error) {
@@ -22,7 +23,7 @@ const MovieView = () => {
     fetchMovie();
   }, [id]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return <MovieViewDetail data={movie}></MovieViewDetail>;
 };
 

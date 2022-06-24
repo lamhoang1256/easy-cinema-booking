@@ -7,6 +7,7 @@ import Table from "components/table/Table";
 import ActionView from "components/action/ActionView";
 import Pagination from "components/pagination/Pagination";
 import { path } from "constants/path";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledCinemaManage = styled.div``;
 
@@ -34,7 +35,7 @@ const CinemaManage = () => {
     fetchCinemaList();
   }, [pagination.page, id]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   if (cinemaList.length === 0) return <span>No cinema</span>;
   return (
     <StyledCinemaManage>

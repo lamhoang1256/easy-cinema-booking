@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { configAPI } from "apis/configAPI";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledCinemaView = styled.div`
   line-height: 2;
@@ -26,7 +27,7 @@ const CinemaView = () => {
     fetchCinemaView();
   }, [id]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledCinemaView>
       <h1>{information.name}</h1>

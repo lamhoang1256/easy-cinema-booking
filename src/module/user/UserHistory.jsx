@@ -9,6 +9,7 @@ import ActionView from "components/action/ActionView";
 import { usePagination } from "hooks/usePagination";
 import Pagination from "components/pagination/Pagination";
 import { path } from "constants/path";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledUserHistory = styled.div``;
 
@@ -41,7 +42,7 @@ const UserHistory = () => {
     fetchMyBookings();
   }, []);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledUserHistory>
       <div className="container">

@@ -1,5 +1,6 @@
 import { configAPI } from "apis/configAPI";
 import ActionUpdate from "components/action/ActionUpdate";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
 import { path } from "constants/path";
@@ -29,7 +30,7 @@ const UserManage = () => {
     fetchAllUser();
   }, [pagination.page]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledUserManage>
       <Table>

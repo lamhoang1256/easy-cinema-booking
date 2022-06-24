@@ -13,6 +13,9 @@ import ImageResize from "components/image/ImageResize";
 import Pagination from "components/pagination/Pagination";
 import { usePagination } from "hooks/usePagination";
 import { path } from "constants/path";
+import LoadingSpinner from "components/loading/LoadingSpinner";
+import Button from "components/button/Button";
+import { sortArrayDescending } from "utilities/helper";
 
 const StyledMovieManage = styled.div`
   .title {
@@ -41,7 +44,7 @@ const MovieManage = () => {
     setLoading(true);
     try {
       const { data } = await configAPI.movieGetWithPagination(pagination);
-      setMovieList(data.data.movies);
+      setMovieList(sortArrayDescending(data.data.movies, "id"));
       setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setLoading(false);
     } catch (error) {
@@ -80,9 +83,12 @@ const MovieManage = () => {
     });
   };
 
-  if (loading) return <div>Loading</div>;
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledMovieManage>
+      <Button className="addNew" kind="purple" to={path.movieAddNew}>
+        Add new movie
+      </Button>
       <Table>
         <table>
           <thead>
@@ -112,7 +118,9 @@ const MovieManage = () => {
                 </td>
                 <td>{movie.rating}</td>
                 <td>
-                  <a href={movie.trailer}>Open Trailer</a>
+                  <a href={movie.trailer} target="_blank">
+                    Trailer
+                  </a>
                 </td>
                 <td>
                   <span className="releaseDate">{movie.releaseDate}</span>

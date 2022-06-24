@@ -5,6 +5,7 @@ import Field from "components/field/Field";
 import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 import { schemaShowtime } from "constants/yupSchema";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -17,8 +18,13 @@ const ShowtimeUpdate = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [showtime, setShowtime] = useState(null);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schemaShowtime) });
+
   const handleUpdateShowtime = async (values) => {
-    console.log(values);
     try {
       const { data } = await configAPI.showtimeUpdate(id, values);
       console.log(data);
@@ -38,19 +44,11 @@ const ShowtimeUpdate = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchShowtimeNeedUpdate();
   }, [id]);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaShowtime) });
-
-  if (loading) return "Loading";
-
+  if (loading) return <LoadingSpinner />;
   let date = showtime.startTime.split(":");
   date.pop();
   const startTime = date.join(":");
@@ -106,7 +104,9 @@ const ShowtimeUpdate = () => {
             <LabelError>{errors.price?.message} </LabelError>
           </Field>
         </div>
-        <Button type="submit">Add new showtime</Button>
+        <Button kind="purple" type="submit">
+          Update showtime
+        </Button>
       </form>
     </StyledShowtimeUpdate>
   );

@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchShowtime } from "./booking.slice";
 import BookingPayment from "module/booking/BookingPayment";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledBooking = styled.div`
   .column1 {
@@ -47,7 +48,7 @@ const Booking = () => {
     dispatch(fetchShowtime(id));
   }, [id, dispatch]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledBooking>
       <div className="container">

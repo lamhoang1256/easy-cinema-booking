@@ -1,3 +1,8 @@
+import moment from "moment";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import styled from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { DatePicker } from "antd";
 import { configAPI } from "apis/configAPI";
@@ -9,11 +14,8 @@ import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import TextArea from "components/textarea/TextArea";
 import { schemaYupFilm } from "constants/yupSchema";
-import moment from "moment";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import styled from "styled-components";
-import { sweetAlert } from "utilities/sweetAlert";
+import { useNavigate } from "react-router-dom";
+import { path } from "constants/path";
 
 const StyledMovieAddNew = styled.div`
   button {
@@ -27,11 +29,13 @@ const StyledMovieAddNew = styled.div`
     font-size: 1.8rem;
   }
   .submit {
+    margin-top: 20px;
     width: 100%;
   }
 `;
 
 const MovieAddNew = () => {
+  const navigate = useNavigate();
   const [poster, setPoster] = useState(null);
   const [releasedOn, setReleasedOn] = useState(moment(new Date()).format("YYYY-MM-DD"));
   const {
@@ -45,7 +49,7 @@ const MovieAddNew = () => {
   };
 
   const handleAddNewMovie = (req) => {
-    const newMovie = {
+    const body = {
       name: req.title,
       description: req.description,
       trailer: req.trailer,
@@ -54,20 +58,21 @@ const MovieAddNew = () => {
       rating: req.rating,
       duration: req.duration,
       poster: poster,
+      tmdbId: req.tmdbId,
     };
     const addNewMovie = async () => {
       try {
         let formData = new FormData();
-        for (const key in newMovie) {
-          formData.append(key, newMovie[key]);
+        for (const key in body) {
+          formData.append(key, body[key]);
         }
         const { data } = await configAPI.movieAddNew(formData);
-        // notification
         if (data?.status === "success") {
-          sweetAlert("success", "Thêm mới phim thành công!", "Bạn đã thêm mới phim thành công!");
+          toast.success("Add new movie successfully");
+          navigate(path.movieManage);
         }
       } catch (error) {
-        sweetAlert("error", "Thêm mới phim thất bại!", error?.response?.data?.content);
+        toast.error(error?.message);
       }
     };
     addNewMovie();
@@ -106,11 +111,10 @@ const MovieAddNew = () => {
               <Input name="duration" placeholder="Duration" type="number" control={control} />
               <LabelError>{errors.duration?.message}</LabelError>
             </Field>
-            {/* <Field>
-              <Label htmlFor="duration">ID TMDB</Label>
-              <Input name="duration" placeholder="Duration" type="number" control={control} />
-              <LabelError>{errors.duration?.message}</LabelError>
-            </Field> */}
+            <Field>
+              <Label htmlFor="tmdbId">IdTmdb (optional)</Label>
+              <Input name="tmdbId" placeholder="IdTmdb" type="number" control={control} />
+            </Field>
           </div>
           <Field>
             <Label htmlFor={"trailer"}>Trailer</Label>
@@ -118,26 +122,26 @@ const MovieAddNew = () => {
             <LabelError>{errors.trailer?.message}</LabelError>
           </Field>
         </div>
-        <Field>
-          <Label>Poster</Label>
-          <ImageUpload setImage={setPoster}></ImageUpload>
-        </Field>
-        <Field>
-          <Label htmlFor="description">Description</Label>
-          <div className="description">
+        <div className="form-layout">
+          <Field>
+            <Label htmlFor="poster">Poster</Label>
+            <ImageUpload setImage={setPoster}></ImageUpload>
+          </Field>
+          <Field>
+            <Label htmlFor="description">Description</Label>
             <Controller
               name="description"
               control={control}
               defaultValue=""
               render={({ field: { onChange } }) => (
-                <TextArea placeholder="Description" onChange={onChange} />
+                <TextArea placeholder="Description" className="textarea" onChange={onChange} />
               )}
             />
-          </div>
-          <LabelError>{errors.description?.message} </LabelError>
-        </Field>
+            <LabelError>{errors.description?.message} </LabelError>
+          </Field>
+        </div>
         <Button kind="purple" type="submit" className="submit">
-          Sửa
+          Add new movie
         </Button>
       </form>
     </StyledMovieAddNew>

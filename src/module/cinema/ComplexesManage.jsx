@@ -5,6 +5,7 @@ import Table from "components/table/Table";
 import styled from "styled-components";
 import ActionView from "components/action/ActionView";
 import { path } from "constants/path";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledComplexesManage = styled.div`
   .cinema-logo {
@@ -32,7 +33,7 @@ const ComplexesManage = () => {
     fetchComplexes();
   }, []);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledComplexesManage>
       <Table>

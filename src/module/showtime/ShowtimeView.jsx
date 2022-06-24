@@ -1,4 +1,5 @@
 import { configAPI } from "apis/configAPI";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 import BookingSeating from "module/booking/BookingSeating";
 import MovieViewDetail from "module/movie/MovieViewDetail";
 import { useEffect, useState } from "react";
@@ -41,7 +42,7 @@ const ShowtimeView = () => {
     fetchShowtimeNeedUpdate();
   }, [id]);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   const totalTicketSales = showtime?.tickets.reduce(function (acc, next) {
     if (next.status === true) return acc + next.price;
     return acc;

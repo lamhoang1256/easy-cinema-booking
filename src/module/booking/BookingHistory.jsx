@@ -11,6 +11,7 @@ import Field from "components/field/Field";
 import ImageResize from "components/image/ImageResize";
 import ActionView from "components/action/ActionView";
 import { path } from "constants/path";
+import LoadingSpinner from "components/loading/LoadingSpinner";
 
 const StyledBookingHistory = styled.div`
   .booking-header {
@@ -93,7 +94,7 @@ const BookingDetail = () => {
     fetchBookingDetail();
   }, []);
 
-  if (loading) return "Loading";
+  if (loading) return <LoadingSpinner />;
   return (
     <StyledBookingHistory>
       <div className="container">
