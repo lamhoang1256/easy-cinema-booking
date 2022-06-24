@@ -27,8 +27,8 @@ const StyledArticle = styled.div`
 `;
 
 const Article = () => {
-  const { idArticle } = useParams();
-  const news = articles.filter((news) => news.id == idArticle)[0];
+  const { id } = useParams();
+  const news = articles.filter((news) => news.id == id)[0];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -36,7 +36,7 @@ const Article = () => {
   if (!news) {
     return (
       <div className="container">
-        <Description>Tin tức này không tồn tại</Description>;
+        <Description>Tin tức này không tồn tại</Description>
       </div>
     );
   }

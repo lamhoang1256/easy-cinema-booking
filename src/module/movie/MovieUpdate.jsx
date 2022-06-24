@@ -39,7 +39,7 @@ const StyledMovieUpdate = styled.div`
 `;
 
 const MovieUpdate = () => {
-  const { idMovieEdit } = useParams();
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState([]);
   const [poster, setPoster] = useState(null);
@@ -53,7 +53,7 @@ const MovieUpdate = () => {
   const fetchMovieEdit = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.movieDetail(idMovieEdit);
+      const { data } = await configAPI.movieDetail(id);
       setMovie(data.data.movie);
       setLoading(false);
     } catch (error) {
@@ -82,7 +82,7 @@ const MovieUpdate = () => {
         for (const key in updates) {
           formData.append(key, updates[key]);
         }
-        const response = await configAPI.movieUpdate(idMovieEdit, formData);
+        const response = await configAPI.movieUpdate(id, formData);
         if (response) {
           sweetAlert(
             "success",

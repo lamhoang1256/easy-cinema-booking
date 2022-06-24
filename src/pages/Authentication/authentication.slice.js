@@ -30,7 +30,7 @@ const handleUnauth = (state) => {
 
 const handleAuthFulfilled = (state, action) => {
   const { user, accessToken } = action.payload.data;
-  state.currentUser = { user, accessToken };
+  state.currentUser = { ...user };
   localStorage.setItem(LocalStorage.currentUser, JSON.stringify(user));
   localStorage.setItem(LocalStorage.accessToken, accessToken);
 };

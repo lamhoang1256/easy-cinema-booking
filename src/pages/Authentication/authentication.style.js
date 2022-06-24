@@ -28,6 +28,14 @@ export const StyledAuth = styled.div`
     align-items: center;
     position: relative;
     color: var(--white);
+    background-image: url("/images/auth-bg.png");
+  }
+  .auth::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
   }
   .heading {
     margin-bottom: 10px;

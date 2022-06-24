@@ -1,6 +1,7 @@
 import { path } from "constants/path";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 const MainLayout = React.lazy(() => import("layouts/MainLayout"));
 const Dashboard = React.lazy(() => import("pages/Dashboard/Dashboard"));
@@ -39,27 +40,31 @@ const RoutesComponent = () => {
             <Route path={path.home} element={<Home />} />
             <Route path={`${path.detail}/:id/*`} element={<MovieDetail />} />
             <Route path={`${path.detailTmdb}`} element={<MovieDetailTmdb />} />
-            <Route path={path.profile} element={<UserProfile />} />
-            <Route path={path.history} element={<UserHistory />} />
             <Route path={`${path.article}/:id`} element={<Article />} />
-            <Route path={`${path.booking}/:id`} element={<Booking />} />
-            <Route path={`${path.bookingHistory}/:id`} element={<BookingHistory />} />
+            <Route element={<ProtectedRoutes isAllowed={["admin", "user"]} />}>
+              <Route path={`${path.booking}/:id`} element={<Booking />} />
+              <Route path={path.history} element={<UserHistory />} />
+              <Route path={path.profile} element={<UserProfile />} />
+              <Route path={`${path.bookingHistory}/:id`} element={<BookingHistory />} />
+            </Route>
           </Route>
-          <Route element={<DashboardLayout />}>
-            <Route path={path.dashboard} element={<Dashboard />} />
-            <Route path={path.userManage} element={<UserManage />} />
-            <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
-            <Route path={path.movieManage} element={<MovieManage />} />
-            <Route path={path.movieAddNew} element={<MovieAddNew />} />
-            <Route path={path.movieView} element={<MovieView />} />
-            <Route path={`${path.movieUpdate}/:id`} element={<MovieUpdate />} />
-            <Route path={path.complexesManage} element={<ComplexesManage />} />
-            <Route path={`${path.cinemaView}/:id`} element={<CinemaView />} />
-            <Route path={`${path.cinemaManage}/:id`} element={<CinemaManage />} />
-            <Route path={path.showtimeManage} element={<ShowtimeManage />} />
-            <Route path={path.showtimeAddNew} element={<ShowtimeAddNew />} />
-            <Route path={`${path.showtimeUpdate}/:id`} element={<ShowtimeUpdate />} />
-            <Route path={`${path.showtimeView}/:id`} element={<ShowtimeView />} />
+          <Route element={<ProtectedRoutes isAllowed={["admin"]} />}>
+            <Route element={<DashboardLayout />}>
+              <Route path={path.dashboard} element={<Dashboard />} />
+              <Route path={path.userManage} element={<UserManage />} />
+              <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
+              <Route path={path.movieManage} element={<MovieManage />} />
+              <Route path={path.movieAddNew} element={<MovieAddNew />} />
+              <Route path={path.movieView} element={<MovieView />} />
+              <Route path={`${path.movieUpdate}/:id`} element={<MovieUpdate />} />
+              <Route path={path.complexesManage} element={<ComplexesManage />} />
+              <Route path={`${path.cinemaView}/:id`} element={<CinemaView />} />
+              <Route path={`${path.cinemaManage}/:id`} element={<CinemaManage />} />
+              <Route path={path.showtimeManage} element={<ShowtimeManage />} />
+              <Route path={path.showtimeAddNew} element={<ShowtimeAddNew />} />
+              <Route path={`${path.showtimeUpdate}/:id`} element={<ShowtimeUpdate />} />
+              <Route path={`${path.showtimeView}/:id`} element={<ShowtimeView />} />
+            </Route>
           </Route>
           <Route path={path.signIn} element={<SignIn />} />
           <Route path={path.signUp} element={<SignUp />} />
