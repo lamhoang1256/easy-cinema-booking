@@ -74,7 +74,7 @@ const ShowtimeAddNew = () => {
       if (data?.status === "success") toast.success("Add new showtime successfully");
       navigate(path.showtimeManage);
     } catch (error) {
-      toast.error(error?.message);
+      toast.error(error?.response?.data?.message);
     }
   };
 

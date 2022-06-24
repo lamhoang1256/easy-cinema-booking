@@ -1,15 +1,15 @@
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { path } from "constants/path";
+import { useDebounce } from "hooks/useDebounce";
+import { usePagination } from "hooks/usePagination";
 import { configAPI } from "apis/configAPI";
-import ActionUpdate from "components/action/ActionUpdate";
 import Button from "components/button/Button";
 import Search from "components/input/Search";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
-import { path } from "constants/path";
-import { useDebounce } from "hooks/useDebounce";
-import { usePagination } from "hooks/usePagination";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import ActionUpdate from "components/action/ActionUpdate";
 
 const StyledUserManage = styled.div``;
 
@@ -47,8 +47,8 @@ const UserManage = () => {
           setSearchValue={setSearchValue}
           placeholder="Search Email..."
         />
-        <Button className="addNew" kind="purple" to={path.userAddNew}>
-          Add new user
+        <Button kind="purple" to={path.userAddNew}>
+          Add New User
         </Button>
       </div>
       {loading && <LoadingSpinner />}

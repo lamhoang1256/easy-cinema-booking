@@ -13,14 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { path } from "constants/path";
 
 const StyledUserAddNew = styled.div`
-  .form-layout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    button {
-      width: max-content;
-    }
-  }
   .submit {
     width: 100%;
   }
@@ -40,7 +32,7 @@ const UserAddNew = () => {
       if (data?.status === "success") toast.success("Add new user successfully");
       navigate(path.userManage);
     } catch (error) {
-      toast.error(error?.message);
+      toast.error(error?.response?.data?.message);
     }
   };
 
@@ -92,7 +84,7 @@ const UserAddNew = () => {
           </Field>
         </div>
         <Button kind="purple" type="submit" className="submit">
-          Sửa
+          Add New User
         </Button>
       </form>
     </StyledUserAddNew>

@@ -34,7 +34,7 @@ const SignIn = () => {
       unwrapResult(signInResult);
       toast.success("Sign In Success");
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error?.message);
     }
   };
   useEffect(() => {

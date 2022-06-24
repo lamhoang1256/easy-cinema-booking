@@ -15,6 +15,7 @@ import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
 import LoadingSpinner from "components/loading/LoadingSpinner";
+import { toast } from "react-toastify";
 
 const StyledMovieManage = styled.div`
   .title {
@@ -62,8 +63,8 @@ const MovieManage = () => {
 
   const handleDeleteMovie = (idMovie) => {
     Swal.fire({
-      title: "Xóa phim?",
-      text: "Bạn có chắc chắc muốn xóa phim này!",
+      title: "Delete movie?",
+      text: "Are you sure you want to delete this movie?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -73,13 +74,13 @@ const MovieManage = () => {
       if (result.isConfirmed) {
         const deleteMovie = async (idMovie) => {
           try {
-            const response = await configAPI.movieDelete(idMovie);
-            if (response) {
-              Swal.fire("Xóa thành công!", "Phim bạn chọn đã được xóa.", "success");
+            const { data } = await configAPI.movieDelete(idMovie);
+            if (data?.status === "success") {
+              toast.success("Delete movie successfully");
               fetchMovieList();
             }
           } catch (error) {
-            Swal.fire("Xóa thất bại!", error?.response?.data?.content, "error");
+            toast.error(error?.response?.data?.message);
           }
         };
         deleteMovie(idMovie);

@@ -38,7 +38,7 @@ const BookingPayment = () => {
       if (data?.status === "success") toast.success("Success Booking Ticket");
       navigate(`${path.bookingHistory}/${data?.data?.booking?.id}`);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error?.response?.data?.message);
     }
   };
 

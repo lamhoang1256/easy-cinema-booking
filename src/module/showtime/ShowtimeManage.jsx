@@ -54,7 +54,7 @@ const ShowtimeManage = () => {
       if (data?.status === "success") toast.success("Delete showtime successfully");
       fetchShowtimes();
     } catch (error) {
-      toast.error(error?.message);
+      toast.error(error?.response?.data?.message);
     }
   };
 

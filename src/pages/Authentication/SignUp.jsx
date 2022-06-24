@@ -31,7 +31,7 @@ const SignUp = () => {
       unwrapResult(signUpResult);
       toast.success("Sign Up Success");
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error?.message);
     }
   };
   useEffect(() => {

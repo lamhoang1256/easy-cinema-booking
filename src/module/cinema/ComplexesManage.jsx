@@ -59,7 +59,7 @@ const ComplexesManage = () => {
                 </td>
                 <td>{cinema.name}</td>
                 <td>
-                  <ActionView to={`${path.cinemaView}/${cinema.id}`}></ActionView>
+                  <ActionView to={`${path.cinemaManage}/${cinema.id}`}></ActionView>
                 </td>
               </tr>
             ))}

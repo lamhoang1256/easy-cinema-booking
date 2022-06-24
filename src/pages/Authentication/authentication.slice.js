@@ -18,10 +18,17 @@ export const signIn = createAsyncThunk(
     }
   }
 );
-export const signUp = createAsyncThunk("authentication/signUp", async (user) => {
-  const { data } = await configAPI.userSignUp(user);
-  return data;
-});
+export const signUp = createAsyncThunk(
+  "authentication/signUp",
+  async (user, { rejectWithValue }) => {
+    try {
+      const { data } = await configAPI.userSignUp(user);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 const handleUnauth = (state) => {
   state.currentUser = {};
   localStorage.removeItem(LocalStorage.currentUser);

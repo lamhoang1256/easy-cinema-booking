@@ -70,7 +70,7 @@ const MovieAddNew = () => {
           navigate(path.movieManage);
         }
       } catch (error) {
-        toast.error(error?.message);
+        toast.error(error?.response?.data?.message);
       }
     };
     addNewMovie();

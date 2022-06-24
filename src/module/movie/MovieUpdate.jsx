@@ -91,7 +91,7 @@ const MovieUpdate = () => {
         if (data?.status === "success") toast.success("Update movie successfully");
         navigate(path.movieManage);
       } catch (error) {
-        toast.error(error?.message);
+        toast.error(error?.response?.data?.message);
       }
     };
     updateMovie();
@@ -157,7 +157,7 @@ const MovieUpdate = () => {
             <LabelError>{errors.description?.message} </LabelError>
           </Field>
         </div>
-        <Button kind="purple" type="submit" className="submit">
+        <Button kind="purple" type="submit" className="button-full">
           Sửa
         </Button>
       </form>

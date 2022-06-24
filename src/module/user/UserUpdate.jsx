@@ -13,19 +13,7 @@ import { useParams } from "react-router-dom";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 import { toast } from "react-toastify";
 
-const StyledUserUpdate = styled.div`
-  .form-layout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    button {
-      width: max-content;
-    }
-  }
-  .submit {
-    width: 100%;
-  }
-`;
+const StyledUserUpdate = styled.div``;
 
 const UserUpdate = () => {
   const { id } = useParams();
@@ -69,7 +57,7 @@ const UserUpdate = () => {
         const { data } = await configAPI.userUpdate(id, updates);
         if (data?.status === "success") toast.success("Update user successfully");
       } catch (error) {
-        toast.error(error?.message);
+        toast.error(error?.response?.data?.message);
       }
     };
     updateUser();
@@ -127,8 +115,8 @@ const UserUpdate = () => {
             <LabelError>{errors.phoneNumber?.message}</LabelError>
           </Field>
         </div>
-        <Button kind="purple" type="submit" className="submit">
-          Sửa
+        <Button kind="purple" type="submit" className="button-full">
+          Update User
         </Button>
       </form>
     </StyledUserUpdate>

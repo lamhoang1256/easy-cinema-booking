@@ -36,7 +36,6 @@ const UserHistory = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchMyBookings();

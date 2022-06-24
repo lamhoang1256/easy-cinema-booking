@@ -109,7 +109,7 @@ const UserProfile = () => {
               <LabelError>{errors.dateOfBirth?.message}</LabelError>
             </Field>
           </div>
-          <StyledButtonAuth type="submit">Update</StyledButtonAuth>
+          <StyledButtonAuth type="submit">Update Profile</StyledButtonAuth>
         </form>
       </div>
     </StyledUserProfile>
