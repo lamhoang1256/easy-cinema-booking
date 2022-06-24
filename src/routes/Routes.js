@@ -11,6 +11,7 @@ const Article = React.lazy(() => import("pages/Article/Article"));
 const UserManage = React.lazy(() => import("module/user/UserManage"));
 const UserProfile = React.lazy(() => import("module/user/UserProfile"));
 const UserUpdate = React.lazy(() => import("module/user/UserUpdate"));
+const UserAddNew = React.lazy(() => import("module/user/UserAddNew"));
 const UserHistory = React.lazy(() => import("module/user/UserHistory"));
 const Booking = React.lazy(() => import("pages/Booking/Booking"));
 const BookingHistory = React.lazy(() => import("module/booking/BookingHistory"));
@@ -52,6 +53,7 @@ const RoutesComponent = () => {
             <Route element={<DashboardLayout />}>
               <Route path={path.dashboard} element={<Dashboard />} />
               <Route path={path.userManage} element={<UserManage />} />
+              <Route path={path.userAddNew} element={<UserAddNew />} />
               <Route path={`${path.userUpdate}/:id`} element={<UserUpdate />} />
               <Route path={path.movieManage} element={<MovieManage />} />
               <Route path={path.movieAddNew} element={<MovieAddNew />} />

@@ -40,7 +40,6 @@ const MovieUpdate = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [poster, setPoster] = useState(null);
-  const [releasedOn, setReleasedOn] = useState(null);
   const {
     control,
     handleSubmit,
@@ -55,6 +54,7 @@ const MovieUpdate = () => {
       duration: "",
       rating: "",
       tmdbId: "0",
+      releaseDate: "",
     },
   });
 
@@ -62,7 +62,6 @@ const MovieUpdate = () => {
     setLoading(true);
     try {
       const { data } = await configAPI.movieGetDetail(id);
-      setReleasedOn(data.data.movie?.releaseDate);
       reset(data.data.movie);
       setLoading(false);
     } catch (error) {
@@ -70,16 +69,12 @@ const MovieUpdate = () => {
     }
   };
 
-  const onChangeReleaseOn = (date) => {
-    setReleasedOn(moment(date).format("YYYY-MM-DD"));
-  };
-
   const handleUpdateMovie = (req) => {
     const updates = {
       name: req.name,
       description: req.description,
       trailer: req.trailer,
-      releaseDate: releasedOn,
+      releaseDate: req.releaseDate,
       status: "now-showing",
       rating: req.rating,
       duration: req.duration,
@@ -114,18 +109,13 @@ const MovieUpdate = () => {
         <div className="form-layout">
           <Field>
             <Label>Release Date</Label>
-            <DatePicker
-              className="date"
-              defaultValue={moment(releasedOn)}
-              control={control}
-              onChange={onChangeReleaseOn}
-              format="DD/MM/YYYY"
-            />
+            <Input placeholder="Release Date" name="releaseDate" type="date" control={control} />
+            <LabelError>{errors.releaseDate?.message}</LabelError>
           </Field>
           <Field>
             <Label htmlFor="name">Name</Label>
             <Input placeholder="Name" name="name" type="text" control={control} />
-            <LabelError>{errors.name?.message} </LabelError>
+            <LabelError>{errors.name?.message}</LabelError>
           </Field>
         </div>
         <div className="form-layout">
@@ -147,7 +137,12 @@ const MovieUpdate = () => {
           </div>
           <Field>
             <Label htmlFor={"trailer"}>Trailer</Label>
-            <Input type="text" placeholder="Trailer" control={control} name="trailer" />
+            <Input
+              type="text"
+              placeholder="Ex: https://www.youtube.com/watch?v=dd_R1GQwKlY"
+              control={control}
+              name="trailer"
+            />
             <LabelError>{errors.trailer?.message}</LabelError>
           </Field>
         </div>
@@ -158,17 +153,7 @@ const MovieUpdate = () => {
           </Field>
           <Field>
             <Label htmlFor="description">Description</Label>
-            <Controller
-              control={control}
-              render={({ field: { onChange } }) => (
-                <TextArea
-                  control={control}
-                  onChange={onChange}
-                  name="description"
-                  placeholder="Description"
-                />
-              )}
-            />
+            <TextArea control={control} name="description" placeholder="Description" />
             <LabelError>{errors.description?.message} </LabelError>
           </Field>
         </div>

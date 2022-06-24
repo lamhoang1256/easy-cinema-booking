@@ -1,10 +1,11 @@
-import moment from "moment";
+import { path } from "constants/path";
+import { schemaYupFilm } from "constants/yupSchema";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DatePicker } from "antd";
 import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
@@ -13,9 +14,6 @@ import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import TextArea from "components/textarea/TextArea";
-import { schemaYupFilm } from "constants/yupSchema";
-import { useNavigate } from "react-router-dom";
-import { path } from "constants/path";
 
 const StyledMovieAddNew = styled.div`
   button {
@@ -37,7 +35,6 @@ const StyledMovieAddNew = styled.div`
 const MovieAddNew = () => {
   const navigate = useNavigate();
   const [poster, setPoster] = useState(null);
-  const [releasedOn, setReleasedOn] = useState(moment(new Date()).format("YYYY-MM-DD"));
   const {
     control,
     handleSubmit,
@@ -49,16 +46,12 @@ const MovieAddNew = () => {
     },
   });
 
-  const onChangeDatePicker = (value) => {
-    setReleasedOn(moment(value).format("YYYY-MM-DD"));
-  };
-
   const handleAddNewMovie = (req) => {
     const body = {
       name: req.name,
       description: req.description,
       trailer: req.trailer,
-      releaseDate: releasedOn,
+      releaseDate: req.releaseDate,
       status: "now-showing",
       rating: req.rating,
       duration: req.duration,
@@ -85,18 +78,13 @@ const MovieAddNew = () => {
 
   return (
     <StyledMovieAddNew>
-      <h2>Thêm phim mới</h2>
+      <h2>Add new movie</h2>
       <form className="movie" onSubmit={handleSubmit(handleAddNewMovie)}>
         <div className="form-layout">
           <Field>
-            <Label>Ngày khởi chiếu</Label>
-            <DatePicker
-              className="date"
-              defaultValue={moment(new Date(), "DD/MM/YYYY")}
-              control={control}
-              onChange={onChangeDatePicker}
-              format="DD/MM/YYYY"
-            />
+            <Label>Release Date</Label>
+            <Input placeholder="Release Date" name="releaseDate" type="date" control={control} />
+            <LabelError>{errors.releaseDate?.message} </LabelError>
           </Field>
           <Field>
             <Label htmlFor="name">Name</Label>
@@ -123,7 +111,12 @@ const MovieAddNew = () => {
           </div>
           <Field>
             <Label htmlFor={"trailer"}>Trailer</Label>
-            <Input name="trailer" placeholder="Trailer" type="text" control={control} />
+            <Input
+              name="trailer"
+              placeholder="Ex: https://www.youtube.com/watch?v=dd_R1GQwKlY"
+              type="text"
+              control={control}
+            />
             <LabelError>{errors.trailer?.message}</LabelError>
           </Field>
         </div>
@@ -134,13 +127,11 @@ const MovieAddNew = () => {
           </Field>
           <Field>
             <Label htmlFor="description">Description</Label>
-            <Controller
+            <TextArea
               name="description"
               control={control}
-              defaultValue=""
-              render={({ field: { onChange } }) => (
-                <TextArea placeholder="Description" className="textarea" onChange={onChange} />
-              )}
+              placeholder="Description"
+              className="textarea"
             />
             <LabelError>{errors.description?.message} </LabelError>
           </Field>

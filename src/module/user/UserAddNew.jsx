@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { schemaAddNewUser } from "constants/yupSchema";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
@@ -6,14 +9,10 @@ import Field from "components/field/Field";
 import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
-import { schemaUser } from "constants/yupSchema";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
-import LoadingSpinner from "components/loading/LoadingSpinner";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { path } from "constants/path";
 
-const StyledUserUpdate = styled.div`
+const StyledUserAddNew = styled.div`
   .form-layout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -27,63 +26,28 @@ const StyledUserUpdate = styled.div`
   }
 `;
 
-const UserUpdate = () => {
-  const { id } = useParams();
-  const [loading, setLoading] = useState(true);
+const UserAddNew = () => {
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm({
-    resolver: yupResolver(schemaUser),
-    defaultValues: {
-      email: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      role: "",
-      dateOfBirth: "",
-      phoneNumber: "",
-    },
-  });
+  } = useForm({ resolver: yupResolver(schemaAddNewUser) });
 
-  const fetchUserNeedUpdate = async () => {
-    setLoading(true);
+  const handleAddNewUser = async (values) => {
     try {
-      const { data } = await configAPI.userGetSingle(id);
-      reset(data.data.user);
-      setLoading(false);
+      const { data } = await configAPI.userAddNew(values);
+      if (data?.status === "success") toast.success("Add new user successfully");
+      navigate(path.userManage);
     } catch (error) {
-      setLoading(false);
+      toast.error(error?.message);
     }
   };
 
-  const handleUpdateUser = (values) => {
-    const updates = {
-      ...values,
-      password: values?.password || null,
-    };
-    const updateUser = async () => {
-      try {
-        const { data } = await configAPI.userUpdate(id, updates);
-        if (data?.status === "success") toast.success("Update user successfully");
-      } catch (error) {
-        toast.error(error?.message);
-      }
-    };
-    updateUser();
-  };
-
-  useEffect(() => {
-    fetchUserNeedUpdate();
-  }, [id]);
-
-  if (loading) return <LoadingSpinner />;
   return (
-    <StyledUserUpdate>
-      <h2>Update User</h2>
-      <form className="movie" onSubmit={handleSubmit(handleUpdateUser)}>
+    <StyledUserAddNew>
+      <h2>Add New User</h2>
+      <form className="movie" onSubmit={handleSubmit(handleAddNewUser)}>
         <div className="form-layout">
           <Field>
             <Label htmlFor="firstName">First Name</Label>
@@ -122,7 +86,7 @@ const UserUpdate = () => {
             </Field>
           </div>
           <Field>
-            <Label htmlFor="phoneNumber">Phone Number</Label>
+            <Label htmlFor={"phoneNumber"}>Phone Number</Label>
             <Input type="text" placeholder="Phone Number" control={control} name="phoneNumber" />
             <LabelError>{errors.phoneNumber?.message}</LabelError>
           </Field>
@@ -131,8 +95,8 @@ const UserUpdate = () => {
           Sửa
         </Button>
       </form>
-    </StyledUserUpdate>
+    </StyledUserAddNew>
   );
 };
 
-export default UserUpdate;
+export default UserAddNew;

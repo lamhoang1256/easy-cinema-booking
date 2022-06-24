@@ -5,7 +5,7 @@ import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import { path } from "constants/path";
-import { schemaUserUpdate } from "constants/yupSchema";
+import { schemaUser } from "constants/yupSchema";
 import { StyledButtonAuth } from "pages/Authentication/authentication.style";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -25,7 +25,7 @@ const UserProfile = () => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schemaUserUpdate),
+    resolver: yupResolver(schemaUser),
     defaultValues: {
       firstName: "",
       lastName: "",

@@ -11,17 +11,13 @@ const StyledTextArea = styled.textarea`
   height: 100%;
 `;
 
-const TextArea = ({ name = "", type = "text", children, control, ...props }) => {
+const TextArea = ({ name = "", type = "text", control, ...props }) => {
   const { field } = useController({
     control,
     name,
     defaultValue: "",
   });
-  return (
-    <StyledTextArea {...field} {...props}>
-      {children}
-    </StyledTextArea>
-  );
+  return <StyledTextArea type={type} {...field} {...props}></StyledTextArea>;
 };
 
 export default TextArea;

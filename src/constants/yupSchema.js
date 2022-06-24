@@ -33,7 +33,7 @@ export const schemaYupSignIn = yup.object({
     .required("Please enter your password"),
 });
 
-export const schemaUserUpdate = yup.object({
+export const schemaUser = yup.object({
   email: yup
     .string()
     .email("Please enter valid email address")
@@ -52,6 +52,7 @@ export const schemaYupFilm = yup.object().shape({
     .required("Please input name movie!")
     .min(6, "Name movie must be at least 9 characters!")
     .max(200, "Name movie max is 200 characters!"),
+  releaseDate: yup.string().required("Please input release date!"),
   description: yup
     .string()
     .required("Please input description!")
@@ -69,8 +70,27 @@ export const schemaYupFilm = yup.object().shape({
 });
 
 export const schemaShowtime = yup.object().shape({
-  movieId: yup.number().required("Mã phim không được để trống !"),
-  screenId: yup.number().required("Mã phòng chiếu không được để trống !"),
-  startTime: yup.string().required("Thời gian khởi chiếu không được đê trống"),
-  price: yup.number().required("Giá vé không được để trống !"),
+  movieId: yup.number().required("Please input movieId!"),
+  screenId: yup.number().required("Please input screenId!"),
+  startTime: yup.string().required("Please input start time!"),
+  price: yup.number().required("Please input price ticket!"),
+});
+
+export const schemaAddNewUser = yup.object({
+  firstName: yup.string().required("Please enter your first name"),
+  lastName: yup.string().required("Please enter your last name"),
+  email: yup
+    .string()
+    .email("Please enter valid email address")
+    .required("Please enter your email address"),
+  password: yup
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, {
+      message: "Password must have at least 1 uppercase, 1 lowercase, 1 special character",
+    })
+    .required("Please enter your password"),
+  role: yup.string().required("Please enter role"),
+  phoneNumber: yup.string().required("Please enter your phone number"),
+  dateOfBirth: yup.string().required("Please enter your date of birth"),
 });

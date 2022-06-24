@@ -137,6 +137,11 @@ export const configAPI = {
     const path = `/api/auth/update-profile`;
     return axiosClient.put(path, user);
   },
+  userAddNew: (user) => {
+    const path = `/api/users`;
+    return axiosClient.post(path, user);
+  },
+
   // commentGetAll: () => {
   //   const path = "https://62459f866b7ecf057c216c44.mockapi.io/api/comments";
   //   return axios.get(path);

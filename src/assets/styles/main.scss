@@ -139,3 +139,12 @@ body {
   height: 40px;
   border-radius: 50%;
 }
+.manage-header {
+  display: flex;
+  gap: 30px;
+  flex-shrink: 0;
+  margin-bottom: 30px;
+}
+.manage-header .search {
+  flex: 1;
+}
