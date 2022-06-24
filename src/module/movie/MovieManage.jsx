@@ -1,20 +1,18 @@
 import { configAPI } from "apis/configAPI";
-import axios from "axios";
+import { TextClamp } from "assets/styles/mixin";
 import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
-import Table from "components/table/Table";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { createKeyForObj } from "utilities/createKeyForObject";
-import styled from "styled-components";
-import { TextClamp } from "assets/styles/mixin";
-import ImageResize from "components/image/ImageResize";
-import Pagination from "components/pagination/Pagination";
-import { usePagination } from "hooks/usePagination";
-import { path } from "constants/path";
-import LoadingSpinner from "components/loading/LoadingSpinner";
 import Button from "components/button/Button";
+import ImageResize from "components/image/ImageResize";
+import LoadingSpinner from "components/loading/LoadingSpinner";
+import Pagination from "components/pagination/Pagination";
+import Table from "components/table/Table";
+import { path } from "constants/path";
+import { usePagination } from "hooks/usePagination";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import Swal from "sweetalert2";
 import { sortArrayDescending } from "utilities/helper";
 
 const StyledMovieManage = styled.div`

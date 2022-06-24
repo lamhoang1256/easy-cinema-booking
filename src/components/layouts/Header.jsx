@@ -1,18 +1,24 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { scroller } from "react-scroll";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { path } from "constants/path";
 import Button from "components/button/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { path } from "constants/path";
 import { logout } from "pages/Authentication/authentication.slice";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { TextGradient } from "assets/styles/mixin";
 
 const StyledHeader = styled.header`
-  margin-bottom: 40px;
   .header-content {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
+    height: 100px;
+  }
+  .header-logo h2 {
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 800;
+    ${TextGradient.primary}
   }
   .navbar-list {
     margin: 0;
@@ -20,7 +26,7 @@ const StyledHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
   }
   .navbar-link {
     font-size: 1.8rem;
@@ -52,12 +58,6 @@ const StyledHeader = styled.header`
     background-color: var(--purple-color);
   }
   @media screen and (max-width: 1023.98px) {
-    .sign-in,
-    .sign-up {
-      padding: 0px 10px;
-      height: 36px;
-      font-size: 1.4rem;
-    }
     .header-open {
       display: flex;
     }
@@ -100,8 +100,8 @@ const Header = () => {
     <StyledHeader>
       <div className="container">
         <div className="header-content">
-          <Link to="/" className="header-logo">
-            <img src={`assets/images/chore/logo-star-cineplex.png`} alt="logo" />
+          <Link to={path.home} className="header-logo">
+            <h2>EasyBooking</h2>
           </Link>
           <ul className={`navbar-list ${isShowMenu ? "show" : null}`}>
             {headerNav.map((item) => (
@@ -111,6 +111,13 @@ const Header = () => {
                 </NavLink>
               </li>
             ))}
+            {currentUser?.role === "admin" ? (
+              <li className="navbar-item" key={0}>
+                <NavLink to={path.dashboard} className="navbar-link">
+                  Dashboard
+                </NavLink>
+              </li>
+            ) : null}
           </ul>
           <div className="header-auth">
             {currentUser?.email && (

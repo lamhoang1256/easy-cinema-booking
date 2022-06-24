@@ -43,6 +43,12 @@ const UserHistory = () => {
   }, []);
 
   if (loading) return <LoadingSpinner />;
+  if (displayBookings.length === 0)
+    return (
+      <div className="container">
+        <h2 style={{ textAlign: "center", color: "var(--gray-color)" }}>Empty ticket history</h2>
+      </div>
+    );
   return (
     <StyledUserHistory>
       <div className="container">

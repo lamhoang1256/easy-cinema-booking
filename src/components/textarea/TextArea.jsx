@@ -1,3 +1,4 @@
+import { useController } from "react-hook-form";
 import styled from "styled-components";
 
 const StyledTextArea = styled.textarea`
@@ -10,8 +11,17 @@ const StyledTextArea = styled.textarea`
   height: 100%;
 `;
 
-const TextArea = ({ ...props }) => {
-  return <StyledTextArea {...props}></StyledTextArea>;
+const TextArea = ({ name = "", type = "text", children, control, ...props }) => {
+  const { field } = useController({
+    control,
+    name,
+    defaultValue: "",
+  });
+  return (
+    <StyledTextArea {...field} {...props}>
+      {children}
+    </StyledTextArea>
+  );
 };
 
 export default TextArea;

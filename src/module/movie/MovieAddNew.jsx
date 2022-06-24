@@ -42,7 +42,12 @@ const MovieAddNew = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaYupFilm) });
+  } = useForm({
+    resolver: yupResolver(schemaYupFilm),
+    defaultValues: {
+      tmdbId: "0",
+    },
+  });
 
   const onChangeDatePicker = (value) => {
     setReleasedOn(moment(value).format("YYYY-MM-DD"));
@@ -50,7 +55,7 @@ const MovieAddNew = () => {
 
   const handleAddNewMovie = (req) => {
     const body = {
-      name: req.title,
+      name: req.name,
       description: req.description,
       trailer: req.trailer,
       releaseDate: releasedOn,
@@ -94,9 +99,9 @@ const MovieAddNew = () => {
             />
           </Field>
           <Field>
-            <Label htmlFor="title">Name</Label>
-            <Input placeholder="Name" name="title" type="text" control={control} />
-            <LabelError>{errors.title?.message} </LabelError>
+            <Label htmlFor="name">Name</Label>
+            <Input placeholder="Name" name="name" type="text" control={control} />
+            <LabelError>{errors.name?.message} </LabelError>
           </Field>
         </div>
         <div className="form-layout">
@@ -113,7 +118,7 @@ const MovieAddNew = () => {
             </Field>
             <Field>
               <Label htmlFor="tmdbId">IdTmdb (optional)</Label>
-              <Input name="tmdbId" placeholder="IdTmdb" type="number" control={control} />
+              <Input name="tmdbId" placeholder="tmdbId" type="number" control={control} />
             </Field>
           </div>
           <Field>

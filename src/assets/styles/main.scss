@@ -115,6 +115,11 @@ body {
   .column2 {
     padding-top: 20px;
   }
+
+  .form-layout,
+  .form-layout-3 {
+    grid-template-columns: 100%;
+  }
 }
 .swal2-popup.swal2-modal {
   font-size: 16px;

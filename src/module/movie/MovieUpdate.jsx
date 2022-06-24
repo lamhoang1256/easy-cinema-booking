@@ -1,31 +1,26 @@
-import moment from "moment";
-import { useEffect, useState } from "react";
-import { Controller } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { DatePicker } from "antd";
 import { configAPI } from "apis/configAPI";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
 import ImageUpload from "components/image/ImageUpload";
+import Input from "components/input/Input";
 import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
-import { schemaYupFilm } from "constants/yupSchema";
-import { useForm } from "react-hook-form";
-import { sweetAlert } from "utilities/sweetAlert";
-import styled from "styled-components";
-import Input from "components/input/Input";
-import TextArea from "components/textarea/TextArea";
 import LoadingSpinner from "components/loading/LoadingSpinner";
+import TextArea from "components/textarea/TextArea";
+import { path } from "constants/path";
+import { schemaYupFilm } from "constants/yupSchema";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import styled from "styled-components";
 
 const StyledMovieUpdate = styled.div`
-  .form-layout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    button {
-      width: max-content;
-    }
+  button {
+    width: max-content;
   }
   .date {
     height: 53px;
@@ -35,27 +30,40 @@ const StyledMovieUpdate = styled.div`
     font-size: 1.8rem;
   }
   .submit {
+    margin-top: 20px;
     width: 100%;
   }
 `;
 
 const MovieUpdate = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [movie, setMovie] = useState([]);
   const [poster, setPoster] = useState(null);
   const [releasedOn, setReleasedOn] = useState(null);
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaYupFilm) });
+    reset,
+  } = useForm({
+    resolver: yupResolver(schemaYupFilm),
+    defaultValues: {
+      name: "",
+      description: "",
+      trailer: "",
+      duration: "",
+      rating: "",
+      tmdbId: "0",
+    },
+  });
 
-  const fetchMovieEdit = async () => {
+  const fetchMovieNeedUpdate = async () => {
     setLoading(true);
     try {
-      const { data } = await configAPI.movieDetail(id);
-      setMovie(data.data.movie);
+      const { data } = await configAPI.movieGetDetail(id);
+      setReleasedOn(data.data.movie?.releaseDate);
+      reset(data.data.movie);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -68,13 +76,14 @@ const MovieUpdate = () => {
 
   const handleUpdateMovie = (req) => {
     const updates = {
-      name: req.title,
+      name: req.name,
       description: req.description,
       trailer: req.trailer,
       releaseDate: releasedOn,
       status: "now-showing",
       rating: req.rating,
       duration: req.duration,
+      tmdbId: req.tmdbId,
       poster: poster,
     };
     const updateMovie = async () => {
@@ -83,88 +92,62 @@ const MovieUpdate = () => {
         for (const key in updates) {
           formData.append(key, updates[key]);
         }
-        const response = await configAPI.movieUpdate(id, formData);
-        if (response) {
-          sweetAlert(
-            "success",
-            "Cập nhật phim thành công!",
-            "Bạn đã sửa thành công thông tin phim!"
-          );
-        }
+        const { data } = await configAPI.movieUpdate(id, formData);
+        if (data?.status === "success") toast.success("Update movie successfully");
+        navigate(path.movieManage);
       } catch (error) {
-        sweetAlert("error", "Cập nhật phim thất bại!", error?.response?.data?.content);
+        toast.error(error?.message);
       }
     };
     updateMovie();
   };
 
   useEffect(() => {
-    fetchMovieEdit();
+    fetchMovieNeedUpdate();
   }, []);
 
   if (loading) return <LoadingSpinner />;
-  console.log(movie);
   return (
     <StyledMovieUpdate>
-      <h2>Thêm phim mới</h2>
+      <h2>Update movie</h2>
       <form className="movie" onSubmit={handleSubmit(handleUpdateMovie)}>
         <div className="form-layout">
           <Field>
-            <Label>Ngày khởi chiếu</Label>
+            <Label>Release Date</Label>
             <DatePicker
               className="date"
-              defaultValue={moment(new Date(), "DD/MM/YYYY")}
+              defaultValue={moment(releasedOn)}
               control={control}
               onChange={onChangeReleaseOn}
               format="DD/MM/YYYY"
             />
           </Field>
           <Field>
-            <Label htmlFor="title">Name</Label>
-            <Input
-              placeholder="Name"
-              name="title"
-              type="text"
-              defaultValue={movie?.name}
-              control={control}
-            />
-            <LabelError>{errors.title?.message} </LabelError>
+            <Label htmlFor="name">Name</Label>
+            <Input placeholder="Name" name="name" type="text" control={control} />
+            <LabelError>{errors.name?.message} </LabelError>
           </Field>
         </div>
         <div className="form-layout">
-          <div className="form-layout">
+          <div className="form-layout-3">
             <Field>
               <Label htmlFor="rating">Rating</Label>
-              <Input
-                placeholder="Rating"
-                type="number"
-                defaultValue={movie?.rating}
-                control={control}
-                name="rating"
-              />
+              <Input placeholder="Rating" type="number" control={control} name="rating" />
               <LabelError>{errors.rating?.message}</LabelError>
             </Field>
             <Field>
               <Label htmlFor="duration">Duration</Label>
-              <Input
-                placeholder="Duration"
-                type="number"
-                defaultValue={movie?.duration}
-                control={control}
-                name="duration"
-              />
+              <Input placeholder="Duration" type="number" control={control} name="duration" />
               <LabelError>{errors.duration?.message}</LabelError>
+            </Field>
+            <Field>
+              <Label htmlFor="tmdbId">IdTmdb (optional)</Label>
+              <Input name="tmdbId" placeholder="tmdbId" type="number" control={control} />
             </Field>
           </div>
           <Field>
             <Label htmlFor={"trailer"}>Trailer</Label>
-            <Input
-              type="text"
-              placeholder="Trailer"
-              defaultValue={movie?.trailer}
-              control={control}
-              name="trailer"
-            />
+            <Input type="text" placeholder="Trailer" control={control} name="trailer" />
             <LabelError>{errors.trailer?.message}</LabelError>
           </Field>
         </div>
@@ -173,25 +156,22 @@ const MovieUpdate = () => {
             <Label>Poster</Label>
             <ImageUpload setImage={setPoster}></ImageUpload>
           </Field>
-        </div>
-        <Field>
-          <Label htmlFor="description">Description</Label>
-          <div className="description">
+          <Field>
+            <Label htmlFor="description">Description</Label>
             <Controller
               control={control}
-              defaultValue={movie?.description}
-              name="description"
               render={({ field: { onChange } }) => (
                 <TextArea
+                  control={control}
                   onChange={onChange}
+                  name="description"
                   placeholder="Description"
-                  defaultValue={movie?.description}
                 />
               )}
             />
-          </div>
-          <LabelError>{errors.description?.message} </LabelError>
-        </Field>
+            <LabelError>{errors.description?.message} </LabelError>
+          </Field>
+        </div>
         <Button kind="purple" type="submit" className="submit">
           Sửa
         </Button>

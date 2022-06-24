@@ -47,7 +47,7 @@ export const schemaUserUpdate = yup.object({
 });
 
 export const schemaYupFilm = yup.object().shape({
-  title: yup
+  name: yup
     .string()
     .required("Please input name movie!")
     .min(6, "Name movie must be at least 9 characters!")

@@ -9,7 +9,7 @@ import { path } from "constants/path";
 const menu = [
   {
     id: 0,
-    display: <h2 className="sidebar-heading">EasyBooking Cinema</h2>,
+    display: <h2 className="sidebar-heading">EasyBooking Admin</h2>,
     path: path.home,
     icon: null,
   },

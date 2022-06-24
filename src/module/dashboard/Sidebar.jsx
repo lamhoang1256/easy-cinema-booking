@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Button from "components/button/Button";
 import { useDispatch } from "react-redux";
