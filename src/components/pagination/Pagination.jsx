@@ -9,7 +9,7 @@ const StyledPagination = styled.div`
   button {
     width: 40px;
     height: 40px;
-    background-color: #3d6ef7;
+    background-color: var(--purple-color);
     color: var(--white);
     border-radius: 8px;
     display: flex;

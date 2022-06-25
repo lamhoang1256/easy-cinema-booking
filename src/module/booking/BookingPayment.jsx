@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import { calculateSumMoney } from "utilities/helper";
+import { calculateSumMoney, commaSeparation } from "utilities/helper";
 import BookingHeading from "./BookingHeading";
 import BookingTag from "./BookingTag";
 
@@ -47,9 +47,7 @@ const BookingPayment = () => {
       <BookingHeading>Payment Information</BookingHeading>
       <Field>
         <BookingTag className="seats">Your selecting: </BookingTag>
-        <span>
-          {isHaveSelecting ? isSelecting.map((seat) => seat.idDisplay + 1 + ", ") : "No thing"}
-        </span>
+        <span>{isHaveSelecting ? commaSeparation(isSelecting, "idDisplay") : "No thing"}</span>
       </Field>
       <Field>
         <BookingTag>Total Money: {calculateSumMoney(isSelecting, "price")}</BookingTag>

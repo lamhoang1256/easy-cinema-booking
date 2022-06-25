@@ -67,7 +67,7 @@ export const HomeComplexes = ({ cinemaComplexes }) => {
       </Tag>
       <Tabs defaultActiveKey="0" tabPosition="top">
         {cinemaComplexes.map(({ logo, cinemas }, index) => (
-          <TabPane key={index} tab={<TabLogo url={logo?.split("public/default")[1]} />}>
+          <TabPane key={index} tab={<TabLogo url={logo} />}>
             <HomeCinemas cinemas={cinemas} />
           </TabPane>
         ))}

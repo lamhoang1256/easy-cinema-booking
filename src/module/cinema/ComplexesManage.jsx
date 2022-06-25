@@ -51,11 +51,7 @@ const ComplexesManage = () => {
               <tr key={cinema.id}>
                 <td>{cinema.id}</td>
                 <td>
-                  <img
-                    src={cinema.logo.split("public/default")[1]}
-                    className="cinema-logo"
-                    alt="logo"
-                  />
+                  <img src={cinema.logo} className="cinema-logo" alt="logo" />
                 </td>
                 <td>{cinema.name}</td>
                 <td>
@@ -71,9 +67,3 @@ const ComplexesManage = () => {
 };
 
 export default ComplexesManage;
-
-// "logo": "public/default/images/cinemaComplexes/cgv.jpeg",
-// "id": 4,
-// "name": "CGV",
-// "createdAt": "2022-06-16T02:44:42.000Z",
-// "updatedAt": "2022-06-16T02:44:42.000Z"

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledFieldText = styled.div`
-  span:first-child {
+  & > span:first-child {
     margin-right: 8px;
   }
 `;
