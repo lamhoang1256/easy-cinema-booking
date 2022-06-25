@@ -9,6 +9,7 @@ import HomeComplexes from "module/home/HomeComplexes";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
+import { scrollTop } from "utilities/helper";
 
 const StyledMovieDetailTmdb = styled.section``;
 
@@ -31,6 +32,7 @@ const MovieDetailTmdb = () => {
   };
   useEffect(() => {
     fetchMovieDetailTMDB();
+    scrollTop();
   }, [tmdbId]);
 
   if (loading) return <LoadingSpinner />;

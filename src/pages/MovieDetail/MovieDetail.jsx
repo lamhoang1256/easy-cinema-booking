@@ -11,6 +11,7 @@ import DetailTrailer from "module/detail/DetailTrailer";
 import HomeComplexes from "module/home/HomeComplexes";
 import DetailMyTrailer from "module/detail/DetailMyTrailer";
 import LoadingSpinner from "components/loading/LoadingSpinner";
+import { scrollTop } from "utilities/helper";
 
 const StyledMovieDetail = styled.div`
   .heading-sub {
@@ -62,6 +63,7 @@ const MovieDetail = () => {
   };
   useEffect(() => {
     fetchMovieDetail();
+    scrollTop();
   }, [id]);
 
   if (loading) return <LoadingSpinner />;

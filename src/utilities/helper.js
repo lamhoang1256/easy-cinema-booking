@@ -30,3 +30,10 @@ export const commaSeparation = (array, key) => {
     return <span key={index}>{item[key] + ", "}</span>;
   });
 };
+
+export const scrollTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};

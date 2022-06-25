@@ -5,6 +5,7 @@ import HomeComplexes from "module/home/HomeComplexes";
 import HomeFeature from "module/home/HomeFeature";
 import MovieList from "components/movie/MovieList";
 import HomeBanner from "module/home/HomeBanner";
+import { scrollTop } from "utilities/helper";
 
 const Home = () => {
   const [movieList, setMovieList] = useState({ loading: true, data: [] });
@@ -35,6 +36,7 @@ const Home = () => {
     fetchMovieList();
   }, [pagination.page]);
   useEffect(() => {
+    scrollTop();
     fetchCinemaComplexes();
   }, []);
 

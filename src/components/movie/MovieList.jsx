@@ -33,7 +33,7 @@ const MovieList = ({ loading, data, heading, pagination, handlePageChange }) => 
       <StyledMovieList>
         <h3>{heading}</h3>
         <div className="movie-list">
-          {Array(7)
+          {Array(14)
             .fill(0)
             .map(() => (
               <MovieCardSkeleton key={uuidv4()} />

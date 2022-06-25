@@ -99,27 +99,27 @@ const footerNav = [
 const images = [
   {
     id: 1,
-    url: "images/footer/footer-1.png",
+    url: "/images/footer-1.png",
   },
   {
     id: 2,
-    url: "images/footer/footer-2.png",
+    url: "/images/footer-2.png",
   },
   {
     id: 3,
-    url: "images/footer/footer-3.png",
+    url: "/images/footer-3.png",
   },
   {
     id: 4,
-    url: "images/footer/footer-4.png",
+    url: "/images/footer-4.png",
   },
   {
     id: 5,
-    url: "images/footer/footer-5.png",
+    url: "/images/footer-5.png",
   },
   {
     id: 6,
-    url: "images/footer/footer-6.png",
+    url: "/images/footer-6.png",
   },
 ];
 
@@ -142,7 +142,7 @@ const Footer = () => {
             <div className="footer-images">
               {images.map((image) => (
                 <div className="footer-image" key={image.id}>
-                  <img src={`${process.env.PUBLIC_URL}/assets/${image.url}`} alt="image-footer" />
+                  <img src={`${image.url}`} alt="image-footer" />
                 </div>
               ))}
             </div>

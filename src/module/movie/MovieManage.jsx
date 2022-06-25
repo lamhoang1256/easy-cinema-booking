@@ -25,6 +25,9 @@ const StyledMovieManage = styled.div`
   .desc {
     ${TextClamp.multilines(3)}
   }
+  .media .lazy-load-image-background {
+    width: 100px;
+  }
   .poster {
     width: 100px;
     border-radius: 8px;
@@ -125,7 +128,7 @@ const MovieManage = () => {
                     <td>
                       <p className="title">{movie.name}</p>
                     </td>
-                    <td>
+                    <td className="media">
                       <ImageResize className="poster" url={movie.poster} width="100" alt="poster" />
                     </td>
                     <td>
