@@ -51,7 +51,7 @@ const ShowtimeManage = () => {
   const handleDeleteShowtime = async (id) => {
     try {
       const { data } = await configAPI.showtimeDelete(id);
-      if (data?.status === "success") toast.success("Delete showtime successfully");
+      if (data?.status === "success") toast.success("Showtime deleted successfully");
       fetchShowtimes();
     } catch (error) {
       toast.error(error?.response?.data?.message);
@@ -99,9 +99,9 @@ const ShowtimeManage = () => {
               <td>{moment(showtime?.endTime).format("lll")}</td>
               <td>{showtime.screenId}</td>
               <td>
-                <ActionUpdate to={`${path.showtimeUpdate}/${showtime.id}`}></ActionUpdate>
-                <ActionView to={`${path.showtimeView}/${showtime.id}`}></ActionView>
-                <ActionDelete onClick={() => handleDeleteShowtime(showtime.id)}></ActionDelete>
+                <ActionUpdate to={`${path.showtimeUpdate}/${showtime.id}`} />
+                <ActionView to={`${path.showtimeView}/${showtime.id}`} />
+                <ActionDelete onClick={() => handleDeleteShowtime(showtime.id)} />
               </td>
             </tr>
           ))}

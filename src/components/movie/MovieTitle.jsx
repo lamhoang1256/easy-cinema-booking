@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 const StyledMovieTitle = styled.h3`
   margin: 10px 0 6px;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  text-transform: capitalize;
   ${TextClamp.multilines(2)};
   a {
     font-weight: 500;

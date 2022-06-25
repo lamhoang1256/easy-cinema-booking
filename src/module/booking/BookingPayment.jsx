@@ -35,7 +35,7 @@ const BookingPayment = () => {
     }
     try {
       const { data } = await configAPI.bookingAddNew(values);
-      if (data?.status === "success") toast.success("Success Booking Ticket");
+      if (data?.status === "success") toast.success("Booking Ticket successfully");
       navigate(`${path.bookingHistory}/${data?.data?.booking?.id}`);
     } catch (error) {
       toast.error(error?.response?.data?.message);

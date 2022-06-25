@@ -141,6 +141,10 @@ export const configAPI = {
     const path = `/api/users`;
     return axiosClient.post(path, user);
   },
+  userDelete: (id) => {
+    const path = `/api/users/${id}`;
+    return axiosClient.delete(path);
+  },
 
   // commentGetAll: () => {
   //   const path = "https://62459f866b7ecf057c216c44.mockapi.io/api/comments";

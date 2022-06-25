@@ -10,6 +10,8 @@ import LoadingSpinner from "components/loading/LoadingSpinner";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
 import ActionUpdate from "components/action/ActionUpdate";
+import ActionDelete from "components/action/ActionDelete";
+import { toast } from "react-toastify";
 
 const StyledUserManage = styled.div``;
 
@@ -34,6 +36,17 @@ const UserManage = () => {
       setLoading(false);
     }
   };
+
+  const handleDeleteUser = async (id) => {
+    try {
+      const { data } = await configAPI.userDelete(id);
+      if (data?.status === "success") toast.success("User deleted successfully");
+      fetchAllUser();
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
   useEffect(() => {
     fetchAllUser();
   }, [pagination.page, searchDebounce]);
@@ -52,41 +65,46 @@ const UserManage = () => {
         </Button>
       </div>
       {loading && <LoadingSpinner />}
-      {!loading && (
-        <>
-          <Table>
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Email</th>
-                  <th>Fullname</th>
-                  <th>Phone</th>
-                  <th>Date Of Birth</th>
-                  <th>Role</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>{user.email}</td>
-                    <td>{`${user.firstName} ${user.lastName}`}</td>
-                    <td>{user.phoneNumber}</td>
-                    <td>{user.dateOfBirth}</td>
-                    <td>{user.role}</td>
-                    <td>
-                      <ActionUpdate to={`${path.userUpdate}/${user.id}`}>Update</ActionUpdate>
-                    </td>
+      {!loading &&
+        (users.length > 0 ? (
+          <>
+            <Table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Fullname</th>
+                    <th>Phone</th>
+                    <th>Date Of Birth</th>
+                    <th>Role</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </Table>
-          <Pagination pagination={pagination} onPageChange={handlePageChange} />
-        </>
-      )}
+                </thead>
+                <tbody>
+                  {users.length > 0 &&
+                    users.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.email}</td>
+                        <td>{`${user.firstName} ${user.lastName}`}</td>
+                        <td>{user.phoneNumber}</td>
+                        <td>{user.dateOfBirth}</td>
+                        <td>{user.role}</td>
+                        <td>
+                          <ActionUpdate to={`${path.userUpdate}/${user.id}`} />
+                          <ActionDelete onClick={() => handleDeleteUser(user.id)} />
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </Table>
+            <Pagination pagination={pagination} onPageChange={handlePageChange} />
+          </>
+        ) : (
+          <h3>No user found</h3>
+        ))}
     </StyledUserManage>
   );
 };

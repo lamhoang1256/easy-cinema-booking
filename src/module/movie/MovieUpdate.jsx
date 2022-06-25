@@ -88,7 +88,7 @@ const MovieUpdate = () => {
           formData.append(key, updates[key]);
         }
         const { data } = await configAPI.movieUpdate(id, formData);
-        if (data?.status === "success") toast.success("Update movie successfully");
+        if (data?.status === "success") toast.success("Movie updated successfully");
         navigate(path.movieManage);
       } catch (error) {
         toast.error(error?.response?.data?.message);
@@ -158,7 +158,7 @@ const MovieUpdate = () => {
           </Field>
         </div>
         <Button kind="purple" type="submit" className="button-full">
-          Sửa
+          Update movie
         </Button>
       </form>
     </StyledMovieUpdate>

@@ -9,73 +9,163 @@ import LoadingSpinner from "components/loading/LoadingSpinner";
 import { schemaShowtime } from "constants/yupSchema";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import { Select } from "antd";
+import ImageResize from "components/image/ImageResize";
+import { Controller } from "react-hook-form";
+import { path } from "constants/path";
+const { Option } = Select;
 
-const StyledShowtimeUpdate = styled.div``;
+const StyledShowtimeUpdate = styled.div`
+  .select {
+    width: 100%;
+    height: 50px;
+  }
+  .select .ant-select-selector {
+    background: transparent;
+    height: 50px;
+    color: var(--white);
+    border: 1px solid #656293;
+    border-radius: 6px;
+  }
+  .ant-select:hover .ant-select-selector {
+    border-color: var(--primary-color) !important;
+  }
+  .select .ant-select-selection-item {
+    line-height: 50px;
+  }
+  .select .ant-select-selection-placeholder {
+    color: #757563;
+    font-size: 1.8rem;
+    line-height: 50px;
+  }
+`;
 
 const ShowtimeUpdate = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [showtime, setShowtime] = useState(null);
+  const [showtime, setShowtime] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [screens, setScreens] = useState([]);
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schemaShowtime) });
+    reset,
+  } = useForm({
+    resolver: yupResolver(schemaShowtime),
+    defaultValues: {
+      movieId: 0,
+      screenId: 0,
+      startTime: "",
+      price: 0,
+    },
+  });
 
-  const handleUpdateShowtime = async (values) => {
+  const fetchMovies = async () => {
     try {
-      const { data } = await configAPI.showtimeUpdate(id, values);
-      console.log(data);
+      const { data } = await configAPI.movieGetAll();
+      setMovies(data.data.movies);
     } catch (error) {
       console.log(error);
     }
   };
-
+  const fetchScreens = async () => {
+    try {
+      const { data } = await configAPI.screenGetAll();
+      setScreens(data.data.screens);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const fetchShowtimeNeedUpdate = async () => {
     setLoading(true);
     try {
       const { data } = await configAPI.showtimeGetSingle(id);
       setShowtime(data.data.showtime);
+      const { tickets, startTime } = data.data.showtime;
+      reset({ price: tickets?.[0]?.price, startTime });
       setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   };
+  const handleUpdateShowtime = async (values) => {
+    try {
+      const { data } = await configAPI.showtimeUpdate(id, values);
+      if (data?.status === "success") toast.success("Showtime updated successfully");
+      navigate(path.showtimeManage);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchShowtimeNeedUpdate();
+    fetchMovies();
+    fetchScreens();
   }, [id]);
 
   if (loading) return <LoadingSpinner />;
-  let date = showtime.startTime.split(":");
-  date.pop();
-  const startTime = date.join(":");
-
   return (
     <StyledShowtimeUpdate>
       <form onSubmit={handleSubmit(handleUpdateShowtime)}>
         <div className="gird-layout">
           <Field>
             <Label htmlFor="movieId">Movie Id</Label>
-            <Input
-              placeholder="Movie Id"
+            <Controller
               name="movieId"
-              defaultValue={showtime.movie.id}
-              type="number"
               control={control}
+              defaultValue={showtime?.movie.id}
+              render={({ field: { onChange } }) => (
+                <Select
+                  defaultValue={showtime?.movie.id}
+                  placeholder="Movie Id"
+                  onChange={onChange}
+                  className="select"
+                >
+                  {movies?.map((movie) => (
+                    <Option value={movie.id} key={movie.id}>
+                      <div className="select-movie">
+                        <ImageResize
+                          width="40"
+                          className="select-poster"
+                          url={movie.poster}
+                          alt="poster"
+                        />
+                        <span>{movie.name}</span>
+                      </div>
+                    </Option>
+                  ))}
+                </Select>
+              )}
             />
             <LabelError>{errors.movieId?.message} </LabelError>
           </Field>
           <Field>
             <Label htmlFor="screenId">Screen Id</Label>
-            <Input
-              placeholder="Screen Id"
-              name="screenId"
-              defaultValue={showtime.screen.id}
-              type="number"
+            <Controller
               control={control}
+              name="screenId"
+              defaultValue={showtime?.screen.id}
+              render={({ field: { onChange } }) => (
+                <Select
+                  placeholder="Screen Id"
+                  defaultValue={showtime?.screen.id}
+                  onChange={onChange}
+                  className="select"
+                >
+                  {screens?.map((screen) => (
+                    <Option value={screen.id} key={screen.id}>
+                      {screen.name}
+                    </Option>
+                  ))}
+                </Select>
+              )}
             />
             <LabelError>{errors.screenId?.message} </LabelError>
           </Field>
@@ -86,7 +176,6 @@ const ShowtimeUpdate = () => {
             <Input
               placeholder="Start Time"
               name="startTime"
-              defaultValue={startTime}
               type="datetime-local"
               control={control}
             />
@@ -94,13 +183,7 @@ const ShowtimeUpdate = () => {
           </Field>
           <Field>
             <Label htmlFor="price">Price</Label>
-            <Input
-              placeholder="Price"
-              name="price"
-              defaultValue={showtime.tickets[0].price}
-              type="number"
-              control={control}
-            />
+            <Input placeholder="Price" name="price" type="number" control={control} />
             <LabelError>{errors.price?.message} </LabelError>
           </Field>
         </div>

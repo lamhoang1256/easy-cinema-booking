@@ -31,7 +31,7 @@ const MovieList = ({ loading, data, heading, pagination, handlePageChange }) => 
   if (loading) {
     return (
       <StyledMovieList>
-        <h3>{heading}</h3>
+        <h2>{heading}</h2>
         <div className="movie-list">
           {Array(14)
             .fill(0)
@@ -44,7 +44,7 @@ const MovieList = ({ loading, data, heading, pagination, handlePageChange }) => 
   }
   return (
     <StyledMovieList>
-      <h3>{heading}</h3>
+      <h2>{heading}</h2>
       <div className="movie-list">
         {data?.length > 0 && data.map((item) => <MovieCard movie={item} key={item.id}></MovieCard>)}
       </div>

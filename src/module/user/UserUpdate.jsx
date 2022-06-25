@@ -9,13 +9,15 @@ import LabelError from "components/label/LabelError";
 import { schemaUser } from "constants/yupSchema";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 import { toast } from "react-toastify";
+import { path } from "constants/path";
 
 const StyledUserUpdate = styled.div``;
 
 const UserUpdate = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const {
@@ -55,7 +57,8 @@ const UserUpdate = () => {
     const updateUser = async () => {
       try {
         const { data } = await configAPI.userUpdate(id, updates);
-        if (data?.status === "success") toast.success("Update user successfully");
+        if (data?.status === "success") toast.success("User updated successfully");
+        navigate(path.userManage);
       } catch (error) {
         toast.error(error?.response?.data?.message);
       }

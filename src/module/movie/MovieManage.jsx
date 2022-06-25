@@ -79,7 +79,7 @@ const MovieManage = () => {
           try {
             const { data } = await configAPI.movieDelete(idMovie);
             if (data?.status === "success") {
-              toast.success("Delete movie successfully");
+              toast.success("Movie delected successfully");
               fetchMovieList();
             }
           } catch (error) {
@@ -105,57 +105,65 @@ const MovieManage = () => {
         </Button>
       </div>
       {loading && <LoadingSpinner />}
-      {!loading && (
-        <>
-          <Table>
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Poster</th>
-                  <th>Description</th>
-                  <th>Rating</th>
-                  <th>Trailer</th>
-                  <th>Release Date</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {movieList.map((movie) => (
-                  <tr key={movie.id}>
-                    <td>{movie.id}</td>
-                    <td>
-                      <p className="title">{movie.name}</p>
-                    </td>
-                    <td className="media">
-                      <ImageResize className="poster" url={movie.poster} width="100" alt="poster" />
-                    </td>
-                    <td>
-                      <p className="desc">{movie.description}</p>
-                    </td>
-                    <td>{movie.rating}</td>
-                    <td>
-                      <a href={movie.trailer} target="_blank">
-                        Trailer
-                      </a>
-                    </td>
-                    <td>
-                      <span className="releaseDate">{movie.releaseDate}</span>
-                    </td>
-                    <td>
-                      <ActionUpdate to={`${path.movieUpdate}/${movie.id}`}></ActionUpdate>
-                      <ActionDelete onClick={() => handleDeleteMovie(movie.id)}></ActionDelete>
-                      <ActionView to={`${path.movieView}/${movie.id}`}></ActionView>
-                    </td>
+      {!loading &&
+        (movieList.length > 0 ? (
+          <>
+            <Table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Poster</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+                    <th>Trailer</th>
+                    <th>Release Date</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </Table>
-          <Pagination pagination={pagination} onPageChange={handlePageChange} />
-        </>
-      )}
+                </thead>
+                <tbody>
+                  {movieList.map((movie) => (
+                    <tr key={movie.id}>
+                      <td>{movie.id}</td>
+                      <td>
+                        <p className="title">{movie.name}</p>
+                      </td>
+                      <td className="media">
+                        <ImageResize
+                          className="poster"
+                          url={movie.poster}
+                          width="100"
+                          alt="poster"
+                        />
+                      </td>
+                      <td>
+                        <p className="desc">{movie.description}</p>
+                      </td>
+                      <td>{movie.rating}</td>
+                      <td>
+                        <a href={movie.trailer} target="_blank">
+                          Trailer
+                        </a>
+                      </td>
+                      <td>
+                        <span className="releaseDate">{movie.releaseDate}</span>
+                      </td>
+                      <td>
+                        <ActionUpdate to={`${path.movieUpdate}/${movie.id}`}></ActionUpdate>
+                        <ActionDelete onClick={() => handleDeleteMovie(movie.id)}></ActionDelete>
+                        <ActionView to={`${path.movieView}/${movie.id}`}></ActionView>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Table>
+            <Pagination pagination={pagination} onPageChange={handlePageChange} />
+          </>
+        ) : (
+          <h3>No movie found</h3>
+        ))}
     </StyledMovieManage>
   );
 };

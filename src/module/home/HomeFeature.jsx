@@ -5,7 +5,7 @@ import HomePostLarge from "./HomePostLarge";
 import Tag from "components/tag/Tag";
 
 const StyledHomeFeature = styled.div`
-  padding-top: 100px;
+  padding-top: 40px;
 `;
 
 const HomeFeature = () => {

@@ -40,7 +40,7 @@ const UserProfile = () => {
     const body = removeEmptyStringProperties(values);
     try {
       const { data } = await configAPI.userUpdateProfile(body);
-      if (data.status === "success") toast.success("Update user profile successfully");
+      if (data.status === "success") toast.success("Update profile successfully");
     } catch (error) {
       console.log(error);
     }
