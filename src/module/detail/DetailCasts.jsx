@@ -1,10 +1,9 @@
+import useSWR from "swr";
+import styled from "styled-components";
 import { fetcher, tmdbAPI } from "apis/tmdbApi";
 import { TextClamp } from "assets/styles/mixin";
-import Image from "components/image/Image";
 import ImageResize from "components/image/ImageResize";
 import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
-import useSWR from "swr";
 
 const StyledDetailCasts = styled.div`
   margin-top: 40px;
@@ -44,7 +43,7 @@ const DetailCasts = () => {
             <ImageResize
               width="150"
               className="cast-avatar"
-              imageError={`${tmdbAPI.imageOriginal("gasNitCwepbqNcYBmDHpsCgZH0I.jpg")}`}
+              imageError={`${tmdbAPI.imageOriginal("3bOGNsHlrswhyW79uvIHH1V43JI.jpg")}`}
               url={`${tmdbAPI.imageOriginal(item.profile_path)}`}
             ></ImageResize>
             <span className="cast-name">{item.name}</span>

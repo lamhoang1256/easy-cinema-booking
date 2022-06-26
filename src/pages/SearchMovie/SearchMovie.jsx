@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { fetcher, tmdbAPI } from "apis/tmdbApi";
 import SearchInput from "module/search/SearchInput";
 import { usePagination } from "hooks/usePagination";
-import SearchList from "../../module/search/SearchList";
-import { scrollTop } from "utilities/helper";
+import SearchList from "module/search/SearchList";
+import { scrollTop } from "utils/helper";
 
 const StyledSearchMovie = styled.div``;
 

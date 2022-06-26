@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobalStyle } from "assets/styles/GlobalStyles";
+import App from "App/App";
 import { store } from "App/store";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";

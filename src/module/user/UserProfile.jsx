@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import styled from "styled-components";
-import { removeEmptyStringProperties } from "utilities/helper";
+import { removeEmptyStringProperties } from "utils/helper";
 
 const StyledUserProfile = styled.div`
   max-width: 1000px;

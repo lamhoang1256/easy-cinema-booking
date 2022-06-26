@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ImageResize from "components/image/ImageResize";
 import { tmdbAPI } from "apis/tmdbApi";
+import ImageResize from "components/image/ImageResize";
 
 const StyledDetailBanner = styled.div`
   background-color: var(--bg-skeleton);
@@ -14,7 +14,7 @@ const StyledDetailBanner = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: top;
   }
 `;
 

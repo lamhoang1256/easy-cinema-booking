@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import { calculateSumMoney, commaSeparation } from "utilities/helper";
+import { calculateSumMoney, commaSeparation } from "utils/helper";
 import BookingHeading from "./BookingHeading";
 import BookingTag from "./BookingTag";
 

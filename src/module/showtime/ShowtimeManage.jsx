@@ -14,7 +14,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import styled from "styled-components";
-import { sortArrayDescending } from "utilities/helper";
+import { sortArrayDescending } from "utils/helper";
 
 const StyledShowtimeManage = styled.div`
   .poster {

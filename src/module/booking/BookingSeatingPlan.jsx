@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import { formatTimeTwoDigit } from "utilities/formatDate";
+import { formatTimeTwoDigit } from "utils/formatDate";
 import BookingSeating, { StyledSeat } from "./BookingSeating";
 
 const StyledBookingSeatingPlan = styled.div`

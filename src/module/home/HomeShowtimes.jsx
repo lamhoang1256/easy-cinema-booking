@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { TextClamp } from "assets/styles/mixin";
 import Button from "components/button/Button";
 import { path } from "constants/path";
-import Image from "components/image/Image";
+import ImageResize from "components/image/ImageResize";
 
 const StyledHomeShowtimes = styled.div`
   display: flex;
@@ -83,7 +83,7 @@ export const HomeShowtimes = ({ showtimes }) => {
           return (
             <SwiperSlide key={id}>
               <div className="movie-header">
-                <Image src={poster} alt="movie" className="movie-poster" />
+                <ImageResize width="100" url={poster} alt="movie" className="movie-poster" />
                 <div className="movie-meta">
                   <span>Rating: {rating}</span>
                   <span>Duration: {duration} minutes</span>

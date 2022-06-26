@@ -9,15 +9,24 @@ import { path } from "constants/path";
 import ImageResize from "components/image/ImageResize";
 
 const StyledHomeBanner = styled.section`
-  position: relative;
-  height: 500px;
   border-radius: 10px;
   overflow: hidden;
+  .banner-item {
+    position: relative;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
   .overlay {
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 10;
+  }
+  .banner-loading {
+    border-radius: 10px;
+    height: 500px;
+    background-color: var(--bg-skeleton);
   }
   .banner-img {
     object-fit: cover;
@@ -52,21 +61,25 @@ const StyledHomeBanner = styled.section`
 `;
 
 const HomeBanner = () => {
-  const { data } = useSWR(tmdbAPI.getUpcoming(), fetcher);
+  const { data, error } = useSWR(tmdbAPI.getUpcoming(), fetcher);
+  const loading = !data && !error;
   const movies = data?.results || [];
   return (
-    <section className="banner">
-      <div className="container">
-        <Swiper grabCursor="true" slidesPerView={"auto"}>
-          {movies.length > 0 &&
-            movies.map((item) => (
-              <SwiperSlide key={item.id}>
-                <HomeBannerItem item={item}></HomeBannerItem>
-              </SwiperSlide>
-            ))}
-        </Swiper>
-      </div>
-    </section>
+    <div className="container">
+      <StyledHomeBanner>
+        {loading && <div className="banner-loading"></div>}
+        {!loading && (
+          <Swiper grabCursor="true" slidesPerView={"auto"}>
+            {movies.length > 0 &&
+              movies.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <HomeBannerItem item={item}></HomeBannerItem>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        )}
+      </StyledHomeBanner>
+    </div>
   );
 };
 
@@ -74,7 +87,7 @@ function HomeBannerItem({ item }) {
   const { title, backdrop_path, id } = item;
   const navigate = useNavigate();
   return (
-    <StyledHomeBanner>
+    <div className="banner-item">
       <ImageResize
         width="1440"
         url={tmdbAPI.imageOriginal(backdrop_path)}
@@ -98,7 +111,7 @@ function HomeBannerItem({ item }) {
         </Button>
       </div>
       <div className="overlay"></div>
-    </StyledHomeBanner>
+    </div>
   );
 }
 

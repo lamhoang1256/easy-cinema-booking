@@ -5,7 +5,7 @@ import MovieViewDetail from "module/movie/MovieViewDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { formatVND } from "utilities/helper";
+import { formatVND } from "utils/helper";
 
 const StyledShowtimeView = styled.div`
   .screen {

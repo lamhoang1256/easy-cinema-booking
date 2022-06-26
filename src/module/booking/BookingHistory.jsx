@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import { calculateSumMoney, formatVND } from "utilities/helper";
+import { calculateSumMoney, formatVND } from "utils/helper";
 import { configAPI } from "apis/configAPI";
 import ActionStatus from "components/action/ActionStatus";
 import Button from "components/button/Button";

@@ -9,7 +9,7 @@ import HomeComplexes from "module/home/HomeComplexes";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
-import { scrollTop } from "utilities/helper";
+import { scrollTop } from "utils/helper";
 
 const StyledMovieDetailTmdb = styled.section``;
 

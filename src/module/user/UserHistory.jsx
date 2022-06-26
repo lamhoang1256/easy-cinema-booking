@@ -2,7 +2,7 @@ import styled from "styled-components";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { configAPI } from "apis/configAPI";
-import { calculateSumMoney, commaSeparation, sortArrayDescending } from "utilities/helper";
+import { calculateSumMoney, commaSeparation, sortArrayDescending } from "utils/helper";
 import Table from "components/table/Table";
 import ActionStatus from "components/action/ActionStatus";
 import ActionView from "components/action/ActionView";
