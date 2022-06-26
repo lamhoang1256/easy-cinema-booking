@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const StyledSearch = styled.div`
+const StyledSearchInput = styled.div`
   input {
     padding: 0 20px;
-    height: 44px;
+    height: ${(props) => props.height};
     background-color: transparent;
     border: 1px solid var(--primary-color);
     border-radius: 6px;
@@ -12,16 +12,16 @@ const StyledSearch = styled.div`
   }
 `;
 
-const Search = ({ setSearchValue, placeholder = "Search...", ...props }) => {
+const SearchInput = ({ height = "44px", setSearchValue, placeholder = "Search...", ...props }) => {
   const onChangeSearch = (e) => {
     setSearchValue(e.target.value);
   };
 
   return (
-    <StyledSearch {...props}>
+    <StyledSearchInput {...props} height={height}>
       <input type="text" placeholder={placeholder} onChange={onChangeSearch} />
-    </StyledSearch>
+    </StyledSearchInput>
   );
 };
 
-export default Search;
+export default SearchInput;

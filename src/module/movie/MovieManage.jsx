@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 import { useDebounce } from "hooks/useDebounce";
 import { usePagination } from "hooks/usePagination";
 import { useEffect, useState } from "react";
@@ -8,14 +9,13 @@ import { configAPI } from "apis/configAPI";
 import { TextClamp } from "assets/styles/mixin";
 import Button from "components/button/Button";
 import ImageResize from "components/image/ImageResize";
-import Search from "components/input/Search";
+import SearchInput from "module/search/SearchInput";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
 import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
 import LoadingSpinner from "components/loading/LoadingSpinner";
-import { toast } from "react-toastify";
 
 const StyledMovieManage = styled.div`
   .title {
@@ -94,7 +94,7 @@ const MovieManage = () => {
   return (
     <StyledMovieManage>
       <div className="manage-header">
-        <Search
+        <SearchInput
           className="search"
           value={searchValue}
           setSearchValue={setSearchValue}

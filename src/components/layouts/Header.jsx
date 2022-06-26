@@ -38,7 +38,8 @@ const StyledHeader = styled.header`
   }
   .header-auth {
     display: flex;
-    gap: 10px;
+    gap: 14px;
+    align-items: center;
   }
   .header-open,
   .header-close {
@@ -81,8 +82,9 @@ const StyledHeader = styled.header`
 `;
 
 const headerNav = [
-  { id: 3, display: "Profile", path: path.profile },
-  { id: 4, display: "History", path: path.history },
+  { id: 1, display: "Profile", path: path.profile },
+  { id: 2, display: "History", path: path.history },
+  { id: 3, display: "Search", path: path.search },
 ];
 
 const Header = () => {
@@ -130,9 +132,9 @@ const Header = () => {
                 Sign In
               </Button>
             )}
-          </div>
-          <div className="header-open" onClick={handleToggleMenu}>
-            <ion-icon name="list-outline"></ion-icon>
+            <div className="header-open" onClick={handleToggleMenu}>
+              <ion-icon name="list-outline"></ion-icon>
+            </div>
           </div>
         </div>
       </div>

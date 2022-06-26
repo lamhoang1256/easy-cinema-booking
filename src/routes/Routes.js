@@ -8,6 +8,7 @@ const Dashboard = React.lazy(() => import("pages/Dashboard/Dashboard"));
 const DashboardLayout = React.lazy(() => import("module/dashboard/DashboardLayout"));
 const Home = React.lazy(() => import("pages/Home/Home"));
 const Article = React.lazy(() => import("pages/Article/Article"));
+const SearchMovie = React.lazy(() => import("pages/SearchMovie/SearchMovie"));
 const UserManage = React.lazy(() => import("module/user/UserManage"));
 const UserProfile = React.lazy(() => import("module/user/UserProfile"));
 const UserUpdate = React.lazy(() => import("module/user/UserUpdate"));
@@ -42,6 +43,7 @@ const RoutesComponent = () => {
             <Route path={`${path.detail}/:id/*`} element={<MovieDetail />} />
             <Route path={`${path.detailTmdb}`} element={<MovieDetailTmdb />} />
             <Route path={`${path.article}/:id`} element={<Article />} />
+            <Route path={`${path.search}`} element={<SearchMovie />} />
             <Route element={<ProtectedRoutes isAllowed={["admin", "user"]} />}>
               <Route path={`${path.booking}/:id`} element={<Booking />} />
               <Route path={path.history} element={<UserHistory />} />

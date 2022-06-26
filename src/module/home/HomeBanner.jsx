@@ -11,17 +11,18 @@ import ImageResize from "components/image/ImageResize";
 const StyledHomeBanner = styled.section`
   position: relative;
   height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
   .overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 10;
   }
   .banner-img {
     object-fit: cover;
     object-position: center;
     aspect-ratio: 16/9;
-    border-radius: 8px;
   }
   .banner-content {
     position: absolute;

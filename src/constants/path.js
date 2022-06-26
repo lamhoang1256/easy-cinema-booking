@@ -24,6 +24,7 @@ export const path = {
   showtimeUpdate: "/manage/update-showtime",
   showtimeAddNew: "/manage/add-showtime",
   showtimeView: "/manage/view-showtime",
+  search: "/search",
   notFound: "*",
   resizeImage: (url, width = "", height = "") =>
     `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${width}&h=${height}&fit=outside`,

@@ -5,7 +5,7 @@ import { useDebounce } from "hooks/useDebounce";
 import { usePagination } from "hooks/usePagination";
 import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
-import Search from "components/input/Search";
+import SearchInput from "module/search/SearchInput";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
@@ -54,7 +54,7 @@ const UserManage = () => {
   return (
     <StyledUserManage>
       <div className="manage-header">
-        <Search
+        <SearchInput
           className="search"
           value={searchValue}
           setSearchValue={setSearchValue}
