@@ -1,4 +1,6 @@
+import Button from "components/button/Button";
 import ImageResize from "components/image/ImageResize";
+import { path } from "constants/path";
 import styled from "styled-components";
 
 const StyledMovieViewDetail = styled.div`
@@ -13,10 +15,14 @@ const StyledMovieViewDetail = styled.div`
     width: 220px;
     border-radius: 8px;
   }
+  button {
+    margin-top: 20px;
+  }
 `;
 
 const MovieViewDetail = (props) => {
-  const { poster, name, description, rating, duration, releaseDate, trailer } = props.data;
+  const { id, poster, name, description, rating, duration, releaseDate, trailer, tmdbId } =
+    props.data;
   return (
     <StyledMovieViewDetail>
       <div className="poster">
@@ -31,6 +37,9 @@ const MovieViewDetail = (props) => {
         <p>
           + Trailer: <a href={trailer}>{trailer}</a>
         </p>
+        <Button to={`${path.detail}/${id}?tmdbId=${tmdbId}`} kind="purple">
+          Redirect to Movie Detail Page
+        </Button>
       </div>
     </StyledMovieViewDetail>
   );

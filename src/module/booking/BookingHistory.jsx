@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import { calculateSumMoney, formatVND } from "utils/helper";
+import { calculateSumMoney, commaSeparation, formatVND } from "utils/helper";
 import { configAPI } from "apis/configAPI";
 import ActionStatus from "components/action/ActionStatus";
 import Button from "components/button/Button";
@@ -182,11 +182,7 @@ const BookingDetail = () => {
             </div>
             <div className="booking-field">
               <h3>Seats:</h3>
-              <span>
-                {booking?.tickets?.map((ticket) => (
-                  <span key={ticket.seatId}>{ticket.seatId}, </span>
-                ))}
-              </span>
+              <span>{commaSeparation(booking?.tickets, "seatId")}</span>
             </div>
             <div className="booking-field">
               <h3>Total:</h3>
@@ -195,7 +191,7 @@ const BookingDetail = () => {
           </div>
         </div>
         {!booking.isCancelled && (
-          <Button kind="purple" onClick={handleCancelBooking}>
+          <Button kind="purple" onClick={handleCancelBooking} className="button-full">
             Cancel booking
           </Button>
         )}

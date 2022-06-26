@@ -1,5 +1,7 @@
 import { configAPI } from "apis/configAPI";
+import Button from "components/button/Button";
 import LoadingSpinner from "components/loading/LoadingSpinner";
+import { path } from "constants/path";
 import BookingSeating from "module/booking/BookingSeating";
 import MovieViewDetail from "module/movie/MovieViewDetail";
 import { useEffect, useState } from "react";
@@ -15,7 +17,10 @@ const StyledShowtimeView = styled.div`
   }
   .screen-meta {
     flex-shrink: 0;
-    width: 220px;
+    width: 400px;
+  }
+  .screen-meta h3 {
+    margin-bottom: 10px;
   }
   .screen-seating {
     flex: 1;
@@ -52,16 +57,16 @@ const ShowtimeView = () => {
     <StyledShowtimeView>
       <MovieViewDetail data={showtime.movie} />
       <div className="screen">
-        <div className="screen-meta">
-          <h3>{showtime.screen.name}</h3>
-          <p>ScreenId: {showtime.screen.id}</p>
-          <p>Price: {formatVND(showtime.tickets[0].price)}</p>
-          <h3>
-            Total ticket sales: <h4>{formatVND(totalTicketSales)}</h4>
-          </h3>
-        </div>
         <div className="screen-seating">
           <BookingSeating seats={showtime.tickets}></BookingSeating>
+        </div>
+        <div className="screen-meta">
+          <h3>Cinema: {showtime.screen.name}</h3>
+          <h3>Price ticket: {formatVND(showtime.tickets[0].price)}</h3>
+          <h3>Total ticket sales: {formatVND(totalTicketSales)}</h3>
+          <Button to={`${path.booking}/${showtime.id}`} kind="purple">
+            Redirect to Ticket Room Page
+          </Button>
         </div>
       </div>
     </StyledShowtimeView>

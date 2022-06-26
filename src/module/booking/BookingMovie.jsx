@@ -1,9 +1,9 @@
-import Field from "components/field/FieldText";
-import Image from "components/image/Image";
-import BookingHeading from "module/booking/BookingHeading";
-import BookingTag from "module/booking/BookingTag";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import Field from "components/field/FieldText";
+import ImageResize from "components/image/ImageResize";
+import BookingHeading from "module/booking/BookingHeading";
+import BookingTag from "module/booking/BookingTag";
 
 const StyledBookingMovie = styled.div`
   .overview {
@@ -31,7 +31,7 @@ const BookingMovie = () => {
       <BookingHeading>Movie Information</BookingHeading>
       <div className="overview">
         <Field className="poster">
-          <Image src={showtime.movie.poster} alt="poster" />
+          <ImageResize width="140" url={showtime.movie.poster} alt="poster" />
         </Field>
         <div className="meta">
           <Field>

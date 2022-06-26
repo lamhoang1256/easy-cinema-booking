@@ -27,7 +27,6 @@ const MovieDetailTmdb = () => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
-      console.log(err);
     }
   };
   useEffect(() => {

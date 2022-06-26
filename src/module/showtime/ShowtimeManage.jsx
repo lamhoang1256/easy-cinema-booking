@@ -35,6 +35,7 @@ const StyledShowtimeManage = styled.div`
 const ShowtimeManage = () => {
   const [loading, setLoading] = useState(true);
   const [showtimes, setShowtimes] = useState([]);
+  console.log("showtimes: ", showtimes);
   const { pagination, handlePageChange, setPagination } = usePagination();
 
   const fetchShowtimes = async () => {
@@ -62,52 +63,59 @@ const ShowtimeManage = () => {
     fetchShowtimes();
   }, [pagination.page]);
 
-  if (loading) return <LoadingSpinner />;
   return (
     <StyledShowtimeManage>
       <Button className="addNew" kind="purple" to={path.showtimeAddNew}>
         Add new showtime
       </Button>
-      <Table>
-        <table>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Poster</th>
-            <th>Rating</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Id Cinema</th>
-            <th>Actions</th>
-          </tr>
-          {showtimes.map((showtime) => (
-            <tr key={showtime.id}>
-              <td>{showtime.id}</td>
-              <td>
-                <p className="movie-name">{showtime.movie.name}</p>
-              </td>
-              <td>
-                <ImageResize
-                  className="poster"
-                  url={showtime.movie.poster}
-                  width="100"
-                  alt="poster"
-                />
-              </td>
-              <td>{showtime.movie.rating}</td>
-              <td>{moment(showtime?.startTime).format("lll")}</td>
-              <td>{moment(showtime?.endTime).format("lll")}</td>
-              <td>{showtime.screenId}</td>
-              <td>
-                <ActionUpdate to={`${path.showtimeUpdate}/${showtime.id}`} />
-                <ActionView to={`${path.showtimeView}/${showtime.id}`} />
-                <ActionDelete onClick={() => handleDeleteShowtime(showtime.id)} />
-              </td>
-            </tr>
-          ))}
-        </table>
-      </Table>
-      <Pagination pagination={pagination} onPageChange={handlePageChange} />
+      {loading && <LoadingSpinner />}
+      {!loading &&
+        (showtimes.length > 0 ? (
+          <>
+            <Table>
+              <table>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Poster</th>
+                  <th>Rating</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Id Cinema</th>
+                  <th>Actions</th>
+                </tr>
+                {showtimes.map((showtime) => (
+                  <tr key={showtime.id}>
+                    <td>{showtime.id}</td>
+                    <td>
+                      <p className="movie-name">{showtime.movie.name}</p>
+                    </td>
+                    <td>
+                      <ImageResize
+                        className="poster"
+                        url={showtime.movie.poster}
+                        width="100"
+                        alt="poster"
+                      />
+                    </td>
+                    <td>{showtime.movie.rating}</td>
+                    <td>{moment(showtime?.startTime).format("lll")}</td>
+                    <td>{moment(showtime?.endTime).format("lll")}</td>
+                    <td>{showtime?.screen?.name}</td>
+                    <td>
+                      <ActionUpdate to={`${path.showtimeUpdate}/${showtime.id}`} />
+                      <ActionView to={`${path.showtimeView}/${showtime.id}`} />
+                      <ActionDelete onClick={() => handleDeleteShowtime(showtime.id)} />
+                    </td>
+                  </tr>
+                ))}
+              </table>
+            </Table>
+            <Pagination pagination={pagination} onPageChange={handlePageChange} />
+          </>
+        ) : (
+          <h3>No showtime found</h3>
+        ))}
     </StyledShowtimeManage>
   );
 };

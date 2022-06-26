@@ -16,6 +16,7 @@ import { Select } from "antd";
 import ImageResize from "components/image/ImageResize";
 import { Controller } from "react-hook-form";
 import { path } from "constants/path";
+import moment from "moment";
 const { Option } = Select;
 
 const StyledShowtimeUpdate = styled.div`
@@ -172,7 +173,9 @@ const ShowtimeUpdate = () => {
         </div>
         <div className="gird-layout">
           <Field>
-            <Label htmlFor="startTime">Start Time</Label>
+            <Label htmlFor="startTime">
+              Start Time ( {moment(showtime?.startTime).format("lll")} )
+            </Label>
             <Input
               placeholder="Start Time"
               name="startTime"
@@ -187,7 +190,7 @@ const ShowtimeUpdate = () => {
             <LabelError>{errors.price?.message} </LabelError>
           </Field>
         </div>
-        <Button kind="purple" type="submit">
+        <Button kind="purple" type="submit" className="button-full">
           Update showtime
         </Button>
       </form>
