@@ -56,10 +56,10 @@ const UserHistory = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Ngày đặt</th>
+                <th>Booking Date</th>
                 <th>Status</th>
-                <th>Seat</th>
-                <th>Showtime ID</th>
+                <th>Seats</th>
+                <th>RoomID</th>
                 <th>Total</th>
                 <th>Action</th>
               </tr>

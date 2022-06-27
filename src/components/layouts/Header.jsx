@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { TextGradient } from "assets/styles/mixin";
 
 const StyledHeader = styled.header`
   .header-content {
@@ -18,7 +17,7 @@ const StyledHeader = styled.header`
     text-align: center;
     font-size: 2.6rem;
     font-weight: 800;
-    ${TextGradient.primary}
+    color: var(--primary-color);
   }
   .navbar-list {
     margin: 0;

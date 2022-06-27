@@ -22,6 +22,7 @@ const StyledSidebar = styled.div`
     font-size: 2.4rem;
     color: var(--primary-color);
     text-align: center;
+    font-weight: 700;
   }
   .sidebar-container {
     padding: 20px;

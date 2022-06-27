@@ -1,12 +1,12 @@
+import { useEffect } from "react";
+import Swal from "sweetalert2";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import TagSmall from "components/tag/TagSmall";
 import { path } from "constants/path";
 import { useCountDownBooking } from "hooks/useCountDownBooking";
 import { resetSelectingSeat, selectSeat } from "pages/Booking/booking.slice";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import Swal from "sweetalert2";
 import { formatTimeTwoDigit } from "utils/formatDate";
 import BookingSeating, { StyledSeat } from "./BookingSeating";
 
@@ -29,6 +29,7 @@ const StyledBookingSeatingPlan = styled.div`
   .seatingPlan-introduction button {
     width: 40px;
     height: 40px;
+    border: 0;
   }
   .countdown-heading,
   .countdown-number {
@@ -96,21 +97,21 @@ const BookingSeatingPlan = () => {
     <StyledBookingSeatingPlan>
       <div className="seatingPlan-introduction">
         <div className="countdown">
-          <h3 className="countdown-heading">Thời gian giữ ghế :</h3>
+          <h3 className="countdown-heading">Seat Holding Time:</h3>
           <p className="countdown-number">{formatTimeTwoDigit(minutes, seconds)}</p>
         </div>
         <div className="seatingPlan-example">
           <div className="field">
             <StyledSeat status="normal"></StyledSeat>
-            <TagSmall kind="normal">Ghế thường</TagSmall>
+            <TagSmall kind="normal">Seats normal</TagSmall>
           </div>
           <div className="field">
             <StyledSeat status="isSelecting"></StyledSeat>
-            <TagSmall kind="normal">Ghế đang đặt</TagSmall>
+            <TagSmall kind="normal">Seats are booking</TagSmall>
           </div>
           <div className="field">
             <StyledSeat status="bought"></StyledSeat>
-            <TagSmall kind="normal">Ghế đã được đặt</TagSmall>
+            <TagSmall kind="normal">Seats are booked</TagSmall>
           </div>
         </div>
       </div>
