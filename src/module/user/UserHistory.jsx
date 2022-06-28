@@ -2,7 +2,7 @@ import styled from "styled-components";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { configAPI } from "apis/configAPI";
-import { calculateSumMoney, commaSeparation, sortArrayDescending } from "utils/helper";
+import { calculateSumMoney, commaHashtagSeparation, sortArrayDescending } from "utils/helper";
 import Table from "components/table/Table";
 import ActionStatus from "components/action/ActionStatus";
 import ActionView from "components/action/ActionView";
@@ -58,7 +58,7 @@ const UserHistory = () => {
                 <th>ID</th>
                 <th>Booking Date</th>
                 <th>Status</th>
-                <th>Seats</th>
+                <th>Seats ID</th>
                 <th>RoomID</th>
                 <th>Total</th>
                 <th>Action</th>
@@ -76,7 +76,7 @@ const UserHistory = () => {
                       <ActionStatus status="success">Success</ActionStatus>
                     )}
                   </td>
-                  <td>{commaSeparation(booking.tickets, "seatId")}</td>
+                  <td>{commaHashtagSeparation(booking.tickets, "seatId")}</td>
                   <td>{booking.tickets[0].showtimeId}</td>
                   <td>{calculateSumMoney(booking.tickets, "price")}</td>
                   <td>

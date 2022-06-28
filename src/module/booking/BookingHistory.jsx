@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import { calculateSumMoney, commaSeparation, formatVND } from "utils/helper";
+import { calculateSumMoney, commaHashtagSeparation, formatVND } from "utils/helper";
 import { configAPI } from "apis/configAPI";
 import ActionStatus from "components/action/ActionStatus";
 import Button from "components/button/Button";
@@ -181,8 +181,8 @@ const BookingDetail = () => {
               <span>{formatVND(booking?.tickets[0]?.price)}</span>
             </div>
             <div className="booking-field">
-              <h3>Seats:</h3>
-              <span>{commaSeparation(booking?.tickets, "seatId")}</span>
+              <h3>Seats ID:</h3>
+              <span>{commaHashtagSeparation(booking?.tickets, "seatId")}</span>
             </div>
             <div className="booking-field">
               <h3>Total:</h3>

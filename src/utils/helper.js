@@ -31,6 +31,14 @@ export const commaSeparation = (array, key) => {
   });
 };
 
+export const commaHashtagSeparation = (array, key) => {
+  const count = array.length - 1;
+  return array.map((item, index) => {
+    if (index === count) return <span key={index}>#{item[key]}</span>;
+    return <span key={index}>#{item[key] + ", "}</span>;
+  });
+};
+
 export const scrollTop = () => {
   window.scrollTo({
     top: 0,
