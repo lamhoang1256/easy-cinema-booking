@@ -65,12 +65,20 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 
 <details>
  <summary>HomePage</summary>
- <p>![home-fullpage](https://user-images.githubusercontent.com/61537853/176193684-d0e71b33-cd7a-4d32-a39c-9cf43248be3e.png)</p>
+ <p>
+  
+  ![home-fullpage](https://user-images.githubusercontent.com/61537853/176193684-d0e71b33-cd7a-4d32-a39c-9cf43248be3e.png)
+ 
+ </p>
 </details>
 
 <details>
  <summary>HomePage In Mobile</summary>
- <p>![home-mobile-header](https://user-images.githubusercontent.com/61537853/176193854-65b62127-5f3d-4519-9b62-62f3ae377d65.png)</p>
+ <p>
+  
+  ![home-mobile-header](https://user-images.githubusercontent.com/61537853/176193854-65b62127-5f3d-4519-9b62-62f3ae377d65.png)
+ 
+ </p>
 </details>
 
 <details>
