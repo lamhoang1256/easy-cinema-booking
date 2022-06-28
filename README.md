@@ -117,8 +117,10 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
   ![sign-in-page](https://user-images.githubusercontent.com/61537853/176195861-cdbca09f-ad1c-40ef-9fa0-5266ed79368d.png)
   
  </p>
+</details>
 
 <details>
+ 
  <summary>SignUp Page</summary>
  <p>
      
@@ -129,17 +131,43 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 
 
 <details>
- <summary>login</summary>
+ <summary>Manage User</summary>
+ <p>
+  
+   ![manage-user](https://user-images.githubusercontent.com/61537853/176196333-1cc408f7-974d-4a45-a3b5-f59d20339b4f.png)
+   ![add-new-user](https://user-images.githubusercontent.com/61537853/176196359-6be1519e-be81-49bc-b6bb-c38b0f4795fb.png)
+
+</p>
+</details>
+
+<details>
+ <summary>Manage Movie</summary>
  <p>
    
-![login_large](https://user-images.githubusercontent.com/38830527/57897998-477ce000-7825-11e9-84d8-16d59b65edb4.PNG)
+![manage-movie](https://user-images.githubusercontent.com/61537853/176196511-20f63e50-26dd-42b8-bea4-3b4799bf38e3.png)
+![movie-update](https://user-images.githubusercontent.com/61537853/176196543-f1f26398-27e5-41ca-83fb-507b47af64f6.png)
+
+</p>
+</details>
+
+
+<details>
+ <summary>Manage Showtime</summary>
+ <p>
+   
+
    
 </p>
-</details><details>
- <summary>login</summary>
+</details>
+
+
+<details>
+ <summary>Test</summary>
  <p>
    
-![login_large](https://user-images.githubusercontent.com/38830527/57897998-477ce000-7825-11e9-84d8-16d59b65edb4.PNG)
+![manage-showtime](https://user-images.githubusercontent.com/61537853/176196618-1ec2b56d-84fd-4dd3-b19d-57f8781e9df6.png)
+![manage-showtime-view](https://user-images.githubusercontent.com/61537853/176196635-0fe1b2ef-8211-4d94-90b2-a89cee860aa6.png)
+
    
 </p>
 </details>
