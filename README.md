@@ -102,16 +102,40 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 
 
 <details>
- <summary>checkout success</summary>
+ <summary>Article Post Page</summary>
+ <p>
+  
+   ![article-page](https://user-images.githubusercontent.com/61537853/176195479-b9b61892-322a-44e0-9ab1-eca2623ae5f0.png)
+  
+</p>
+</details>
+
+<details>
+ <summary>SignIn Page</summary>
  <p>
    
-![checkout_success_large](https://user-images.githubusercontent.com/38830527/57897996-46e44980-7825-11e9-8247-c0d97cfc39e9.PNG)
-   
+  ![sign-in-page](https://user-images.githubusercontent.com/61537853/176195861-cdbca09f-ad1c-40ef-9fa0-5266ed79368d.png)
+  
+ </p>
+
+<details>
+ <summary>SignUp Page</summary>
+ <p>
+     
+   ![sign-up-page](https://user-images.githubusercontent.com/61537853/176195895-192041a8-fdcc-4660-9e56-eca95b8371c1.png)
+
 </p>
 </details>
 
 
 <details>
+ <summary>login</summary>
+ <p>
+   
+![login_large](https://user-images.githubusercontent.com/38830527/57897998-477ce000-7825-11e9-84d8-16d59b65edb4.PNG)
+   
+</p>
+</details><details>
  <summary>login</summary>
  <p>
    
