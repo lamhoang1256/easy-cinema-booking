@@ -61,9 +61,13 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 
 ## Screenshots
 
+![home-header](https://user-images.githubusercontent.com/61537853/176192792-6ff6cb20-bc5c-41bd-a8d5-25cee955224a.png)
+
 <details>
  <summary>dashboard</summary>
- <p>
+<p>
+
+
    
 ![dashboard_large](https://user-images.githubusercontent.com/38830527/57897997-477ce000-7825-11e9-84f2-dcc66c7a378b.png)
 - - - - -
