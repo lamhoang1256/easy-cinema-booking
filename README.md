@@ -137,6 +137,7 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
  ![manage-user](https://user-images.githubusercontent.com/61537853/176196333-1cc408f7-974d-4a45-a3b5-f59d20339b4f.png)
  ![add-new-user](https://user-images.githubusercontent.com/61537853/176196359-6be1519e-be81-49bc-b6bb-c38b0f4795fb.png)
  ![update-user](https://user-images.githubusercontent.com/61537853/176197878-bf04533c-cd2e-4370-90e4-3709cf035d1c.png)  
+ ![delete-user](https://user-images.githubusercontent.com/61537853/176211990-fc462360-59d0-4fbb-ae22-034d5f7fe657.png)
 
 </p>
 </details>
@@ -146,9 +147,12 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
  <p>
    
  ![manage-movie](https://user-images.githubusercontent.com/61537853/176196511-20f63e50-26dd-42b8-bea4-3b4799bf38e3.png)
+ ![add-new-movie](https://user-images.githubusercontent.com/61537853/176210745-e35c2dbd-34db-4e45-970b-b5610b016cb9.png)
  ![update-movie](https://user-images.githubusercontent.com/61537853/176198015-1aa56499-70c4-4b48-8489-19c5bc465f68.png)
-
-</p>
+ ![delete-movie](https://user-images.githubusercontent.com/61537853/176211173-d6e5b2e2-d74f-4b04-8cd7-c4342d170cf1.png)
+ ![view-movie](https://user-images.githubusercontent.com/61537853/176211506-9f587d55-bcc9-4445-84cb-65670ca8e8b1.png)
+  
+ </p>
 </details>
 
 
@@ -158,21 +162,9 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
   
  ![manage-showtime](https://user-images.githubusercontent.com/61537853/176206377-eb9e9aed-2006-48e9-b7a3-ad289137bd13.png)
  ![add-new-showtime](https://user-images.githubusercontent.com/61537853/176208100-26d63fdc-bd02-4a59-9730-4aaaf5eb5a0c.png)
- ![view-showtime](https://user-images.githubusercontent.com/61537853/176206563-aa141d50-d70e-4ece-9e74-9fa259529fef.png)
  ![update-showtime](https://user-images.githubusercontent.com/61537853/176207712-343e757c-2d75-466c-8d92-441acb9f135a.png)
  ![delete-showtime](https://user-images.githubusercontent.com/61537853/176206438-ece7b80f-e586-4ea3-b1be-6bd4c714dada.png)
+ ![view-showtime](https://user-images.githubusercontent.com/61537853/176206563-aa141d50-d70e-4ece-9e74-9fa259529fef.png)
 
-</p>
-</details>
-
-
-<details>
- <summary>Test</summary>
- <p>
-   
-![manage-showtime](https://user-images.githubusercontent.com/61537853/176196618-1ec2b56d-84fd-4dd3-b19d-57f8781e9df6.png)
-![manage-showtime-view](https://user-images.githubusercontent.com/61537853/176196635-0fe1b2ef-8211-4d94-90b2-a89cee860aa6.png)
-
-   
 </p>
 </details>
