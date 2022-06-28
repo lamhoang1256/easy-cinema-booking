@@ -16,6 +16,7 @@ import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
 import LoadingSpinner from "components/loading/LoadingSpinner";
+import { swalDelete } from "utils/swalWarningDelete";
 
 const StyledMovieManage = styled.div`
   .title {
@@ -60,35 +61,24 @@ const MovieManage = () => {
     }
   };
 
+  const deleteMovie = async (idMovie) => {
+    try {
+      const { data } = await configAPI.movieDelete(idMovie);
+      if (data?.status === "success") {
+        toast.success("Movie delected successfully");
+        fetchMovieList();
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
   useEffect(() => {
     fetchMovieList();
   }, [pagination.page, searchDebounce]);
 
   const handleDeleteMovie = (idMovie) => {
-    Swal.fire({
-      title: "Delete movie?",
-      text: "Are you sure you want to delete this movie?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const deleteMovie = async (idMovie) => {
-          try {
-            const { data } = await configAPI.movieDelete(idMovie);
-            if (data?.status === "success") {
-              toast.success("Movie delected successfully");
-              fetchMovieList();
-            }
-          } catch (error) {
-            toast.error(error?.response?.data?.message);
-          }
-        };
-        deleteMovie(idMovie);
-      }
-    });
+    swalDelete("movie", () => deleteMovie(idMovie));
   };
 
   return (

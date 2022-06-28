@@ -14,6 +14,7 @@ import ImageResize from "components/image/ImageResize";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
+import { swalDelete } from "utils/swalWarningDelete";
 
 const StyledShowtimeManage = styled.div`
   .poster {
@@ -34,7 +35,6 @@ const StyledShowtimeManage = styled.div`
 const ShowtimeManage = () => {
   const [loading, setLoading] = useState(true);
   const [showtimes, setShowtimes] = useState([]);
-  console.log("showtimes: ", showtimes);
   const { pagination, handlePageChange, setPagination } = usePagination();
 
   const fetchShowtimes = async () => {
@@ -48,14 +48,21 @@ const ShowtimeManage = () => {
       setLoading(false);
     }
   };
-  const handleDeleteShowtime = async (id) => {
+
+  const deleteShowtime = async (id) => {
     try {
       const { data } = await configAPI.showtimeDelete(id);
-      if (data?.status === "success") toast.success("Showtime deleted successfully");
-      fetchShowtimes();
+      if (data?.status === "success") {
+        toast.success("Showtime deleted successfully");
+        fetchShowtimes();
+      }
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
+  };
+
+  const handleDeleteShowtime = (id) => {
+    swalDelete("showtime", () => deleteShowtime(id));
   };
 
   useEffect(() => {

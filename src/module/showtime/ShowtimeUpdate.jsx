@@ -114,6 +114,7 @@ const ShowtimeUpdate = () => {
   if (loading) return <LoadingSpinner />;
   return (
     <StyledShowtimeUpdate>
+      <h2>Update Showtime</h2>
       <form onSubmit={handleSubmit(handleUpdateShowtime)}>
         <div className="gird-layout">
           <Field>

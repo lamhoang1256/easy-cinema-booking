@@ -12,6 +12,7 @@ import Table from "components/table/Table";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionDelete from "components/action/ActionDelete";
 import { toast } from "react-toastify";
+import { swalDelete } from "utils/swalWarningDelete";
 
 const StyledUserManage = styled.div``;
 
@@ -37,14 +38,20 @@ const UserManage = () => {
     }
   };
 
-  const handleDeleteUser = async (id) => {
+  const deleteUser = async (id) => {
     try {
       const { data } = await configAPI.userDelete(id);
-      if (data?.status === "success") toast.success("User deleted successfully");
-      fetchAllUser();
+      if (data?.status === "success") {
+        toast.success("User deleted successfully");
+        fetchAllUser();
+      }
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
+  };
+
+  const handleDeleteUser = (id) => {
+    swalDelete("user", () => deleteUser(id));
   };
 
   useEffect(() => {

@@ -78,7 +78,7 @@ const MovieAddNew = () => {
 
   return (
     <StyledMovieAddNew>
-      <h2>Add new movie</h2>
+      <h2>Add New Movie</h2>
       <form className="movie" onSubmit={handleSubmit(handleAddNewMovie)}>
         <div className="form-layout">
           <Field>

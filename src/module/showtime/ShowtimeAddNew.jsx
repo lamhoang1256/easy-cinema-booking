@@ -85,6 +85,7 @@ const ShowtimeAddNew = () => {
 
   return (
     <StyledShowtimeAddNew>
+      <h2>Add New Showtime</h2>
       <form onSubmit={handleSubmit(handleAddNewShowtime)}>
         <div className="gird-layout">
           <Field>

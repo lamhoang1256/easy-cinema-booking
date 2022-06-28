@@ -1,5 +1,11 @@
+import { path } from "constants/path";
+import { schemaYupFilm } from "constants/yupSchema";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import styled from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DatePicker } from "antd";
 import { configAPI } from "apis/configAPI";
 import Button from "components/button/Button";
 import Field from "components/field/Field";
@@ -9,14 +15,6 @@ import Label from "components/label/Label";
 import LabelError from "components/label/LabelError";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 import TextArea from "components/textarea/TextArea";
-import { path } from "constants/path";
-import { schemaYupFilm } from "constants/yupSchema";
-import moment from "moment";
-import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import styled from "styled-components";
 
 const StyledMovieUpdate = styled.div`
   button {
@@ -104,7 +102,7 @@ const MovieUpdate = () => {
   if (loading) return <LoadingSpinner />;
   return (
     <StyledMovieUpdate>
-      <h2>Update movie</h2>
+      <h2>Update Movie</h2>
       <form className="movie" onSubmit={handleSubmit(handleUpdateMovie)}>
         <div className="form-layout">
           <Field>
