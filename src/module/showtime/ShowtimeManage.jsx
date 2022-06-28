@@ -1,5 +1,11 @@
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import styled from "styled-components";
 import { configAPI } from "apis/configAPI";
 import { TextClamp } from "assets/styles/mixin";
+import { path } from "constants/path";
+import { usePagination } from "hooks/usePagination";
 import ActionDelete from "components/action/ActionDelete";
 import ActionUpdate from "components/action/ActionUpdate";
 import ActionView from "components/action/ActionView";
@@ -8,13 +14,6 @@ import ImageResize from "components/image/ImageResize";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 import Pagination from "components/pagination/Pagination";
 import Table from "components/table/Table";
-import { path } from "constants/path";
-import { usePagination } from "hooks/usePagination";
-import moment from "moment";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import styled from "styled-components";
-import { sortArrayDescending } from "utils/helper";
 
 const StyledShowtimeManage = styled.div`
   .poster {
@@ -42,7 +41,7 @@ const ShowtimeManage = () => {
     setLoading(true);
     try {
       const { data } = await configAPI.showtimeGetWithPagination(pagination);
-      setShowtimes(sortArrayDescending(data.data.showtimes, "id"));
+      setShowtimes(data.data.showtimes);
       setPagination({ ...pagination, totalPages: data.data.pagination.totalPages });
       setLoading(false);
     } catch (error) {

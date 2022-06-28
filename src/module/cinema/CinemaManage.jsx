@@ -8,8 +8,13 @@ import ActionView from "components/action/ActionView";
 import Pagination from "components/pagination/Pagination";
 import { path } from "constants/path";
 import LoadingSpinner from "components/loading/LoadingSpinner";
+import { TextClamp } from "assets/styles/mixin";
 
-const StyledCinemaManage = styled.div``;
+const StyledCinemaManage = styled.div`
+  .address {
+    ${TextClamp.multilines(2)}
+  }
+`;
 
 const CinemaManage = () => {
   const { id } = useParams();
@@ -55,7 +60,9 @@ const CinemaManage = () => {
               <tr key={cinema.id}>
                 <td>{cinema.id}</td>
                 <td>{cinema.name}</td>
-                <td>{cinema.address}</td>
+                <td>
+                  <p className="address">{cinema.address}</p>
+                </td>
                 <td>{cinema.rating}</td>
                 <td>
                   <ActionView to={`${path.cinemaView}/${cinema.id}`}></ActionView>

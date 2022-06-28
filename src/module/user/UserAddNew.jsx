@@ -12,11 +12,7 @@ import LabelError from "components/label/LabelError";
 import { useNavigate } from "react-router-dom";
 import { path } from "constants/path";
 
-const StyledUserAddNew = styled.div`
-  .submit {
-    width: 100%;
-  }
-`;
+const StyledUserAddNew = styled.div``;
 
 const UserAddNew = () => {
   const navigate = useNavigate();
@@ -83,7 +79,7 @@ const UserAddNew = () => {
             <LabelError>{errors.phoneNumber?.message}</LabelError>
           </Field>
         </div>
-        <Button kind="purple" type="submit" className="submit">
+        <Button kind="purple" type="submit" className="button-full">
           Add New User
         </Button>
       </form>
