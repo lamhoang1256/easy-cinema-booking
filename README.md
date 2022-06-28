@@ -84,7 +84,9 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 <details>
  <summary>Movie Detail Page</summary>
  <p>
+  
   ![movie-detail-page](https://user-images.githubusercontent.com/61537853/176194628-93be4ed7-fcf9-4951-ac55-0a186f3e6ab0.png)
+  
 </p>
 </details>
 
@@ -92,7 +94,9 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 <details>
  <summary>Search Movie Page</summary>
  <p>
+  
   ![search-page](https://user-images.githubusercontent.com/61537853/176194835-524fc2ea-eb49-4442-83fa-40e872abf644.png)
+  
 </p>
 </details>
 
