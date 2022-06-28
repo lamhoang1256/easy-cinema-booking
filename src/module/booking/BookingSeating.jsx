@@ -19,6 +19,8 @@ export const StyledSeat = styled.button`
   cursor: pointer;
   overflow: hidden;
   color: var(--white);
+  border: 0;
+  outline: 0;
   ${(props) => props.status && STATUS_SEAT[props.status]}
   &:disabled {
     ${STATUS_SEAT["bought"]};

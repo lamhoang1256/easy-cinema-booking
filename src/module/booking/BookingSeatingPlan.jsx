@@ -31,10 +31,13 @@ const StyledBookingSeatingPlan = styled.div`
     height: 40px;
     border: 0;
   }
-  .countdown-heading,
+  .countdown-heading {
+    text-align: center;
+  }
   .countdown-number {
     text-align: center;
-    color: var(--white);
+    color: #ffce73;
+    font-weight: 600;
   }
   @media screen and (max-width: 767.98px) {
     flex-direction: column;
