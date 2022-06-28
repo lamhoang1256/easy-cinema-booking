@@ -59,30 +59,18 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 ```
 
 
-## Screenshots
+## Screenshots, Preview
 
 ![home-header](https://user-images.githubusercontent.com/61537853/176192792-6ff6cb20-bc5c-41bd-a8d5-25cee955224a.png)
 
 <details>
- <summary>dashboard</summary>
-<p>
-
-
-   
-![dashboard_large](https://user-images.githubusercontent.com/38830527/57897997-477ce000-7825-11e9-84f2-dcc66c7a378b.png)
-- - - - -
-side menu             |  dashboard
-:-------------------------:|:-------------------------:
-![side_menu_sm](https://user-images.githubusercontent.com/38830527/57898258-3e404300-7826-11e9-97dc-1475eaf95c70.png)  |  ![dashboard_sm](https://user-images.githubusercontent.com/38830527/57898213-0f29d180-7826-11e9-97cd-a19323b5d5cd.png)
-</p>
+ <summary>HomePage</summary>
+ <p>![home-fullpage](https://user-images.githubusercontent.com/61537853/176193684-d0e71b33-cd7a-4d32-a39c-9cf43248be3e.png)</p>
 </details>
 
 <details>
- <summary>product-overview</summary>
- <p>
-   
-   ![product_overview_large](https://user-images.githubusercontent.com/38830527/57897999-477ce000-7825-11e9-989e-4d95938b6578.PNG)
-</p>
+ <summary>HomePage In Mobile</summary>
+ <p>![home-mobile-header](https://user-images.githubusercontent.com/61537853/176193854-65b62127-5f3d-4519-9b62-62f3ae377d65.png)</p>
 </details>
 
 <details>
