@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { fetchShowtime } from "./booking.slice";
+import { fetchShowtime, resetSelectingSeat } from "./booking.slice";
 import BookingPayment from "module/booking/BookingPayment";
 import LoadingSpinner from "components/loading/LoadingSpinner";
 
@@ -51,6 +51,7 @@ const Booking = () => {
 
   useEffect(() => {
     dispatch(fetchShowtime(id));
+    dispatch(resetSelectingSeat());
   }, [id, dispatch]);
 
   if (loading) return <LoadingSpinner />;
