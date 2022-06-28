@@ -82,19 +82,17 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 </details>
 
 <details>
- <summary>checkout</summary>
+ <summary>Movie Detail Page</summary>
  <p>
-   
-![checkout_large](https://user-images.githubusercontent.com/38830527/57897994-46e44980-7825-11e9-86ec-5c086675c98d.PNG)
-   
+  ![movie-detail-page](https://user-images.githubusercontent.com/61537853/176194628-93be4ed7-fcf9-4951-ac55-0a186f3e6ab0.png)
 </p>
 </details>
 
 
 <details>
- <summary>checkout confirm</summary>
+ <summary>Search Movie Page</summary>
  <p>
-![checkout_confirm_large](https://user-images.githubusercontent.com/38830527/57897993-46e44980-7825-11e9-9ecf-6de74dd69eb2.PNG)
+  ![search-page](https://user-images.githubusercontent.com/61537853/176194835-524fc2ea-eb49-4442-83fa-40e872abf644.png)
 </p>
 </details>
 
