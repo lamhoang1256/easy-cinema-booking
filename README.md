@@ -20,7 +20,7 @@ Official website: https://easy-cinema-booking.vercel.app
 Main API: https://github.com/lamhoang1256/easy-cinema-booking-api
 TMDB API: https://www.themoviedb.org
 Ionicons: https://ionic.io/ionicons
-Google Font: https://fonts.google.com/specimen/Overpass?query=Overpass
+Google Font: https://fonts.google.com/specimen/Overpass
 Cache Image Proxy: https://images.weserv.nl
 ```
 ## Main technology used
