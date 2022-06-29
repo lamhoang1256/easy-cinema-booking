@@ -6,6 +6,17 @@ Movie Tickets Online Booking Website Using ReactJS
 ```
 Official website: https://easy-cinema-booking.vercel.app
 ```
+
+
+## Author
+```
+Nguyễn Hoàng Lâm
+```
+
+### Preview
+
+![home-header](https://user-images.githubusercontent.com/61537853/176192792-6ff6cb20-bc5c-41bd-a8d5-25cee955224a.png)
+
 ## Resources
 ```
 Main API: https://github.com/lamhoang1256/easy-cinema-booking-api
@@ -59,9 +70,8 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 ```
 
 
-## Screenshots, Preview
+## Screenshots
 
-![home-header](https://user-images.githubusercontent.com/61537853/176192792-6ff6cb20-bc5c-41bd-a8d5-25cee955224a.png)
 
 <details>
  <summary>HomePage</summary>
@@ -111,7 +121,7 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 </details>
 
 <details>
- <summary>SignIn Page</summary>
+ <summary>Sign In Page</summary>
  <p>
    
   ![sign-in-page](https://user-images.githubusercontent.com/61537853/176195861-cdbca09f-ad1c-40ef-9fa0-5266ed79368d.png)
@@ -121,7 +131,7 @@ REACT_APP_TMDB_KEY = "api_key_tmdb:
 
 <details>
  
- <summary>SignUp Page</summary>
+ <summary>Sign Up Page</summary>
  <p>
      
    ![sign-up-page](https://user-images.githubusercontent.com/61537853/176195895-192041a8-fdcc-4660-9e56-eca95b8371c1.png)
