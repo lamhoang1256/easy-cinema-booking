@@ -9,7 +9,7 @@ Official website: https://easy-cinema-booking.vercel.app
 
 
 ## Author
-- Nguyễn Hoàng Lâm
+- Nguyễn Hoàng Lâm ( [@lamhoang1256](https://github.com/lamhoang1256) )
 
 ### Preview
 
@@ -41,11 +41,10 @@ Cache Image Proxy: https://images.weserv.nl
 - Check History booking, Cancel booking, Update profile
 
 ``` Admin ```
-
 - Manage Cinemas: View information all cinema
-- Manage Movies: Add new movie, update, delete existing movie.
-- Manage User: Add new user, update, delete existing user.
-- Manage Showtimes: Add new showtime, update and delete existing showtime, view info showtime including price, total seats are booked, total money ticket sales.
+- Manage Movies: Add new, update, delete movie.
+- Manage User: Add new, update, delete user.
+- Manage Showtimes: Add new, update, delete showtime, view info showtime including price, total seats are booked, total money ticket sales.
 
 ## Default login credentials:
 1: Admin role
