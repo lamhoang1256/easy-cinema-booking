@@ -57,13 +57,13 @@ Cache Image Proxy: https://images.weserv.nl
 ## Environment Variables
 
 ```
-REACT_APP_PUBLIC = http://localhost:3000 (Link vercel)
+REACT_APP_PUBLIC = http://localhost:3000 (or Link vercel)
 
 # See: https://github.com/lamhoang1256/easy-cinema-booking-api
 REACT_APP_API = 
 
 # See: https://www.themoviedb.org/
-REACT_APP_TMDB_KEY = "api_key_tmdb:
+REACT_APP_TMDB_KEY = "api_key_tmdb"
 ```
 
 
