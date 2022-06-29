@@ -9,9 +9,7 @@ Official website: https://easy-cinema-booking.vercel.app
 
 
 ## Author
-```
-Nguyễn Hoàng Lâm
-```
+- Nguyễn Hoàng Lâm
 
 ### Preview
 
