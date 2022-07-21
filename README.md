@@ -3,10 +3,8 @@
 Movie Tickets Online Booking Website Using ReactJS
 
 ## Live demo
-```
-Official website: https://easy-cinema-booking.vercel.app
-```
 
+Official website: https://easy-cinema-booking.vercel.app
 
 ## Author
 - Nguyễn Hoàng Lâm ( [@lamhoang1256](https://github.com/lamhoang1256) )
