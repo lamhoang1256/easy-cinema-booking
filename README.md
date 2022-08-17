@@ -45,11 +45,7 @@ Cache Image Proxy: https://images.weserv.nl
 - Manage Showtimes: Add new, update, delete showtime, view info showtime including price, total seats are booked, total money ticket sales.
 
 ## Default login credentials:
-1: Admin role
-- email: admin@example.com
-- password: 11111111
 
-2: User role
 - email: user@example.com
 - password: 11111111
 ## Environment Variables
